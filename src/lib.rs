@@ -24,7 +24,7 @@ use can_dbc::MultiplexIndicator::{
     MultiplexedSignal, Multiplexor, MultiplexorAndMultiplexedSignal, Plain,
 };
 use can_dbc::ValueType::Signed;
-use can_dbc::{Dbc, Message, MessageId, Signal, Transmitter, ValDescription, ValueDescription};
+use can_dbc::{Dbc, Message, MessageId, Signal, ValDescription, ValueDescription};
 use heck::ToSnakeCase;
 use quote::ToTokens;
 use typed_builder::TypedBuilder;
@@ -237,7 +237,7 @@ impl Config<'_> {
             MessageId::Extended(id) => writeln!(w, "/// - Extended ID: {id} (0x{id:x})"),
         }?;
         writeln!(w, "/// - Size: {} bytes", msg.size)?;
-        if let Transmitter::NodeName(transmitter) = &msg.transmitter {
+        if let Some(transmitter) = &msg.transmitter {
             writeln!(w, "/// - Transmitter: {transmitter}")?;
         }
         if let Some(comment) = dbc.message_comment(msg.id) {
@@ -432,7 +432,12 @@ impl Config<'_> {
         writeln!(w, "/// - Min: {}", signal.min)?;
         writeln!(w, "/// - Max: {}", signal.max)?;
         writeln!(w, "/// - Unit: {:?}", signal.unit)?;
-        writeln!(w, "/// - Receivers: {}", signal.receivers.join(", "))?;
+        if signal.receivers.is_empty() {
+            writeln!(w, "/// - Receivers: Vector__XXX")?;
+        } else {
+            writeln!(w, "/// - Receivers: {}", signal.receivers.join(", "))?;
+        }
+
         writeln!(w, "#[inline(always)]")?;
         let fn_name = signal.field_name();
         if let Some(variants) = dbc.value_descriptions_for_signal(msg.id, &signal.name) {
