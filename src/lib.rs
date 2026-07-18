@@ -79,9 +79,7 @@ pub struct Config<'a> {
     #[builder(default)]
     pub impl_serde: FeatureConfig<'a>,
 
-    /// Optional: `impl Error` for generated error type. Default: `Never`.
-    ///
-    /// Note: this feature depends on `std`.
+    /// Optional: `impl core::error::Error` for the generated `CanError` type. Default: `Never`.
     #[builder(default)]
     pub impl_error: FeatureConfig<'a>,
 
@@ -207,6 +205,9 @@ impl Config<'_> {
         writeln!(w, "use bitvec::prelude::*;")?;
         writeln!(w, "#[allow(unused_imports)]")?;
         writeln!(w, "use embedded_can::{{Id, StandardId, ExtendedId}};")?;
+        if get_relevant_messages(&dbc).any(|m| message_cycle_time_ms(&dbc, m.id).is_some()) {
+            writeln!(w, "use core::time::Duration;")?;
+        }
 
         self.impl_arbitrary.fmt_cfg(&mut w, |w| {
             writeln!(w, "use arbitrary::{{Arbitrary, Unstructured}};")
@@ -350,6 +351,11 @@ impl Config<'_> {
                 }
             )?;
             writeln!(w)?;
+
+            writeln!(w, "pub const MESSAGE_SIZE: usize = {};", msg.size)?;
+            writeln!(w)?;
+
+            Self::render_cycle_time(&mut w, msg, dbc)?;
 
             for signal in &msg.signals {
                 let typ = ValType::from_signal(signal);
@@ -650,6 +656,19 @@ impl Config<'_> {
         }
         writeln!(w, "}};")?;
         writeln!(w)?;
+        Ok(())
+    }
+
+    /// Emit the cycle time as a constant for messages that have an assigned
+    /// `GenMsgCycleTime` (`BA_`) attribute.
+    fn render_cycle_time(w: &mut impl Write, msg: &Message, dbc: &Dbc) -> Result<()> {
+        let Some(ms) = message_cycle_time_ms(dbc, msg.id) else {
+            return Ok(());
+        };
+        writeln!(
+            w,
+            "pub const MESSAGE_CYCLE_TIME: Duration = Duration::from_millis({ms});"
+        )?;
         Ok(())
     }
 
@@ -1572,17 +1591,14 @@ fn resolve_field_source(
     signal: Option<&Signal>,
 ) -> Option<String> {
     match source {
-        FieldSource::Attr(name) => {
-            let value = match signal {
-                Some(s) => dbc.resolved_signal_attribute(msg.id, &s.name, name),
-                None => dbc.resolved_message_attribute(msg.id, name),
-            }?;
-            Some(attr_value_literal(value))
+        FieldSource::Attr(name) => match signal {
+            Some(s) => dbc.resolved_signal_attribute(msg.id, &s.name, name),
+            None => dbc.resolved_message_attribute(msg.id, name),
         }
-        FieldSource::MessageAttr(name) => {
-            let value = dbc.resolved_message_attribute(msg.id, name)?;
-            Some(attr_value_literal(value))
-        }
+        .map(attr_value_literal),
+        FieldSource::MessageAttr(name) => dbc
+            .resolved_message_attribute(msg.id, name)
+            .map(attr_value_literal),
         FieldSource::StartBit => signal.map(|s| s.start_bit.to_string()),
         FieldSource::StartByte => signal.map(|s| signal_start_byte(s).to_string()),
         FieldSource::BitWidth => signal.map(|s| s.size.to_string()),
@@ -1604,6 +1620,16 @@ fn attr_value_literal(value: &AttributeValue) -> String {
         AttributeValue::Int(v) => v.to_string(),
         AttributeValue::Double(v) => format!("{v:?}"),
         AttributeValue::String(v) => format!("{v:?}"),
+    }
+}
+
+/// Cycle time in milliseconds from an assigned and valid
+// `GenMsgCycleTime` (`BA_`) attribute.
+fn message_cycle_time_ms(dbc: &Dbc, id: MessageId) -> Option<u64> {
+    match dbc.message_attribute(id, "GenMsgCycleTime")? {
+        AttributeValue::Uint(v) => Some(*v),
+        AttributeValue::Int(v) => u64::try_from(*v).ok(),
+        AttributeValue::Double(_) | AttributeValue::String(_) => None,
     }
 }
 
