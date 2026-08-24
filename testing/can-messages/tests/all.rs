@@ -42,26 +42,51 @@ fn check_min_max_values() {
 
 #[test]
 fn pack_unpack_message() {
-    let result = Foo::new(63.9990234375, 10.0).unwrap();
-    assert_eq!(result.voltage_raw(), 63.99899);
-    assert_eq!(result.current_raw(), 10.0);
+    let mut result = Foo::new(63.9990234375, 10.0).unwrap();
+    assert_eq!(result.voltage_phys(), 63.99899);
+    assert_eq!(result.current_phys(), 10.0);
+    assert_eq!(result.current_raw(), 160);
+
+    result.set_current_raw(-32);
+    assert_eq!(result.current_raw(), -32);
+    assert_eq!(result.current_phys(), -2.0);
+
+    result.set_current(10.0).unwrap();
+    assert_eq!(result.current_raw(), 160);
 }
 
 #[test]
 fn pack_unpack_message_negative() {
-    let result = Foo::new(0.000976562, -3.0 * 0.0625).unwrap();
-    assert_eq!(result.voltage_raw(), 0.000976562);
-    assert_eq!(result.current_raw(), -3.0 * 0.0625);
+    let mut result = Foo::new(0.000976562, -3.0 * 0.0625).unwrap();
+    assert_eq!(result.voltage_phys(), 0.000976562);
+    assert_eq!(result.current_phys(), -3.0 * 0.0625);
+
+    result.set_voltage_raw(12345);
+    assert_eq!(result.voltage_raw(), 12345);
+
+    result.set_voltage(63.9990234375).unwrap();
+    assert_eq!(result.voltage_raw(), 65535);
 }
 
 #[test]
 fn pack_unpack_message2() {
-    let result = Amet::new(1, 0.39, 3, 3, true).unwrap();
+    let mut result = Amet::new(1, 0.39, 3, 3, true).unwrap();
     assert_eq!(result.one_raw(), 1);
-    assert_eq!(result.two_raw(), 0.39);
+    assert_eq!(result.two_phys(), 0.39);
+    assert_eq!(result.two_raw(), 1);
     assert_eq!(result.three_raw(), 3);
     assert_eq!(result.four_raw(), 3);
-    assert!(result.five_raw());
+    assert!(result.five_phys());
+    assert_eq!(result.five_raw(), 1);
+
+    result.set_two_raw(200);
+    assert_eq!(result.two_raw(), 200);
+    assert_eq!(result.two_phys(), 78.0);
+
+    result.set_five_raw(0);
+    assert!(!result.five_phys());
+    result.set_five_raw(1);
+    assert!(result.five_phys());
 }
 
 #[test]
