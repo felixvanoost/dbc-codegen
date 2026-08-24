@@ -105,21 +105,33 @@ impl Msg0 {
     /// - Receivers: E1
     #[inline(always)]
     pub fn a(&self) -> u16 {
-        self.a_raw()
+        self.a_phys()
+    }
+    /// Get physical value of 'A'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn a_phys(&self) -> u16 {
+        let signal = self.raw.view_bits::<Msb0>()[1..16].load_be::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'A'
     ///
     /// - Start bit: 6
     /// - Signal size: 15 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn a_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Msb0>()[1..16].load_be::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Msb0>()[1..16].load_be::<u16>()
+    }
+    /// Set raw value of 'A'
+    #[inline(always)]
+    pub fn set_a_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Msb0>()[1..16].store_be(value);
     }
     /// Set value of 'A'
     #[inline(always)]
@@ -147,20 +159,32 @@ impl Msg0 {
     /// - Receivers: E1
     #[inline(always)]
     pub fn b(&self) -> bool {
-        self.b_raw()
+        self.b_phys()
+    }
+    /// Get physical value of 'B'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn b_phys(&self) -> bool {
+        let signal = self.raw.view_bits::<Msb0>()[0..1].load_be::<u8>();
+        signal == 1
     }
     /// Get raw value of 'B'
     ///
     /// - Start bit: 7
     /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn b_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[0..1].load_be::<u8>();
-        signal == 1
+    pub fn b_raw(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[0..1].load_be::<u8>()
+    }
+    /// Set raw value of 'B'
+    #[inline(always)]
+    pub fn set_b_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[0..1].store_be(value);
     }
     /// Set value of 'B'
     #[inline(always)]
@@ -177,21 +201,33 @@ impl Msg0 {
     /// - Receivers: E1
     #[inline(always)]
     pub fn c(&self) -> u16 {
-        self.c_raw()
+        self.c_phys()
+    }
+    /// Get physical value of 'C'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn c_phys(&self) -> u16 {
+        let signal = self.raw.view_bits::<Msb0>()[33..48].load_be::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'C'
     ///
     /// - Start bit: 38
     /// - Signal size: 15 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn c_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Msb0>()[33..48].load_be::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Msb0>()[33..48].load_be::<u16>()
+    }
+    /// Set raw value of 'C'
+    #[inline(always)]
+    pub fn set_c_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Msb0>()[33..48].store_be(value);
     }
     /// Set value of 'C'
     #[inline(always)]
@@ -219,20 +255,32 @@ impl Msg0 {
     /// - Receivers: E1
     #[inline(always)]
     pub fn d(&self) -> bool {
-        self.d_raw()
+        self.d_phys()
+    }
+    /// Get physical value of 'D'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn d_phys(&self) -> bool {
+        let signal = self.raw.view_bits::<Msb0>()[32..33].load_be::<u8>();
+        signal == 1
     }
     /// Get raw value of 'D'
     ///
     /// - Start bit: 39
     /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn d_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[32..33].load_be::<u8>();
-        signal == 1
+    pub fn d_raw(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[32..33].load_be::<u8>()
+    }
+    /// Set raw value of 'D'
+    #[inline(always)]
+    pub fn set_d_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[32..33].store_be(value);
     }
     /// Set value of 'D'
     #[inline(always)]
@@ -328,20 +376,32 @@ impl Msg1 {
     /// - Receivers: E1
     #[inline(always)]
     pub fn e(&self) -> bool {
-        self.e_raw()
+        self.e_phys()
+    }
+    /// Get physical value of 'E'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn e_phys(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
+        signal == 1
     }
     /// Get raw value of 'E'
     ///
     /// - Start bit: 0
     /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn e_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+    pub fn e_raw(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
+    }
+    /// Set raw value of 'E'
+    #[inline(always)]
+    pub fn set_e_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'E'
     #[inline(always)]
@@ -358,21 +418,33 @@ impl Msg1 {
     /// - Receivers: E1
     #[inline(always)]
     pub fn f(&self) -> u16 {
-        self.f_raw()
+        self.f_phys()
+    }
+    /// Get physical value of 'F'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn f_phys(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[1..16].load_le::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'F'
     ///
     /// - Start bit: 1
     /// - Signal size: 15 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn f_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[1..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[1..16].load_le::<u16>()
+    }
+    /// Set raw value of 'F'
+    #[inline(always)]
+    pub fn set_f_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[1..16].store_le(value);
     }
     /// Set value of 'F'
     #[inline(always)]
@@ -400,20 +472,32 @@ impl Msg1 {
     /// - Receivers: E1
     #[inline(always)]
     pub fn g(&self) -> bool {
-        self.g_raw()
+        self.g_phys()
+    }
+    /// Get physical value of 'G'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn g_phys(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[32..33].load_le::<u8>();
+        signal == 1
     }
     /// Get raw value of 'G'
     ///
     /// - Start bit: 32
     /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn g_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[32..33].load_le::<u8>();
-        signal == 1
+    pub fn g_raw(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[32..33].load_le::<u8>()
+    }
+    /// Set raw value of 'G'
+    #[inline(always)]
+    pub fn set_g_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[32..33].store_le(value);
     }
     /// Set value of 'G'
     #[inline(always)]
@@ -430,21 +514,33 @@ impl Msg1 {
     /// - Receivers: E1
     #[inline(always)]
     pub fn h(&self) -> u16 {
-        self.h_raw()
+        self.h_phys()
+    }
+    /// Get physical value of 'H'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn h_phys(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[33..48].load_le::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'H'
     ///
     /// - Start bit: 33
     /// - Signal size: 15 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn h_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[33..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[33..48].load_le::<u16>()
+    }
+    /// Set raw value of 'H'
+    #[inline(always)]
+    pub fn set_h_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[33..48].store_le(value);
     }
     /// Set value of 'H'
     #[inline(always)]
@@ -552,21 +648,33 @@ impl Msg2 {
     /// - Receivers: E1
     #[inline(always)]
     pub fn i(&self) -> u8 {
-        self.i_raw()
+        self.i_phys()
+    }
+    /// Get physical value of 'I'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn i_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..4].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'I'
     ///
     /// - Start bit: 0
     /// - Signal size: 4 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn i_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..4].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..4].load_le::<u8>()
+    }
+    /// Set raw value of 'I'
+    #[inline(always)]
+    pub fn set_i_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
     }
     /// Set value of 'I'
     #[inline(always)]
@@ -594,21 +702,33 @@ impl Msg2 {
     /// - Receivers: E1
     #[inline(always)]
     pub fn j(&self) -> u8 {
-        self.j_raw()
+        self.j_phys()
+    }
+    /// Get physical value of 'J'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn j_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[4..8].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'J'
     ///
     /// - Start bit: 4
     /// - Signal size: 4 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn j_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[4..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[4..8].load_le::<u8>()
+    }
+    /// Set raw value of 'J'
+    #[inline(always)]
+    pub fn set_j_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[4..8].store_le(value);
     }
     /// Set value of 'J'
     #[inline(always)]
@@ -636,21 +756,33 @@ impl Msg2 {
     /// - Receivers: E1
     #[inline(always)]
     pub fn k(&self) -> u8 {
-        self.k_raw()
+        self.k_phys()
+    }
+    /// Get physical value of 'K'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn k_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[8..12].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'K'
     ///
     /// - Start bit: 8
     /// - Signal size: 4 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn k_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..12].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[8..12].load_le::<u8>()
+    }
+    /// Set raw value of 'K'
+    #[inline(always)]
+    pub fn set_k_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[8..12].store_le(value);
     }
     /// Set value of 'K'
     #[inline(always)]
@@ -752,21 +884,33 @@ impl Msg3 {
     /// - Receivers: E1
     #[inline(always)]
     pub fn l(&self) -> u64 {
-        self.l_raw()
+        self.l_phys()
+    }
+    /// Get physical value of 'L'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn l_phys(&self) -> u64 {
+        let signal = self.raw.view_bits::<Msb0>()[0..64].load_be::<u64>();
+        let factor = 1;
+        u64::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'L'
     ///
     /// - Start bit: 7
     /// - Signal size: 64 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn l_raw(&self) -> u64 {
-        let signal = self.raw.view_bits::<Msb0>()[0..64].load_be::<u64>();
-        let factor = 1;
-        u64::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Msb0>()[0..64].load_be::<u64>()
+    }
+    /// Set raw value of 'L'
+    #[inline(always)]
+    pub fn set_l_raw(&mut self, value: u64) {
+        self.raw.view_bits_mut::<Msb0>()[0..64].store_be(value);
     }
     /// Set value of 'L'
     #[inline(always)]
@@ -868,21 +1012,33 @@ impl Msg4 {
     /// - Receivers: E1
     #[inline(always)]
     pub fn m(&self) -> u64 {
-        self.m_raw()
+        self.m_phys()
+    }
+    /// Get physical value of 'M'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn m_phys(&self) -> u64 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>();
+        let factor = 1;
+        u64::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'M'
     ///
     /// - Start bit: 0
     /// - Signal size: 64 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn m_raw(&self) -> u64 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>();
-        let factor = 1;
-        u64::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>()
+    }
+    /// Set raw value of 'M'
+    #[inline(always)]
+    pub fn set_m_raw(&mut self, value: u64) {
+        self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
     }
     /// Set value of 'M'
     #[inline(always)]

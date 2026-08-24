@@ -161,22 +161,35 @@ impl Message378910 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s3big(&self) -> i8 {
-        self.s3big_raw()
+        self.s3big_phys()
+    }
+    /// Get physical value of 's3big'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s3big_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Msb0>()[32..35].load_be::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's3big'
     ///
     /// - Start bit: 39
     /// - Signal size: 3 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s3big_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Msb0>()[32..35].load_be::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Msb0>()[32..35].load_be::<i8>()
+    }
+    /// Set raw value of 's3big'
+    #[inline(always)]
+    pub fn set_s3big_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[32..35].store_be(value);
     }
     /// Set value of 's3big'
     #[inline(always)]
@@ -205,22 +218,35 @@ impl Message378910 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s3(&self) -> i8 {
-        self.s3_raw()
+        self.s3_phys()
+    }
+    /// Get physical value of 's3'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s3_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[34..37].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's3'
     ///
     /// - Start bit: 34
     /// - Signal size: 3 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s3_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[34..37].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[34..37].load_le::<i8>()
+    }
+    /// Set raw value of 's3'
+    #[inline(always)]
+    pub fn set_s3_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[34..37].store_le(value);
     }
     /// Set value of 's3'
     #[inline(always)]
@@ -249,22 +275,35 @@ impl Message378910 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s10big(&self) -> i16 {
-        self.s10big_raw()
+        self.s10big_phys()
+    }
+    /// Get physical value of 's10big'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s10big_phys(&self) -> i16 {
+        let signal = self.raw.view_bits::<Msb0>()[47..57].load_be::<i16>();
+        let factor = 1;
+        let signal = signal as i16;
+        i16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's10big'
     ///
     /// - Start bit: 40
     /// - Signal size: 10 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s10big_raw(&self) -> i16 {
-        let signal = self.raw.view_bits::<Msb0>()[47..57].load_be::<i16>();
-        let factor = 1;
-        let signal = signal as i16;
-        i16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Msb0>()[47..57].load_be::<i16>()
+    }
+    /// Set raw value of 's10big'
+    #[inline(always)]
+    pub fn set_s10big_raw(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[47..57].store_be(value);
     }
     /// Set value of 's10big'
     #[inline(always)]
@@ -293,22 +332,35 @@ impl Message378910 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s8big(&self) -> i8 {
-        self.s8big_raw()
+        self.s8big_phys()
+    }
+    /// Get physical value of 's8big'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s8big_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Msb0>()[7..15].load_be::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's8big'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s8big_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Msb0>()[7..15].load_be::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Msb0>()[7..15].load_be::<i8>()
+    }
+    /// Set raw value of 's8big'
+    #[inline(always)]
+    pub fn set_s8big_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[7..15].store_be(value);
     }
     /// Set value of 's8big'
     #[inline(always)]
@@ -337,22 +389,35 @@ impl Message378910 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s7big(&self) -> i8 {
-        self.s7big_raw()
+        self.s7big_phys()
+    }
+    /// Get physical value of 's7big'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s7big_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Msb0>()[57..64].load_be::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's7big'
     ///
     /// - Start bit: 62
     /// - Signal size: 7 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s7big_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Msb0>()[57..64].load_be::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Msb0>()[57..64].load_be::<i8>()
+    }
+    /// Set raw value of 's7big'
+    #[inline(always)]
+    pub fn set_s7big_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[57..64].store_be(value);
     }
     /// Set value of 's7big'
     #[inline(always)]
@@ -381,22 +446,35 @@ impl Message378910 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s9(&self) -> i16 {
-        self.s9_raw()
+        self.s9_phys()
+    }
+    /// Get physical value of 's9'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s9_phys(&self) -> i16 {
+        let signal = self.raw.view_bits::<Lsb0>()[17..26].load_le::<i16>();
+        let factor = 1;
+        let signal = signal as i16;
+        i16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's9'
     ///
     /// - Start bit: 17
     /// - Signal size: 9 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s9_raw(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[17..26].load_le::<i16>();
-        let factor = 1;
-        let signal = signal as i16;
-        i16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[17..26].load_le::<i16>()
+    }
+    /// Set raw value of 's9'
+    #[inline(always)]
+    pub fn set_s9_raw(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[17..26].store_le(value);
     }
     /// Set value of 's9'
     #[inline(always)]
@@ -425,22 +503,35 @@ impl Message378910 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s8(&self) -> i8 {
-        self.s8_raw()
+        self.s8_phys()
+    }
+    /// Get physical value of 's8'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s8_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[26..34].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's8'
     ///
     /// - Start bit: 26
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s8_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[26..34].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[26..34].load_le::<i8>()
+    }
+    /// Set raw value of 's8'
+    #[inline(always)]
+    pub fn set_s8_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[26..34].store_le(value);
     }
     /// Set value of 's8'
     #[inline(always)]
@@ -469,22 +560,35 @@ impl Message378910 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s7(&self) -> i8 {
-        self.s7_raw()
+        self.s7_phys()
+    }
+    /// Get physical value of 's7'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s7_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[1..8].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's7'
     ///
     /// - Start bit: 1
     /// - Signal size: 7 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s7_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[1..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[1..8].load_le::<i8>()
+    }
+    /// Set raw value of 's7'
+    #[inline(always)]
+    pub fn set_s7_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[1..8].store_le(value);
     }
     /// Set value of 's7'
     #[inline(always)]
@@ -586,22 +690,35 @@ impl Message63big1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s63big(&self) -> i64 {
-        self.s63big_raw()
+        self.s63big_phys()
+    }
+    /// Get physical value of 's63big'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s63big_phys(&self) -> i64 {
+        let signal = self.raw.view_bits::<Msb0>()[1..64].load_be::<i64>();
+        let factor = 1;
+        let signal = signal as i64;
+        i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's63big'
     ///
     /// - Start bit: 6
     /// - Signal size: 63 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s63big_raw(&self) -> i64 {
-        let signal = self.raw.view_bits::<Msb0>()[1..64].load_be::<i64>();
-        let factor = 1;
-        let signal = signal as i64;
-        i64::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Msb0>()[1..64].load_be::<i64>()
+    }
+    /// Set raw value of 's63big'
+    #[inline(always)]
+    pub fn set_s63big_raw(&mut self, value: i64) {
+        let value = u64::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[1..64].store_be(value);
     }
     /// Set value of 's63big'
     #[inline(always)]
@@ -703,22 +820,35 @@ impl Message631 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s63(&self) -> i64 {
-        self.s63_raw()
+        self.s63_phys()
+    }
+    /// Get physical value of 's63'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s63_phys(&self) -> i64 {
+        let signal = self.raw.view_bits::<Lsb0>()[1..64].load_le::<i64>();
+        let factor = 1;
+        let signal = signal as i64;
+        i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's63'
     ///
     /// - Start bit: 1
     /// - Signal size: 63 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s63_raw(&self) -> i64 {
-        let signal = self.raw.view_bits::<Lsb0>()[1..64].load_le::<i64>();
-        let factor = 1;
-        let signal = signal as i64;
-        i64::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[1..64].load_le::<i64>()
+    }
+    /// Set raw value of 's63'
+    #[inline(always)]
+    pub fn set_s63_raw(&mut self, value: i64) {
+        let value = u64::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[1..64].store_le(value);
     }
     /// Set value of 's63'
     #[inline(always)]
@@ -820,22 +950,35 @@ impl Message63big {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s63big(&self) -> i64 {
-        self.s63big_raw()
+        self.s63big_phys()
+    }
+    /// Get physical value of 's63big'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s63big_phys(&self) -> i64 {
+        let signal = self.raw.view_bits::<Msb0>()[0..63].load_be::<i64>();
+        let factor = 1;
+        let signal = signal as i64;
+        i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's63big'
     ///
     /// - Start bit: 7
     /// - Signal size: 63 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s63big_raw(&self) -> i64 {
-        let signal = self.raw.view_bits::<Msb0>()[0..63].load_be::<i64>();
-        let factor = 1;
-        let signal = signal as i64;
-        i64::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Msb0>()[0..63].load_be::<i64>()
+    }
+    /// Set raw value of 's63big'
+    #[inline(always)]
+    pub fn set_s63big_raw(&mut self, value: i64) {
+        let value = u64::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[0..63].store_be(value);
     }
     /// Set value of 's63big'
     #[inline(always)]
@@ -937,22 +1080,35 @@ impl Message63 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s63(&self) -> i64 {
-        self.s63_raw()
+        self.s63_phys()
+    }
+    /// Get physical value of 's63'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s63_phys(&self) -> i64 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..63].load_le::<i64>();
+        let factor = 1;
+        let signal = signal as i64;
+        i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's63'
     ///
     /// - Start bit: 0
     /// - Signal size: 63 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s63_raw(&self) -> i64 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..63].load_le::<i64>();
-        let factor = 1;
-        let signal = signal as i64;
-        i64::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..63].load_le::<i64>()
+    }
+    /// Set raw value of 's63'
+    #[inline(always)]
+    pub fn set_s63_raw(&mut self, value: i64) {
+        let value = u64::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..63].store_le(value);
     }
     /// Set value of 's63'
     #[inline(always)]
@@ -1054,22 +1210,35 @@ impl Message32big {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s32big(&self) -> i32 {
-        self.s32big_raw()
+        self.s32big_phys()
+    }
+    /// Get physical value of 's32big'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s32big_phys(&self) -> i32 {
+        let signal = self.raw.view_bits::<Msb0>()[0..32].load_be::<i32>();
+        let factor = 1;
+        let signal = signal as i32;
+        i32::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's32big'
     ///
     /// - Start bit: 7
     /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s32big_raw(&self) -> i32 {
-        let signal = self.raw.view_bits::<Msb0>()[0..32].load_be::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Msb0>()[0..32].load_be::<i32>()
+    }
+    /// Set raw value of 's32big'
+    #[inline(always)]
+    pub fn set_s32big_raw(&mut self, value: i32) {
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[0..32].store_be(value);
     }
     /// Set value of 's32big'
     #[inline(always)]
@@ -1171,22 +1340,35 @@ impl Message33big {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s33big(&self) -> i64 {
-        self.s33big_raw()
+        self.s33big_phys()
+    }
+    /// Get physical value of 's33big'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s33big_phys(&self) -> i64 {
+        let signal = self.raw.view_bits::<Msb0>()[0..33].load_be::<i64>();
+        let factor = 1;
+        let signal = signal as i64;
+        i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's33big'
     ///
     /// - Start bit: 7
     /// - Signal size: 33 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s33big_raw(&self) -> i64 {
-        let signal = self.raw.view_bits::<Msb0>()[0..33].load_be::<i64>();
-        let factor = 1;
-        let signal = signal as i64;
-        i64::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Msb0>()[0..33].load_be::<i64>()
+    }
+    /// Set raw value of 's33big'
+    #[inline(always)]
+    pub fn set_s33big_raw(&mut self, value: i64) {
+        let value = u64::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[0..33].store_be(value);
     }
     /// Set value of 's33big'
     #[inline(always)]
@@ -1288,22 +1470,35 @@ impl Message64big {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s64big(&self) -> i64 {
-        self.s64big_raw()
+        self.s64big_phys()
+    }
+    /// Get physical value of 's64big'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s64big_phys(&self) -> i64 {
+        let signal = self.raw.view_bits::<Msb0>()[0..64].load_be::<i64>();
+        let factor = 1;
+        let signal = signal as i64;
+        i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's64big'
     ///
     /// - Start bit: 7
     /// - Signal size: 64 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s64big_raw(&self) -> i64 {
-        let signal = self.raw.view_bits::<Msb0>()[0..64].load_be::<i64>();
-        let factor = 1;
-        let signal = signal as i64;
-        i64::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Msb0>()[0..64].load_be::<i64>()
+    }
+    /// Set raw value of 's64big'
+    #[inline(always)]
+    pub fn set_s64big_raw(&mut self, value: i64) {
+        let value = u64::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[0..64].store_be(value);
     }
     /// Set value of 's64big'
     #[inline(always)]
@@ -1405,22 +1600,35 @@ impl Message64 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s64(&self) -> i64 {
-        self.s64_raw()
+        self.s64_phys()
+    }
+    /// Get physical value of 's64'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s64_phys(&self) -> i64 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<i64>();
+        let factor = 1;
+        let signal = signal as i64;
+        i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's64'
     ///
     /// - Start bit: 0
     /// - Signal size: 64 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s64_raw(&self) -> i64 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<i64>();
-        let factor = 1;
-        let signal = signal as i64;
-        i64::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..64].load_le::<i64>()
+    }
+    /// Set raw value of 's64'
+    #[inline(always)]
+    pub fn set_s64_raw(&mut self, value: i64) {
+        let value = u64::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
     }
     /// Set value of 's64'
     #[inline(always)]
@@ -1522,22 +1730,35 @@ impl Message33 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s33(&self) -> i64 {
-        self.s33_raw()
+        self.s33_phys()
+    }
+    /// Get physical value of 's33'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s33_phys(&self) -> i64 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..33].load_le::<i64>();
+        let factor = 1;
+        let signal = signal as i64;
+        i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's33'
     ///
     /// - Start bit: 0
     /// - Signal size: 33 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s33_raw(&self) -> i64 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..33].load_le::<i64>();
-        let factor = 1;
-        let signal = signal as i64;
-        i64::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..33].load_le::<i64>()
+    }
+    /// Set raw value of 's33'
+    #[inline(always)]
+    pub fn set_s33_raw(&mut self, value: i64) {
+        let value = u64::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..33].store_le(value);
     }
     /// Set value of 's33'
     #[inline(always)]
@@ -1639,22 +1860,35 @@ impl Message32 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s32(&self) -> i32 {
-        self.s32_raw()
+        self.s32_phys()
+    }
+    /// Get physical value of 's32'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s32_phys(&self) -> i32 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
+        let factor = 1;
+        let signal = signal as i32;
+        i32::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 's32'
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s32_raw(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
+    }
+    /// Set raw value of 's32'
+    #[inline(always)]
+    pub fn set_s32_raw(&mut self, value: i32) {
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
     }
     /// Set value of 's32'
     #[inline(always)]

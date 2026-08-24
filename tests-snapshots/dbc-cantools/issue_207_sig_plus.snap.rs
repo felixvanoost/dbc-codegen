@@ -93,21 +93,34 @@ impl MyMsg {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn my_extra_sig_with_plus(&self) -> i16 {
-        self.my_extra_sig_with_plus_raw()
+        self.my_extra_sig_with_plus_phys()
+    }
+    /// Get physical value of 'myExtraSigWithPlus'
+    ///
+    /// - Factor: 1
+    /// - Offset: -128
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn my_extra_sig_with_plus_phys(&self) -> i16 {
+        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
+        let factor = 1;
+        i16::from(signal).saturating_mul(factor).saturating_sub(128)
     }
     /// Get raw value of 'myExtraSigWithPlus'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: -128
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn my_extra_sig_with_plus_raw(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        i16::from(signal).saturating_mul(factor).saturating_sub(128)
+    pub fn my_extra_sig_with_plus_raw(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
+    }
+    /// Set raw value of 'myExtraSigWithPlus'
+    #[inline(always)]
+    pub fn set_my_extra_sig_with_plus_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'myExtraSigWithPlus'
     #[inline(always)]
@@ -136,21 +149,34 @@ impl MyMsg {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn my_normal_sig(&self) -> i16 {
-        self.my_normal_sig_raw()
+        self.my_normal_sig_phys()
+    }
+    /// Get physical value of 'myNormalSig'
+    ///
+    /// - Factor: 1
+    /// - Offset: -128
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn my_normal_sig_phys(&self) -> i16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
+        let factor = 1;
+        i16::from(signal).saturating_mul(factor).saturating_sub(128)
     }
     /// Get raw value of 'myNormalSig'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: -128
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn my_normal_sig_raw(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        i16::from(signal).saturating_mul(factor).saturating_sub(128)
+    pub fn my_normal_sig_raw(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
+    }
+    /// Set raw value of 'myNormalSig'
+    #[inline(always)]
+    pub fn set_my_normal_sig_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'myNormalSig'
     #[inline(always)]

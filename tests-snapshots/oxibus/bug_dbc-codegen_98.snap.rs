@@ -92,22 +92,35 @@ impl TestInput {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get raw value of 'Test_input_Mux'
+    /// Get physical value of 'Test_input_Mux'
     ///
-    /// - Start bit: 56
-    /// - Signal size: 4 bits
     /// - Factor: 1
     /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
+    /// - Unit: ""
     #[inline(always)]
-    pub fn test_input_mux_raw(&self) -> u8 {
+    pub fn test_input_mux_phys(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..60].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
+    /// Get raw value of 'Test_input_Mux'
+    ///
+    /// - Start bit: 56
+    /// - Signal size: 4 bits
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn test_input_mux_raw(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[56..60].load_le::<u8>()
+    }
+    /// Set raw value of 'Test_input_Mux'
+    #[allow(dead_code)]
+    #[inline(always)]
+    fn set_test_input_mux_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[56..60].store_le(value);
+    }
     pub fn test_input_mux(&mut self) -> Result<TestInputTestInputMuxIndex, CanError> {
-        match self.test_input_mux_raw() {
+        match self.test_input_mux_phys() {
             0 => {
                 Ok(
                     TestInputTestInputMuxIndex::M0(TestInputTestInputMuxM0 {
@@ -316,21 +329,33 @@ impl TestInputTestInputMuxM0 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn var1(&self) -> u16 {
-        self.var1_raw()
+        self.var1_phys()
+    }
+    /// Get physical value of 'Var1'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn var1_phys(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Var1'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn var1_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
+    }
+    /// Set raw value of 'Var1'
+    #[inline(always)]
+    pub fn set_var1_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Var1'
     #[inline(always)]
@@ -385,21 +410,33 @@ impl TestInputTestInputMuxM1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn var2(&self) -> u16 {
-        self.var2_raw()
+        self.var2_phys()
+    }
+    /// Get physical value of 'Var2'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn var2_phys(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Var2'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn var2_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
+    }
+    /// Set raw value of 'Var2'
+    #[inline(always)]
+    pub fn set_var2_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Var2'
     #[inline(always)]
@@ -454,21 +491,33 @@ impl TestInputTestInputMuxM2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn var3(&self) -> u16 {
-        self.var3_raw()
+        self.var3_phys()
+    }
+    /// Get physical value of 'Var3'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn var3_phys(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Var3'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn var3_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
+    }
+    /// Set raw value of 'Var3'
+    #[inline(always)]
+    pub fn set_var3_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Var3'
     #[inline(always)]
@@ -523,21 +572,33 @@ impl TestInputTestInputMuxM3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn var4(&self) -> u16 {
-        self.var4_raw()
+        self.var4_phys()
+    }
+    /// Get physical value of 'Var4'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn var4_phys(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Var4'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn var4_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
+    }
+    /// Set raw value of 'Var4'
+    #[inline(always)]
+    pub fn set_var4_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Var4'
     #[inline(always)]
@@ -600,22 +661,35 @@ impl TestOutput {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get raw value of 'Test_output_Mux'
+    /// Get physical value of 'Test_output_Mux'
     ///
-    /// - Start bit: 56
-    /// - Signal size: 4 bits
     /// - Factor: 1
     /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
+    /// - Unit: ""
     #[inline(always)]
-    pub fn test_output_mux_raw(&self) -> u8 {
+    pub fn test_output_mux_phys(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..60].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
+    /// Get raw value of 'Test_output_Mux'
+    ///
+    /// - Start bit: 56
+    /// - Signal size: 4 bits
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn test_output_mux_raw(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[56..60].load_le::<u8>()
+    }
+    /// Set raw value of 'Test_output_Mux'
+    #[allow(dead_code)]
+    #[inline(always)]
+    fn set_test_output_mux_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[56..60].store_le(value);
+    }
     pub fn test_output_mux(&mut self) -> Result<TestOutputTestOutputMuxIndex, CanError> {
-        match self.test_output_mux_raw() {
+        match self.test_output_mux_phys() {
             0 => {
                 Ok(
                     TestOutputTestOutputMuxIndex::M0(TestOutputTestOutputMuxM0 {
@@ -824,21 +898,33 @@ impl TestOutputTestOutputMuxM0 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn var5(&self) -> u16 {
-        self.var5_raw()
+        self.var5_phys()
+    }
+    /// Get physical value of 'Var5'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn var5_phys(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Var5'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn var5_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
+    }
+    /// Set raw value of 'Var5'
+    #[inline(always)]
+    pub fn set_var5_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Var5'
     #[inline(always)]
@@ -893,21 +979,33 @@ impl TestOutputTestOutputMuxM1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn var6(&self) -> u16 {
-        self.var6_raw()
+        self.var6_phys()
+    }
+    /// Get physical value of 'Var6'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn var6_phys(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Var6'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn var6_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
+    }
+    /// Set raw value of 'Var6'
+    #[inline(always)]
+    pub fn set_var6_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Var6'
     #[inline(always)]
@@ -962,21 +1060,33 @@ impl TestOutputTestOutputMuxM2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn var7(&self) -> u16 {
-        self.var7_raw()
+        self.var7_phys()
+    }
+    /// Get physical value of 'Var7'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn var7_phys(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Var7'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn var7_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
+    }
+    /// Set raw value of 'Var7'
+    #[inline(always)]
+    pub fn set_var7_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Var7'
     #[inline(always)]
@@ -1031,21 +1141,33 @@ impl TestOutputTestOutputMuxM3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn var8(&self) -> u16 {
-        self.var8_raw()
+        self.var8_phys()
+    }
+    /// Get physical value of 'Var8'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn var8_phys(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Var8'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn var8_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
+    }
+    /// Set raw value of 'Var8'
+    #[inline(always)]
+    pub fn set_var8_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Var8'
     #[inline(always)]

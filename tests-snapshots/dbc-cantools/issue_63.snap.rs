@@ -109,22 +109,34 @@ impl Aft1psi2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn htr_res(&self) -> f32 {
-        self.htr_res_raw()
+        self.htr_res_phys()
+    }
+    /// Get physical value of 'HtrRes'
+    ///
+    /// - Factor: 0.1
+    /// - Offset: 0
+    /// - Unit: "ohm"
+    #[inline(always)]
+    pub fn htr_res_phys(&self) -> f32 {
+        let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<u16>();
+        let factor = 0.1_f32;
+        let offset = 0_f32;
+        (signal as f32) * factor + offset
     }
     /// Get raw value of 'HtrRes'
     ///
     /// - Start bit: 40
     /// - Signal size: 16 bits
-    /// - Factor: 0.1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn htr_res_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<u16>();
-        let factor = 0.1_f32;
-        let offset = 0_f32;
-        (signal as f32) * factor + offset
+    pub fn htr_res_raw(&self) -> u16 {
+        self.raw.view_bits::<Lsb0>()[40..56].load_le::<u16>()
+    }
+    /// Set raw value of 'HtrRes'
+    #[inline(always)]
+    pub fn set_htr_res_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[40..56].store_le(value);
     }
     /// Set value of 'HtrRes'
     #[inline(always)]
@@ -148,21 +160,33 @@ impl Aft1psi2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn max_res(&self) -> u32 {
-        self.max_res_raw()
+        self.max_res_phys()
+    }
+    /// Get physical value of 'MaxRes'
+    ///
+    /// - Factor: 250
+    /// - Offset: 0
+    /// - Unit: "kohm"
+    #[inline(always)]
+    pub fn max_res_phys(&self) -> u32 {
+        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
+        let factor = 250;
+        u32::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'MaxRes'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
-    /// - Factor: 250
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn max_res_raw(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 250;
-        u32::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn max_res_raw(&self) -> u16 {
+        self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
+    }
+    /// Set raw value of 'MaxRes'
+    #[inline(always)]
+    pub fn set_max_res_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MaxRes'
     #[inline(always)]
@@ -190,22 +214,34 @@ impl Aft1psi2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temp(&self) -> f32 {
-        self.temp_raw()
+        self.temp_phys()
+    }
+    /// Get physical value of 'Temp'
+    ///
+    /// - Factor: 0.03125
+    /// - Offset: -273
+    /// - Unit: "ï¿½C"
+    #[inline(always)]
+    pub fn temp_phys(&self) -> f32 {
+        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
+        let factor = 0.03125_f32;
+        let offset = -273_f32;
+        (signal as f32) * factor + offset
     }
     /// Get raw value of 'Temp'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
-    /// - Factor: 0.03125
-    /// - Offset: -273
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn temp_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 0.03125_f32;
-        let offset = -273_f32;
-        (signal as f32) * factor + offset
+    pub fn temp_raw(&self) -> u16 {
+        self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
+    }
+    /// Set raw value of 'Temp'
+    #[inline(always)]
+    pub fn set_temp_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'Temp'
     #[inline(always)]
@@ -229,21 +265,33 @@ impl Aft1psi2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn regen_failed_count(&self) -> u8 {
-        self.regen_failed_count_raw()
+        self.regen_failed_count_phys()
+    }
+    /// Get physical value of 'RegenFailedCount'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn regen_failed_count_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'RegenFailedCount'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn regen_failed_count_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
+    }
+    /// Set raw value of 'RegenFailedCount'
+    #[inline(always)]
+    pub fn set_regen_failed_count_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'RegenFailedCount'
     #[inline(always)]
@@ -271,21 +319,33 @@ impl Aft1psi2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn pwr_supply(&self) -> u8 {
-        self.pwr_supply_raw()
+        self.pwr_supply_phys()
+    }
+    /// Get physical value of 'PwrSupply'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn pwr_supply_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[4..6].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'PwrSupply'
     ///
     /// - Start bit: 4
     /// - Signal size: 2 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn pwr_supply_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[4..6].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[4..6].load_le::<u8>()
+    }
+    /// Set raw value of 'PwrSupply'
+    #[inline(always)]
+    pub fn set_pwr_supply_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[4..6].store_le(value);
     }
     /// Set value of 'PwrSupply'
     #[inline(always)]
@@ -313,21 +373,33 @@ impl Aft1psi2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn detection_status(&self) -> u8 {
-        self.detection_status_raw()
+        self.detection_status_phys()
+    }
+    /// Get physical value of 'DetectionStatus'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn detection_status_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..4].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'DetectionStatus'
     ///
     /// - Start bit: 0
     /// - Signal size: 4 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn detection_status_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..4].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..4].load_le::<u8>()
+    }
+    /// Set raw value of 'DetectionStatus'
+    #[inline(always)]
+    pub fn set_detection_status_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
     }
     /// Set value of 'DetectionStatus'
     #[inline(always)]

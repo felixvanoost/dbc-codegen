@@ -96,23 +96,35 @@ impl ExampleMessage {
         match signal {
             4095 => ExampleMessageTemperature::Error,
             4094 => ExampleMessageTemperature::Init,
-            _ => ExampleMessageTemperature::_Other(self.temperature_raw()),
+            _ => ExampleMessageTemperature::_Other(self.temperature_phys()),
         }
+    }
+    /// Get physical value of 'Temperature'
+    ///
+    /// - Factor: -0.01
+    /// - Offset: 4100
+    /// - Unit: "degK"
+    #[inline(always)]
+    pub fn temperature_phys(&self) -> f32 {
+        let signal = self.raw.view_bits::<Msb0>()[4..16].load_be::<u16>();
+        let factor = -0.01_f32;
+        let offset = 4100_f32;
+        (signal as f32) * factor + offset
     }
     /// Get raw value of 'Temperature'
     ///
     /// - Start bit: 3
     /// - Signal size: 12 bits
-    /// - Factor: -0.01
-    /// - Offset: 4100
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn temperature_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Msb0>()[4..16].load_be::<u16>();
-        let factor = -0.01_f32;
-        let offset = 4100_f32;
-        (signal as f32) * factor + offset
+    pub fn temperature_raw(&self) -> u16 {
+        self.raw.view_bits::<Msb0>()[4..16].load_be::<u16>()
+    }
+    /// Set raw value of 'Temperature'
+    #[inline(always)]
+    pub fn set_temperature_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Msb0>()[4..16].store_be(value);
     }
     /// Set value of 'Temperature'
     #[inline(always)]

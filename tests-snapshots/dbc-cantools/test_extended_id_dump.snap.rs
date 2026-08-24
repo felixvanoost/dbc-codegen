@@ -92,22 +92,35 @@ impl SomeFrame {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn some_different_sig(&self) -> i8 {
-        self.some_different_sig_raw()
+        self.some_different_sig_phys()
+    }
+    /// Get physical value of 'SomeDifferentSig'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn some_different_sig_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'SomeDifferentSig'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn some_different_sig_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
+    }
+    /// Set raw value of 'SomeDifferentSig'
+    #[inline(always)]
+    pub fn set_some_different_sig_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'SomeDifferentSig'
     #[inline(always)]
@@ -209,22 +222,35 @@ impl SomeExtFrame {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn some_sig(&self) -> i8 {
-        self.some_sig_raw()
+        self.some_sig_phys()
+    }
+    /// Get physical value of 'SomeSig'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn some_sig_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'SomeSig'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn some_sig_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
+    }
+    /// Set raw value of 'SomeSig'
+    #[inline(always)]
+    pub fn set_some_sig_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'SomeSig'
     #[inline(always)]

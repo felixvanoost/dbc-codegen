@@ -93,22 +93,35 @@ impl CanMultiplexed {
     pub fn raw(&self) -> &[u8; 2] {
         &self.raw
     }
-    /// Get raw value of 'Multiplexer'
+    /// Get physical value of 'Multiplexer'
     ///
-    /// - Start bit: 0
-    /// - Signal size: 8 bits
     /// - Factor: 1
     /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
+    /// - Unit: ""
     #[inline(always)]
-    pub fn multiplexer_raw(&self) -> u8 {
+    pub fn multiplexer_phys(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
+    /// Get raw value of 'Multiplexer'
+    ///
+    /// - Start bit: 0
+    /// - Signal size: 8 bits
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn multiplexer_raw(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
+    }
+    /// Set raw value of 'Multiplexer'
+    #[allow(dead_code)]
+    #[inline(always)]
+    fn set_multiplexer_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
     pub fn multiplexer(&mut self) -> Result<CanMultiplexedMultiplexerIndex, CanError> {
-        match self.multiplexer_raw() {
+        match self.multiplexer_phys() {
             0 => {
                 Ok(
                     CanMultiplexedMultiplexerIndex::M0(CanMultiplexedMultiplexerM0 {
@@ -321,22 +334,34 @@ impl CanMultiplexedMultiplexerM0 {
             2 => CanMultiplexedValue0::Value2,
             1 => CanMultiplexedValue0::Value1,
             0 => CanMultiplexedValue0::Value0,
-            _ => CanMultiplexedValue0::_Other(self.value0_raw()),
+            _ => CanMultiplexedValue0::_Other(self.value0_phys()),
         }
+    }
+    /// Get physical value of 'Value0'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn value0_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Value0'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn value0_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
+    }
+    /// Set raw value of 'Value0'
+    #[inline(always)]
+    pub fn set_value0_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Value0'
     #[inline(always)]
@@ -398,22 +423,34 @@ impl CanMultiplexedMultiplexerM1 {
             2 => CanMultiplexedValue1::Two,
             1 => CanMultiplexedValue1::One,
             0 => CanMultiplexedValue1::Zero,
-            _ => CanMultiplexedValue1::_Other(self.value1_raw()),
+            _ => CanMultiplexedValue1::_Other(self.value1_phys()),
         }
+    }
+    /// Get physical value of 'Value1'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn value1_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Value1'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn value1_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
+    }
+    /// Set raw value of 'Value1'
+    #[inline(always)]
+    pub fn set_value1_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Value1'
     #[inline(always)]
@@ -481,21 +518,33 @@ impl CanMessage {
     /// - Receivers: Node1, Node2
     #[inline(always)]
     pub fn signal1(&self) -> u64 {
-        self.signal1_raw()
+        self.signal1_phys()
+    }
+    /// Get physical value of 'Signal1'
+    ///
+    /// - Factor: 100
+    /// - Offset: 0
+    /// - Unit: "%"
+    #[inline(always)]
+    pub fn signal1_phys(&self) -> u64 {
+        let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
+        let factor = 100;
+        u64::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Signal1'
     ///
     /// - Start bit: 32
     /// - Signal size: 32 bits
-    /// - Factor: 100
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn signal1_raw(&self) -> u64 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
-        let factor = 100;
-        u64::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn signal1_raw(&self) -> u32 {
+        self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>()
+    }
+    /// Set raw value of 'Signal1'
+    #[inline(always)]
+    pub fn set_signal1_raw(&mut self, value: u32) {
+        self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
     /// Set value of 'Signal1'
     #[inline(always)]
@@ -525,22 +574,35 @@ impl CanMessage {
     /// - Receivers: Node1, Node2
     #[inline(always)]
     pub fn signal0(&self) -> i32 {
-        self.signal0_raw()
+        self.signal0_phys()
+    }
+    /// Get physical value of 'Signal0'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn signal0_phys(&self) -> i32 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
+        let factor = 1;
+        let signal = signal as i32;
+        i32::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Signal0'
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn signal0_raw(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
+    }
+    /// Set raw value of 'Signal0'
+    #[inline(always)]
+    pub fn set_signal0_raw(&mut self, value: i32) {
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
     }
     /// Set value of 'Signal0'
     #[inline(always)]

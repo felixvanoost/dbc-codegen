@@ -92,22 +92,35 @@ impl Foo {
     /// - Receivers: Receiver
     #[inline(always)]
     pub fn foo(&self) -> f32 {
-        self.foo_raw()
+        self.foo_phys()
+    }
+    /// Get physical value of 'Foo'
+    ///
+    /// - Factor: 0.01
+    /// - Offset: 250
+    /// - Unit: "degK"
+    #[inline(always)]
+    pub fn foo_phys(&self) -> f32 {
+        let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
+        let factor = 0.01_f32;
+        let offset = 250_f32;
+        (signal as f32) * factor + offset
     }
     /// Get raw value of 'Foo'
     ///
     /// - Start bit: 0
     /// - Signal size: 12 bits
-    /// - Factor: 0.01
-    /// - Offset: 250
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn foo_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
-        let factor = 0.01_f32;
-        let offset = 250_f32;
-        (signal as f32) * factor + offset
+    pub fn foo_raw(&self) -> i16 {
+        self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>()
+    }
+    /// Set raw value of 'Foo'
+    #[inline(always)]
+    pub fn set_foo_raw(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[7..19].store_be(value);
     }
     /// Set value of 'Foo'
     #[inline(always)]
@@ -206,22 +219,35 @@ impl Bar {
     /// - Receivers: Receiver
     #[inline(always)]
     pub fn foo(&self) -> f32 {
-        self.foo_raw()
+        self.foo_phys()
+    }
+    /// Get physical value of 'Foo'
+    ///
+    /// - Factor: 0.01
+    /// - Offset: 250
+    /// - Unit: "degK"
+    #[inline(always)]
+    pub fn foo_phys(&self) -> f32 {
+        let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
+        let factor = 0.01_f32;
+        let offset = 250_f32;
+        (signal as f32) * factor + offset
     }
     /// Get raw value of 'Foo'
     ///
     /// - Start bit: 0
     /// - Signal size: 12 bits
-    /// - Factor: 0.01
-    /// - Offset: 250
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn foo_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
-        let factor = 0.01_f32;
-        let offset = 250_f32;
-        (signal as f32) * factor + offset
+    pub fn foo_raw(&self) -> i16 {
+        self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>()
+    }
+    /// Set raw value of 'Foo'
+    #[inline(always)]
+    pub fn set_foo_raw(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[7..19].store_be(value);
     }
     /// Set value of 'Foo'
     #[inline(always)]

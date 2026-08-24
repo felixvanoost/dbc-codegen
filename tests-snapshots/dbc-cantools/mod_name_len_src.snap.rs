@@ -92,21 +92,33 @@ impl MsgWillBeShortened345678912 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sig_will_be_shortened_3456789_12(&self) -> u8 {
-        self.sig_will_be_shortened_3456789_12_raw()
+        self.sig_will_be_shortened_3456789_12_phys()
+    }
+    /// Get physical value of 'Sig_will_be_shortened_3456789_12'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn sig_will_be_shortened_3456789_12_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[1..9].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Sig_will_be_shortened_3456789_12'
     ///
     /// - Start bit: 1
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn sig_will_be_shortened_3456789_12_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[1..9].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[1..9].load_le::<u8>()
+    }
+    /// Set raw value of 'Sig_will_be_shortened_3456789_12'
+    #[inline(always)]
+    pub fn set_sig_will_be_shortened_3456789_12_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[1..9].store_le(value);
     }
     /// Set value of 'Sig_will_be_shortened_3456789_12'
     #[inline(always)]

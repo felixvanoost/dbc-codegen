@@ -134,21 +134,33 @@ impl ControlCmd {
     /// - Receivers: Actuator
     #[inline(always)]
     pub fn crc8_cmd1(&self) -> u8 {
-        self.crc8_cmd1_raw()
+        self.crc8_cmd1_phys()
+    }
+    /// Get physical value of 'CRC8_CMD1'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn crc8_cmd1_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'CRC8_CMD1'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn crc8_cmd1_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
+    }
+    /// Set raw value of 'CRC8_CMD1'
+    #[inline(always)]
+    pub fn set_crc8_cmd1_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'CRC8_CMD1'
     #[inline(always)]
@@ -176,21 +188,33 @@ impl ControlCmd {
     /// - Receivers: Actuator
     #[inline(always)]
     pub fn counter_cmd1(&self) -> u8 {
-        self.counter_cmd1_raw()
+        self.counter_cmd1_phys()
+    }
+    /// Get physical value of 'Counter_CMD1'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn counter_cmd1_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[48..52].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Counter_CMD1'
     ///
     /// - Start bit: 48
     /// - Signal size: 4 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn counter_cmd1_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[48..52].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[48..52].load_le::<u8>()
+    }
+    /// Set raw value of 'Counter_CMD1'
+    #[inline(always)]
+    pub fn set_counter_cmd1_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[48..52].store_le(value);
     }
     /// Set value of 'Counter_CMD1'
     #[inline(always)]
@@ -218,21 +242,33 @@ impl ControlCmd {
     /// - Receivers: Actuator
     #[inline(always)]
     pub fn target_motor_id_cmd1(&self) -> u8 {
-        self.target_motor_id_cmd1_raw()
+        self.target_motor_id_cmd1_phys()
+    }
+    /// Get physical value of 'TargetMotorID_CMD1'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn target_motor_id_cmd1_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[12..14].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'TargetMotorID_CMD1'
     ///
     /// - Start bit: 12
     /// - Signal size: 2 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn target_motor_id_cmd1_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[12..14].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[12..14].load_le::<u8>()
+    }
+    /// Set raw value of 'TargetMotorID_CMD1'
+    #[inline(always)]
+    pub fn set_target_motor_id_cmd1_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[12..14].store_le(value);
     }
     /// Set value of 'TargetMotorID_CMD1'
     #[inline(always)]
@@ -267,22 +303,34 @@ impl ControlCmd {
             2 => ControlCmdTargetMode::PositionRelative,
             3 => ControlCmdTargetMode::Torque,
             4 => ControlCmdTargetMode::PositionAbsolute,
-            _ => ControlCmdTargetMode::_Other(self.target_mode_raw()),
+            _ => ControlCmdTargetMode::_Other(self.target_mode_phys()),
         }
+    }
+    /// Get physical value of 'TargetMode'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn target_mode_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[8..11].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'TargetMode'
     ///
     /// - Start bit: 8
     /// - Signal size: 3 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn target_mode_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..11].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[8..11].load_le::<u8>()
+    }
+    /// Set raw value of 'TargetMode'
+    #[inline(always)]
+    pub fn set_target_mode_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[8..11].store_le(value);
     }
     /// Set value of 'TargetMode'
     #[inline(always)]
@@ -318,22 +366,35 @@ impl ControlCmd {
     /// - Receivers: Actuator
     #[inline(always)]
     pub fn position_cmd_64(&self) -> f32 {
-        self.position_cmd_64_raw()
+        self.position_cmd_64_phys()
+    }
+    /// Get physical value of 'PositionCmd_64'
+    ///
+    /// - Factor: 0.0154286
+    /// - Offset: 0
+    /// - Unit: "deg"
+    #[inline(always)]
+    pub fn position_cmd_64_phys(&self) -> f32 {
+        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
+        let factor = 0.0154286_f32;
+        let offset = 0_f32;
+        (signal as f32) * factor + offset
     }
     /// Get raw value of 'PositionCmd_64'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
-    /// - Factor: 0.0154286
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn position_cmd_64_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
-        let factor = 0.0154286_f32;
-        let offset = 0_f32;
-        (signal as f32) * factor + offset
+    pub fn position_cmd_64_raw(&self) -> i16 {
+        self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
+    }
+    /// Set raw value of 'PositionCmd_64'
+    #[inline(always)]
+    pub fn set_position_cmd_64_raw(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'PositionCmd_64'
     #[inline(always)]
@@ -361,22 +422,35 @@ impl ControlCmd {
     /// - Receivers: Actuator
     #[inline(always)]
     pub fn torque_command_8(&self) -> f32 {
-        self.torque_command_8_raw()
+        self.torque_command_8_phys()
+    }
+    /// Get physical value of 'TorqueCommand_8'
+    ///
+    /// - Factor: 0.0166667
+    /// - Offset: 0
+    /// - Unit: "N*m"
+    #[inline(always)]
+    pub fn torque_command_8_phys(&self) -> f32 {
+        let signal = self.raw.view_bits::<Lsb0>()[32..42].load_le::<i16>();
+        let factor = 0.0166667_f32;
+        let offset = 0_f32;
+        (signal as f32) * factor + offset
     }
     /// Get raw value of 'TorqueCommand_8'
     ///
     /// - Start bit: 32
     /// - Signal size: 10 bits
-    /// - Factor: 0.0166667
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn torque_command_8_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..42].load_le::<i16>();
-        let factor = 0.0166667_f32;
-        let offset = 0_f32;
-        (signal as f32) * factor + offset
+    pub fn torque_command_8_raw(&self) -> i16 {
+        self.raw.view_bits::<Lsb0>()[32..42].load_le::<i16>()
+    }
+    /// Set raw value of 'TorqueCommand_8'
+    #[inline(always)]
+    pub fn set_torque_command_8_raw(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[32..42].store_le(value);
     }
     /// Set value of 'TorqueCommand_8'
     #[inline(always)]
@@ -408,22 +482,34 @@ impl ControlCmd {
     /// - Receivers: Actuator
     #[inline(always)]
     pub fn torque_close_loop_max_32(&self) -> f32 {
-        self.torque_close_loop_max_32_raw()
+        self.torque_close_loop_max_32_phys()
+    }
+    /// Get physical value of 'TorqueCloseLoopMax_32'
+    ///
+    /// - Factor: 0.186666
+    /// - Offset: 0
+    /// - Unit: "N*m"
+    #[inline(always)]
+    pub fn torque_close_loop_max_32_phys(&self) -> f32 {
+        let signal = self.raw.view_bits::<Lsb0>()[42..48].load_le::<u8>();
+        let factor = 0.186666_f32;
+        let offset = 0_f32;
+        (signal as f32) * factor + offset
     }
     /// Get raw value of 'TorqueCloseLoopMax_32'
     ///
     /// - Start bit: 42
     /// - Signal size: 6 bits
-    /// - Factor: 0.186666
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn torque_close_loop_max_32_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Lsb0>()[42..48].load_le::<u8>();
-        let factor = 0.186666_f32;
-        let offset = 0_f32;
-        (signal as f32) * factor + offset
+    pub fn torque_close_loop_max_32_raw(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[42..48].load_le::<u8>()
+    }
+    /// Set raw value of 'TorqueCloseLoopMax_32'
+    #[inline(always)]
+    pub fn set_torque_close_loop_max_32_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[42..48].store_le(value);
     }
     /// Set value of 'TorqueCloseLoopMax_32'
     #[inline(always)]
@@ -566,21 +652,33 @@ impl LimitsCmd {
     /// - Receivers: Actuator
     #[inline(always)]
     pub fn crc8_cmd2(&self) -> u8 {
-        self.crc8_cmd2_raw()
+        self.crc8_cmd2_phys()
+    }
+    /// Get physical value of 'CRC8_CMD2'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn crc8_cmd2_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'CRC8_CMD2'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn crc8_cmd2_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
+    }
+    /// Set raw value of 'CRC8_CMD2'
+    #[inline(always)]
+    pub fn set_crc8_cmd2_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'CRC8_CMD2'
     #[inline(always)]
@@ -608,21 +706,33 @@ impl LimitsCmd {
     /// - Receivers: Actuator
     #[inline(always)]
     pub fn counter_cmd2(&self) -> u8 {
-        self.counter_cmd2_raw()
+        self.counter_cmd2_phys()
+    }
+    /// Get physical value of 'Counter_CMD2'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn counter_cmd2_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Counter_CMD2'
     ///
     /// - Start bit: 12
     /// - Signal size: 4 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn counter_cmd2_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>()
+    }
+    /// Set raw value of 'Counter_CMD2'
+    #[inline(always)]
+    pub fn set_counter_cmd2_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[12..16].store_le(value);
     }
     /// Set value of 'Counter_CMD2'
     #[inline(always)]
@@ -650,21 +760,33 @@ impl LimitsCmd {
     /// - Receivers: Actuator
     #[inline(always)]
     pub fn velocity_limit(&self) -> u16 {
-        self.velocity_limit_raw()
+        self.velocity_limit_phys()
+    }
+    /// Get physical value of 'VelocityLimit'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn velocity_limit_phys(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'VelocityLimit'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn velocity_limit_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
+    }
+    /// Set raw value of 'VelocityLimit'
+    #[inline(always)]
+    pub fn set_velocity_limit_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'VelocityLimit'
     #[inline(always)]
@@ -692,21 +814,33 @@ impl LimitsCmd {
     /// - Receivers: Actuator
     #[inline(always)]
     pub fn accel_limit(&self) -> u16 {
-        self.accel_limit_raw()
+        self.accel_limit_phys()
+    }
+    /// Get physical value of 'AccelLimit'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn accel_limit_phys(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'AccelLimit'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn accel_limit_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
+    }
+    /// Set raw value of 'AccelLimit'
+    #[inline(always)]
+    pub fn set_accel_limit_raw(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'AccelLimit'
     #[inline(always)]
@@ -822,21 +956,33 @@ impl ControlStatus {
     /// - Receivers: Driver, Actuator
     #[inline(always)]
     pub fn crc8_stat1(&self) -> u8 {
-        self.crc8_stat1_raw()
+        self.crc8_stat1_phys()
+    }
+    /// Get physical value of 'CRC8_STAT1'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn crc8_stat1_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'CRC8_STAT1'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn crc8_stat1_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
+    }
+    /// Set raw value of 'CRC8_STAT1'
+    #[inline(always)]
+    pub fn set_crc8_stat1_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'CRC8_STAT1'
     #[inline(always)]
@@ -864,21 +1010,33 @@ impl ControlStatus {
     /// - Receivers: Driver
     #[inline(always)]
     pub fn counter_stat1(&self) -> u8 {
-        self.counter_stat1_raw()
+        self.counter_stat1_phys()
+    }
+    /// Get physical value of 'Counter_STAT1'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn counter_stat1_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Counter_STAT1'
     ///
     /// - Start bit: 12
     /// - Signal size: 4 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn counter_stat1_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>()
+    }
+    /// Set raw value of 'Counter_STAT1'
+    #[inline(always)]
+    pub fn set_counter_stat1_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[12..16].store_le(value);
     }
     /// Set value of 'Counter_STAT1'
     #[inline(always)]
@@ -906,22 +1064,35 @@ impl ControlStatus {
     /// - Receivers: Driver
     #[inline(always)]
     pub fn torque_actual(&self) -> f32 {
-        self.torque_actual_raw()
+        self.torque_actual_phys()
+    }
+    /// Get physical value of 'TorqueActual'
+    ///
+    /// - Factor: 0.015625
+    /// - Offset: 0
+    /// - Unit: "N*m"
+    #[inline(always)]
+    pub fn torque_actual_phys(&self) -> f32 {
+        let signal = self.raw.view_bits::<Lsb0>()[16..26].load_le::<i16>();
+        let factor = 0.015625_f32;
+        let offset = 0_f32;
+        (signal as f32) * factor + offset
     }
     /// Get raw value of 'TorqueActual'
     ///
     /// - Start bit: 16
     /// - Signal size: 10 bits
-    /// - Factor: 0.015625
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn torque_actual_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..26].load_le::<i16>();
-        let factor = 0.015625_f32;
-        let offset = 0_f32;
-        (signal as f32) * factor + offset
+    pub fn torque_actual_raw(&self) -> i16 {
+        self.raw.view_bits::<Lsb0>()[16..26].load_le::<i16>()
+    }
+    /// Set raw value of 'TorqueActual'
+    #[inline(always)]
+    pub fn set_torque_actual_raw(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[16..26].store_le(value);
     }
     /// Set value of 'TorqueActual'
     #[inline(always)]
@@ -946,22 +1117,34 @@ impl ControlStatus {
     /// - Receivers: Driver
     #[inline(always)]
     pub fn torque_close_loop_actual(&self) -> f32 {
-        self.torque_close_loop_actual_raw()
+        self.torque_close_loop_actual_phys()
+    }
+    /// Get physical value of 'TorqueCloseLoopActual'
+    ///
+    /// - Factor: 0.125
+    /// - Offset: 0
+    /// - Unit: "N*m"
+    #[inline(always)]
+    pub fn torque_close_loop_actual_phys(&self) -> f32 {
+        let signal = self.raw.view_bits::<Lsb0>()[26..32].load_le::<u8>();
+        let factor = 0.125_f32;
+        let offset = 0_f32;
+        (signal as f32) * factor + offset
     }
     /// Get raw value of 'TorqueCloseLoopActual'
     ///
     /// - Start bit: 26
     /// - Signal size: 6 bits
-    /// - Factor: 0.125
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn torque_close_loop_actual_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Lsb0>()[26..32].load_le::<u8>();
-        let factor = 0.125_f32;
-        let offset = 0_f32;
-        (signal as f32) * factor + offset
+    pub fn torque_close_loop_actual_raw(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[26..32].load_le::<u8>()
+    }
+    /// Set raw value of 'TorqueCloseLoopActual'
+    #[inline(always)]
+    pub fn set_torque_close_loop_actual_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[26..32].store_le(value);
     }
     /// Set value of 'TorqueCloseLoopActual'
     #[inline(always)]
@@ -1069,21 +1252,33 @@ impl SystemStatus {
     /// - Receivers: Driver
     #[inline(always)]
     pub fn crc8_stat2(&self) -> u8 {
-        self.crc8_stat2_raw()
+        self.crc8_stat2_phys()
+    }
+    /// Get physical value of 'CRC8_STAT2'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn crc8_stat2_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'CRC8_STAT2'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn crc8_stat2_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
+    }
+    /// Set raw value of 'CRC8_STAT2'
+    #[inline(always)]
+    pub fn set_crc8_stat2_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'CRC8_STAT2'
     #[inline(always)]
@@ -1111,21 +1306,33 @@ impl SystemStatus {
     /// - Receivers: Driver
     #[inline(always)]
     pub fn counter_stat2(&self) -> u8 {
-        self.counter_stat2_raw()
+        self.counter_stat2_phys()
+    }
+    /// Get physical value of 'Counter_STAT2'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn counter_stat2_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Counter_STAT2'
     ///
     /// - Start bit: 12
     /// - Signal size: 4 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn counter_stat2_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>()
+    }
+    /// Set raw value of 'Counter_STAT2'
+    #[inline(always)]
+    pub fn set_counter_stat2_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[12..16].store_le(value);
     }
     /// Set value of 'Counter_STAT2'
     #[inline(always)]
@@ -1153,21 +1360,33 @@ impl SystemStatus {
     /// - Receivers: Driver
     #[inline(always)]
     pub fn chip_temp(&self) -> i16 {
-        self.chip_temp_raw()
+        self.chip_temp_phys()
+    }
+    /// Get physical value of 'ChipTemp'
+    ///
+    /// - Factor: 1
+    /// - Offset: -60
+    /// - Unit: "C"
+    #[inline(always)]
+    pub fn chip_temp_phys(&self) -> i16 {
+        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
+        let factor = 1;
+        i16::from(signal).saturating_mul(factor).saturating_sub(60)
     }
     /// Get raw value of 'ChipTemp'
     ///
     /// - Start bit: 16
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: -60
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn chip_temp_raw(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        i16::from(signal).saturating_mul(factor).saturating_sub(60)
+    pub fn chip_temp_raw(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
+    }
+    /// Set raw value of 'ChipTemp'
+    #[inline(always)]
+    pub fn set_chip_temp_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'ChipTemp'
     #[inline(always)]
@@ -1279,21 +1498,33 @@ impl TorqueSensorData {
     /// - Receivers: Driver
     #[inline(always)]
     pub fn crc8_data1(&self) -> u8 {
-        self.crc8_data1_raw()
+        self.crc8_data1_phys()
+    }
+    /// Get physical value of 'CRC8_DATA1'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn crc8_data1_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'CRC8_DATA1'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn crc8_data1_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
+    }
+    /// Set raw value of 'CRC8_DATA1'
+    #[inline(always)]
+    pub fn set_crc8_data1_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'CRC8_DATA1'
     #[inline(always)]
@@ -1321,21 +1552,33 @@ impl TorqueSensorData {
     /// - Receivers: Driver
     #[inline(always)]
     pub fn counter_data1(&self) -> u8 {
-        self.counter_data1_raw()
+        self.counter_data1_phys()
+    }
+    /// Get physical value of 'Counter_DATA1'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn counter_data1_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[8..12].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Counter_DATA1'
     ///
     /// - Start bit: 8
     /// - Signal size: 4 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn counter_data1_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..12].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[8..12].load_le::<u8>()
+    }
+    /// Set raw value of 'Counter_DATA1'
+    #[inline(always)]
+    pub fn set_counter_data1_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[8..12].store_le(value);
     }
     /// Set value of 'Counter_DATA1'
     #[inline(always)]
@@ -1365,22 +1608,35 @@ impl TorqueSensorData {
     /// - Receivers: Driver
     #[inline(always)]
     pub fn torque_sense(&self) -> f32 {
-        self.torque_sense_raw()
+        self.torque_sense_phys()
+    }
+    /// Get physical value of 'TorqueSense'
+    ///
+    /// - Factor: 0.01
+    /// - Offset: 0
+    /// - Unit: "N*m"
+    #[inline(always)]
+    pub fn torque_sense_phys(&self) -> f32 {
+        let signal = self.raw.view_bits::<Lsb0>()[12..24].load_le::<i16>();
+        let factor = 0.01_f32;
+        let offset = 0_f32;
+        (signal as f32) * factor + offset
     }
     /// Get raw value of 'TorqueSense'
     ///
     /// - Start bit: 12
     /// - Signal size: 12 bits
-    /// - Factor: 0.01
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn torque_sense_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Lsb0>()[12..24].load_le::<i16>();
-        let factor = 0.01_f32;
-        let offset = 0_f32;
-        (signal as f32) * factor + offset
+    pub fn torque_sense_raw(&self) -> i16 {
+        self.raw.view_bits::<Lsb0>()[12..24].load_le::<i16>()
+    }
+    /// Set raw value of 'TorqueSense'
+    #[inline(always)]
+    pub fn set_torque_sense_raw(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[12..24].store_le(value);
     }
     /// Set value of 'TorqueSense'
     #[inline(always)]

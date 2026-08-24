@@ -91,22 +91,35 @@ impl Message1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn signal1(&self) -> i64 {
-        self.signal1_raw()
+        self.signal1_phys()
+    }
+    /// Get physical value of 'Signal1'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn signal1_phys(&self) -> i64 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<i64>();
+        let factor = 1;
+        let signal = signal as i64;
+        i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Signal1'
     ///
     /// - Start bit: 0
     /// - Signal size: 64 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn signal1_raw(&self) -> i64 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<i64>();
-        let factor = 1;
-        let signal = signal as i64;
-        i64::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..64].load_le::<i64>()
+    }
+    /// Set raw value of 'Signal1'
+    #[inline(always)]
+    pub fn set_signal1_raw(&mut self, value: i64) {
+        let value = u64::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
     }
     /// Set value of 'Signal1'
     #[inline(always)]
@@ -212,22 +225,35 @@ impl Message2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn signal2(&self) -> i32 {
-        self.signal2_raw()
+        self.signal2_phys()
+    }
+    /// Get physical value of 'Signal2'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn signal2_phys(&self) -> i32 {
+        let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
+        let factor = 1;
+        let signal = signal as i32;
+        i32::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Signal2'
     ///
     /// - Start bit: 32
     /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn signal2_raw(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>()
+    }
+    /// Set raw value of 'Signal2'
+    #[inline(always)]
+    pub fn set_signal2_raw(&mut self, value: i32) {
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
     /// Set value of 'Signal2'
     #[inline(always)]
@@ -256,22 +282,35 @@ impl Message2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn signal1(&self) -> i32 {
-        self.signal1_raw()
+        self.signal1_phys()
+    }
+    /// Get physical value of 'Signal1'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn signal1_phys(&self) -> i32 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
+        let factor = 1;
+        let signal = signal as i32;
+        i32::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Signal1'
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn signal1_raw(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
+    }
+    /// Set raw value of 'Signal1'
+    #[inline(always)]
+    pub fn set_signal1_raw(&mut self, value: i32) {
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
     }
     /// Set value of 'Signal1'
     #[inline(always)]

@@ -504,22 +504,35 @@ impl S1234567890123456789012345678901 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ss123456789012345678901234567890(&self) -> i8 {
-        self.ss123456789012345678901234567890_raw()
+        self.ss123456789012345678901234567890_phys()
+    }
+    /// Get physical value of 'SS123456789012345678901234567890'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn ss123456789012345678901234567890_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'SS123456789012345678901234567890'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn ss123456789012345678901234567890_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
+    }
+    /// Set raw value of 'SS123456789012345678901234567890'
+    #[inline(always)]
+    pub fn set_ss123456789012345678901234567890_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'SS123456789012345678901234567890'
     #[inline(always)]
@@ -624,22 +637,35 @@ impl M123456789012345678901234560000 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sss12345678901234567890123456789(&self) -> i8 {
-        self.sss12345678901234567890123456789_raw()
+        self.sss12345678901234567890123456789_phys()
+    }
+    /// Get physical value of 'SSS12345678901234567890123456789'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn sss12345678901234567890123456789_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'SSS12345678901234567890123456789'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn sss12345678901234567890123456789_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
+    }
+    /// Set raw value of 'SSS12345678901234567890123456789'
+    #[inline(always)]
+    pub fn set_sss12345678901234567890123456789_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'SSS12345678901234567890123456789'
     #[inline(always)]
@@ -763,22 +789,35 @@ impl M1234567890123456789012345678901 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ss1234567890123456789012345_0000(&self) -> i8 {
-        self.ss1234567890123456789012345_0000_raw()
+        self.ss1234567890123456789012345_0000_phys()
+    }
+    /// Get physical value of 'SS1234567890123456789012345_0000'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn ss1234567890123456789012345_0000_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'SS1234567890123456789012345_0000'
     ///
     /// - Start bit: 32
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn ss1234567890123456789012345_0000_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[32..40].load_le::<i8>()
+    }
+    /// Set raw value of 'SS1234567890123456789012345_0000'
+    #[inline(always)]
+    pub fn set_ss1234567890123456789012345_0000_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
     /// Set value of 'SS1234567890123456789012345_0000'
     #[inline(always)]
@@ -810,22 +849,35 @@ impl M1234567890123456789012345678901 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ss1234567890123456789012345_0001(&self) -> i8 {
-        self.ss1234567890123456789012345_0001_raw()
+        self.ss1234567890123456789012345_0001_phys()
+    }
+    /// Get physical value of 'SS1234567890123456789012345_0001'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn ss1234567890123456789012345_0001_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'SS1234567890123456789012345_0001'
     ///
     /// - Start bit: 24
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn ss1234567890123456789012345_0001_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>()
+    }
+    /// Set raw value of 'SS1234567890123456789012345_0001'
+    #[inline(always)]
+    pub fn set_ss1234567890123456789012345_0001_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'SS1234567890123456789012345_0001'
     #[inline(always)]
@@ -857,22 +909,35 @@ impl M1234567890123456789012345678901 {
     /// - Receivers: N12345678901234567890123456_0000
     #[inline(always)]
     pub fn ss1234567890123456789012345_0002(&self) -> i8 {
-        self.ss1234567890123456789012345_0002_raw()
+        self.ss1234567890123456789012345_0002_phys()
+    }
+    /// Get physical value of 'SS1234567890123456789012345_0002'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn ss1234567890123456789012345_0002_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'SS1234567890123456789012345_0002'
     ///
     /// - Start bit: 16
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn ss1234567890123456789012345_0002_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>()
+    }
+    /// Set raw value of 'SS1234567890123456789012345_0002'
+    #[inline(always)]
+    pub fn set_ss1234567890123456789012345_0002_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'SS1234567890123456789012345_0002'
     #[inline(always)]
@@ -904,22 +969,35 @@ impl M1234567890123456789012345678901 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s12345678901234567890123456_0000(&self) -> i8 {
-        self.s12345678901234567890123456_0000_raw()
+        self.s12345678901234567890123456_0000_phys()
+    }
+    /// Get physical value of 'S12345678901234567890123456_0000'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s12345678901234567890123456_0000_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'S12345678901234567890123456_0000'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s12345678901234567890123456_0000_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
+    }
+    /// Set raw value of 'S12345678901234567890123456_0000'
+    #[inline(always)]
+    pub fn set_s12345678901234567890123456_0000_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'S12345678901234567890123456_0000'
     #[inline(always)]
@@ -951,22 +1029,35 @@ impl M1234567890123456789012345678901 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s1234567890123456789012345678901(&self) -> i8 {
-        self.s1234567890123456789012345678901_raw()
+        self.s1234567890123456789012345678901_phys()
+    }
+    /// Get physical value of 'S1234567890123456789012345678901'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s1234567890123456789012345678901_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'S1234567890123456789012345678901'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s1234567890123456789012345678901_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
+    }
+    /// Set raw value of 'S1234567890123456789012345678901'
+    #[inline(always)]
+    pub fn set_s1234567890123456789012345678901_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'S1234567890123456789012345678901'
     #[inline(always)]
@@ -1086,22 +1177,35 @@ impl M123456789012345678901234560001 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ss1234567890123456789012345_0003(&self) -> i8 {
-        self.ss1234567890123456789012345_0003_raw()
+        self.ss1234567890123456789012345_0003_phys()
+    }
+    /// Get physical value of 'SS1234567890123456789012345_0003'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn ss1234567890123456789012345_0003_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'SS1234567890123456789012345_0003'
     ///
     /// - Start bit: 24
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn ss1234567890123456789012345_0003_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>()
+    }
+    /// Set raw value of 'SS1234567890123456789012345_0003'
+    #[inline(always)]
+    pub fn set_ss1234567890123456789012345_0003_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'SS1234567890123456789012345_0003'
     #[inline(always)]
@@ -1133,22 +1237,35 @@ impl M123456789012345678901234560001 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ss1234567890123456789012345_0004(&self) -> i8 {
-        self.ss1234567890123456789012345_0004_raw()
+        self.ss1234567890123456789012345_0004_phys()
+    }
+    /// Get physical value of 'SS1234567890123456789012345_0004'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn ss1234567890123456789012345_0004_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'SS1234567890123456789012345_0004'
     ///
     /// - Start bit: 16
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn ss1234567890123456789012345_0004_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>()
+    }
+    /// Set raw value of 'SS1234567890123456789012345_0004'
+    #[inline(always)]
+    pub fn set_ss1234567890123456789012345_0004_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'SS1234567890123456789012345_0004'
     #[inline(always)]
@@ -1180,22 +1297,35 @@ impl M123456789012345678901234560001 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s12345678901234567890123456_0001(&self) -> i8 {
-        self.s12345678901234567890123456_0001_raw()
+        self.s12345678901234567890123456_0001_phys()
+    }
+    /// Get physical value of 'S12345678901234567890123456_0001'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s12345678901234567890123456_0001_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'S12345678901234567890123456_0001'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s12345678901234567890123456_0001_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
+    }
+    /// Set raw value of 'S12345678901234567890123456_0001'
+    #[inline(always)]
+    pub fn set_s12345678901234567890123456_0001_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'S12345678901234567890123456_0001'
     #[inline(always)]
@@ -1227,22 +1357,35 @@ impl M123456789012345678901234560001 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s12345678901234567890123456_0002(&self) -> i8 {
-        self.s12345678901234567890123456_0002_raw()
+        self.s12345678901234567890123456_0002_phys()
+    }
+    /// Get physical value of 'S12345678901234567890123456_0002'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn s12345678901234567890123456_0002_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'S12345678901234567890123456_0002'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn s12345678901234567890123456_0002_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
+    }
+    /// Set raw value of 'S12345678901234567890123456_0002'
+    #[inline(always)]
+    pub fn set_s12345678901234567890123456_0002_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'S12345678901234567890123456_0002'
     #[inline(always)]
@@ -1353,22 +1496,35 @@ impl Mm123456789012345678901234567890 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sss123456789012345678901234_0000(&self) -> i8 {
-        self.sss123456789012345678901234_0000_raw()
+        self.sss123456789012345678901234_0000_phys()
+    }
+    /// Get physical value of 'SSS123456789012345678901234_0000'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn sss123456789012345678901234_0000_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'SSS123456789012345678901234_0000'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn sss123456789012345678901234_0000_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
+    }
+    /// Set raw value of 'SSS123456789012345678901234_0000'
+    #[inline(always)]
+    pub fn set_sss123456789012345678901234_0000_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'SSS123456789012345678901234_0000'
     #[inline(always)]
@@ -1400,22 +1556,35 @@ impl Mm123456789012345678901234567890 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ss1234567890123456789012345_0005(&self) -> i8 {
-        self.ss1234567890123456789012345_0005_raw()
+        self.ss1234567890123456789012345_0005_phys()
+    }
+    /// Get physical value of 'SS1234567890123456789012345_0005'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn ss1234567890123456789012345_0005_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'SS1234567890123456789012345_0005'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn ss1234567890123456789012345_0005_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
+    }
+    /// Set raw value of 'SS1234567890123456789012345_0005'
+    #[inline(always)]
+    pub fn set_ss1234567890123456789012345_0005_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'SS1234567890123456789012345_0005'
     #[inline(always)]

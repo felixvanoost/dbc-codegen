@@ -92,22 +92,35 @@ impl Message2 {
     /// - Receivers: ECU1
     #[inline(always)]
     pub fn signal_2(&self) -> i8 {
-        self.signal_2_raw()
+        self.signal_2_phys()
+    }
+    /// Get physical value of 'signal_2'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn signal_2_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'signal_2'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn signal_2_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
+    }
+    /// Set raw value of 'signal_2'
+    #[inline(always)]
+    pub fn set_signal_2_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'signal_2'
     #[inline(always)]
@@ -210,22 +223,35 @@ impl Message1 {
     /// - Receivers: ECU2
     #[inline(always)]
     pub fn signal_1(&self) -> i8 {
-        self.signal_1_raw()
+        self.signal_1_phys()
+    }
+    /// Get physical value of 'signal_1'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn signal_1_phys(&self) -> i8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
+        let factor = 1;
+        let signal = signal as i8;
+        i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'signal_1'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
     pub fn signal_1_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
+    }
+    /// Set raw value of 'signal_1'
+    #[inline(always)]
+    pub fn set_signal_1_raw(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'signal_1'
     #[inline(always)]

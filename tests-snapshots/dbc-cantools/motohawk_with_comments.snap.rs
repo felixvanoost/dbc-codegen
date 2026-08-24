@@ -102,22 +102,35 @@ impl ExampleMessage {
     /// - Receivers: PCM1, FOO
     #[inline(always)]
     pub fn temperature(&self) -> f32 {
-        self.temperature_raw()
+        self.temperature_phys()
+    }
+    /// Get physical value of 'Temperature'
+    ///
+    /// - Factor: 0.01
+    /// - Offset: 250
+    /// - Unit: "degK"
+    #[inline(always)]
+    pub fn temperature_phys(&self) -> f32 {
+        let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
+        let factor = 0.01_f32;
+        let offset = 250_f32;
+        (signal as f32) * factor + offset
     }
     /// Get raw value of 'Temperature'
     ///
     /// - Start bit: 0
     /// - Signal size: 12 bits
-    /// - Factor: 0.01
-    /// - Offset: 250
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
-        let factor = 0.01_f32;
-        let offset = 250_f32;
-        (signal as f32) * factor + offset
+    pub fn temperature_raw(&self) -> i16 {
+        self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>()
+    }
+    /// Set raw value of 'Temperature'
+    #[inline(always)]
+    pub fn set_temperature_raw(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[7..19].store_be(value);
     }
     /// Set value of 'Temperature'
     #[inline(always)]
@@ -144,22 +157,34 @@ impl ExampleMessage {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn average_radius(&self) -> f32 {
-        self.average_radius_raw()
+        self.average_radius_phys()
+    }
+    /// Get physical value of 'AverageRadius'
+    ///
+    /// - Factor: 0.1
+    /// - Offset: 0
+    /// - Unit: "m"
+    #[inline(always)]
+    pub fn average_radius_phys(&self) -> f32 {
+        let signal = self.raw.view_bits::<Msb0>()[1..7].load_be::<u8>();
+        let factor = 0.1_f32;
+        let offset = 0_f32;
+        (signal as f32) * factor + offset
     }
     /// Get raw value of 'AverageRadius'
     ///
     /// - Start bit: 6
     /// - Signal size: 6 bits
-    /// - Factor: 0.1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn average_radius_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Msb0>()[1..7].load_be::<u8>();
-        let factor = 0.1_f32;
-        let offset = 0_f32;
-        (signal as f32) * factor + offset
+    pub fn average_radius_raw(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[1..7].load_be::<u8>()
+    }
+    /// Set raw value of 'AverageRadius'
+    #[inline(always)]
+    pub fn set_average_radius_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[1..7].store_be(value);
     }
     /// Set value of 'AverageRadius'
     #[inline(always)]
@@ -189,21 +214,33 @@ impl ExampleMessage {
         match signal {
             0 => ExampleMessageEnable::Disabled,
             1 => ExampleMessageEnable::Enabled,
-            _ => ExampleMessageEnable::_Other(self.enable_raw()),
+            _ => ExampleMessageEnable::_Other(self.enable_phys()),
         }
+    }
+    /// Get physical value of 'Enable'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: "-"
+    #[inline(always)]
+    pub fn enable_phys(&self) -> bool {
+        let signal = self.raw.view_bits::<Msb0>()[0..1].load_be::<u8>();
+        signal == 1
     }
     /// Get raw value of 'Enable'
     ///
     /// - Start bit: 7
     /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn enable_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[0..1].load_be::<u8>();
-        signal == 1
+    pub fn enable_raw(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[0..1].load_be::<u8>()
+    }
+    /// Set raw value of 'Enable'
+    #[inline(always)]
+    pub fn set_enable_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[0..1].store_be(value);
     }
     /// Set value of 'Enable'
     #[inline(always)]

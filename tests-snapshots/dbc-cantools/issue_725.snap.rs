@@ -90,21 +90,33 @@ impl TestMessage {
     /// - Receivers: Node2
     #[inline(always)]
     pub fn signal1(&self) -> u8 {
-        self.signal1_raw()
+        self.signal1_phys()
+    }
+    /// Get physical value of 'Signal1'
+    ///
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Unit: ""
+    #[inline(always)]
+    pub fn signal1_phys(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
     /// Get raw value of 'Signal1'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
     pub fn signal1_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
+    }
+    /// Set raw value of 'Signal1'
+    #[inline(always)]
+    pub fn set_signal1_raw(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'Signal1'
     #[inline(always)]
