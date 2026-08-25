@@ -24,7 +24,10 @@ use can_dbc::MultiplexIndicator::{
     MultiplexedSignal, Multiplexor, MultiplexorAndMultiplexedSignal, Plain,
 };
 use can_dbc::ValueType::Signed;
-use can_dbc::{AttributeValue, Dbc, Message, MessageId, Signal, ValDescription, ValueDescription};
+use can_dbc::{
+    AttributeValue, AttributeValueForRelationType, Dbc, Message, MessageId, Signal, ValDescription,
+    ValueDescription,
+};
 use heck::ToSnakeCase;
 use quote::ToTokens;
 use typed_builder::TypedBuilder;
@@ -35,7 +38,7 @@ use crate::signal_type::{IntSize, ValType};
 use crate::utils::{
     enum_name, enum_variant_name, is_screaming_snake_case, is_valid_ident, is_valid_type_path,
     multiplex_enum_name, multiplexed_enum_variant_name, multiplexed_enum_variant_wrapper_name,
-    MessageExt as _, SignalExt as _,
+    node_field_name, MessageExt as _, SignalExt as _,
 };
 
 static ALLOW_DEADCODE: &str = "#[allow(dead_code)]";
@@ -126,16 +129,26 @@ pub struct AttributeStruct<'a> {
 
     /// The struct fields, written in this order.
     pub fields: &'a [AttributeField<'a>],
+
+    /// Restrict [`AttributeScope::NodeSignal`]/[`AttributeScope::NodeMessage`]
+    /// emission to this one node and remove the node name from the generated
+    /// const. Set to `None` to keep the default behavior (one constant per
+    /// matching node).
+    pub for_node: Option<&'a str>,
 }
 
 /// Whether an [`AttributeStruct`] is emitted once per message or once per signal.
 #[derive(Debug, Clone, Copy)]
 #[non_exhaustive]
 pub enum AttributeScope {
-    /// One const per message (BO_ attribute).
+    /// One const per message (`BO_` attribute).
     Message,
-    /// One const per signal (SG_ attribute).
+    /// One const per signal (`SG_` attribute).
     Signal,
+    /// One const per node related to a message (`BU_BO_REL_` relation attribute).
+    NodeMessage,
+    /// One const per receiving node of a signal (`BU_SG_REL_` relation attribute).
+    NodeSignal,
 }
 
 /// One field of an [`AttributeStruct`] and where its value comes from.
@@ -169,6 +182,17 @@ pub enum FieldSource<'a> {
     Int(i64),
     /// A literal string.
     Str(&'a str),
+    /// The name of the related node.
+    /// [`AttributeScope::NodeSignal`] and [`AttributeScope::NodeMessage`] only.
+    NodeName,
+}
+
+/// Message/signal/node context used to resolve an [`AttributeStruct`]'s fields.
+struct AttrTarget<'a> {
+    msg: &'a Message,
+    dbc: &'a Dbc,
+    signal: Option<&'a Signal>,
+    node: Option<&'a str>,
 }
 
 impl Config<'_> {
@@ -531,7 +555,27 @@ impl Config<'_> {
                 spec.const_name
             );
 
-            let message_scope = matches!(spec.scope, AttributeScope::Message);
+            let has_signal = matches!(
+                spec.scope,
+                AttributeScope::Signal | AttributeScope::NodeSignal
+            );
+            let has_node = matches!(
+                spec.scope,
+                AttributeScope::NodeSignal | AttributeScope::NodeMessage
+            );
+            if let Some(for_node) = spec.for_node {
+                ensure!(
+                    !for_node.is_empty(),
+                    "attribute_structs: 'for_node' must not be empty for {:?}",
+                    spec.const_name
+                );
+                ensure!(
+                    has_node,
+                    "attribute_structs: {:?} sets 'for_node' but its scope has no associated \
+                     node (scope must be NodeSignal or NodeMessage)",
+                    spec.const_name
+                );
+            }
             let mut seen = BTreeSet::new();
             for field in spec.fields {
                 ensure!(
@@ -546,14 +590,23 @@ impl Config<'_> {
                     field.name,
                     spec.const_name
                 );
-                if message_scope {
+                if !has_signal {
                     ensure!(
                         !matches!(
                             field.source,
                             FieldSource::StartBit | FieldSource::StartByte | FieldSource::BitWidth
                         ),
                         "attribute_structs: field {:?} of {:?} uses a signal-only source \
-                         (StartBit/StartByte/BitWidth) but the struct has message scope",
+                         (StartBit/StartByte/BitWidth) but the struct has no associated signal",
+                        field.name,
+                        spec.const_name
+                    );
+                }
+                if !has_node {
+                    ensure!(
+                        !matches!(field.source, FieldSource::NodeName),
+                        "attribute_structs: field {:?} of {:?} uses NodeName but the struct has \
+                         no associated node (scope must be NodeSignal or NodeMessage)",
                         field.name,
                         spec.const_name
                     );
@@ -592,9 +645,12 @@ impl Config<'_> {
                         w,
                         spec,
                         spec.const_name,
-                        msg,
-                        dbc,
-                        None,
+                        &AttrTarget {
+                            msg,
+                            dbc,
+                            signal: None,
+                            node: None,
+                        },
                         &mut used,
                     )?;
                 }
@@ -612,9 +668,91 @@ impl Config<'_> {
                             w,
                             spec,
                             &name,
-                            msg,
-                            dbc,
-                            Some(signal),
+                            &AttrTarget {
+                                msg,
+                                dbc,
+                                signal: Some(signal),
+                                node: None,
+                            },
+                            &mut used,
+                        )?;
+                    }
+                }
+                AttributeScope::NodeSignal => {
+                    for signal in &msg.signals {
+                        for node in &signal.receivers {
+                            if spec.for_node.is_some_and(|target| node != target) {
+                                continue;
+                            }
+                            if node_relation_attribute(
+                                dbc,
+                                node,
+                                msg.id,
+                                Some(&signal.name),
+                                spec.require,
+                            )
+                            .is_none()
+                            {
+                                continue;
+                            }
+                            let name = if spec.for_node.is_some() {
+                                format!(
+                                    "{}_{}",
+                                    signal.field_name().to_uppercase(),
+                                    spec.const_name
+                                )
+                            } else {
+                                let node_ident = node_field_name(node).to_uppercase();
+                                format!(
+                                    "{}_{node_ident}_{}",
+                                    signal.field_name().to_uppercase(),
+                                    spec.const_name
+                                )
+                            };
+                            Self::render_attribute_struct(
+                                w,
+                                spec,
+                                &name,
+                                &AttrTarget {
+                                    msg,
+                                    dbc,
+                                    signal: Some(signal),
+                                    node: Some(node),
+                                },
+                                &mut used,
+                            )?;
+                        }
+                    }
+                }
+                AttributeScope::NodeMessage => {
+                    for node in &dbc.nodes {
+                        if spec.for_node.is_some_and(|target| node.0 != target) {
+                            continue;
+                        }
+                        if node_relation_attribute(dbc, &node.0, msg.id, None, spec.require)
+                            .is_none()
+                        {
+                            continue;
+                        }
+                        let name = if spec.for_node.is_some() {
+                            spec.const_name.to_string()
+                        } else {
+                            format!(
+                                "{}_{}",
+                                node_field_name(&node.0).to_uppercase(),
+                                spec.const_name
+                            )
+                        };
+                        Self::render_attribute_struct(
+                            w,
+                            spec,
+                            &name,
+                            &AttrTarget {
+                                msg,
+                                dbc,
+                                signal: None,
+                                node: Some(&node.0),
+                            },
                             &mut used,
                         )?;
                     }
@@ -629,21 +767,19 @@ impl Config<'_> {
         w: &mut impl Write,
         spec: &AttributeStruct<'_>,
         const_name: &str,
-        msg: &Message,
-        dbc: &Dbc,
-        signal: Option<&Signal>,
+        target: &AttrTarget<'_>,
         used: &mut BTreeSet<String>,
     ) -> Result<()> {
         ensure!(
             used.insert(const_name.to_string()),
             "attribute_structs: generated const '{const_name}' on message {:?} collides with \
              another const. Use a distinct 'const_name'.",
-            msg.name
+            target.msg.name
         );
 
         let mut fields = Vec::with_capacity(spec.fields.len());
         for field in spec.fields {
-            let lit = resolve_field_source(&field.source, msg, dbc, signal).ok_or_else(|| {
+            let lit = resolve_field_source(&field.source, target).ok_or_else(|| {
                 anyhow!(
                     "attribute_structs: const '{const_name}' field {:?} has no value in the DBC \
                      and no default (source: {:?})",
@@ -1636,16 +1772,21 @@ fn message_ignored(message: &Message) -> bool {
 }
 
 /// Resolve a [`FieldSource`] to a Rust literal.
-fn resolve_field_source(
-    source: &FieldSource<'_>,
-    msg: &Message,
-    dbc: &Dbc,
-    signal: Option<&Signal>,
-) -> Option<String> {
+fn resolve_field_source(source: &FieldSource<'_>, target: &AttrTarget<'_>) -> Option<String> {
+    let AttrTarget {
+        msg,
+        dbc,
+        signal,
+        node,
+    } = *target;
     match source {
-        FieldSource::Attr(name) => match signal {
-            Some(s) => dbc.resolved_signal_attribute(msg.id, &s.name, name),
-            None => dbc.resolved_message_attribute(msg.id, name),
+        FieldSource::Attr(name) => match (signal, node) {
+            (Some(s), None) => dbc.resolved_signal_attribute(msg.id, &s.name, name),
+            (None, None) => dbc.resolved_message_attribute(msg.id, name),
+            (Some(s), Some(n)) => {
+                resolved_node_relation_attribute(dbc, n, msg.id, Some(&s.name), name)
+            }
+            (None, Some(n)) => resolved_node_relation_attribute(dbc, n, msg.id, None, name),
         }
         .map(attr_value_literal),
         FieldSource::MessageAttr(name) => dbc
@@ -1657,7 +1798,62 @@ fn resolve_field_source(
         FieldSource::MessageSize => Some(msg.size.to_string()),
         FieldSource::Int(v) => Some(v.to_string()),
         FieldSource::Str(v) => Some(format!("{v:?}")),
+        FieldSource::NodeName => node.map(|n| format!("{n:?}")),
     }
+}
+
+/// Lookup an assigned node relation attribute value. This can be either
+/// node-to-signal (`BA_REL_ ... BU_SG_REL_`, `signal_name: Some`) or
+/// node-to-message (`BA_REL_ ... BU_BO_REL_`, `signal_name: None`).
+fn node_relation_attribute<'a>(
+    dbc: &'a Dbc,
+    node_name: &str,
+    message_id: MessageId,
+    signal_name: Option<&str>,
+    name: &str,
+) -> Option<&'a AttributeValue> {
+    dbc.relation_attribute_values.iter().find_map(|rel| {
+        if rel.name != name {
+            return None;
+        }
+        match (&rel.details, signal_name) {
+            (
+                AttributeValueForRelationType::NodeToSignal {
+                    node_name: n,
+                    message_id: mid,
+                    signal_name: sig,
+                    value,
+                },
+                Some(want_sig),
+            ) if n == node_name && *mid == message_id && sig == want_sig => Some(value),
+            (
+                AttributeValueForRelationType::NodeToMessage {
+                    node_name: n,
+                    message_id: mid,
+                    value,
+                },
+                None,
+            ) if n == node_name && *mid == message_id => Some(value),
+            _ => None,
+        }
+    })
+}
+
+/// Lookup a node relation attribute value.
+/// Uses the default (`BA_DEF_DEF_REL_`) if a value is not assigned.
+fn resolved_node_relation_attribute<'a>(
+    dbc: &'a Dbc,
+    node_name: &str,
+    message_id: MessageId,
+    signal_name: Option<&str>,
+    name: &str,
+) -> Option<&'a AttributeValue> {
+    node_relation_attribute(dbc, node_name, message_id, signal_name, name).or_else(|| {
+        dbc.relation_attribute_defaults
+            .iter()
+            .find(|d| d.name == name)
+            .map(|d| &d.value)
+    })
 }
 
 /// Byte index of a signal's start bit.

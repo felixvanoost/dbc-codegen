@@ -132,6 +132,7 @@ let e2e = AttributeStruct {
         AttributeField { name: "start_byte",  source: FieldSource::StartByte },
         AttributeField { name: "width_bit",   source: FieldSource::Attr("E2EDataLength") },
     ],
+    for_node: None,
 };
 
 let dbc_file = "";
@@ -150,6 +151,77 @@ For every signal that carries an `E2EDataId` attribute, this generates:
 impl SomeMessage {
     pub const SOME_SIGNAL_E2E: data_protection::E2EDataIdInfo =
         data_protection::E2EDataIdInfo { data_id: 373, start_byte: 0, width_bit: 48 };
+}
+```
+
+DBCs can also attach attributes to relations between a node and a signal (`BA_DEF_REL_ BU_SG_REL_` / `BA_REL_`) or a node and a message (`BA_DEF_REL_ BU_BO_REL_` / `BA_REL_`), for example, a signal timeout. `AttributeScope::NodeSignal` emits one const per receiving node of a matching signal, and `AttributeScope::NodeMessage` emits one const per node related to a matching message. `FieldSource::NodeName` exposes the related node's name and is only valid with these two scopes:
+
+```rust,no_run
+use dbc_codegen::{AttributeField, AttributeScope, AttributeStruct, Config, FieldSource};
+
+// `relation::SigTimeoutInfo { node, timeout_ms }` is a type defined in your crate.
+let sig_timeout = AttributeStruct {
+    type_path: "relation::SigTimeoutInfo",
+    const_name: "SIG_TIMEOUT",
+    scope: AttributeScope::NodeSignal,     // One const per receiving node of a matching signal
+    require: "GenSigTimeoutTime",          // Only nodes carrying this relation attribute
+    fields: &[
+        AttributeField { name: "node",       source: FieldSource::NodeName },
+        AttributeField { name: "timeout_ms", source: FieldSource::Attr("GenSigTimeoutTime") },
+    ],
+    for_node: None,
+};
+
+let dbc_file = "";
+Config::builder()
+    .dbc_name("example.dbc")
+    .dbc_content(dbc_file)
+    .attribute_structs(&[sig_timeout])
+    .build()
+    .generate()
+    .unwrap();
+```
+
+For every signal and receiving node pair that carries a `GenSigTimeoutTime` relation attribute, this generates:
+
+```rust,ignore
+impl SomeMessage {
+    pub const SOME_SIGNAL_ECU2_SIG_TIMEOUT: relation::SigTimeoutInfo =
+        relation::SigTimeoutInfo { node: "ECU2", timeout_ms: 60 };
+}
+```
+
+If you're generating code for a single node/ECU, you can set `for_node` to the node name to generates constants only for relation attributes that are relevant to the specific node. This also removes the node name from the constant names, making the generated code node/ECU name-agnostic.
+
+```rust,no_run
+use dbc_codegen::{AttributeField, AttributeScope, AttributeStruct, Config, FieldSource};
+
+let sig_timeout_for_ecu2 = AttributeStruct {
+    type_path: "relation::SigTimeoutInfo",
+    const_name: "SIG_TIMEOUT",
+    scope: AttributeScope::NodeSignal,
+    require: "GenSigTimeoutTime",
+    fields: &[
+        AttributeField { name: "node",       source: FieldSource::NodeName },
+        AttributeField { name: "timeout_ms", source: FieldSource::Attr("GenSigTimeoutTime") },
+    ],
+    for_node: Some("ECU2"),
+};
+
+let dbc_file = "";
+Config::builder()
+    .dbc_name("example.dbc")
+    .dbc_content(dbc_file)
+    .attribute_structs(&[sig_timeout_for_ecu2])
+    .build()
+    .generate()
+    .unwrap();
+```
+
+```rust,ignore
+impl SomeMessage {
+    pub const SOME_SIGNAL_SIG_TIMEOUT: relation::SigTimeoutInfo =
+        relation::SigTimeoutInfo { node: "ECU2", timeout_ms: 60 };
 }
 ```
 
