@@ -100,7 +100,7 @@ impl Message0 {
             1 => Message0FooSignal::FooB,
             2 => Message0FooSignal::FooC,
             3 => Message0FooSignal::FooD,
-            _ => Message0FooSignal::_Other(self.foo_signal_phys()),
+            _ => Message0FooSignal::_Other(self.foo_signal_phys_val()),
         }
     }
     /// Get physical value of 'FooSignal'
@@ -109,7 +109,7 @@ impl Message0 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn foo_signal_phys(&self) -> u8 {
+    pub fn foo_signal_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..2].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -121,12 +121,12 @@ impl Message0 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn foo_signal_raw(&self) -> u8 {
+    pub fn foo_signal_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..2].load_le::<u8>()
     }
     /// Set raw value of 'FooSignal'
     #[inline(always)]
-    pub fn set_foo_signal_raw(&mut self, value: u8) {
+    pub fn set_foo_signal_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..2].store_le(value);
     }
     /// Set value of 'FooSignal'
@@ -166,7 +166,7 @@ impl Message0 {
             5 => Message0BarSignal::BarF,
             6 => Message0BarSignal::BarG,
             7 => Message0BarSignal::BarH,
-            _ => Message0BarSignal::_Other(self.bar_signal_phys()),
+            _ => Message0BarSignal::_Other(self.bar_signal_phys_val()),
         }
     }
     /// Get physical value of 'BarSignal'
@@ -175,7 +175,7 @@ impl Message0 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bar_signal_phys(&self) -> u8 {
+    pub fn bar_signal_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[2..5].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -187,12 +187,12 @@ impl Message0 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bar_signal_raw(&self) -> u8 {
+    pub fn bar_signal_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..5].load_le::<u8>()
     }
     /// Set raw value of 'BarSignal'
     #[inline(always)]
-    pub fn set_bar_signal_raw(&mut self, value: u8) {
+    pub fn set_bar_signal_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..5].store_le(value);
     }
     /// Set value of 'BarSignal'

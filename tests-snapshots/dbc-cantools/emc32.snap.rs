@@ -96,7 +96,7 @@ impl EmvStati {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn emv_aktion_status_5(&self) -> bool {
-        self.emv_aktion_status_5_phys()
+        self.emv_aktion_status_5_phys_val()
     }
     /// Get physical value of 'EMV_Aktion_Status_5'
     ///
@@ -104,7 +104,7 @@ impl EmvStati {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn emv_aktion_status_5_phys(&self) -> bool {
+    pub fn emv_aktion_status_5_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[4..5].load_le::<u8>();
         signal == 1
     }
@@ -115,12 +115,12 @@ impl EmvStati {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn emv_aktion_status_5_raw(&self) -> u8 {
+    pub fn emv_aktion_status_5_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[4..5].load_le::<u8>()
     }
     /// Set raw value of 'EMV_Aktion_Status_5'
     #[inline(always)]
-    pub fn set_emv_aktion_status_5_raw(&mut self, value: u8) {
+    pub fn set_emv_aktion_status_5_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[4..5].store_le(value);
     }
     /// Set value of 'EMV_Aktion_Status_5'
@@ -138,7 +138,7 @@ impl EmvStati {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn emv_aktion_status_4(&self) -> bool {
-        self.emv_aktion_status_4_phys()
+        self.emv_aktion_status_4_phys_val()
     }
     /// Get physical value of 'EMV_Aktion_Status_4'
     ///
@@ -146,7 +146,7 @@ impl EmvStati {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn emv_aktion_status_4_phys(&self) -> bool {
+    pub fn emv_aktion_status_4_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[3..4].load_le::<u8>();
         signal == 1
     }
@@ -157,12 +157,12 @@ impl EmvStati {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn emv_aktion_status_4_raw(&self) -> u8 {
+    pub fn emv_aktion_status_4_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[3..4].load_le::<u8>()
     }
     /// Set raw value of 'EMV_Aktion_Status_4'
     #[inline(always)]
-    pub fn set_emv_aktion_status_4_raw(&mut self, value: u8) {
+    pub fn set_emv_aktion_status_4_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[3..4].store_le(value);
     }
     /// Set value of 'EMV_Aktion_Status_4'
@@ -180,7 +180,7 @@ impl EmvStati {
     /// - Receivers: EMV_Statusmeldungen
     #[inline(always)]
     pub fn emv_aktion_status_3(&self) -> bool {
-        self.emv_aktion_status_3_phys()
+        self.emv_aktion_status_3_phys_val()
     }
     /// Get physical value of 'EMV_Aktion_Status_3'
     ///
@@ -188,7 +188,7 @@ impl EmvStati {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn emv_aktion_status_3_phys(&self) -> bool {
+    pub fn emv_aktion_status_3_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -199,12 +199,12 @@ impl EmvStati {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn emv_aktion_status_3_raw(&self) -> u8 {
+    pub fn emv_aktion_status_3_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'EMV_Aktion_Status_3'
     #[inline(always)]
-    pub fn set_emv_aktion_status_3_raw(&mut self, value: u8) {
+    pub fn set_emv_aktion_status_3_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'EMV_Aktion_Status_3'
@@ -222,7 +222,7 @@ impl EmvStati {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn emv_aktion_status_2(&self) -> bool {
-        self.emv_aktion_status_2_phys()
+        self.emv_aktion_status_2_phys_val()
     }
     /// Get physical value of 'EMV_Aktion_Status_2'
     ///
@@ -230,7 +230,7 @@ impl EmvStati {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn emv_aktion_status_2_phys(&self) -> bool {
+    pub fn emv_aktion_status_2_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[6..7].load_le::<u8>();
         signal == 1
     }
@@ -241,12 +241,12 @@ impl EmvStati {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn emv_aktion_status_2_raw(&self) -> u8 {
+    pub fn emv_aktion_status_2_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[6..7].load_le::<u8>()
     }
     /// Set raw value of 'EMV_Aktion_Status_2'
     #[inline(always)]
-    pub fn set_emv_aktion_status_2_raw(&mut self, value: u8) {
+    pub fn set_emv_aktion_status_2_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[6..7].store_le(value);
     }
     /// Set value of 'EMV_Aktion_Status_2'
@@ -264,7 +264,7 @@ impl EmvStati {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn emv_aktion_status_1(&self) -> bool {
-        self.emv_aktion_status_1_phys()
+        self.emv_aktion_status_1_phys_val()
     }
     /// Get physical value of 'EMV_Aktion_Status_1'
     ///
@@ -272,7 +272,7 @@ impl EmvStati {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn emv_aktion_status_1_phys(&self) -> bool {
+    pub fn emv_aktion_status_1_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[5..6].load_le::<u8>();
         signal == 1
     }
@@ -283,12 +283,12 @@ impl EmvStati {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn emv_aktion_status_1_raw(&self) -> u8 {
+    pub fn emv_aktion_status_1_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[5..6].load_le::<u8>()
     }
     /// Set raw value of 'EMV_Aktion_Status_1'
     #[inline(always)]
-    pub fn set_emv_aktion_status_1_raw(&mut self, value: u8) {
+    pub fn set_emv_aktion_status_1_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[5..6].store_le(value);
     }
     /// Set value of 'EMV_Aktion_Status_1'

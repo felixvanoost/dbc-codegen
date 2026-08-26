@@ -96,7 +96,7 @@ impl ExampleMessage {
         match signal {
             4095 => ExampleMessageTemperature::Error,
             4094 => ExampleMessageTemperature::Init,
-            _ => ExampleMessageTemperature::_Other(self.temperature_phys()),
+            _ => ExampleMessageTemperature::_Other(self.temperature_phys_val()),
         }
     }
     /// Get physical value of 'Temperature'
@@ -105,7 +105,7 @@ impl ExampleMessage {
     /// - Offset: 4100
     /// - Unit: "degK"
     #[inline(always)]
-    pub fn temperature_phys(&self) -> f32 {
+    pub fn temperature_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[4..16].load_be::<u16>();
         let factor = -0.01_f32;
         let offset = 4100_f32;
@@ -118,12 +118,12 @@ impl ExampleMessage {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn temperature_raw(&self) -> u16 {
+    pub fn temperature_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[4..16].load_be::<u16>()
     }
     /// Set raw value of 'Temperature'
     #[inline(always)]
-    pub fn set_temperature_raw(&mut self, value: u16) {
+    pub fn set_temperature_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[4..16].store_be(value);
     }
     /// Set value of 'Temperature'

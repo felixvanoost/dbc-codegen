@@ -138,7 +138,7 @@ impl MsgLongName5678912345678912 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn rx_twice_short(&self) -> i32 {
-        self.rx_twice_short_phys()
+        self.rx_twice_short_phys_val()
     }
     /// Get physical value of 'rx_twice_short'
     ///
@@ -146,7 +146,7 @@ impl MsgLongName5678912345678912 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn rx_twice_short_phys(&self) -> i32 {
+    pub fn rx_twice_short_phys_val(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..34].load_le::<i32>();
         let factor = 1;
         let signal = signal as i32;
@@ -159,12 +159,12 @@ impl MsgLongName5678912345678912 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rx_twice_short_raw(&self) -> i32 {
+    pub fn rx_twice_short_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[16..34].load_le::<i32>()
     }
     /// Set raw value of 'rx_twice_short'
     #[inline(always)]
-    pub fn set_rx_twice_short_raw(&mut self, value: i32) {
+    pub fn set_rx_twice_short_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..34].store_le(value);
     }
@@ -195,7 +195,7 @@ impl MsgLongName5678912345678912 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn rx_twice_11111111111111111111111(&self) -> i8 {
-        self.rx_twice_11111111111111111111111_phys()
+        self.rx_twice_11111111111111111111111_phys_val()
     }
     /// Get physical value of 'rx_twice_11111111111111111111111'
     ///
@@ -203,7 +203,7 @@ impl MsgLongName5678912345678912 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn rx_twice_11111111111111111111111_phys(&self) -> i8 {
+    pub fn rx_twice_11111111111111111111111_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -216,12 +216,12 @@ impl MsgLongName5678912345678912 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rx_twice_11111111111111111111111_raw(&self) -> i8 {
+    pub fn rx_twice_11111111111111111111111_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
     /// Set raw value of 'rx_twice_11111111111111111111111'
     #[inline(always)]
-    pub fn set_rx_twice_11111111111111111111111_raw(&mut self, value: i8) {
+    pub fn set_rx_twice_11111111111111111111111_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
@@ -255,7 +255,7 @@ impl MsgLongName5678912345678912 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sig_used_twice_efgh_abcdefghi_ab(&self) -> i8 {
-        self.sig_used_twice_efgh_abcdefghi_ab_phys()
+        self.sig_used_twice_efgh_abcdefghi_ab_phys_val()
     }
     /// Get physical value of 'Sig_used_twice_efgh_abcdefghi_ab'
     ///
@@ -263,7 +263,7 @@ impl MsgLongName5678912345678912 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefghi_ab_phys(&self) -> i8 {
+    pub fn sig_used_twice_efgh_abcdefghi_ab_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..6].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -276,12 +276,12 @@ impl MsgLongName5678912345678912 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefghi_ab_raw(&self) -> i8 {
+    pub fn sig_used_twice_efgh_abcdefghi_ab_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..6].load_le::<i8>()
     }
     /// Set raw value of 'Sig_used_twice_efgh_abcdefghi_ab'
     #[inline(always)]
-    pub fn set_sig_used_twice_efgh_abcdefghi_ab_raw(&mut self, value: i8) {
+    pub fn set_sig_used_twice_efgh_abcdefghi_ab_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..6].store_le(value);
     }
@@ -395,7 +395,7 @@ impl TxTwice {
     /// - Receivers: Receiver_1, Receiver_2_zzzzzzzzzzzzzzzzzzzzz
     #[inline(always)]
     pub fn rx_twice_long_yyyyyyyyyyyyyyyyyy(&self) -> i8 {
-        self.rx_twice_long_yyyyyyyyyyyyyyyyyy_phys()
+        self.rx_twice_long_yyyyyyyyyyyyyyyyyy_phys_val()
     }
     /// Get physical value of 'rx_twice_long_yyyyyyyyyyyyyyyyyy'
     ///
@@ -403,7 +403,7 @@ impl TxTwice {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn rx_twice_long_yyyyyyyyyyyyyyyyyy_phys(&self) -> i8 {
+    pub fn rx_twice_long_yyyyyyyyyyyyyyyyyy_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -416,12 +416,12 @@ impl TxTwice {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rx_twice_long_yyyyyyyyyyyyyyyyyy_raw(&self) -> i8 {
+    pub fn rx_twice_long_yyyyyyyyyyyyyyyyyy_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
     /// Set raw value of 'rx_twice_long_yyyyyyyyyyyyyyyyyy'
     #[inline(always)]
-    pub fn set_rx_twice_long_yyyyyyyyyyyyyyyyyy_raw(&mut self, value: i8) {
+    pub fn set_rx_twice_long_yyyyyyyyyyyyyyyyyy_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
@@ -455,7 +455,7 @@ impl TxTwice {
     /// - Receivers: Receiver_2_zzzzzzzzzzzzzzzzzzzzz, Receiver_1
     #[inline(always)]
     pub fn rx_twice_short(&self) -> i8 {
-        self.rx_twice_short_phys()
+        self.rx_twice_short_phys_val()
     }
     /// Get physical value of 'rx_twice_short'
     ///
@@ -463,7 +463,7 @@ impl TxTwice {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn rx_twice_short_phys(&self) -> i8 {
+    pub fn rx_twice_short_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -476,12 +476,12 @@ impl TxTwice {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rx_twice_short_raw(&self) -> i8 {
+    pub fn rx_twice_short_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
     /// Set raw value of 'rx_twice_short'
     #[inline(always)]
-    pub fn set_rx_twice_short_raw(&mut self, value: i8) {
+    pub fn set_rx_twice_short_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
@@ -586,7 +586,7 @@ impl RxTx1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sig_used_twice_efgh_abcdefg_0000(&self) -> i16 {
-        self.sig_used_twice_efgh_abcdefg_0000_phys()
+        self.sig_used_twice_efgh_abcdefg_0000_phys_val()
     }
     /// Get physical value of 'Sig_used_twice_efgh_abcdefg_0000'
     ///
@@ -594,7 +594,7 @@ impl RxTx1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefg_0000_phys(&self) -> i16 {
+    pub fn sig_used_twice_efgh_abcdefg_0000_phys_val(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..9].load_le::<i16>();
         let factor = 1;
         let signal = signal as i16;
@@ -607,12 +607,12 @@ impl RxTx1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefg_0000_raw(&self) -> i16 {
+    pub fn sig_used_twice_efgh_abcdefg_0000_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..9].load_le::<i16>()
     }
     /// Set raw value of 'Sig_used_twice_efgh_abcdefg_0000'
     #[inline(always)]
-    pub fn set_sig_used_twice_efgh_abcdefg_0000_raw(&mut self, value: i16) {
+    pub fn set_sig_used_twice_efgh_abcdefg_0000_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..9].store_le(value);
     }
@@ -879,7 +879,7 @@ impl MsgWithValueTableSigs {
             }
             _ => {
                 MsgWithValueTableSigsSigWithShortValTable::_Other(
-                    self.sig_with_short_val_table_phys(),
+                    self.sig_with_short_val_table_phys_val(),
                 )
             }
         }
@@ -890,7 +890,7 @@ impl MsgWithValueTableSigs {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sig_with_short_val_table_phys(&self) -> i8 {
+    pub fn sig_with_short_val_table_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -903,12 +903,12 @@ impl MsgWithValueTableSigs {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sig_with_short_val_table_raw(&self) -> i8 {
+    pub fn sig_with_short_val_table_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>()
     }
     /// Set raw value of 'Sig_with_short_val_table'
     #[inline(always)]
-    pub fn set_sig_with_short_val_table_raw(&mut self, value: i8) {
+    pub fn set_sig_with_short_val_table_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
@@ -963,7 +963,7 @@ impl MsgWithValueTableSigs {
             0 => MsgWithValueTableSigsSigWithLongValTable2::Value0x0,
             _ => {
                 MsgWithValueTableSigsSigWithLongValTable2::_Other(
-                    self.sig_with_long_val_table_2_phys(),
+                    self.sig_with_long_val_table_2_phys_val(),
                 )
             }
         }
@@ -974,7 +974,7 @@ impl MsgWithValueTableSigs {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sig_with_long_val_table_2_phys(&self) -> i8 {
+    pub fn sig_with_long_val_table_2_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -987,12 +987,12 @@ impl MsgWithValueTableSigs {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sig_with_long_val_table_2_raw(&self) -> i8 {
+    pub fn sig_with_long_val_table_2_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
     /// Set raw value of 'Sig_with_long_val_table_2'
     #[inline(always)]
-    pub fn set_sig_with_long_val_table_2_raw(&mut self, value: i8) {
+    pub fn set_sig_with_long_val_table_2_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
@@ -1037,7 +1037,7 @@ impl MsgWithValueTableSigs {
             0 => MsgWithValueTableSigsSigWithLongValTable1::DescriptionForTheValue0x0,
             _ => {
                 MsgWithValueTableSigsSigWithLongValTable1::_Other(
-                    self.sig_with_long_val_table_1_phys(),
+                    self.sig_with_long_val_table_1_phys_val(),
                 )
             }
         }
@@ -1048,7 +1048,7 @@ impl MsgWithValueTableSigs {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sig_with_long_val_table_1_phys(&self) -> i8 {
+    pub fn sig_with_long_val_table_1_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -1061,12 +1061,12 @@ impl MsgWithValueTableSigs {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sig_with_long_val_table_1_raw(&self) -> i8 {
+    pub fn sig_with_long_val_table_1_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
     /// Set raw value of 'Sig_with_long_val_table_1'
     #[inline(always)]
-    pub fn set_sig_with_long_val_table_1_raw(&mut self, value: i8) {
+    pub fn set_sig_with_long_val_table_1_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
@@ -1287,7 +1287,7 @@ impl MsgLongName5678912345670000 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn rx_twice_11111111111111111111111(&self) -> i8 {
-        self.rx_twice_11111111111111111111111_phys()
+        self.rx_twice_11111111111111111111111_phys_val()
     }
     /// Get physical value of 'rx_twice_11111111111111111111111'
     ///
@@ -1295,7 +1295,7 @@ impl MsgLongName5678912345670000 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn rx_twice_11111111111111111111111_phys(&self) -> i8 {
+    pub fn rx_twice_11111111111111111111111_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..10].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -1308,12 +1308,12 @@ impl MsgLongName5678912345670000 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rx_twice_11111111111111111111111_raw(&self) -> i8 {
+    pub fn rx_twice_11111111111111111111111_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[8..10].load_le::<i8>()
     }
     /// Set raw value of 'rx_twice_11111111111111111111111'
     #[inline(always)]
-    pub fn set_rx_twice_11111111111111111111111_raw(&mut self, value: i8) {
+    pub fn set_rx_twice_11111111111111111111111_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..10].store_le(value);
     }
@@ -1347,7 +1347,7 @@ impl MsgLongName5678912345670000 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sig_used_twice_efgh_abcdefg_0001(&self) -> i8 {
-        self.sig_used_twice_efgh_abcdefg_0001_phys()
+        self.sig_used_twice_efgh_abcdefg_0001_phys_val()
     }
     /// Get physical value of 'Sig_used_twice_efgh_abcdefg_0001'
     ///
@@ -1355,7 +1355,7 @@ impl MsgLongName5678912345670000 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefg_0001_phys(&self) -> i8 {
+    pub fn sig_used_twice_efgh_abcdefg_0001_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -1368,12 +1368,12 @@ impl MsgLongName5678912345670000 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefg_0001_raw(&self) -> i8 {
+    pub fn sig_used_twice_efgh_abcdefg_0001_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
     /// Set raw value of 'Sig_used_twice_efgh_abcdefg_0001'
     #[inline(always)]
-    pub fn set_sig_used_twice_efgh_abcdefg_0001_raw(&mut self, value: i8) {
+    pub fn set_sig_used_twice_efgh_abcdefg_0001_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
@@ -1486,7 +1486,7 @@ impl MsgLongName5678912345670001 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn rx_twice_short(&self) -> i8 {
-        self.rx_twice_short_phys()
+        self.rx_twice_short_phys_val()
     }
     /// Get physical value of 'rx_twice_short'
     ///
@@ -1494,7 +1494,7 @@ impl MsgLongName5678912345670001 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn rx_twice_short_phys(&self) -> i8 {
+    pub fn rx_twice_short_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -1507,12 +1507,12 @@ impl MsgLongName5678912345670001 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rx_twice_short_raw(&self) -> i8 {
+    pub fn rx_twice_short_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
     /// Set raw value of 'rx_twice_short'
     #[inline(always)]
-    pub fn set_rx_twice_short_raw(&mut self, value: i8) {
+    pub fn set_rx_twice_short_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
@@ -1543,7 +1543,7 @@ impl MsgLongName5678912345670001 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sig_used_twice_efgh_abcdefg_0002(&self) -> i8 {
-        self.sig_used_twice_efgh_abcdefg_0002_phys()
+        self.sig_used_twice_efgh_abcdefg_0002_phys_val()
     }
     /// Get physical value of 'Sig_used_twice_efgh_abcdefg_0002'
     ///
@@ -1551,7 +1551,7 @@ impl MsgLongName5678912345670001 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefg_0002_phys(&self) -> i8 {
+    pub fn sig_used_twice_efgh_abcdefg_0002_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..6].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -1564,12 +1564,12 @@ impl MsgLongName5678912345670001 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefg_0002_raw(&self) -> i8 {
+    pub fn sig_used_twice_efgh_abcdefg_0002_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..6].load_le::<i8>()
     }
     /// Set raw value of 'Sig_used_twice_efgh_abcdefg_0002'
     #[inline(always)]
-    pub fn set_sig_used_twice_efgh_abcdefg_0002_raw(&mut self, value: i8) {
+    pub fn set_sig_used_twice_efgh_abcdefg_0002_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..6].store_le(value);
     }

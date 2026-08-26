@@ -89,7 +89,7 @@ impl Foo {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn signal_without_sender(&self) -> i8 {
-        self.signal_without_sender_phys()
+        self.signal_without_sender_phys_val()
     }
     /// Get physical value of 'signal_without_sender'
     ///
@@ -97,7 +97,7 @@ impl Foo {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn signal_without_sender_phys(&self) -> i8 {
+    pub fn signal_without_sender_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -110,12 +110,12 @@ impl Foo {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn signal_without_sender_raw(&self) -> i8 {
+    pub fn signal_without_sender_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
     /// Set raw value of 'signal_without_sender'
     #[inline(always)]
-    pub fn set_signal_without_sender_raw(&mut self, value: i8) {
+    pub fn set_signal_without_sender_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }

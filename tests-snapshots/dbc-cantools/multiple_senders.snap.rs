@@ -88,7 +88,7 @@ impl Bar {
     /// - Receivers: FUM
     #[inline(always)]
     pub fn binary32(&self) -> i32 {
-        self.binary32_phys()
+        self.binary32_phys_val()
     }
     /// Get physical value of 'Binary32'
     ///
@@ -96,7 +96,7 @@ impl Bar {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn binary32_phys(&self) -> i32 {
+    pub fn binary32_phys_val(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 1;
         let signal = signal as i32;
@@ -109,12 +109,12 @@ impl Bar {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn binary32_raw(&self) -> i32 {
+    pub fn binary32_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
     }
     /// Set raw value of 'Binary32'
     #[inline(always)]
-    pub fn set_binary32_raw(&mut self, value: i32) {
+    pub fn set_binary32_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
     }

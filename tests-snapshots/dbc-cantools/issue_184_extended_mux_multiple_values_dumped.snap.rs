@@ -93,7 +93,7 @@ impl ExtMuxMultipleValues {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn mux_phys(&self) -> i8 {
+    pub fn mux_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -106,18 +106,18 @@ impl ExtMuxMultipleValues {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn mux_raw(&self) -> i8 {
+    pub fn mux_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
     /// Set raw value of 'MUX'
     #[allow(dead_code)]
     #[inline(always)]
-    fn set_mux_raw(&mut self, value: i8) {
+    fn set_mux_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     pub fn mux(&mut self) -> Result<ExtMuxMultipleValuesMuxIndex, CanError> {
-        match self.mux_phys() {
+        match self.mux_phys_val() {
             0 => {
                 Ok(
                     ExtMuxMultipleValuesMuxIndex::M0(ExtMuxMultipleValuesMuxM0 {
@@ -281,7 +281,7 @@ impl ExtMuxMultipleValuesMuxM0 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn muxed_0_3_4_5(&self) -> i8 {
-        self.muxed_0_3_4_5_phys()
+        self.muxed_0_3_4_5_phys_val()
     }
     /// Get physical value of 'muxed_0_3_4_5'
     ///
@@ -289,7 +289,7 @@ impl ExtMuxMultipleValuesMuxM0 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn muxed_0_3_4_5_phys(&self) -> i8 {
+    pub fn muxed_0_3_4_5_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -302,12 +302,12 @@ impl ExtMuxMultipleValuesMuxM0 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn muxed_0_3_4_5_raw(&self) -> i8 {
+    pub fn muxed_0_3_4_5_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
     /// Set raw value of 'muxed_0_3_4_5'
     #[inline(always)]
-    pub fn set_muxed_0_3_4_5_raw(&mut self, value: i8) {
+    pub fn set_muxed_0_3_4_5_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
@@ -365,7 +365,7 @@ impl ExtMuxMultipleValuesMuxM1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn muxed_1(&self) -> i8 {
-        self.muxed_1_phys()
+        self.muxed_1_phys_val()
     }
     /// Get physical value of 'muxed_1'
     ///
@@ -373,7 +373,7 @@ impl ExtMuxMultipleValuesMuxM1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn muxed_1_phys(&self) -> i8 {
+    pub fn muxed_1_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -386,12 +386,12 @@ impl ExtMuxMultipleValuesMuxM1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn muxed_1_raw(&self) -> i8 {
+    pub fn muxed_1_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
     /// Set raw value of 'muxed_1'
     #[inline(always)]
-    pub fn set_muxed_1_raw(&mut self, value: i8) {
+    pub fn set_muxed_1_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
@@ -449,7 +449,7 @@ impl ExtMuxMultipleValuesMuxM2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn muxed_2(&self) -> i8 {
-        self.muxed_2_phys()
+        self.muxed_2_phys_val()
     }
     /// Get physical value of 'muxed_2'
     ///
@@ -457,7 +457,7 @@ impl ExtMuxMultipleValuesMuxM2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn muxed_2_phys(&self) -> i8 {
+    pub fn muxed_2_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -470,12 +470,12 @@ impl ExtMuxMultipleValuesMuxM2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn muxed_2_raw(&self) -> i8 {
+    pub fn muxed_2_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
     /// Set raw value of 'muxed_2'
     #[inline(always)]
-    pub fn set_muxed_2_raw(&mut self, value: i8) {
+    pub fn set_muxed_2_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }

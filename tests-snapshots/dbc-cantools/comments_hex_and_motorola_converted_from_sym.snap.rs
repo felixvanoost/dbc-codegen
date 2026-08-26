@@ -93,7 +93,7 @@ impl Msg1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sig1_phys(&self) -> u8 {
+    pub fn sig1_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[0..8].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -105,17 +105,17 @@ impl Msg1 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sig1_raw(&self) -> u8 {
+    pub fn sig1_raw_val(&self) -> u8 {
         self.raw.view_bits::<Msb0>()[0..8].load_be::<u8>()
     }
     /// Set raw value of 'sig1'
     #[allow(dead_code)]
     #[inline(always)]
-    fn set_sig1_raw(&mut self, value: u8) {
+    fn set_sig1_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Msb0>()[0..8].store_be(value);
     }
     pub fn sig1(&mut self) -> Result<Msg1Sig1Index, CanError> {
-        match self.sig1_phys() {
+        match self.sig1_phys_val() {
             1 => Ok(Msg1Sig1Index::M1(Msg1Sig1M1 { raw: self.raw })),
             2 => Ok(Msg1Sig1Index::M2(Msg1Sig1M2 { raw: self.raw })),
             multiplexor => {
@@ -251,7 +251,7 @@ impl Msg1Sig1M1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sig12(&self) -> u8 {
-        self.sig12_phys()
+        self.sig12_phys_val()
     }
     /// Get physical value of 'sig12'
     ///
@@ -259,7 +259,7 @@ impl Msg1Sig1M1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sig12_phys(&self) -> u8 {
+    pub fn sig12_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[8..16].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -271,12 +271,12 @@ impl Msg1Sig1M1 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sig12_raw(&self) -> u8 {
+    pub fn sig12_raw_val(&self) -> u8 {
         self.raw.view_bits::<Msb0>()[8..16].load_be::<u8>()
     }
     /// Set raw value of 'sig12'
     #[inline(always)]
-    pub fn set_sig12_raw(&mut self, value: u8) {
+    pub fn set_sig12_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Msb0>()[8..16].store_be(value);
     }
     /// Set value of 'sig12'
@@ -334,7 +334,7 @@ impl Msg1Sig1M2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sig22(&self) -> u8 {
-        self.sig22_phys()
+        self.sig22_phys_val()
     }
     /// Get physical value of 'sig22'
     ///
@@ -342,7 +342,7 @@ impl Msg1Sig1M2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sig22_phys(&self) -> u8 {
+    pub fn sig22_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[8..16].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -354,12 +354,12 @@ impl Msg1Sig1M2 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sig22_raw(&self) -> u8 {
+    pub fn sig22_raw_val(&self) -> u8 {
         self.raw.view_bits::<Msb0>()[8..16].load_be::<u8>()
     }
     /// Set raw value of 'sig22'
     #[inline(always)]
-    pub fn set_sig22_raw(&mut self, value: u8) {
+    pub fn set_sig22_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Msb0>()[8..16].store_be(value);
     }
     /// Set value of 'sig22'
@@ -462,7 +462,7 @@ impl Msg2 {
             2 => Msg2Test7::B,
             3 => Msg2Test7::C,
             4 => Msg2Test7::D,
-            _ => Msg2Test7::_Other(self.test7_phys()),
+            _ => Msg2Test7::_Other(self.test7_phys_val()),
         }
     }
     /// Get physical value of 'Test7'
@@ -471,7 +471,7 @@ impl Msg2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn test7_phys(&self) -> u8 {
+    pub fn test7_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[56..64].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -483,12 +483,12 @@ impl Msg2 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn test7_raw(&self) -> u8 {
+    pub fn test7_raw_val(&self) -> u8 {
         self.raw.view_bits::<Msb0>()[56..64].load_be::<u8>()
     }
     /// Set raw value of 'Test7'
     #[inline(always)]
-    pub fn set_test7_raw(&mut self, value: u8) {
+    pub fn set_test7_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Msb0>()[56..64].store_be(value);
     }
     /// Set value of 'Test7'
@@ -518,7 +518,7 @@ impl Msg2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn test6(&self) -> u8 {
-        self.test6_phys()
+        self.test6_phys_val()
     }
     /// Get physical value of 'Test6'
     ///
@@ -526,7 +526,7 @@ impl Msg2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn test6_phys(&self) -> u8 {
+    pub fn test6_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[48..56].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -538,12 +538,12 @@ impl Msg2 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn test6_raw(&self) -> u8 {
+    pub fn test6_raw_val(&self) -> u8 {
         self.raw.view_bits::<Msb0>()[48..56].load_be::<u8>()
     }
     /// Set raw value of 'Test6'
     #[inline(always)]
-    pub fn set_test6_raw(&mut self, value: u8) {
+    pub fn set_test6_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Msb0>()[48..56].store_be(value);
     }
     /// Set value of 'Test6'
@@ -572,7 +572,7 @@ impl Msg2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn test5(&self) -> u8 {
-        self.test5_phys()
+        self.test5_phys_val()
     }
     /// Get physical value of 'Test5'
     ///
@@ -580,7 +580,7 @@ impl Msg2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn test5_phys(&self) -> u8 {
+    pub fn test5_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[40..48].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -592,12 +592,12 @@ impl Msg2 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn test5_raw(&self) -> u8 {
+    pub fn test5_raw_val(&self) -> u8 {
         self.raw.view_bits::<Msb0>()[40..48].load_be::<u8>()
     }
     /// Set raw value of 'Test5'
     #[inline(always)]
-    pub fn set_test5_raw(&mut self, value: u8) {
+    pub fn set_test5_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Msb0>()[40..48].store_be(value);
     }
     /// Set value of 'Test5'
@@ -626,7 +626,7 @@ impl Msg2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn test4(&self) -> u8 {
-        self.test4_phys()
+        self.test4_phys_val()
     }
     /// Get physical value of 'Test4'
     ///
@@ -634,7 +634,7 @@ impl Msg2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn test4_phys(&self) -> u8 {
+    pub fn test4_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[32..40].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -646,12 +646,12 @@ impl Msg2 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn test4_raw(&self) -> u8 {
+    pub fn test4_raw_val(&self) -> u8 {
         self.raw.view_bits::<Msb0>()[32..40].load_be::<u8>()
     }
     /// Set raw value of 'Test4'
     #[inline(always)]
-    pub fn set_test4_raw(&mut self, value: u8) {
+    pub fn set_test4_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Msb0>()[32..40].store_be(value);
     }
     /// Set value of 'Test4'
@@ -680,7 +680,7 @@ impl Msg2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn test3(&self) -> u8 {
-        self.test3_phys()
+        self.test3_phys_val()
     }
     /// Get physical value of 'Test3'
     ///
@@ -688,7 +688,7 @@ impl Msg2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn test3_phys(&self) -> u8 {
+    pub fn test3_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[24..32].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -700,12 +700,12 @@ impl Msg2 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn test3_raw(&self) -> u8 {
+    pub fn test3_raw_val(&self) -> u8 {
         self.raw.view_bits::<Msb0>()[24..32].load_be::<u8>()
     }
     /// Set raw value of 'Test3'
     #[inline(always)]
-    pub fn set_test3_raw(&mut self, value: u8) {
+    pub fn set_test3_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Msb0>()[24..32].store_be(value);
     }
     /// Set value of 'Test3'
@@ -734,7 +734,7 @@ impl Msg2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn test2(&self) -> u8 {
-        self.test2_phys()
+        self.test2_phys_val()
     }
     /// Get physical value of 'Test2'
     ///
@@ -742,7 +742,7 @@ impl Msg2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn test2_phys(&self) -> u8 {
+    pub fn test2_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[16..24].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -754,12 +754,12 @@ impl Msg2 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn test2_raw(&self) -> u8 {
+    pub fn test2_raw_val(&self) -> u8 {
         self.raw.view_bits::<Msb0>()[16..24].load_be::<u8>()
     }
     /// Set raw value of 'Test2'
     #[inline(always)]
-    pub fn set_test2_raw(&mut self, value: u8) {
+    pub fn set_test2_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Msb0>()[16..24].store_be(value);
     }
     /// Set value of 'Test2'
@@ -788,7 +788,7 @@ impl Msg2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn test1(&self) -> u8 {
-        self.test1_phys()
+        self.test1_phys_val()
     }
     /// Get physical value of 'Test1'
     ///
@@ -796,7 +796,7 @@ impl Msg2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn test1_phys(&self) -> u8 {
+    pub fn test1_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[8..16].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -808,12 +808,12 @@ impl Msg2 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn test1_raw(&self) -> u8 {
+    pub fn test1_raw_val(&self) -> u8 {
         self.raw.view_bits::<Msb0>()[8..16].load_be::<u8>()
     }
     /// Set raw value of 'Test1'
     #[inline(always)]
-    pub fn set_test1_raw(&mut self, value: u8) {
+    pub fn set_test1_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Msb0>()[8..16].store_be(value);
     }
     /// Set value of 'Test1'
@@ -842,7 +842,7 @@ impl Msg2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn test0(&self) -> u8 {
-        self.test0_phys()
+        self.test0_phys_val()
     }
     /// Get physical value of 'Test0'
     ///
@@ -850,7 +850,7 @@ impl Msg2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn test0_phys(&self) -> u8 {
+    pub fn test0_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[0..8].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -862,12 +862,12 @@ impl Msg2 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn test0_raw(&self) -> u8 {
+    pub fn test0_raw_val(&self) -> u8 {
         self.raw.view_bits::<Msb0>()[0..8].load_be::<u8>()
     }
     /// Set raw value of 'Test0'
     #[inline(always)]
-    pub fn set_test0_raw(&mut self, value: u8) {
+    pub fn set_test0_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Msb0>()[0..8].store_be(value);
     }
     /// Set value of 'Test0'

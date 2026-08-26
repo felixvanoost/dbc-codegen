@@ -155,7 +155,7 @@ impl Bremse33 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn whlspeed_fl(&self) -> f32 {
-        self.whlspeed_fl_phys()
+        self.whlspeed_fl_phys_val()
     }
     /// Get physical value of 'whlspeed_FL'
     ///
@@ -163,7 +163,7 @@ impl Bremse33 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_fl_phys(&self) -> f32 {
+    pub fn whlspeed_fl_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -176,12 +176,12 @@ impl Bremse33 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn whlspeed_fl_raw(&self) -> u16 {
+    pub fn whlspeed_fl_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'whlspeed_FL'
     #[inline(always)]
-    pub fn set_whlspeed_fl_raw(&mut self, value: u16) {
+    pub fn set_whlspeed_fl_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'whlspeed_FL'
@@ -208,7 +208,7 @@ impl Bremse33 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn whlspeed_fr(&self) -> f32 {
-        self.whlspeed_fr_phys()
+        self.whlspeed_fr_phys_val()
     }
     /// Get physical value of 'whlspeed_FR'
     ///
@@ -216,7 +216,7 @@ impl Bremse33 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_fr_phys(&self) -> f32 {
+    pub fn whlspeed_fr_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -229,12 +229,12 @@ impl Bremse33 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn whlspeed_fr_raw(&self) -> u16 {
+    pub fn whlspeed_fr_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'whlspeed_FR'
     #[inline(always)]
-    pub fn set_whlspeed_fr_raw(&mut self, value: u16) {
+    pub fn set_whlspeed_fr_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'whlspeed_FR'
@@ -261,7 +261,7 @@ impl Bremse33 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn whlspeed_rl(&self) -> f32 {
-        self.whlspeed_rl_phys()
+        self.whlspeed_rl_phys_val()
     }
     /// Get physical value of 'whlspeed_RL'
     ///
@@ -269,7 +269,7 @@ impl Bremse33 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_rl_phys(&self) -> f32 {
+    pub fn whlspeed_rl_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -282,12 +282,12 @@ impl Bremse33 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn whlspeed_rl_raw(&self) -> u16 {
+    pub fn whlspeed_rl_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'whlspeed_RL'
     #[inline(always)]
-    pub fn set_whlspeed_rl_raw(&mut self, value: u16) {
+    pub fn set_whlspeed_rl_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'whlspeed_RL'
@@ -314,7 +314,7 @@ impl Bremse33 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn whlspeed_rr(&self) -> f32 {
-        self.whlspeed_rr_phys()
+        self.whlspeed_rr_phys_val()
     }
     /// Get physical value of 'whlspeed_RR'
     ///
@@ -322,7 +322,7 @@ impl Bremse33 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_rr_phys(&self) -> f32 {
+    pub fn whlspeed_rr_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -335,12 +335,12 @@ impl Bremse33 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn whlspeed_rr_raw(&self) -> u16 {
+    pub fn whlspeed_rr_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>()
     }
     /// Set raw value of 'whlspeed_RR'
     #[inline(always)]
-    pub fn set_whlspeed_rr_raw(&mut self, value: u16) {
+    pub fn set_whlspeed_rr_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
     /// Set value of 'whlspeed_RR'
@@ -799,7 +799,7 @@ impl Mm510Tx1 {
     /// - Receivers: ABS
     #[inline(always)]
     pub fn yaw_rate(&self) -> f32 {
-        self.yaw_rate_phys()
+        self.yaw_rate_phys_val()
     }
     /// Get physical value of 'Yaw_Rate'
     ///
@@ -807,7 +807,7 @@ impl Mm510Tx1 {
     /// - Offset: -163.84
     /// - Unit: "°/s"
     #[inline(always)]
-    pub fn yaw_rate_phys(&self) -> f32 {
+    pub fn yaw_rate_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.005_f32;
         let offset = -163.84_f32;
@@ -820,12 +820,12 @@ impl Mm510Tx1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn yaw_rate_raw(&self) -> u16 {
+    pub fn yaw_rate_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'Yaw_Rate'
     #[inline(always)]
-    pub fn set_yaw_rate_raw(&mut self, value: u16) {
+    pub fn set_yaw_rate_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Yaw_Rate'
@@ -852,7 +852,7 @@ impl Mm510Tx1 {
     /// - Receivers: ABS
     #[inline(always)]
     pub fn ay1(&self) -> f32 {
-        self.ay1_phys()
+        self.ay1_phys_val()
     }
     /// Get physical value of 'AY1'
     ///
@@ -860,7 +860,7 @@ impl Mm510Tx1 {
     /// - Offset: -4.1768
     /// - Unit: "g"
     #[inline(always)]
-    pub fn ay1_phys(&self) -> f32 {
+    pub fn ay1_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 0.000127465_f32;
         let offset = -4.1768_f32;
@@ -873,12 +873,12 @@ impl Mm510Tx1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn ay1_raw(&self) -> u16 {
+    pub fn ay1_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'AY1'
     #[inline(always)]
-    pub fn set_ay1_raw(&mut self, value: u16) {
+    pub fn set_ay1_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'AY1'
@@ -982,7 +982,7 @@ impl Mm510Tx2 {
     /// - Receivers: ABS
     #[inline(always)]
     pub fn roll_rate(&self) -> f32 {
-        self.roll_rate_phys()
+        self.roll_rate_phys_val()
     }
     /// Get physical value of 'Roll_Rate'
     ///
@@ -990,7 +990,7 @@ impl Mm510Tx2 {
     /// - Offset: -163.84
     /// - Unit: "°/s"
     #[inline(always)]
-    pub fn roll_rate_phys(&self) -> f32 {
+    pub fn roll_rate_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.005_f32;
         let offset = -163.84_f32;
@@ -1003,12 +1003,12 @@ impl Mm510Tx2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn roll_rate_raw(&self) -> u16 {
+    pub fn roll_rate_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'Roll_Rate'
     #[inline(always)]
-    pub fn set_roll_rate_raw(&mut self, value: u16) {
+    pub fn set_roll_rate_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Roll_Rate'
@@ -1035,7 +1035,7 @@ impl Mm510Tx2 {
     /// - Receivers: ABS
     #[inline(always)]
     pub fn ax1(&self) -> f32 {
-        self.ax1_phys()
+        self.ax1_phys_val()
     }
     /// Get physical value of 'AX1'
     ///
@@ -1043,7 +1043,7 @@ impl Mm510Tx2 {
     /// - Offset: -4.1768
     /// - Unit: "g"
     #[inline(always)]
-    pub fn ax1_phys(&self) -> f32 {
+    pub fn ax1_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 0.000127465_f32;
         let offset = -4.1768_f32;
@@ -1056,12 +1056,12 @@ impl Mm510Tx2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn ax1_raw(&self) -> u16 {
+    pub fn ax1_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'AX1'
     #[inline(always)]
-    pub fn set_ax1_raw(&mut self, value: u16) {
+    pub fn set_ax1_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'AX1'
@@ -1162,7 +1162,7 @@ impl Mm510Tx3 {
     /// - Receivers: ABS
     #[inline(always)]
     pub fn az(&self) -> f32 {
-        self.az_phys()
+        self.az_phys_val()
     }
     /// Get physical value of 'AZ'
     ///
@@ -1170,7 +1170,7 @@ impl Mm510Tx3 {
     /// - Offset: -4.1768
     /// - Unit: "g"
     #[inline(always)]
-    pub fn az_phys(&self) -> f32 {
+    pub fn az_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 0.000127465_f32;
         let offset = -4.1768_f32;
@@ -1183,12 +1183,12 @@ impl Mm510Tx3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn az_raw(&self) -> u16 {
+    pub fn az_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'AZ'
     #[inline(always)]
-    pub fn set_az_raw(&mut self, value: u16) {
+    pub fn set_az_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'AZ'
@@ -1303,7 +1303,7 @@ impl Bremse2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn whlspeed_fl_bremse2(&self) -> f32 {
-        self.whlspeed_fl_bremse2_phys()
+        self.whlspeed_fl_bremse2_phys_val()
     }
     /// Get physical value of 'whlspeed_FL_Bremse2'
     ///
@@ -1311,7 +1311,7 @@ impl Bremse2 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_fl_bremse2_phys(&self) -> f32 {
+    pub fn whlspeed_fl_bremse2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -1324,12 +1324,12 @@ impl Bremse2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn whlspeed_fl_bremse2_raw(&self) -> u16 {
+    pub fn whlspeed_fl_bremse2_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'whlspeed_FL_Bremse2'
     #[inline(always)]
-    pub fn set_whlspeed_fl_bremse2_raw(&mut self, value: u16) {
+    pub fn set_whlspeed_fl_bremse2_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'whlspeed_FL_Bremse2'
@@ -1356,7 +1356,7 @@ impl Bremse2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn whlspeed_fr_bremse2(&self) -> f32 {
-        self.whlspeed_fr_bremse2_phys()
+        self.whlspeed_fr_bremse2_phys_val()
     }
     /// Get physical value of 'whlspeed_FR_Bremse2'
     ///
@@ -1364,7 +1364,7 @@ impl Bremse2 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_fr_bremse2_phys(&self) -> f32 {
+    pub fn whlspeed_fr_bremse2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -1377,12 +1377,12 @@ impl Bremse2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn whlspeed_fr_bremse2_raw(&self) -> u16 {
+    pub fn whlspeed_fr_bremse2_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'whlspeed_FR_Bremse2'
     #[inline(always)]
-    pub fn set_whlspeed_fr_bremse2_raw(&mut self, value: u16) {
+    pub fn set_whlspeed_fr_bremse2_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'whlspeed_FR_Bremse2'
@@ -1409,7 +1409,7 @@ impl Bremse2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn whlspeed_rl_bremse2(&self) -> f32 {
-        self.whlspeed_rl_bremse2_phys()
+        self.whlspeed_rl_bremse2_phys_val()
     }
     /// Get physical value of 'whlspeed_RL_Bremse2'
     ///
@@ -1417,7 +1417,7 @@ impl Bremse2 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_rl_bremse2_phys(&self) -> f32 {
+    pub fn whlspeed_rl_bremse2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -1430,12 +1430,12 @@ impl Bremse2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn whlspeed_rl_bremse2_raw(&self) -> u16 {
+    pub fn whlspeed_rl_bremse2_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'whlspeed_RL_Bremse2'
     #[inline(always)]
-    pub fn set_whlspeed_rl_bremse2_raw(&mut self, value: u16) {
+    pub fn set_whlspeed_rl_bremse2_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'whlspeed_RL_Bremse2'
@@ -1462,7 +1462,7 @@ impl Bremse2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn whlspeed_rr_bremse2(&self) -> f32 {
-        self.whlspeed_rr_bremse2_phys()
+        self.whlspeed_rr_bremse2_phys_val()
     }
     /// Get physical value of 'whlspeed_RR_Bremse2'
     ///
@@ -1470,7 +1470,7 @@ impl Bremse2 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_rr_bremse2_phys(&self) -> f32 {
+    pub fn whlspeed_rr_bremse2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -1483,12 +1483,12 @@ impl Bremse2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn whlspeed_rr_bremse2_raw(&self) -> u16 {
+    pub fn whlspeed_rr_bremse2_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>()
     }
     /// Set raw value of 'whlspeed_RR_Bremse2'
     #[inline(always)]
-    pub fn set_whlspeed_rr_bremse2_raw(&mut self, value: u16) {
+    pub fn set_whlspeed_rr_bremse2_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
     /// Set value of 'whlspeed_RR_Bremse2'
@@ -1588,7 +1588,7 @@ impl AbsSwitch {
     /// - Receivers: ABS
     #[inline(always)]
     pub fn abs_switchposition(&self) -> u8 {
-        self.abs_switchposition_phys()
+        self.abs_switchposition_phys_val()
     }
     /// Get physical value of 'ABS_Switchposition'
     ///
@@ -1596,7 +1596,7 @@ impl AbsSwitch {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn abs_switchposition_phys(&self) -> u8 {
+    pub fn abs_switchposition_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1608,12 +1608,12 @@ impl AbsSwitch {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn abs_switchposition_raw(&self) -> u8 {
+    pub fn abs_switchposition_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
     }
     /// Set raw value of 'ABS_Switchposition'
     #[inline(always)]
-    pub fn set_abs_switchposition_raw(&mut self, value: u8) {
+    pub fn set_abs_switchposition_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'ABS_Switchposition'
@@ -1787,7 +1787,7 @@ impl Bremse31 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn idle_time(&self) -> u16 {
-        self.idle_time_phys()
+        self.idle_time_phys_val()
     }
     /// Get physical value of 'Idle_Time'
     ///
@@ -1795,7 +1795,7 @@ impl Bremse31 {
     /// - Offset: 0
     /// - Unit: "-"
     #[inline(always)]
-    pub fn idle_time_phys(&self) -> u16 {
+    pub fn idle_time_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1807,12 +1807,12 @@ impl Bremse31 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn idle_time_raw(&self) -> u16 {
+    pub fn idle_time_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'Idle_Time'
     #[inline(always)]
-    pub fn set_idle_time_raw(&mut self, value: u16) {
+    pub fn set_idle_time_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'Idle_Time'
@@ -1939,7 +1939,7 @@ impl Bremse32 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn acc_fa(&self) -> f32 {
-        self.acc_fa_phys()
+        self.acc_fa_phys_val()
     }
     /// Get physical value of 'acc_FA'
     ///
@@ -1947,7 +1947,7 @@ impl Bremse32 {
     /// - Offset: 0
     /// - Unit: "cm3"
     #[inline(always)]
-    pub fn acc_fa_phys(&self) -> f32 {
+    pub fn acc_fa_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 0.05_f32;
         let offset = 0_f32;
@@ -1960,12 +1960,12 @@ impl Bremse32 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn acc_fa_raw(&self) -> u8 {
+    pub fn acc_fa_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
     }
     /// Set raw value of 'acc_FA'
     #[inline(always)]
-    pub fn set_acc_fa_raw(&mut self, value: u8) {
+    pub fn set_acc_fa_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'acc_FA'
@@ -1992,7 +1992,7 @@ impl Bremse32 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn acc_ra(&self) -> f32 {
-        self.acc_ra_phys()
+        self.acc_ra_phys_val()
     }
     /// Get physical value of 'acc_RA'
     ///
@@ -2000,7 +2000,7 @@ impl Bremse32 {
     /// - Offset: 0
     /// - Unit: "cm3"
     #[inline(always)]
-    pub fn acc_ra_phys(&self) -> f32 {
+    pub fn acc_ra_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 0.05_f32;
         let offset = 0_f32;
@@ -2013,12 +2013,12 @@ impl Bremse32 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn acc_ra_raw(&self) -> u8 {
+    pub fn acc_ra_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'acc_RA'
     #[inline(always)]
-    pub fn set_acc_ra_raw(&mut self, value: u8) {
+    pub fn set_acc_ra_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'acc_RA'
@@ -2053,7 +2053,7 @@ impl Bremse32 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn wheel_quality_fl(&self) -> u8 {
-        self.wheel_quality_fl_phys()
+        self.wheel_quality_fl_phys_val()
     }
     /// Get physical value of 'WheelQuality_FL'
     ///
@@ -2061,7 +2061,7 @@ impl Bremse32 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn wheel_quality_fl_phys(&self) -> u8 {
+    pub fn wheel_quality_fl_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2073,12 +2073,12 @@ impl Bremse32 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn wheel_quality_fl_raw(&self) -> u8 {
+    pub fn wheel_quality_fl_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>()
     }
     /// Set raw value of 'WheelQuality_FL'
     #[inline(always)]
-    pub fn set_wheel_quality_fl_raw(&mut self, value: u8) {
+    pub fn set_wheel_quality_fl_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
     /// Set value of 'WheelQuality_FL'
@@ -2117,7 +2117,7 @@ impl Bremse32 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn wheel_quality_fr(&self) -> u8 {
-        self.wheel_quality_fr_phys()
+        self.wheel_quality_fr_phys_val()
     }
     /// Get physical value of 'WheelQuality_FR'
     ///
@@ -2125,7 +2125,7 @@ impl Bremse32 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn wheel_quality_fr_phys(&self) -> u8 {
+    pub fn wheel_quality_fr_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2137,12 +2137,12 @@ impl Bremse32 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn wheel_quality_fr_raw(&self) -> u8 {
+    pub fn wheel_quality_fr_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>()
     }
     /// Set raw value of 'WheelQuality_FR'
     #[inline(always)]
-    pub fn set_wheel_quality_fr_raw(&mut self, value: u8) {
+    pub fn set_wheel_quality_fr_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
     }
     /// Set value of 'WheelQuality_FR'
@@ -2181,7 +2181,7 @@ impl Bremse32 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn wheel_quality_rl(&self) -> u8 {
-        self.wheel_quality_rl_phys()
+        self.wheel_quality_rl_phys_val()
     }
     /// Get physical value of 'WheelQuality_RL'
     ///
@@ -2189,7 +2189,7 @@ impl Bremse32 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn wheel_quality_rl_phys(&self) -> u8 {
+    pub fn wheel_quality_rl_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2201,12 +2201,12 @@ impl Bremse32 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn wheel_quality_rl_raw(&self) -> u8 {
+    pub fn wheel_quality_rl_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>()
     }
     /// Set raw value of 'WheelQuality_RL'
     #[inline(always)]
-    pub fn set_wheel_quality_rl_raw(&mut self, value: u8) {
+    pub fn set_wheel_quality_rl_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
     }
     /// Set value of 'WheelQuality_RL'
@@ -2245,7 +2245,7 @@ impl Bremse32 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn wheel_quality_rr(&self) -> u8 {
-        self.wheel_quality_rr_phys()
+        self.wheel_quality_rr_phys_val()
     }
     /// Get physical value of 'WheelQuality_RR'
     ///
@@ -2253,7 +2253,7 @@ impl Bremse32 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn wheel_quality_rr_phys(&self) -> u8 {
+    pub fn wheel_quality_rr_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2265,12 +2265,12 @@ impl Bremse32 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn wheel_quality_rr_raw(&self) -> u8 {
+    pub fn wheel_quality_rr_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>()
     }
     /// Set raw value of 'WheelQuality_RR'
     #[inline(always)]
-    pub fn set_wheel_quality_rr_raw(&mut self, value: u8) {
+    pub fn set_wheel_quality_rr_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
     }
     /// Set value of 'WheelQuality_RR'
@@ -2393,7 +2393,7 @@ impl Bremse51 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ax1_abs_int(&self) -> f32 {
-        self.ax1_abs_int_phys()
+        self.ax1_abs_int_phys_val()
     }
     /// Get physical value of 'AX1_ABS_int'
     ///
@@ -2401,7 +2401,7 @@ impl Bremse51 {
     /// - Offset: -4.1768
     /// - Unit: "g"
     #[inline(always)]
-    pub fn ax1_abs_int_phys(&self) -> f32 {
+    pub fn ax1_abs_int_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.00012742_f32;
         let offset = -4.1768_f32;
@@ -2414,12 +2414,12 @@ impl Bremse51 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn ax1_abs_int_raw(&self) -> u16 {
+    pub fn ax1_abs_int_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AX1_ABS_int'
     #[inline(always)]
-    pub fn set_ax1_abs_int_raw(&mut self, value: u16) {
+    pub fn set_ax1_abs_int_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AX1_ABS_int'
@@ -2446,7 +2446,7 @@ impl Bremse51 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ay1_abs_int(&self) -> f32 {
-        self.ay1_abs_int_phys()
+        self.ay1_abs_int_phys_val()
     }
     /// Get physical value of 'AY1_ABS_int'
     ///
@@ -2454,7 +2454,7 @@ impl Bremse51 {
     /// - Offset: -4.1768
     /// - Unit: "g"
     #[inline(always)]
-    pub fn ay1_abs_int_phys(&self) -> f32 {
+    pub fn ay1_abs_int_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 0.00012742_f32;
         let offset = -4.1768_f32;
@@ -2467,12 +2467,12 @@ impl Bremse51 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn ay1_abs_int_raw(&self) -> u16 {
+    pub fn ay1_abs_int_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'AY1_ABS_int'
     #[inline(always)]
-    pub fn set_ay1_abs_int_raw(&mut self, value: u16) {
+    pub fn set_ay1_abs_int_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'AY1_ABS_int'
@@ -2499,7 +2499,7 @@ impl Bremse51 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn if_variant(&self) -> u8 {
-        self.if_variant_phys()
+        self.if_variant_phys_val()
     }
     /// Get physical value of 'IF_variant'
     ///
@@ -2507,7 +2507,7 @@ impl Bremse51 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn if_variant_phys(&self) -> u8 {
+    pub fn if_variant_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..54].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2519,12 +2519,12 @@ impl Bremse51 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn if_variant_raw(&self) -> u8 {
+    pub fn if_variant_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[48..54].load_le::<u8>()
     }
     /// Set raw value of 'IF_variant'
     #[inline(always)]
-    pub fn set_if_variant_raw(&mut self, value: u8) {
+    pub fn set_if_variant_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[48..54].store_le(value);
     }
     /// Set value of 'IF_variant'
@@ -2555,7 +2555,7 @@ impl Bremse51 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn if_revision(&self) -> u8 {
-        self.if_revision_phys()
+        self.if_revision_phys_val()
     }
     /// Get physical value of 'IF_revision'
     ///
@@ -2563,7 +2563,7 @@ impl Bremse51 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn if_revision_phys(&self) -> u8 {
+    pub fn if_revision_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[54..60].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2575,12 +2575,12 @@ impl Bremse51 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn if_revision_raw(&self) -> u8 {
+    pub fn if_revision_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[54..60].load_le::<u8>()
     }
     /// Set raw value of 'IF_revision'
     #[inline(always)]
-    pub fn set_if_revision_raw(&mut self, value: u8) {
+    pub fn set_if_revision_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[54..60].store_le(value);
     }
     /// Set value of 'IF_revision'
@@ -2611,7 +2611,7 @@ impl Bremse51 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn if_chksum(&self) -> u8 {
-        self.if_chksum_phys()
+        self.if_chksum_phys_val()
     }
     /// Get physical value of 'IF_chksum'
     ///
@@ -2619,7 +2619,7 @@ impl Bremse51 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn if_chksum_phys(&self) -> u8 {
+    pub fn if_chksum_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[60..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2631,12 +2631,12 @@ impl Bremse51 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn if_chksum_raw(&self) -> u8 {
+    pub fn if_chksum_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[60..64].load_le::<u8>()
     }
     /// Set raw value of 'IF_chksum'
     #[inline(always)]
-    pub fn set_if_chksum_raw(&mut self, value: u8) {
+    pub fn set_if_chksum_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[60..64].store_le(value);
     }
     /// Set value of 'IF_chksum'
@@ -2813,7 +2813,7 @@ impl Bremse52 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn mplx_sw_info_phys(&self) -> u8 {
+    pub fn mplx_sw_info_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2825,17 +2825,17 @@ impl Bremse52 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn mplx_sw_info_raw(&self) -> u8 {
+    pub fn mplx_sw_info_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
     }
     /// Set raw value of 'Mplx_SW_Info'
     #[allow(dead_code)]
     #[inline(always)]
-    fn set_mplx_sw_info_raw(&mut self, value: u8) {
+    fn set_mplx_sw_info_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     pub fn mplx_sw_info(&mut self) -> Result<Bremse52MplxSwInfoIndex, CanError> {
-        match self.mplx_sw_info_phys() {
+        match self.mplx_sw_info_phys_val() {
             1 => {
                 Ok(
                     Bremse52MplxSwInfoIndex::M1(Bremse52MplxSwInfoM1 {
@@ -3068,7 +3068,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sw_version_high_upper(&self) -> u8 {
-        self.sw_version_high_upper_phys()
+        self.sw_version_high_upper_phys_val()
     }
     /// Get physical value of 'SW_version_High_upper'
     ///
@@ -3076,7 +3076,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sw_version_high_upper_phys(&self) -> u8 {
+    pub fn sw_version_high_upper_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3088,12 +3088,12 @@ impl Bremse52MplxSwInfoM1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sw_version_high_upper_raw(&self) -> u8 {
+    pub fn sw_version_high_upper_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'SW_version_High_upper'
     #[inline(always)]
-    pub fn set_sw_version_high_upper_raw(&mut self, value: u8) {
+    pub fn set_sw_version_high_upper_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'SW_version_High_upper'
@@ -3124,7 +3124,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sw_version_high_lower(&self) -> u8 {
-        self.sw_version_high_lower_phys()
+        self.sw_version_high_lower_phys_val()
     }
     /// Get physical value of 'SW_version_High_lower'
     ///
@@ -3132,7 +3132,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sw_version_high_lower_phys(&self) -> u8 {
+    pub fn sw_version_high_lower_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3144,12 +3144,12 @@ impl Bremse52MplxSwInfoM1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sw_version_high_lower_raw(&self) -> u8 {
+    pub fn sw_version_high_lower_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
     }
     /// Set raw value of 'SW_version_High_lower'
     #[inline(always)]
-    pub fn set_sw_version_high_lower_raw(&mut self, value: u8) {
+    pub fn set_sw_version_high_lower_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'SW_version_High_lower'
@@ -3180,7 +3180,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sw_version_mid_upper(&self) -> u8 {
-        self.sw_version_mid_upper_phys()
+        self.sw_version_mid_upper_phys_val()
     }
     /// Get physical value of 'SW_version_Mid_upper'
     ///
@@ -3188,7 +3188,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sw_version_mid_upper_phys(&self) -> u8 {
+    pub fn sw_version_mid_upper_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3200,12 +3200,12 @@ impl Bremse52MplxSwInfoM1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sw_version_mid_upper_raw(&self) -> u8 {
+    pub fn sw_version_mid_upper_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'SW_version_Mid_upper'
     #[inline(always)]
-    pub fn set_sw_version_mid_upper_raw(&mut self, value: u8) {
+    pub fn set_sw_version_mid_upper_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'SW_version_Mid_upper'
@@ -3236,7 +3236,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sw_version_mid_lower(&self) -> u8 {
-        self.sw_version_mid_lower_phys()
+        self.sw_version_mid_lower_phys_val()
     }
     /// Get physical value of 'SW_version_Mid_lower'
     ///
@@ -3244,7 +3244,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sw_version_mid_lower_phys(&self) -> u8 {
+    pub fn sw_version_mid_lower_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3256,12 +3256,12 @@ impl Bremse52MplxSwInfoM1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sw_version_mid_lower_raw(&self) -> u8 {
+    pub fn sw_version_mid_lower_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>()
     }
     /// Set raw value of 'SW_version_Mid_lower'
     #[inline(always)]
-    pub fn set_sw_version_mid_lower_raw(&mut self, value: u8) {
+    pub fn set_sw_version_mid_lower_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
     /// Set value of 'SW_version_Mid_lower'
@@ -3292,7 +3292,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sw_version_low_upper(&self) -> u8 {
-        self.sw_version_low_upper_phys()
+        self.sw_version_low_upper_phys_val()
     }
     /// Get physical value of 'SW_version_Low_upper'
     ///
@@ -3300,7 +3300,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sw_version_low_upper_phys(&self) -> u8 {
+    pub fn sw_version_low_upper_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3312,12 +3312,12 @@ impl Bremse52MplxSwInfoM1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sw_version_low_upper_raw(&self) -> u8 {
+    pub fn sw_version_low_upper_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>()
     }
     /// Set raw value of 'SW_version_Low_upper'
     #[inline(always)]
-    pub fn set_sw_version_low_upper_raw(&mut self, value: u8) {
+    pub fn set_sw_version_low_upper_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
     }
     /// Set value of 'SW_version_Low_upper'
@@ -3348,7 +3348,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sw_version_low_lower(&self) -> u8 {
-        self.sw_version_low_lower_phys()
+        self.sw_version_low_lower_phys_val()
     }
     /// Get physical value of 'SW_version_Low_lower'
     ///
@@ -3356,7 +3356,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sw_version_low_lower_phys(&self) -> u8 {
+    pub fn sw_version_low_lower_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3368,12 +3368,12 @@ impl Bremse52MplxSwInfoM1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sw_version_low_lower_raw(&self) -> u8 {
+    pub fn sw_version_low_lower_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>()
     }
     /// Set raw value of 'SW_version_Low_lower'
     #[inline(always)]
-    pub fn set_sw_version_low_lower_raw(&mut self, value: u8) {
+    pub fn set_sw_version_low_lower_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
     }
     /// Set value of 'SW_version_Low_lower'
@@ -3429,7 +3429,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bb_dig1(&self) -> u8 {
-        self.bb_dig1_phys()
+        self.bb_dig1_phys_val()
     }
     /// Get physical value of 'BB_dig1'
     ///
@@ -3437,7 +3437,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn bb_dig1_phys(&self) -> u8 {
+    pub fn bb_dig1_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3449,12 +3449,12 @@ impl Bremse52MplxSwInfoM2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bb_dig1_raw(&self) -> u8 {
+    pub fn bb_dig1_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'BB_dig1'
     #[inline(always)]
-    pub fn set_bb_dig1_raw(&mut self, value: u8) {
+    pub fn set_bb_dig1_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'BB_dig1'
@@ -3483,7 +3483,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bb_dig2(&self) -> u8 {
-        self.bb_dig2_phys()
+        self.bb_dig2_phys_val()
     }
     /// Get physical value of 'BB_dig2'
     ///
@@ -3491,7 +3491,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn bb_dig2_phys(&self) -> u8 {
+    pub fn bb_dig2_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3503,12 +3503,12 @@ impl Bremse52MplxSwInfoM2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bb_dig2_raw(&self) -> u8 {
+    pub fn bb_dig2_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
     }
     /// Set raw value of 'BB_dig2'
     #[inline(always)]
-    pub fn set_bb_dig2_raw(&mut self, value: u8) {
+    pub fn set_bb_dig2_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'BB_dig2'
@@ -3537,7 +3537,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bb_dig3(&self) -> u8 {
-        self.bb_dig3_phys()
+        self.bb_dig3_phys_val()
     }
     /// Get physical value of 'BB_dig3'
     ///
@@ -3545,7 +3545,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn bb_dig3_phys(&self) -> u8 {
+    pub fn bb_dig3_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3557,12 +3557,12 @@ impl Bremse52MplxSwInfoM2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bb_dig3_raw(&self) -> u8 {
+    pub fn bb_dig3_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'BB_dig3'
     #[inline(always)]
-    pub fn set_bb_dig3_raw(&mut self, value: u8) {
+    pub fn set_bb_dig3_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'BB_dig3'
@@ -3591,7 +3591,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bb_dig4(&self) -> u8 {
-        self.bb_dig4_phys()
+        self.bb_dig4_phys_val()
     }
     /// Get physical value of 'BB_dig4'
     ///
@@ -3599,7 +3599,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn bb_dig4_phys(&self) -> u8 {
+    pub fn bb_dig4_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3611,12 +3611,12 @@ impl Bremse52MplxSwInfoM2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bb_dig4_raw(&self) -> u8 {
+    pub fn bb_dig4_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>()
     }
     /// Set raw value of 'BB_dig4'
     #[inline(always)]
-    pub fn set_bb_dig4_raw(&mut self, value: u8) {
+    pub fn set_bb_dig4_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
     /// Set value of 'BB_dig4'
@@ -3645,7 +3645,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bb_dig5(&self) -> u8 {
-        self.bb_dig5_phys()
+        self.bb_dig5_phys_val()
     }
     /// Get physical value of 'BB_dig5'
     ///
@@ -3653,7 +3653,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn bb_dig5_phys(&self) -> u8 {
+    pub fn bb_dig5_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3665,12 +3665,12 @@ impl Bremse52MplxSwInfoM2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bb_dig5_raw(&self) -> u8 {
+    pub fn bb_dig5_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>()
     }
     /// Set raw value of 'BB_dig5'
     #[inline(always)]
-    pub fn set_bb_dig5_raw(&mut self, value: u8) {
+    pub fn set_bb_dig5_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
     }
     /// Set value of 'BB_dig5'
@@ -3699,7 +3699,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bb_dig6(&self) -> u8 {
-        self.bb_dig6_phys()
+        self.bb_dig6_phys_val()
     }
     /// Get physical value of 'BB_dig6'
     ///
@@ -3707,7 +3707,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn bb_dig6_phys(&self) -> u8 {
+    pub fn bb_dig6_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3719,12 +3719,12 @@ impl Bremse52MplxSwInfoM2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bb_dig6_raw(&self) -> u8 {
+    pub fn bb_dig6_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>()
     }
     /// Set raw value of 'BB_dig6'
     #[inline(always)]
-    pub fn set_bb_dig6_raw(&mut self, value: u8) {
+    pub fn set_bb_dig6_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
     }
     /// Set value of 'BB_dig6'
@@ -3753,7 +3753,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bb_dig7(&self) -> u8 {
-        self.bb_dig7_phys()
+        self.bb_dig7_phys_val()
     }
     /// Get physical value of 'BB_dig7'
     ///
@@ -3761,7 +3761,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn bb_dig7_phys(&self) -> u8 {
+    pub fn bb_dig7_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3773,12 +3773,12 @@ impl Bremse52MplxSwInfoM2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bb_dig7_raw(&self) -> u8 {
+    pub fn bb_dig7_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>()
     }
     /// Set raw value of 'BB_dig7'
     #[inline(always)]
-    pub fn set_bb_dig7_raw(&mut self, value: u8) {
+    pub fn set_bb_dig7_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
     }
     /// Set value of 'BB_dig7'
@@ -3834,7 +3834,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_id_01(&self) -> u8 {
-        self.appl_id_01_phys()
+        self.appl_id_01_phys_val()
     }
     /// Get physical value of 'Appl_Id_01'
     ///
@@ -3842,7 +3842,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_01_phys(&self) -> u8 {
+    pub fn appl_id_01_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3854,12 +3854,12 @@ impl Bremse52MplxSwInfoM3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_id_01_raw(&self) -> u8 {
+    pub fn appl_id_01_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Appl_Id_01'
     #[inline(always)]
-    pub fn set_appl_id_01_raw(&mut self, value: u8) {
+    pub fn set_appl_id_01_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Appl_Id_01'
@@ -3888,7 +3888,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_id_02(&self) -> u8 {
-        self.appl_id_02_phys()
+        self.appl_id_02_phys_val()
     }
     /// Get physical value of 'Appl_Id_02'
     ///
@@ -3896,7 +3896,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_02_phys(&self) -> u8 {
+    pub fn appl_id_02_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3908,12 +3908,12 @@ impl Bremse52MplxSwInfoM3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_id_02_raw(&self) -> u8 {
+    pub fn appl_id_02_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
     }
     /// Set raw value of 'Appl_Id_02'
     #[inline(always)]
-    pub fn set_appl_id_02_raw(&mut self, value: u8) {
+    pub fn set_appl_id_02_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'Appl_Id_02'
@@ -3942,7 +3942,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_id_03(&self) -> u8 {
-        self.appl_id_03_phys()
+        self.appl_id_03_phys_val()
     }
     /// Get physical value of 'Appl_Id_03'
     ///
@@ -3950,7 +3950,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_03_phys(&self) -> u8 {
+    pub fn appl_id_03_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3962,12 +3962,12 @@ impl Bremse52MplxSwInfoM3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_id_03_raw(&self) -> u8 {
+    pub fn appl_id_03_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'Appl_Id_03'
     #[inline(always)]
-    pub fn set_appl_id_03_raw(&mut self, value: u8) {
+    pub fn set_appl_id_03_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'Appl_Id_03'
@@ -3996,7 +3996,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_id_04(&self) -> u8 {
-        self.appl_id_04_phys()
+        self.appl_id_04_phys_val()
     }
     /// Get physical value of 'Appl_Id_04'
     ///
@@ -4004,7 +4004,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_04_phys(&self) -> u8 {
+    pub fn appl_id_04_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4016,12 +4016,12 @@ impl Bremse52MplxSwInfoM3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_id_04_raw(&self) -> u8 {
+    pub fn appl_id_04_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>()
     }
     /// Set raw value of 'Appl_Id_04'
     #[inline(always)]
-    pub fn set_appl_id_04_raw(&mut self, value: u8) {
+    pub fn set_appl_id_04_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
     /// Set value of 'Appl_Id_04'
@@ -4050,7 +4050,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_id_05(&self) -> u8 {
-        self.appl_id_05_phys()
+        self.appl_id_05_phys_val()
     }
     /// Get physical value of 'Appl_Id_05'
     ///
@@ -4058,7 +4058,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_05_phys(&self) -> u8 {
+    pub fn appl_id_05_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4070,12 +4070,12 @@ impl Bremse52MplxSwInfoM3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_id_05_raw(&self) -> u8 {
+    pub fn appl_id_05_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>()
     }
     /// Set raw value of 'Appl_Id_05'
     #[inline(always)]
-    pub fn set_appl_id_05_raw(&mut self, value: u8) {
+    pub fn set_appl_id_05_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
     }
     /// Set value of 'Appl_Id_05'
@@ -4104,7 +4104,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_id_06(&self) -> u8 {
-        self.appl_id_06_phys()
+        self.appl_id_06_phys_val()
     }
     /// Get physical value of 'Appl_Id_06'
     ///
@@ -4112,7 +4112,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_06_phys(&self) -> u8 {
+    pub fn appl_id_06_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4124,12 +4124,12 @@ impl Bremse52MplxSwInfoM3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_id_06_raw(&self) -> u8 {
+    pub fn appl_id_06_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>()
     }
     /// Set raw value of 'Appl_Id_06'
     #[inline(always)]
-    pub fn set_appl_id_06_raw(&mut self, value: u8) {
+    pub fn set_appl_id_06_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
     }
     /// Set value of 'Appl_Id_06'
@@ -4158,7 +4158,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_id_07(&self) -> u8 {
-        self.appl_id_07_phys()
+        self.appl_id_07_phys_val()
     }
     /// Get physical value of 'Appl_Id_07'
     ///
@@ -4166,7 +4166,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_07_phys(&self) -> u8 {
+    pub fn appl_id_07_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4178,12 +4178,12 @@ impl Bremse52MplxSwInfoM3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_id_07_raw(&self) -> u8 {
+    pub fn appl_id_07_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>()
     }
     /// Set raw value of 'Appl_Id_07'
     #[inline(always)]
-    pub fn set_appl_id_07_raw(&mut self, value: u8) {
+    pub fn set_appl_id_07_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
     }
     /// Set value of 'Appl_Id_07'
@@ -4239,7 +4239,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_id_08(&self) -> u8 {
-        self.appl_id_08_phys()
+        self.appl_id_08_phys_val()
     }
     /// Get physical value of 'Appl_Id_08'
     ///
@@ -4247,7 +4247,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_08_phys(&self) -> u8 {
+    pub fn appl_id_08_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4259,12 +4259,12 @@ impl Bremse52MplxSwInfoM4 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_id_08_raw(&self) -> u8 {
+    pub fn appl_id_08_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Appl_Id_08'
     #[inline(always)]
-    pub fn set_appl_id_08_raw(&mut self, value: u8) {
+    pub fn set_appl_id_08_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Appl_Id_08'
@@ -4293,7 +4293,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_id_09(&self) -> u8 {
-        self.appl_id_09_phys()
+        self.appl_id_09_phys_val()
     }
     /// Get physical value of 'Appl_Id_09'
     ///
@@ -4301,7 +4301,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_09_phys(&self) -> u8 {
+    pub fn appl_id_09_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4313,12 +4313,12 @@ impl Bremse52MplxSwInfoM4 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_id_09_raw(&self) -> u8 {
+    pub fn appl_id_09_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
     }
     /// Set raw value of 'Appl_Id_09'
     #[inline(always)]
-    pub fn set_appl_id_09_raw(&mut self, value: u8) {
+    pub fn set_appl_id_09_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'Appl_Id_09'
@@ -4347,7 +4347,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_id_10(&self) -> u8 {
-        self.appl_id_10_phys()
+        self.appl_id_10_phys_val()
     }
     /// Get physical value of 'Appl_Id_10'
     ///
@@ -4355,7 +4355,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_10_phys(&self) -> u8 {
+    pub fn appl_id_10_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4367,12 +4367,12 @@ impl Bremse52MplxSwInfoM4 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_id_10_raw(&self) -> u8 {
+    pub fn appl_id_10_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'Appl_Id_10'
     #[inline(always)]
-    pub fn set_appl_id_10_raw(&mut self, value: u8) {
+    pub fn set_appl_id_10_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'Appl_Id_10'
@@ -4401,7 +4401,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_id_11(&self) -> u8 {
-        self.appl_id_11_phys()
+        self.appl_id_11_phys_val()
     }
     /// Get physical value of 'Appl_Id_11'
     ///
@@ -4409,7 +4409,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_11_phys(&self) -> u8 {
+    pub fn appl_id_11_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4421,12 +4421,12 @@ impl Bremse52MplxSwInfoM4 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_id_11_raw(&self) -> u8 {
+    pub fn appl_id_11_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>()
     }
     /// Set raw value of 'Appl_Id_11'
     #[inline(always)]
-    pub fn set_appl_id_11_raw(&mut self, value: u8) {
+    pub fn set_appl_id_11_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
     /// Set value of 'Appl_Id_11'
@@ -4455,7 +4455,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_id_12(&self) -> u8 {
-        self.appl_id_12_phys()
+        self.appl_id_12_phys_val()
     }
     /// Get physical value of 'Appl_Id_12'
     ///
@@ -4463,7 +4463,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_12_phys(&self) -> u8 {
+    pub fn appl_id_12_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4475,12 +4475,12 @@ impl Bremse52MplxSwInfoM4 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_id_12_raw(&self) -> u8 {
+    pub fn appl_id_12_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>()
     }
     /// Set raw value of 'Appl_Id_12'
     #[inline(always)]
-    pub fn set_appl_id_12_raw(&mut self, value: u8) {
+    pub fn set_appl_id_12_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
     }
     /// Set value of 'Appl_Id_12'
@@ -4509,7 +4509,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_id_13(&self) -> u8 {
-        self.appl_id_13_phys()
+        self.appl_id_13_phys_val()
     }
     /// Get physical value of 'Appl_Id_13'
     ///
@@ -4517,7 +4517,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_13_phys(&self) -> u8 {
+    pub fn appl_id_13_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4529,12 +4529,12 @@ impl Bremse52MplxSwInfoM4 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_id_13_raw(&self) -> u8 {
+    pub fn appl_id_13_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>()
     }
     /// Set raw value of 'Appl_Id_13'
     #[inline(always)]
-    pub fn set_appl_id_13_raw(&mut self, value: u8) {
+    pub fn set_appl_id_13_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
     }
     /// Set value of 'Appl_Id_13'
@@ -4563,7 +4563,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_id_14(&self) -> u8 {
-        self.appl_id_14_phys()
+        self.appl_id_14_phys_val()
     }
     /// Get physical value of 'Appl_Id_14'
     ///
@@ -4571,7 +4571,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Offset: 0
     /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_14_phys(&self) -> u8 {
+    pub fn appl_id_14_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4583,12 +4583,12 @@ impl Bremse52MplxSwInfoM4 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_id_14_raw(&self) -> u8 {
+    pub fn appl_id_14_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>()
     }
     /// Set raw value of 'Appl_Id_14'
     #[inline(always)]
-    pub fn set_appl_id_14_raw(&mut self, value: u8) {
+    pub fn set_appl_id_14_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
     }
     /// Set value of 'Appl_Id_14'
@@ -4646,7 +4646,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_date_01(&self) -> u8 {
-        self.appl_date_01_phys()
+        self.appl_date_01_phys_val()
     }
     /// Get physical value of 'Appl_date_01'
     ///
@@ -4654,7 +4654,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn appl_date_01_phys(&self) -> u8 {
+    pub fn appl_date_01_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4666,12 +4666,12 @@ impl Bremse52MplxSwInfoM5 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_date_01_raw(&self) -> u8 {
+    pub fn appl_date_01_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Appl_date_01'
     #[inline(always)]
-    pub fn set_appl_date_01_raw(&mut self, value: u8) {
+    pub fn set_appl_date_01_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Appl_date_01'
@@ -4702,7 +4702,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_date_02(&self) -> u8 {
-        self.appl_date_02_phys()
+        self.appl_date_02_phys_val()
     }
     /// Get physical value of 'Appl_date_02'
     ///
@@ -4710,7 +4710,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn appl_date_02_phys(&self) -> u8 {
+    pub fn appl_date_02_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4722,12 +4722,12 @@ impl Bremse52MplxSwInfoM5 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_date_02_raw(&self) -> u8 {
+    pub fn appl_date_02_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
     }
     /// Set raw value of 'Appl_date_02'
     #[inline(always)]
-    pub fn set_appl_date_02_raw(&mut self, value: u8) {
+    pub fn set_appl_date_02_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'Appl_date_02'
@@ -4758,7 +4758,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_date_03(&self) -> u8 {
-        self.appl_date_03_phys()
+        self.appl_date_03_phys_val()
     }
     /// Get physical value of 'Appl_date_03'
     ///
@@ -4766,7 +4766,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn appl_date_03_phys(&self) -> u8 {
+    pub fn appl_date_03_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4778,12 +4778,12 @@ impl Bremse52MplxSwInfoM5 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_date_03_raw(&self) -> u8 {
+    pub fn appl_date_03_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'Appl_date_03'
     #[inline(always)]
-    pub fn set_appl_date_03_raw(&mut self, value: u8) {
+    pub fn set_appl_date_03_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'Appl_date_03'
@@ -4814,7 +4814,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_date_04(&self) -> u8 {
-        self.appl_date_04_phys()
+        self.appl_date_04_phys_val()
     }
     /// Get physical value of 'Appl_date_04'
     ///
@@ -4822,7 +4822,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn appl_date_04_phys(&self) -> u8 {
+    pub fn appl_date_04_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4834,12 +4834,12 @@ impl Bremse52MplxSwInfoM5 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_date_04_raw(&self) -> u8 {
+    pub fn appl_date_04_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>()
     }
     /// Set raw value of 'Appl_date_04'
     #[inline(always)]
-    pub fn set_appl_date_04_raw(&mut self, value: u8) {
+    pub fn set_appl_date_04_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
     /// Set value of 'Appl_date_04'
@@ -4870,7 +4870,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_date_05(&self) -> u8 {
-        self.appl_date_05_phys()
+        self.appl_date_05_phys_val()
     }
     /// Get physical value of 'Appl_date_05'
     ///
@@ -4878,7 +4878,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn appl_date_05_phys(&self) -> u8 {
+    pub fn appl_date_05_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4890,12 +4890,12 @@ impl Bremse52MplxSwInfoM5 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_date_05_raw(&self) -> u8 {
+    pub fn appl_date_05_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>()
     }
     /// Set raw value of 'Appl_date_05'
     #[inline(always)]
-    pub fn set_appl_date_05_raw(&mut self, value: u8) {
+    pub fn set_appl_date_05_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
     }
     /// Set value of 'Appl_date_05'
@@ -4926,7 +4926,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn appl_date_06(&self) -> u8 {
-        self.appl_date_06_phys()
+        self.appl_date_06_phys_val()
     }
     /// Get physical value of 'Appl_date_06'
     ///
@@ -4934,7 +4934,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn appl_date_06_phys(&self) -> u8 {
+    pub fn appl_date_06_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4946,12 +4946,12 @@ impl Bremse52MplxSwInfoM5 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn appl_date_06_raw(&self) -> u8 {
+    pub fn appl_date_06_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>()
     }
     /// Set raw value of 'Appl_date_06'
     #[inline(always)]
-    pub fn set_appl_date_06_raw(&mut self, value: u8) {
+    pub fn set_appl_date_06_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
     }
     /// Set value of 'Appl_date_06'
@@ -5007,7 +5007,7 @@ impl Bremse52MplxSwInfoM6 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sw_can_ident(&self) -> u8 {
-        self.sw_can_ident_phys()
+        self.sw_can_ident_phys_val()
     }
     /// Get physical value of 'SW_CAN_ident'
     ///
@@ -5015,7 +5015,7 @@ impl Bremse52MplxSwInfoM6 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sw_can_ident_phys(&self) -> u8 {
+    pub fn sw_can_ident_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5027,12 +5027,12 @@ impl Bremse52MplxSwInfoM6 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sw_can_ident_raw(&self) -> u8 {
+    pub fn sw_can_ident_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'SW_CAN_ident'
     #[inline(always)]
-    pub fn set_sw_can_ident_raw(&mut self, value: u8) {
+    pub fn set_sw_can_ident_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'SW_CAN_ident'
@@ -5088,7 +5088,7 @@ impl Bremse52MplxSwInfoM7 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn hu_date_year(&self) -> u8 {
-        self.hu_date_year_phys()
+        self.hu_date_year_phys_val()
     }
     /// Get physical value of 'HU_date_year'
     ///
@@ -5096,7 +5096,7 @@ impl Bremse52MplxSwInfoM7 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn hu_date_year_phys(&self) -> u8 {
+    pub fn hu_date_year_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5108,12 +5108,12 @@ impl Bremse52MplxSwInfoM7 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn hu_date_year_raw(&self) -> u8 {
+    pub fn hu_date_year_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'HU_date_year'
     #[inline(always)]
-    pub fn set_hu_date_year_raw(&mut self, value: u8) {
+    pub fn set_hu_date_year_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'HU_date_year'
@@ -5142,7 +5142,7 @@ impl Bremse52MplxSwInfoM7 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn hu_date_month(&self) -> u8 {
-        self.hu_date_month_phys()
+        self.hu_date_month_phys_val()
     }
     /// Get physical value of 'HU_date_month'
     ///
@@ -5150,7 +5150,7 @@ impl Bremse52MplxSwInfoM7 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn hu_date_month_phys(&self) -> u8 {
+    pub fn hu_date_month_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5162,12 +5162,12 @@ impl Bremse52MplxSwInfoM7 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn hu_date_month_raw(&self) -> u8 {
+    pub fn hu_date_month_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
     }
     /// Set raw value of 'HU_date_month'
     #[inline(always)]
-    pub fn set_hu_date_month_raw(&mut self, value: u8) {
+    pub fn set_hu_date_month_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'HU_date_month'
@@ -5196,7 +5196,7 @@ impl Bremse52MplxSwInfoM7 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn hu_date_day(&self) -> u8 {
-        self.hu_date_day_phys()
+        self.hu_date_day_phys_val()
     }
     /// Get physical value of 'HU_date_day'
     ///
@@ -5204,7 +5204,7 @@ impl Bremse52MplxSwInfoM7 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn hu_date_day_phys(&self) -> u8 {
+    pub fn hu_date_day_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5216,12 +5216,12 @@ impl Bremse52MplxSwInfoM7 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn hu_date_day_raw(&self) -> u8 {
+    pub fn hu_date_day_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'HU_date_day'
     #[inline(always)]
-    pub fn set_hu_date_day_raw(&mut self, value: u8) {
+    pub fn set_hu_date_day_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'HU_date_day'
@@ -5250,7 +5250,7 @@ impl Bremse52MplxSwInfoM7 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ecu_serial(&self) -> u32 {
-        self.ecu_serial_phys()
+        self.ecu_serial_phys_val()
     }
     /// Get physical value of 'Ecu_serial'
     ///
@@ -5258,7 +5258,7 @@ impl Bremse52MplxSwInfoM7 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ecu_serial_phys(&self) -> u32 {
+    pub fn ecu_serial_phys_val(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5270,12 +5270,12 @@ impl Bremse52MplxSwInfoM7 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn ecu_serial_raw(&self) -> u32 {
+    pub fn ecu_serial_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>()
     }
     /// Set raw value of 'Ecu_serial'
     #[inline(always)]
-    pub fn set_ecu_serial_raw(&mut self, value: u32) {
+    pub fn set_ecu_serial_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
     /// Set value of 'Ecu_serial'
@@ -5356,7 +5356,7 @@ impl Bremse50 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn brake_bal_at50(&self) -> f32 {
-        self.brake_bal_at50_phys()
+        self.brake_bal_at50_phys_val()
     }
     /// Get physical value of 'Brake_bal_at50'
     ///
@@ -5364,7 +5364,7 @@ impl Bremse50 {
     /// - Offset: 0
     /// - Unit: "Bar"
     #[inline(always)]
-    pub fn brake_bal_at50_phys(&self) -> f32 {
+    pub fn brake_bal_at50_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5377,12 +5377,12 @@ impl Bremse50 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn brake_bal_at50_raw(&self) -> u16 {
+    pub fn brake_bal_at50_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'Brake_bal_at50'
     #[inline(always)]
-    pub fn set_brake_bal_at50_raw(&mut self, value: u16) {
+    pub fn set_brake_bal_at50_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'Brake_bal_at50'
@@ -5409,7 +5409,7 @@ impl Bremse50 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn brake_bal_at50_advice(&self) -> u8 {
-        self.brake_bal_at50_advice_phys()
+        self.brake_bal_at50_advice_phys_val()
     }
     /// Get physical value of 'Brake_bal_at50_advice'
     ///
@@ -5417,7 +5417,7 @@ impl Bremse50 {
     /// - Offset: 0
     /// - Unit: "Bar"
     #[inline(always)]
-    pub fn brake_bal_at50_advice_phys(&self) -> u8 {
+    pub fn brake_bal_at50_advice_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5429,12 +5429,12 @@ impl Bremse50 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn brake_bal_at50_advice_raw(&self) -> u8 {
+    pub fn brake_bal_at50_advice_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>()
     }
     /// Set raw value of 'Brake_bal_at50_advice'
     #[inline(always)]
-    pub fn set_brake_bal_at50_advice_raw(&mut self, value: u8) {
+    pub fn set_brake_bal_at50_advice_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
     /// Set value of 'Brake_bal_at50_advice'
@@ -5465,7 +5465,7 @@ impl Bremse50 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn brake_bal_pct(&self) -> f32 {
-        self.brake_bal_pct_phys()
+        self.brake_bal_pct_phys_val()
     }
     /// Get physical value of 'Brake_bal_pct'
     ///
@@ -5473,7 +5473,7 @@ impl Bremse50 {
     /// - Offset: 0
     /// - Unit: "%"
     #[inline(always)]
-    pub fn brake_bal_pct_phys(&self) -> f32 {
+    pub fn brake_bal_pct_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5486,12 +5486,12 @@ impl Bremse50 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn brake_bal_pct_raw(&self) -> u16 {
+    pub fn brake_bal_pct_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[40..56].load_le::<u16>()
     }
     /// Set raw value of 'Brake_bal_pct'
     #[inline(always)]
-    pub fn set_brake_bal_pct_raw(&mut self, value: u16) {
+    pub fn set_brake_bal_pct_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[40..56].store_le(value);
     }
     /// Set value of 'Brake_bal_pct'
@@ -5518,7 +5518,7 @@ impl Bremse50 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn brake_bal_pct_advice(&self) -> u8 {
-        self.brake_bal_pct_advice_phys()
+        self.brake_bal_pct_advice_phys_val()
     }
     /// Get physical value of 'Brake_bal_pct_advice'
     ///
@@ -5526,7 +5526,7 @@ impl Bremse50 {
     /// - Offset: 0
     /// - Unit: "%"
     #[inline(always)]
-    pub fn brake_bal_pct_advice_phys(&self) -> u8 {
+    pub fn brake_bal_pct_advice_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5538,12 +5538,12 @@ impl Bremse50 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn brake_bal_pct_advice_raw(&self) -> u8 {
+    pub fn brake_bal_pct_advice_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>()
     }
     /// Set raw value of 'Brake_bal_pct_advice'
     #[inline(always)]
-    pub fn set_brake_bal_pct_advice_raw(&mut self, value: u8) {
+    pub fn set_brake_bal_pct_advice_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
     }
     /// Set value of 'Brake_bal_pct_advice'
@@ -5704,7 +5704,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn switch_position(&self) -> u8 {
-        self.switch_position_phys()
+        self.switch_position_phys_val()
     }
     /// Get physical value of 'SwitchPosition'
     ///
@@ -5712,7 +5712,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn switch_position_phys(&self) -> u8 {
+    pub fn switch_position_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5724,12 +5724,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn switch_position_raw(&self) -> u8 {
+    pub fn switch_position_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
     }
     /// Set raw value of 'SwitchPosition'
     #[inline(always)]
-    pub fn set_switch_position_raw(&mut self, value: u8) {
+    pub fn set_switch_position_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'SwitchPosition'
@@ -5760,7 +5760,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn p_fa(&self) -> f32 {
-        self.p_fa_phys()
+        self.p_fa_phys_val()
     }
     /// Get physical value of 'P_FA'
     ///
@@ -5768,7 +5768,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: "bar"
     #[inline(always)]
-    pub fn p_fa_phys(&self) -> f32 {
+    pub fn p_fa_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..24].load_le::<i16>();
         let factor = 0.01526_f32;
         let offset = 0_f32;
@@ -5781,12 +5781,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn p_fa_raw(&self) -> i16 {
+    pub fn p_fa_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[8..24].load_le::<i16>()
     }
     /// Set raw value of 'P_FA'
     #[inline(always)]
-    pub fn set_p_fa_raw(&mut self, value: i16) {
+    pub fn set_p_fa_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..24].store_le(value);
     }
@@ -5815,7 +5815,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bls(&self) -> bool {
-        self.bls_phys()
+        self.bls_phys_val()
     }
     /// Get physical value of 'BLS'
     ///
@@ -5823,7 +5823,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bls_phys(&self) -> bool {
+    pub fn bls_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[24..25].load_le::<u8>();
         signal == 1
     }
@@ -5834,12 +5834,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bls_raw(&self) -> u8 {
+    pub fn bls_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..25].load_le::<u8>()
     }
     /// Set raw value of 'BLS'
     #[inline(always)]
-    pub fn set_bls_raw(&mut self, value: u8) {
+    pub fn set_bls_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..25].store_le(value);
     }
     /// Set value of 'BLS'
@@ -5857,7 +5857,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bremse_53_cnt(&self) -> u8 {
-        self.bremse_53_cnt_phys()
+        self.bremse_53_cnt_phys_val()
     }
     /// Get physical value of 'Bremse_53_cnt'
     ///
@@ -5865,7 +5865,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bremse_53_cnt_phys(&self) -> u8 {
+    pub fn bremse_53_cnt_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[26..28].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5877,12 +5877,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bremse_53_cnt_raw(&self) -> u8 {
+    pub fn bremse_53_cnt_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[26..28].load_le::<u8>()
     }
     /// Set raw value of 'Bremse_53_cnt'
     #[inline(always)]
-    pub fn set_bremse_53_cnt_raw(&mut self, value: u8) {
+    pub fn set_bremse_53_cnt_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[26..28].store_le(value);
     }
     /// Set value of 'Bremse_53_cnt'
@@ -5913,7 +5913,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn abs_malfunction(&self) -> bool {
-        self.abs_malfunction_phys()
+        self.abs_malfunction_phys_val()
     }
     /// Get physical value of 'ABS_Malfunction'
     ///
@@ -5921,7 +5921,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn abs_malfunction_phys(&self) -> bool {
+    pub fn abs_malfunction_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[28..29].load_le::<u8>();
         signal == 1
     }
@@ -5932,12 +5932,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn abs_malfunction_raw(&self) -> u8 {
+    pub fn abs_malfunction_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[28..29].load_le::<u8>()
     }
     /// Set raw value of 'ABS_Malfunction'
     #[inline(always)]
-    pub fn set_abs_malfunction_raw(&mut self, value: u8) {
+    pub fn set_abs_malfunction_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[28..29].store_le(value);
     }
     /// Set value of 'ABS_Malfunction'
@@ -5957,7 +5957,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn abs_active(&self) -> bool {
-        self.abs_active_phys()
+        self.abs_active_phys_val()
     }
     /// Get physical value of 'ABS_Active'
     ///
@@ -5965,7 +5965,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn abs_active_phys(&self) -> bool {
+    pub fn abs_active_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[29..30].load_le::<u8>();
         signal == 1
     }
@@ -5976,12 +5976,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn abs_active_raw(&self) -> u8 {
+    pub fn abs_active_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[29..30].load_le::<u8>()
     }
     /// Set raw value of 'ABS_Active'
     #[inline(always)]
-    pub fn set_abs_active_raw(&mut self, value: u8) {
+    pub fn set_abs_active_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[29..30].store_le(value);
     }
     /// Set value of 'ABS_Active'
@@ -6001,7 +6001,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ebd_lamp(&self) -> bool {
-        self.ebd_lamp_phys()
+        self.ebd_lamp_phys_val()
     }
     /// Get physical value of 'EBD_Lamp'
     ///
@@ -6009,7 +6009,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ebd_lamp_phys(&self) -> bool {
+    pub fn ebd_lamp_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[30..31].load_le::<u8>();
         signal == 1
     }
@@ -6020,12 +6020,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn ebd_lamp_raw(&self) -> u8 {
+    pub fn ebd_lamp_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[30..31].load_le::<u8>()
     }
     /// Set raw value of 'EBD_Lamp'
     #[inline(always)]
-    pub fn set_ebd_lamp_raw(&mut self, value: u8) {
+    pub fn set_ebd_lamp_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[30..31].store_le(value);
     }
     /// Set value of 'EBD_Lamp'
@@ -6045,7 +6045,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn abs_lamp(&self) -> bool {
-        self.abs_lamp_phys()
+        self.abs_lamp_phys_val()
     }
     /// Get physical value of 'ABS_Lamp'
     ///
@@ -6053,7 +6053,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn abs_lamp_phys(&self) -> bool {
+    pub fn abs_lamp_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[31..32].load_le::<u8>();
         signal == 1
     }
@@ -6064,12 +6064,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn abs_lamp_raw(&self) -> u8 {
+    pub fn abs_lamp_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[31..32].load_le::<u8>()
     }
     /// Set raw value of 'ABS_Lamp'
     #[inline(always)]
-    pub fn set_abs_lamp_raw(&mut self, value: u8) {
+    pub fn set_abs_lamp_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[31..32].store_le(value);
     }
     /// Set value of 'ABS_Lamp'
@@ -6095,7 +6095,7 @@ impl Bremse53 {
             2 => Bremse53DiagFl::SignalError,
             1 => Bremse53DiagFl::LineError,
             0 => Bremse53DiagFl::SignalOk,
-            _ => Bremse53DiagFl::_Other(self.diag_fl_phys()),
+            _ => Bremse53DiagFl::_Other(self.diag_fl_phys_val()),
         }
     }
     /// Get physical value of 'Diag_FL'
@@ -6104,7 +6104,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn diag_fl_phys(&self) -> u8 {
+    pub fn diag_fl_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..34].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -6116,12 +6116,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn diag_fl_raw(&self) -> u8 {
+    pub fn diag_fl_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..34].load_le::<u8>()
     }
     /// Set raw value of 'Diag_FL'
     #[inline(always)]
-    pub fn set_diag_fl_raw(&mut self, value: u8) {
+    pub fn set_diag_fl_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..34].store_le(value);
     }
     /// Set value of 'Diag_FL'
@@ -6159,7 +6159,7 @@ impl Bremse53 {
             2 => Bremse53DiagFr::SignalError,
             1 => Bremse53DiagFr::LineError,
             0 => Bremse53DiagFr::SignalOk,
-            _ => Bremse53DiagFr::_Other(self.diag_fr_phys()),
+            _ => Bremse53DiagFr::_Other(self.diag_fr_phys_val()),
         }
     }
     /// Get physical value of 'Diag_FR'
@@ -6168,7 +6168,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn diag_fr_phys(&self) -> u8 {
+    pub fn diag_fr_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[34..36].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -6180,12 +6180,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn diag_fr_raw(&self) -> u8 {
+    pub fn diag_fr_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[34..36].load_le::<u8>()
     }
     /// Set raw value of 'Diag_FR'
     #[inline(always)]
-    pub fn set_diag_fr_raw(&mut self, value: u8) {
+    pub fn set_diag_fr_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[34..36].store_le(value);
     }
     /// Set value of 'Diag_FR'
@@ -6223,7 +6223,7 @@ impl Bremse53 {
             2 => Bremse53DiagRl::SignalError,
             1 => Bremse53DiagRl::LineError,
             0 => Bremse53DiagRl::SignalOk,
-            _ => Bremse53DiagRl::_Other(self.diag_rl_phys()),
+            _ => Bremse53DiagRl::_Other(self.diag_rl_phys_val()),
         }
     }
     /// Get physical value of 'Diag_RL'
@@ -6232,7 +6232,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn diag_rl_phys(&self) -> u8 {
+    pub fn diag_rl_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[36..38].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -6244,12 +6244,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn diag_rl_raw(&self) -> u8 {
+    pub fn diag_rl_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[36..38].load_le::<u8>()
     }
     /// Set raw value of 'Diag_RL'
     #[inline(always)]
-    pub fn set_diag_rl_raw(&mut self, value: u8) {
+    pub fn set_diag_rl_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[36..38].store_le(value);
     }
     /// Set value of 'Diag_RL'
@@ -6287,7 +6287,7 @@ impl Bremse53 {
             2 => Bremse53DiagRr::SignalError,
             1 => Bremse53DiagRr::LineError,
             0 => Bremse53DiagRr::SignalOk,
-            _ => Bremse53DiagRr::_Other(self.diag_rr_phys()),
+            _ => Bremse53DiagRr::_Other(self.diag_rr_phys_val()),
         }
     }
     /// Get physical value of 'Diag_RR'
@@ -6296,7 +6296,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn diag_rr_phys(&self) -> u8 {
+    pub fn diag_rr_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[38..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -6308,12 +6308,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn diag_rr_raw(&self) -> u8 {
+    pub fn diag_rr_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[38..40].load_le::<u8>()
     }
     /// Set raw value of 'Diag_RR'
     #[inline(always)]
-    pub fn set_diag_rr_raw(&mut self, value: u8) {
+    pub fn set_diag_rr_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[38..40].store_le(value);
     }
     /// Set value of 'Diag_RR'
@@ -6345,7 +6345,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn diag_abs_unit(&self) -> bool {
-        self.diag_abs_unit_phys()
+        self.diag_abs_unit_phys_val()
     }
     /// Get physical value of 'Diag_ABSUnit'
     ///
@@ -6353,7 +6353,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn diag_abs_unit_phys(&self) -> bool {
+    pub fn diag_abs_unit_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[40..41].load_le::<u8>();
         signal == 1
     }
@@ -6364,12 +6364,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn diag_abs_unit_raw(&self) -> u8 {
+    pub fn diag_abs_unit_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[40..41].load_le::<u8>()
     }
     /// Set raw value of 'Diag_ABSUnit'
     #[inline(always)]
-    pub fn set_diag_abs_unit_raw(&mut self, value: u8) {
+    pub fn set_diag_abs_unit_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[40..41].store_le(value);
     }
     /// Set value of 'Diag_ABSUnit'
@@ -6389,7 +6389,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn diag_fuse_valve(&self) -> bool {
-        self.diag_fuse_valve_phys()
+        self.diag_fuse_valve_phys_val()
     }
     /// Get physical value of 'Diag_FuseValve'
     ///
@@ -6397,7 +6397,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn diag_fuse_valve_phys(&self) -> bool {
+    pub fn diag_fuse_valve_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[41..42].load_le::<u8>();
         signal == 1
     }
@@ -6408,12 +6408,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn diag_fuse_valve_raw(&self) -> u8 {
+    pub fn diag_fuse_valve_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[41..42].load_le::<u8>()
     }
     /// Set raw value of 'Diag_FuseValve'
     #[inline(always)]
-    pub fn set_diag_fuse_valve_raw(&mut self, value: u8) {
+    pub fn set_diag_fuse_valve_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[41..42].store_le(value);
     }
     /// Set value of 'Diag_FuseValve'
@@ -6433,7 +6433,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn diag_fuse_pump(&self) -> bool {
-        self.diag_fuse_pump_phys()
+        self.diag_fuse_pump_phys_val()
     }
     /// Get physical value of 'Diag_FusePump'
     ///
@@ -6441,7 +6441,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn diag_fuse_pump_phys(&self) -> bool {
+    pub fn diag_fuse_pump_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[42..43].load_le::<u8>();
         signal == 1
     }
@@ -6452,12 +6452,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn diag_fuse_pump_raw(&self) -> u8 {
+    pub fn diag_fuse_pump_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[42..43].load_le::<u8>()
     }
     /// Set raw value of 'Diag_FusePump'
     #[inline(always)]
-    pub fn set_diag_fuse_pump_raw(&mut self, value: u8) {
+    pub fn set_diag_fuse_pump_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[42..43].store_le(value);
     }
     /// Set value of 'Diag_FusePump'
@@ -6477,7 +6477,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn diag_p_fa(&self) -> bool {
-        self.diag_p_fa_phys()
+        self.diag_p_fa_phys_val()
     }
     /// Get physical value of 'Diag_P_FA'
     ///
@@ -6485,7 +6485,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn diag_p_fa_phys(&self) -> bool {
+    pub fn diag_p_fa_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[43..44].load_le::<u8>();
         signal == 1
     }
@@ -6496,12 +6496,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn diag_p_fa_raw(&self) -> u8 {
+    pub fn diag_p_fa_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[43..44].load_le::<u8>()
     }
     /// Set raw value of 'Diag_P_FA'
     #[inline(always)]
-    pub fn set_diag_p_fa_raw(&mut self, value: u8) {
+    pub fn set_diag_p_fa_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[43..44].store_le(value);
     }
     /// Set value of 'Diag_P_FA'
@@ -6521,7 +6521,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn diag_p_ra(&self) -> bool {
-        self.diag_p_ra_phys()
+        self.diag_p_ra_phys_val()
     }
     /// Get physical value of 'Diag_P_RA'
     ///
@@ -6529,7 +6529,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn diag_p_ra_phys(&self) -> bool {
+    pub fn diag_p_ra_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[44..45].load_le::<u8>();
         signal == 1
     }
@@ -6540,12 +6540,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn diag_p_ra_raw(&self) -> u8 {
+    pub fn diag_p_ra_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[44..45].load_le::<u8>()
     }
     /// Set raw value of 'Diag_P_RA'
     #[inline(always)]
-    pub fn set_diag_p_ra_raw(&mut self, value: u8) {
+    pub fn set_diag_p_ra_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[44..45].store_le(value);
     }
     /// Set value of 'Diag_P_RA'
@@ -6565,7 +6565,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn diag_yrs(&self) -> bool {
-        self.diag_yrs_phys()
+        self.diag_yrs_phys_val()
     }
     /// Get physical value of 'Diag_YRS'
     ///
@@ -6573,7 +6573,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn diag_yrs_phys(&self) -> bool {
+    pub fn diag_yrs_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[45..46].load_le::<u8>();
         signal == 1
     }
@@ -6584,12 +6584,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn diag_yrs_raw(&self) -> u8 {
+    pub fn diag_yrs_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[45..46].load_le::<u8>()
     }
     /// Set raw value of 'Diag_YRS'
     #[inline(always)]
-    pub fn set_diag_yrs_raw(&mut self, value: u8) {
+    pub fn set_diag_yrs_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[45..46].store_le(value);
     }
     /// Set value of 'Diag_YRS'
@@ -6614,7 +6614,7 @@ impl Bremse53 {
             2 => Bremse53AbsFaultInfo::ActiveFaultsStored,
             1 => Bremse53AbsFaultInfo::InactiveFaultsStored,
             0 => Bremse53AbsFaultInfo::NoFaultsStored,
-            _ => Bremse53AbsFaultInfo::_Other(self.abs_fault_info_phys()),
+            _ => Bremse53AbsFaultInfo::_Other(self.abs_fault_info_phys_val()),
         }
     }
     /// Get physical value of 'ABS_fault_info'
@@ -6623,7 +6623,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn abs_fault_info_phys(&self) -> u8 {
+    pub fn abs_fault_info_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[46..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -6635,12 +6635,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn abs_fault_info_raw(&self) -> u8 {
+    pub fn abs_fault_info_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[46..48].load_le::<u8>()
     }
     /// Set raw value of 'ABS_fault_info'
     #[inline(always)]
-    pub fn set_abs_fault_info_raw(&mut self, value: u8) {
+    pub fn set_abs_fault_info_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[46..48].store_le(value);
     }
     /// Set value of 'ABS_fault_info'
@@ -6675,7 +6675,7 @@ impl Bremse53 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn p_ra(&self) -> f32 {
-        self.p_ra_phys()
+        self.p_ra_phys_val()
     }
     /// Get physical value of 'P_RA'
     ///
@@ -6683,7 +6683,7 @@ impl Bremse53 {
     /// - Offset: 0
     /// - Unit: "bar"
     #[inline(always)]
-    pub fn p_ra_phys(&self) -> f32 {
+    pub fn p_ra_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01526_f32;
         let offset = 0_f32;
@@ -6696,12 +6696,12 @@ impl Bremse53 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn p_ra_raw(&self) -> i16 {
+    pub fn p_ra_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'P_RA'
     #[inline(always)]
-    pub fn set_p_ra_raw(&mut self, value: i16) {
+    pub fn set_p_ra_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }

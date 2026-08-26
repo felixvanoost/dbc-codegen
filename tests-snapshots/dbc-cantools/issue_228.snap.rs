@@ -96,7 +96,7 @@ impl SgMsg {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn dupsig(&self) -> i8 {
-        self.dupsig_phys()
+        self.dupsig_phys_val()
     }
     /// Get physical value of 'dupsig'
     ///
@@ -104,7 +104,7 @@ impl SgMsg {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn dupsig_phys(&self) -> i8 {
+    pub fn dupsig_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -117,12 +117,12 @@ impl SgMsg {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn dupsig_raw(&self) -> i8 {
+    pub fn dupsig_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>()
     }
     /// Set raw value of 'dupsig'
     #[inline(always)]
-    pub fn set_dupsig_raw(&mut self, value: i8) {
+    pub fn set_dupsig_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
@@ -153,7 +153,7 @@ impl SgMsg {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sg2(&self) -> i8 {
-        self.sg2_phys()
+        self.sg2_phys_val()
     }
     /// Get physical value of 'SG2'
     ///
@@ -161,7 +161,7 @@ impl SgMsg {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sg2_phys(&self) -> i8 {
+    pub fn sg2_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -174,12 +174,12 @@ impl SgMsg {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sg2_raw(&self) -> i8 {
+    pub fn sg2_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
     /// Set raw value of 'SG2'
     #[inline(always)]
-    pub fn set_sg2_raw(&mut self, value: i8) {
+    pub fn set_sg2_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
@@ -210,7 +210,7 @@ impl SgMsg {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sg1(&self) -> i8 {
-        self.sg1_phys()
+        self.sg1_phys_val()
     }
     /// Get physical value of 'SG1'
     ///
@@ -218,7 +218,7 @@ impl SgMsg {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sg1_phys(&self) -> i8 {
+    pub fn sg1_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -231,12 +231,12 @@ impl SgMsg {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sg1_raw(&self) -> i8 {
+    pub fn sg1_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
     /// Set raw value of 'SG1'
     #[inline(always)]
-    pub fn set_sg1_raw(&mut self, value: i8) {
+    pub fn set_sg1_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
@@ -343,7 +343,7 @@ impl NormalMsg {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sig_2(&self) -> i8 {
-        self.sig_2_phys()
+        self.sig_2_phys_val()
     }
     /// Get physical value of 'Sig_2'
     ///
@@ -351,7 +351,7 @@ impl NormalMsg {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sig_2_phys(&self) -> i8 {
+    pub fn sig_2_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -364,12 +364,12 @@ impl NormalMsg {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sig_2_raw(&self) -> i8 {
+    pub fn sig_2_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
     /// Set raw value of 'Sig_2'
     #[inline(always)]
-    pub fn set_sig_2_raw(&mut self, value: i8) {
+    pub fn set_sig_2_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
@@ -400,7 +400,7 @@ impl NormalMsg {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn sig_1(&self) -> i8 {
-        self.sig_1_phys()
+        self.sig_1_phys_val()
     }
     /// Get physical value of 'Sig_1'
     ///
@@ -408,7 +408,7 @@ impl NormalMsg {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sig_1_phys(&self) -> i8 {
+    pub fn sig_1_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -421,12 +421,12 @@ impl NormalMsg {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sig_1_raw(&self) -> i8 {
+    pub fn sig_1_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
     /// Set raw value of 'Sig_1'
     #[inline(always)]
-    pub fn set_sig_1_raw(&mut self, value: i8) {
+    pub fn set_sig_1_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }

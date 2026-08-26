@@ -105,7 +105,7 @@ impl Foo {
     /// - Receivers: BAR
     #[inline(always)]
     pub fn foo(&self) -> f32 {
-        self.foo_phys()
+        self.foo_phys_val()
     }
     /// Get physical value of 'Foo'
     ///
@@ -113,7 +113,7 @@ impl Foo {
     /// - Offset: 250
     /// - Unit: "degK"
     #[inline(always)]
-    pub fn foo_phys(&self) -> f32 {
+    pub fn foo_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
         let factor = 0.01_f32;
         let offset = 250_f32;
@@ -126,12 +126,12 @@ impl Foo {
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn foo_raw(&self) -> i16 {
+    pub fn foo_raw_val(&self) -> i16 {
         self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>()
     }
     /// Set raw value of 'Foo'
     #[inline(always)]
-    pub fn set_foo_raw(&mut self, value: i16) {
+    pub fn set_foo_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[7..19].store_be(value);
     }
@@ -160,7 +160,7 @@ impl Foo {
     /// - Receivers: FOO
     #[inline(always)]
     pub fn bar(&self) -> f32 {
-        self.bar_phys()
+        self.bar_phys_val()
     }
     /// Get physical value of 'Bar'
     ///
@@ -168,7 +168,7 @@ impl Foo {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn bar_phys(&self) -> f32 {
+    pub fn bar_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[31..63].load_be::<i32>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -181,12 +181,12 @@ impl Foo {
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn bar_raw(&self) -> i32 {
+    pub fn bar_raw_val(&self) -> i32 {
         self.raw.view_bits::<Msb0>()[31..63].load_be::<i32>()
     }
     /// Set raw value of 'Bar'
     #[inline(always)]
-    pub fn set_bar_raw(&mut self, value: i32) {
+    pub fn set_bar_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[31..63].store_be(value);
     }
@@ -291,7 +291,7 @@ impl Fum {
     /// - Receivers: BAR
     #[inline(always)]
     pub fn fum(&self) -> i16 {
-        self.fum_phys()
+        self.fum_phys_val()
     }
     /// Get physical value of 'Fum'
     ///
@@ -299,7 +299,7 @@ impl Fum {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn fum_phys(&self) -> i16 {
+    pub fn fum_phys_val(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..12].load_le::<i16>();
         let factor = 1;
         let signal = signal as i16;
@@ -312,12 +312,12 @@ impl Fum {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn fum_raw(&self) -> i16 {
+    pub fn fum_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..12].load_le::<i16>()
     }
     /// Set raw value of 'Fum'
     #[inline(always)]
-    pub fn set_fum_raw(&mut self, value: i16) {
+    pub fn set_fum_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..12].store_le(value);
     }
@@ -352,7 +352,7 @@ impl Fum {
         match signal {
             1 => FumFam::Enabled,
             0 => FumFam::Disabled,
-            _ => FumFam::_Other(self.fam_phys()),
+            _ => FumFam::_Other(self.fam_phys_val()),
         }
     }
     /// Get physical value of 'Fam'
@@ -361,7 +361,7 @@ impl Fum {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn fam_phys(&self) -> i16 {
+    pub fn fam_phys_val(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[12..24].load_le::<i16>();
         let factor = 1;
         let signal = signal as i16;
@@ -374,12 +374,12 @@ impl Fum {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn fam_raw(&self) -> i16 {
+    pub fn fam_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[12..24].load_le::<i16>()
     }
     /// Set raw value of 'Fam'
     #[inline(always)]
-    pub fn set_fam_raw(&mut self, value: i16) {
+    pub fn set_fam_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[12..24].store_le(value);
     }
@@ -510,7 +510,7 @@ impl Bar {
     /// - Receivers: FUM
     #[inline(always)]
     pub fn binary32(&self) -> i32 {
-        self.binary32_phys()
+        self.binary32_phys_val()
     }
     /// Get physical value of 'Binary32'
     ///
@@ -518,7 +518,7 @@ impl Bar {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn binary32_phys(&self) -> i32 {
+    pub fn binary32_phys_val(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 1;
         let signal = signal as i32;
@@ -531,12 +531,12 @@ impl Bar {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn binary32_raw(&self) -> i32 {
+    pub fn binary32_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
     }
     /// Set raw value of 'Binary32'
     #[inline(always)]
-    pub fn set_binary32_raw(&mut self, value: i32) {
+    pub fn set_binary32_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
     }
@@ -644,7 +644,7 @@ impl CanFd {
     /// - Receivers: FUM
     #[inline(always)]
     pub fn fie(&self) -> u64 {
-        self.fie_phys()
+        self.fie_phys_val()
     }
     /// Get physical value of 'Fie'
     ///
@@ -652,7 +652,7 @@ impl CanFd {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn fie_phys(&self) -> u64 {
+    pub fn fie_phys_val(&self) -> u64 {
         let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>();
         let factor = 1;
         u64::from(signal).saturating_mul(factor).saturating_add(0)
@@ -664,12 +664,12 @@ impl CanFd {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn fie_raw(&self) -> u64 {
+    pub fn fie_raw_val(&self) -> u64 {
         self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>()
     }
     /// Set raw value of 'Fie'
     #[inline(always)]
-    pub fn set_fie_raw(&mut self, value: u64) {
+    pub fn set_fie_raw_val(&mut self, value: u64) {
         self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
     }
     /// Set value of 'Fie'
@@ -698,7 +698,7 @@ impl CanFd {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn fas(&self) -> u64 {
-        self.fas_phys()
+        self.fas_phys_val()
     }
     /// Get physical value of 'Fas'
     ///
@@ -706,7 +706,7 @@ impl CanFd {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn fas_phys(&self) -> u64 {
+    pub fn fas_phys_val(&self) -> u64 {
         let signal = self.raw.view_bits::<Lsb0>()[64..128].load_le::<u64>();
         let factor = 1;
         u64::from(signal).saturating_mul(factor).saturating_add(0)
@@ -718,12 +718,12 @@ impl CanFd {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn fas_raw(&self) -> u64 {
+    pub fn fas_raw_val(&self) -> u64 {
         self.raw.view_bits::<Lsb0>()[64..128].load_le::<u64>()
     }
     /// Set raw value of 'Fas'
     #[inline(always)]
-    pub fn set_fas_raw(&mut self, value: u64) {
+    pub fn set_fas_raw_val(&mut self, value: u64) {
         self.raw.view_bits_mut::<Lsb0>()[64..128].store_le(value);
     }
     /// Set value of 'Fas'
@@ -826,7 +826,7 @@ impl Foobar {
     /// - Receivers: BAR
     #[inline(always)]
     pub fn acc_02_crc(&self) -> i16 {
-        self.acc_02_crc_phys()
+        self.acc_02_crc_phys_val()
     }
     /// Get physical value of 'ACC_02_CRC'
     ///
@@ -834,7 +834,7 @@ impl Foobar {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn acc_02_crc_phys(&self) -> i16 {
+    pub fn acc_02_crc_phys_val(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..12].load_le::<i16>();
         let factor = 1;
         let signal = signal as i16;
@@ -847,12 +847,12 @@ impl Foobar {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn acc_02_crc_raw(&self) -> i16 {
+    pub fn acc_02_crc_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..12].load_le::<i16>()
     }
     /// Set raw value of 'ACC_02_CRC'
     #[inline(always)]
-    pub fn set_acc_02_crc_raw(&mut self, value: i16) {
+    pub fn set_acc_02_crc_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..12].store_le(value);
     }

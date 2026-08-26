@@ -94,7 +94,7 @@ impl MuxedFrame {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn unmultiplexed_sig(&self) -> i8 {
-        self.unmultiplexed_sig_phys()
+        self.unmultiplexed_sig_phys_val()
     }
     /// Get physical value of 'UnmultiplexedSig'
     ///
@@ -102,7 +102,7 @@ impl MuxedFrame {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn unmultiplexed_sig_phys(&self) -> i8 {
+    pub fn unmultiplexed_sig_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -115,12 +115,12 @@ impl MuxedFrame {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn unmultiplexed_sig_raw(&self) -> i8 {
+    pub fn unmultiplexed_sig_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>()
     }
     /// Set raw value of 'UnmultiplexedSig'
     #[inline(always)]
-    pub fn set_unmultiplexed_sig_raw(&mut self, value: i8) {
+    pub fn set_unmultiplexed_sig_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
@@ -149,7 +149,7 @@ impl MuxedFrame {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn multiplexor_sig_phys(&self) -> u8 {
+    pub fn multiplexor_sig_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -161,19 +161,19 @@ impl MuxedFrame {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn multiplexor_sig_raw(&self) -> u8 {
+    pub fn multiplexor_sig_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
     }
     /// Set raw value of 'MultiplexorSig'
     #[allow(dead_code)]
     #[inline(always)]
-    fn set_multiplexor_sig_raw(&mut self, value: u8) {
+    fn set_multiplexor_sig_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     pub fn multiplexor_sig(
         &mut self,
     ) -> Result<MuxedFrameMultiplexorSigIndex, CanError> {
-        match self.multiplexor_sig_phys() {
+        match self.multiplexor_sig_phys_val() {
             42 => {
                 Ok(
                     MuxedFrameMultiplexorSigIndex::M42(MuxedFrameMultiplexorSigM42 {
@@ -305,7 +305,7 @@ impl MuxedFrameMultiplexorSigM42 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn multiplexed_sig(&self) -> i8 {
-        self.multiplexed_sig_phys()
+        self.multiplexed_sig_phys_val()
     }
     /// Get physical value of 'MultiplexedSig'
     ///
@@ -313,7 +313,7 @@ impl MuxedFrameMultiplexorSigM42 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn multiplexed_sig_phys(&self) -> i8 {
+    pub fn multiplexed_sig_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -326,12 +326,12 @@ impl MuxedFrameMultiplexorSigM42 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn multiplexed_sig_raw(&self) -> i8 {
+    pub fn multiplexed_sig_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
     /// Set raw value of 'MultiplexedSig'
     #[inline(always)]
-    pub fn set_multiplexed_sig_raw(&mut self, value: i8) {
+    pub fn set_multiplexed_sig_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }

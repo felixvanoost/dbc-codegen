@@ -100,7 +100,7 @@ impl ExampleMessage {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn no_choice(&self) -> i8 {
-        self.no_choice_phys()
+        self.no_choice_phys_val()
     }
     /// Get physical value of 'no_choice'
     ///
@@ -108,7 +108,7 @@ impl ExampleMessage {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn no_choice_phys(&self) -> i8 {
+    pub fn no_choice_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -121,12 +121,12 @@ impl ExampleMessage {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn no_choice_raw(&self) -> i8 {
+    pub fn no_choice_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>()
     }
     /// Set raw value of 'no_choice'
     #[inline(always)]
-    pub fn set_no_choice_raw(&mut self, value: i8) {
+    pub fn set_no_choice_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
@@ -159,7 +159,7 @@ impl ExampleMessage {
     pub fn empty_choice(&self) -> ExampleMessageEmptyChoice {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         match signal {
-            _ => ExampleMessageEmptyChoice::_Other(self.empty_choice_phys()),
+            _ => ExampleMessageEmptyChoice::_Other(self.empty_choice_phys_val()),
         }
     }
     /// Get physical value of 'empty_choice'
@@ -168,7 +168,7 @@ impl ExampleMessage {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn empty_choice_phys(&self) -> i8 {
+    pub fn empty_choice_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -181,12 +181,12 @@ impl ExampleMessage {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn empty_choice_raw(&self) -> i8 {
+    pub fn empty_choice_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
     /// Set raw value of 'empty_choice'
     #[inline(always)]
-    pub fn set_empty_choice_raw(&mut self, value: i8) {
+    pub fn set_empty_choice_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
@@ -225,7 +225,7 @@ impl ExampleMessage {
         match signal {
             255 => ExampleMessageNonEmptyChoice::NotAvailable,
             254 => ExampleMessageNonEmptyChoice::Error,
-            _ => ExampleMessageNonEmptyChoice::_Other(self.non_empty_choice_phys()),
+            _ => ExampleMessageNonEmptyChoice::_Other(self.non_empty_choice_phys_val()),
         }
     }
     /// Get physical value of 'non_empty_choice'
@@ -234,7 +234,7 @@ impl ExampleMessage {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn non_empty_choice_phys(&self) -> i8 {
+    pub fn non_empty_choice_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -247,12 +247,12 @@ impl ExampleMessage {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn non_empty_choice_raw(&self) -> i8 {
+    pub fn non_empty_choice_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
     /// Set raw value of 'non_empty_choice'
     #[inline(always)]
-    pub fn set_non_empty_choice_raw(&mut self, value: i8) {
+    pub fn set_non_empty_choice_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }

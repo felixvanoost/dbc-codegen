@@ -91,7 +91,7 @@ impl Message1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn multiplexor_phys(&self) -> u8 {
+    pub fn multiplexor_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[2..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -103,17 +103,17 @@ impl Message1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn multiplexor_raw(&self) -> u8 {
+    pub fn multiplexor_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..8].load_le::<u8>()
     }
     /// Set raw value of 'Multiplexor'
     #[allow(dead_code)]
     #[inline(always)]
-    fn set_multiplexor_raw(&mut self, value: u8) {
+    fn set_multiplexor_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..8].store_le(value);
     }
     pub fn multiplexor(&mut self) -> Result<Message1MultiplexorIndex, CanError> {
-        match self.multiplexor_phys() {
+        match self.multiplexor_phys_val() {
             8 => {
                 Ok(
                     Message1MultiplexorIndex::M8(Message1MultiplexorM8 {
@@ -315,7 +315,7 @@ impl Message1MultiplexorM8 {
         match signal {
             0 => Message1BitL::Off,
             1 => Message1BitL::On,
-            _ => Message1BitL::_Other(self.bit_l_phys()),
+            _ => Message1BitL::_Other(self.bit_l_phys_val()),
         }
     }
     /// Get physical value of 'BIT_L'
@@ -324,7 +324,7 @@ impl Message1MultiplexorM8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_l_phys(&self) -> bool {
+    pub fn bit_l_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[24..25].load_le::<u8>();
         signal == 1
     }
@@ -335,12 +335,12 @@ impl Message1MultiplexorM8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_l_raw(&self) -> u8 {
+    pub fn bit_l_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..25].load_le::<u8>()
     }
     /// Set raw value of 'BIT_L'
     #[inline(always)]
-    pub fn set_bit_l_raw(&mut self, value: u8) {
+    pub fn set_bit_l_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..25].store_le(value);
     }
     /// Set value of 'BIT_L'
@@ -359,7 +359,7 @@ impl Message1MultiplexorM8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_g(&self) -> bool {
-        self.bit_g_phys()
+        self.bit_g_phys_val()
     }
     /// Get physical value of 'BIT_G'
     ///
@@ -367,7 +367,7 @@ impl Message1MultiplexorM8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_g_phys(&self) -> bool {
+    pub fn bit_g_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[23..24].load_le::<u8>();
         signal == 1
     }
@@ -378,12 +378,12 @@ impl Message1MultiplexorM8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_g_raw(&self) -> u8 {
+    pub fn bit_g_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[23..24].load_le::<u8>()
     }
     /// Set raw value of 'BIT_G'
     #[inline(always)]
-    pub fn set_bit_g_raw(&mut self, value: u8) {
+    pub fn set_bit_g_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[23..24].store_le(value);
     }
     /// Set value of 'BIT_G'
@@ -401,7 +401,7 @@ impl Message1MultiplexorM8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_c(&self) -> bool {
-        self.bit_c_phys()
+        self.bit_c_phys_val()
     }
     /// Get physical value of 'BIT_C'
     ///
@@ -409,7 +409,7 @@ impl Message1MultiplexorM8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_c_phys(&self) -> bool {
+    pub fn bit_c_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[19..20].load_le::<u8>();
         signal == 1
     }
@@ -420,12 +420,12 @@ impl Message1MultiplexorM8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_c_raw(&self) -> u8 {
+    pub fn bit_c_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[19..20].load_le::<u8>()
     }
     /// Set raw value of 'BIT_C'
     #[inline(always)]
-    pub fn set_bit_c_raw(&mut self, value: u8) {
+    pub fn set_bit_c_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[19..20].store_le(value);
     }
     /// Set value of 'BIT_C'
@@ -443,7 +443,7 @@ impl Message1MultiplexorM8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_j(&self) -> bool {
-        self.bit_j_phys()
+        self.bit_j_phys_val()
     }
     /// Get physical value of 'BIT_J'
     ///
@@ -451,7 +451,7 @@ impl Message1MultiplexorM8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_j_phys(&self) -> bool {
+    pub fn bit_j_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[18..19].load_le::<u8>();
         signal == 1
     }
@@ -462,12 +462,12 @@ impl Message1MultiplexorM8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_j_raw(&self) -> u8 {
+    pub fn bit_j_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[18..19].load_le::<u8>()
     }
     /// Set raw value of 'BIT_J'
     #[inline(always)]
-    pub fn set_bit_j_raw(&mut self, value: u8) {
+    pub fn set_bit_j_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[18..19].store_le(value);
     }
     /// Set value of 'BIT_J'
@@ -512,7 +512,7 @@ impl Message1MultiplexorM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_f(&self) -> bool {
-        self.bit_f_phys()
+        self.bit_f_phys_val()
     }
     /// Get physical value of 'BIT_F'
     ///
@@ -520,7 +520,7 @@ impl Message1MultiplexorM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_f_phys(&self) -> bool {
+    pub fn bit_f_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[39..40].load_le::<u8>();
         signal == 1
     }
@@ -531,12 +531,12 @@ impl Message1MultiplexorM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_f_raw(&self) -> u8 {
+    pub fn bit_f_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[39..40].load_le::<u8>()
     }
     /// Set raw value of 'BIT_F'
     #[inline(always)]
-    pub fn set_bit_f_raw(&mut self, value: u8) {
+    pub fn set_bit_f_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[39..40].store_le(value);
     }
     /// Set value of 'BIT_F'
@@ -554,7 +554,7 @@ impl Message1MultiplexorM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_h(&self) -> bool {
-        self.bit_h_phys()
+        self.bit_h_phys_val()
     }
     /// Get physical value of 'BIT_H'
     ///
@@ -562,7 +562,7 @@ impl Message1MultiplexorM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_h_phys(&self) -> bool {
+    pub fn bit_h_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[38..39].load_le::<u8>();
         signal == 1
     }
@@ -573,12 +573,12 @@ impl Message1MultiplexorM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_h_raw(&self) -> u8 {
+    pub fn bit_h_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[38..39].load_le::<u8>()
     }
     /// Set raw value of 'BIT_H'
     #[inline(always)]
-    pub fn set_bit_h_raw(&mut self, value: u8) {
+    pub fn set_bit_h_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[38..39].store_le(value);
     }
     /// Set value of 'BIT_H'
@@ -596,7 +596,7 @@ impl Message1MultiplexorM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_b(&self) -> bool {
-        self.bit_b_phys()
+        self.bit_b_phys_val()
     }
     /// Get physical value of 'BIT_B'
     ///
@@ -604,7 +604,7 @@ impl Message1MultiplexorM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_b_phys(&self) -> bool {
+    pub fn bit_b_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[33..34].load_le::<u8>();
         signal == 1
     }
@@ -615,12 +615,12 @@ impl Message1MultiplexorM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_b_raw(&self) -> u8 {
+    pub fn bit_b_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[33..34].load_le::<u8>()
     }
     /// Set raw value of 'BIT_B'
     #[inline(always)]
-    pub fn set_bit_b_raw(&mut self, value: u8) {
+    pub fn set_bit_b_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[33..34].store_le(value);
     }
     /// Set value of 'BIT_B'
@@ -638,7 +638,7 @@ impl Message1MultiplexorM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_d(&self) -> bool {
-        self.bit_d_phys()
+        self.bit_d_phys_val()
     }
     /// Get physical value of 'BIT_D'
     ///
@@ -646,7 +646,7 @@ impl Message1MultiplexorM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_d_phys(&self) -> bool {
+    pub fn bit_d_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[32..33].load_le::<u8>();
         signal == 1
     }
@@ -657,12 +657,12 @@ impl Message1MultiplexorM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_d_raw(&self) -> u8 {
+    pub fn bit_d_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..33].load_le::<u8>()
     }
     /// Set raw value of 'BIT_D'
     #[inline(always)]
-    pub fn set_bit_d_raw(&mut self, value: u8) {
+    pub fn set_bit_d_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..33].store_le(value);
     }
     /// Set value of 'BIT_D'
@@ -680,7 +680,7 @@ impl Message1MultiplexorM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_e(&self) -> bool {
-        self.bit_e_phys()
+        self.bit_e_phys_val()
     }
     /// Get physical value of 'BIT_E'
     ///
@@ -688,7 +688,7 @@ impl Message1MultiplexorM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_e_phys(&self) -> bool {
+    pub fn bit_e_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[29..30].load_le::<u8>();
         signal == 1
     }
@@ -699,12 +699,12 @@ impl Message1MultiplexorM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_e_raw(&self) -> u8 {
+    pub fn bit_e_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[29..30].load_le::<u8>()
     }
     /// Set raw value of 'BIT_E'
     #[inline(always)]
-    pub fn set_bit_e_raw(&mut self, value: u8) {
+    pub fn set_bit_e_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[29..30].store_le(value);
     }
     /// Set value of 'BIT_E'
@@ -722,7 +722,7 @@ impl Message1MultiplexorM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_k(&self) -> bool {
-        self.bit_k_phys()
+        self.bit_k_phys_val()
     }
     /// Get physical value of 'BIT_K'
     ///
@@ -730,7 +730,7 @@ impl Message1MultiplexorM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_k_phys(&self) -> bool {
+    pub fn bit_k_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[28..29].load_le::<u8>();
         signal == 1
     }
@@ -741,12 +741,12 @@ impl Message1MultiplexorM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_k_raw(&self) -> u8 {
+    pub fn bit_k_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[28..29].load_le::<u8>()
     }
     /// Set raw value of 'BIT_K'
     #[inline(always)]
-    pub fn set_bit_k_raw(&mut self, value: u8) {
+    pub fn set_bit_k_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[28..29].store_le(value);
     }
     /// Set value of 'BIT_K'
@@ -764,7 +764,7 @@ impl Message1MultiplexorM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_a(&self) -> bool {
-        self.bit_a_phys()
+        self.bit_a_phys_val()
     }
     /// Get physical value of 'BIT_A'
     ///
@@ -772,7 +772,7 @@ impl Message1MultiplexorM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_a_phys(&self) -> bool {
+    pub fn bit_a_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[26..27].load_le::<u8>();
         signal == 1
     }
@@ -783,12 +783,12 @@ impl Message1MultiplexorM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_a_raw(&self) -> u8 {
+    pub fn bit_a_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[26..27].load_le::<u8>()
     }
     /// Set raw value of 'BIT_A'
     #[inline(always)]
-    pub fn set_bit_a_raw(&mut self, value: u8) {
+    pub fn set_bit_a_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[26..27].store_le(value);
     }
     /// Set value of 'BIT_A'
@@ -839,7 +839,7 @@ impl Message2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn multiplexor_phys(&self) -> u8 {
+    pub fn multiplexor_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[2..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -851,17 +851,17 @@ impl Message2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn multiplexor_raw(&self) -> u8 {
+    pub fn multiplexor_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..8].load_le::<u8>()
     }
     /// Set raw value of 'Multiplexor'
     #[allow(dead_code)]
     #[inline(always)]
-    fn set_multiplexor_raw(&mut self, value: u8) {
+    fn set_multiplexor_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..8].store_le(value);
     }
     pub fn multiplexor(&mut self) -> Result<Message2MultiplexorIndex, CanError> {
-        match self.multiplexor_phys() {
+        match self.multiplexor_phys_val() {
             8 => {
                 Ok(
                     Message2MultiplexorIndex::M8(Message2MultiplexorM8 {
@@ -1036,7 +1036,7 @@ impl Message2MultiplexorM8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_l(&self) -> bool {
-        self.bit_l_phys()
+        self.bit_l_phys_val()
     }
     /// Get physical value of 'BIT_L'
     ///
@@ -1044,7 +1044,7 @@ impl Message2MultiplexorM8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_l_phys(&self) -> bool {
+    pub fn bit_l_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[24..25].load_le::<u8>();
         signal == 1
     }
@@ -1055,12 +1055,12 @@ impl Message2MultiplexorM8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_l_raw(&self) -> u8 {
+    pub fn bit_l_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..25].load_le::<u8>()
     }
     /// Set raw value of 'BIT_L'
     #[inline(always)]
-    pub fn set_bit_l_raw(&mut self, value: u8) {
+    pub fn set_bit_l_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..25].store_le(value);
     }
     /// Set value of 'BIT_L'
@@ -1078,7 +1078,7 @@ impl Message2MultiplexorM8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_g(&self) -> bool {
-        self.bit_g_phys()
+        self.bit_g_phys_val()
     }
     /// Get physical value of 'BIT_G'
     ///
@@ -1086,7 +1086,7 @@ impl Message2MultiplexorM8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_g_phys(&self) -> bool {
+    pub fn bit_g_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[23..24].load_le::<u8>();
         signal == 1
     }
@@ -1097,12 +1097,12 @@ impl Message2MultiplexorM8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_g_raw(&self) -> u8 {
+    pub fn bit_g_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[23..24].load_le::<u8>()
     }
     /// Set raw value of 'BIT_G'
     #[inline(always)]
-    pub fn set_bit_g_raw(&mut self, value: u8) {
+    pub fn set_bit_g_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[23..24].store_le(value);
     }
     /// Set value of 'BIT_G'
@@ -1120,7 +1120,7 @@ impl Message2MultiplexorM8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_c(&self) -> bool {
-        self.bit_c_phys()
+        self.bit_c_phys_val()
     }
     /// Get physical value of 'BIT_C'
     ///
@@ -1128,7 +1128,7 @@ impl Message2MultiplexorM8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_c_phys(&self) -> bool {
+    pub fn bit_c_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[19..20].load_le::<u8>();
         signal == 1
     }
@@ -1139,12 +1139,12 @@ impl Message2MultiplexorM8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_c_raw(&self) -> u8 {
+    pub fn bit_c_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[19..20].load_le::<u8>()
     }
     /// Set raw value of 'BIT_C'
     #[inline(always)]
-    pub fn set_bit_c_raw(&mut self, value: u8) {
+    pub fn set_bit_c_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[19..20].store_le(value);
     }
     /// Set value of 'BIT_C'
@@ -1162,7 +1162,7 @@ impl Message2MultiplexorM8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_j(&self) -> bool {
-        self.bit_j_phys()
+        self.bit_j_phys_val()
     }
     /// Get physical value of 'BIT_J'
     ///
@@ -1170,7 +1170,7 @@ impl Message2MultiplexorM8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_j_phys(&self) -> bool {
+    pub fn bit_j_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[18..19].load_le::<u8>();
         signal == 1
     }
@@ -1181,12 +1181,12 @@ impl Message2MultiplexorM8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_j_raw(&self) -> u8 {
+    pub fn bit_j_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[18..19].load_le::<u8>()
     }
     /// Set raw value of 'BIT_J'
     #[inline(always)]
-    pub fn set_bit_j_raw(&mut self, value: u8) {
+    pub fn set_bit_j_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[18..19].store_le(value);
     }
     /// Set value of 'BIT_J'
@@ -1231,7 +1231,7 @@ impl Message2MultiplexorM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_f(&self) -> bool {
-        self.bit_f_phys()
+        self.bit_f_phys_val()
     }
     /// Get physical value of 'BIT_F'
     ///
@@ -1239,7 +1239,7 @@ impl Message2MultiplexorM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_f_phys(&self) -> bool {
+    pub fn bit_f_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[39..40].load_le::<u8>();
         signal == 1
     }
@@ -1250,12 +1250,12 @@ impl Message2MultiplexorM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_f_raw(&self) -> u8 {
+    pub fn bit_f_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[39..40].load_le::<u8>()
     }
     /// Set raw value of 'BIT_F'
     #[inline(always)]
-    pub fn set_bit_f_raw(&mut self, value: u8) {
+    pub fn set_bit_f_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[39..40].store_le(value);
     }
     /// Set value of 'BIT_F'
@@ -1273,7 +1273,7 @@ impl Message2MultiplexorM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_h(&self) -> bool {
-        self.bit_h_phys()
+        self.bit_h_phys_val()
     }
     /// Get physical value of 'BIT_H'
     ///
@@ -1281,7 +1281,7 @@ impl Message2MultiplexorM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_h_phys(&self) -> bool {
+    pub fn bit_h_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[38..39].load_le::<u8>();
         signal == 1
     }
@@ -1292,12 +1292,12 @@ impl Message2MultiplexorM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_h_raw(&self) -> u8 {
+    pub fn bit_h_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[38..39].load_le::<u8>()
     }
     /// Set raw value of 'BIT_H'
     #[inline(always)]
-    pub fn set_bit_h_raw(&mut self, value: u8) {
+    pub fn set_bit_h_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[38..39].store_le(value);
     }
     /// Set value of 'BIT_H'
@@ -1315,7 +1315,7 @@ impl Message2MultiplexorM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_b(&self) -> bool {
-        self.bit_b_phys()
+        self.bit_b_phys_val()
     }
     /// Get physical value of 'BIT_B'
     ///
@@ -1323,7 +1323,7 @@ impl Message2MultiplexorM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_b_phys(&self) -> bool {
+    pub fn bit_b_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[33..34].load_le::<u8>();
         signal == 1
     }
@@ -1334,12 +1334,12 @@ impl Message2MultiplexorM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_b_raw(&self) -> u8 {
+    pub fn bit_b_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[33..34].load_le::<u8>()
     }
     /// Set raw value of 'BIT_B'
     #[inline(always)]
-    pub fn set_bit_b_raw(&mut self, value: u8) {
+    pub fn set_bit_b_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[33..34].store_le(value);
     }
     /// Set value of 'BIT_B'
@@ -1357,7 +1357,7 @@ impl Message2MultiplexorM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_d(&self) -> bool {
-        self.bit_d_phys()
+        self.bit_d_phys_val()
     }
     /// Get physical value of 'BIT_D'
     ///
@@ -1365,7 +1365,7 @@ impl Message2MultiplexorM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_d_phys(&self) -> bool {
+    pub fn bit_d_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[32..33].load_le::<u8>();
         signal == 1
     }
@@ -1376,12 +1376,12 @@ impl Message2MultiplexorM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_d_raw(&self) -> u8 {
+    pub fn bit_d_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..33].load_le::<u8>()
     }
     /// Set raw value of 'BIT_D'
     #[inline(always)]
-    pub fn set_bit_d_raw(&mut self, value: u8) {
+    pub fn set_bit_d_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..33].store_le(value);
     }
     /// Set value of 'BIT_D'
@@ -1399,7 +1399,7 @@ impl Message2MultiplexorM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_e(&self) -> bool {
-        self.bit_e_phys()
+        self.bit_e_phys_val()
     }
     /// Get physical value of 'BIT_E'
     ///
@@ -1407,7 +1407,7 @@ impl Message2MultiplexorM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_e_phys(&self) -> bool {
+    pub fn bit_e_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[29..30].load_le::<u8>();
         signal == 1
     }
@@ -1418,12 +1418,12 @@ impl Message2MultiplexorM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_e_raw(&self) -> u8 {
+    pub fn bit_e_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[29..30].load_le::<u8>()
     }
     /// Set raw value of 'BIT_E'
     #[inline(always)]
-    pub fn set_bit_e_raw(&mut self, value: u8) {
+    pub fn set_bit_e_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[29..30].store_le(value);
     }
     /// Set value of 'BIT_E'
@@ -1441,7 +1441,7 @@ impl Message2MultiplexorM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_k(&self) -> bool {
-        self.bit_k_phys()
+        self.bit_k_phys_val()
     }
     /// Get physical value of 'BIT_K'
     ///
@@ -1449,7 +1449,7 @@ impl Message2MultiplexorM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_k_phys(&self) -> bool {
+    pub fn bit_k_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[28..29].load_le::<u8>();
         signal == 1
     }
@@ -1460,12 +1460,12 @@ impl Message2MultiplexorM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_k_raw(&self) -> u8 {
+    pub fn bit_k_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[28..29].load_le::<u8>()
     }
     /// Set raw value of 'BIT_K'
     #[inline(always)]
-    pub fn set_bit_k_raw(&mut self, value: u8) {
+    pub fn set_bit_k_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[28..29].store_le(value);
     }
     /// Set value of 'BIT_K'
@@ -1483,7 +1483,7 @@ impl Message2MultiplexorM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_a(&self) -> bool {
-        self.bit_a_phys()
+        self.bit_a_phys_val()
     }
     /// Get physical value of 'BIT_A'
     ///
@@ -1491,7 +1491,7 @@ impl Message2MultiplexorM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_a_phys(&self) -> bool {
+    pub fn bit_a_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[26..27].load_le::<u8>();
         signal == 1
     }
@@ -1502,12 +1502,12 @@ impl Message2MultiplexorM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_a_raw(&self) -> u8 {
+    pub fn bit_a_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[26..27].load_le::<u8>()
     }
     /// Set raw value of 'BIT_A'
     #[inline(always)]
-    pub fn set_bit_a_raw(&mut self, value: u8) {
+    pub fn set_bit_a_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[26..27].store_le(value);
     }
     /// Set value of 'BIT_A'
@@ -1558,7 +1558,7 @@ impl Message3 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn multiplexor_phys(&self) -> u8 {
+    pub fn multiplexor_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[2..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1570,17 +1570,17 @@ impl Message3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn multiplexor_raw(&self) -> u8 {
+    pub fn multiplexor_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..8].load_le::<u8>()
     }
     /// Set raw value of 'Multiplexor'
     #[allow(dead_code)]
     #[inline(always)]
-    fn set_multiplexor_raw(&mut self, value: u8) {
+    fn set_multiplexor_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..8].store_le(value);
     }
     pub fn multiplexor(&mut self) -> Result<Message3MultiplexorIndex, CanError> {
-        match self.multiplexor_phys() {
+        match self.multiplexor_phys_val() {
             8 => {
                 Ok(
                     Message3MultiplexorIndex::M8(Message3MultiplexorM8 {
@@ -1709,7 +1709,7 @@ impl Message3MultiplexorM8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_l(&self) -> bool {
-        self.bit_l_phys()
+        self.bit_l_phys_val()
     }
     /// Get physical value of 'BIT_L'
     ///
@@ -1717,7 +1717,7 @@ impl Message3MultiplexorM8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_l_phys(&self) -> bool {
+    pub fn bit_l_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[24..25].load_le::<u8>();
         signal == 1
     }
@@ -1728,12 +1728,12 @@ impl Message3MultiplexorM8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_l_raw(&self) -> u8 {
+    pub fn bit_l_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..25].load_le::<u8>()
     }
     /// Set raw value of 'BIT_L'
     #[inline(always)]
-    pub fn set_bit_l_raw(&mut self, value: u8) {
+    pub fn set_bit_l_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..25].store_le(value);
     }
     /// Set value of 'BIT_L'
@@ -1751,7 +1751,7 @@ impl Message3MultiplexorM8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_g(&self) -> bool {
-        self.bit_g_phys()
+        self.bit_g_phys_val()
     }
     /// Get physical value of 'BIT_G'
     ///
@@ -1759,7 +1759,7 @@ impl Message3MultiplexorM8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_g_phys(&self) -> bool {
+    pub fn bit_g_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[23..24].load_le::<u8>();
         signal == 1
     }
@@ -1770,12 +1770,12 @@ impl Message3MultiplexorM8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_g_raw(&self) -> u8 {
+    pub fn bit_g_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[23..24].load_le::<u8>()
     }
     /// Set raw value of 'BIT_G'
     #[inline(always)]
-    pub fn set_bit_g_raw(&mut self, value: u8) {
+    pub fn set_bit_g_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[23..24].store_le(value);
     }
     /// Set value of 'BIT_G'
@@ -1793,7 +1793,7 @@ impl Message3MultiplexorM8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_c(&self) -> bool {
-        self.bit_c_phys()
+        self.bit_c_phys_val()
     }
     /// Get physical value of 'BIT_C'
     ///
@@ -1801,7 +1801,7 @@ impl Message3MultiplexorM8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_c_phys(&self) -> bool {
+    pub fn bit_c_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[19..20].load_le::<u8>();
         signal == 1
     }
@@ -1812,12 +1812,12 @@ impl Message3MultiplexorM8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_c_raw(&self) -> u8 {
+    pub fn bit_c_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[19..20].load_le::<u8>()
     }
     /// Set raw value of 'BIT_C'
     #[inline(always)]
-    pub fn set_bit_c_raw(&mut self, value: u8) {
+    pub fn set_bit_c_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[19..20].store_le(value);
     }
     /// Set value of 'BIT_C'
@@ -1835,7 +1835,7 @@ impl Message3MultiplexorM8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bit_j(&self) -> bool {
-        self.bit_j_phys()
+        self.bit_j_phys_val()
     }
     /// Get physical value of 'BIT_J'
     ///
@@ -1843,7 +1843,7 @@ impl Message3MultiplexorM8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn bit_j_phys(&self) -> bool {
+    pub fn bit_j_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[18..19].load_le::<u8>();
         signal == 1
     }
@@ -1854,12 +1854,12 @@ impl Message3MultiplexorM8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn bit_j_raw(&self) -> u8 {
+    pub fn bit_j_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[18..19].load_le::<u8>()
     }
     /// Set raw value of 'BIT_J'
     #[inline(always)]
-    pub fn set_bit_j_raw(&mut self, value: u8) {
+    pub fn set_bit_j_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[18..19].store_le(value);
     }
     /// Set value of 'BIT_J'

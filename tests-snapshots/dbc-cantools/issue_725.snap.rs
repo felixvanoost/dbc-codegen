@@ -90,7 +90,7 @@ impl TestMessage {
     /// - Receivers: Node2
     #[inline(always)]
     pub fn signal1(&self) -> u8 {
-        self.signal1_phys()
+        self.signal1_phys_val()
     }
     /// Get physical value of 'Signal1'
     ///
@@ -98,7 +98,7 @@ impl TestMessage {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn signal1_phys(&self) -> u8 {
+    pub fn signal1_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -110,12 +110,12 @@ impl TestMessage {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn signal1_raw(&self) -> u8 {
+    pub fn signal1_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
     }
     /// Set raw value of 'Signal1'
     #[inline(always)]
-    pub fn set_signal1_raw(&mut self, value: u8) {
+    pub fn set_signal1_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'Signal1'

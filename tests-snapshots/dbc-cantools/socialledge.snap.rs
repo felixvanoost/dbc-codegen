@@ -118,7 +118,7 @@ impl DriverHeartbeat {
             0 => DriverHeartbeatDriverHeartbeatCmd::DriverHeartbeatCmdNoop,
             _ => {
                 DriverHeartbeatDriverHeartbeatCmd::_Other(
-                    self.driver_heartbeat_cmd_phys(),
+                    self.driver_heartbeat_cmd_phys_val(),
                 )
             }
         }
@@ -129,7 +129,7 @@ impl DriverHeartbeat {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn driver_heartbeat_cmd_phys(&self) -> u8 {
+    pub fn driver_heartbeat_cmd_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -141,12 +141,12 @@ impl DriverHeartbeat {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn driver_heartbeat_cmd_raw(&self) -> u8 {
+    pub fn driver_heartbeat_cmd_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
     }
     /// Set raw value of 'DRIVER_HEARTBEAT_cmd'
     #[inline(always)]
-    pub fn set_driver_heartbeat_cmd_raw(&mut self, value: u8) {
+    pub fn set_driver_heartbeat_cmd_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'DRIVER_HEARTBEAT_cmd'
@@ -295,7 +295,7 @@ impl IoDebug {
     /// - Receivers: DBG
     #[inline(always)]
     pub fn io_debug_test_unsigned(&self) -> u8 {
-        self.io_debug_test_unsigned_phys()
+        self.io_debug_test_unsigned_phys_val()
     }
     /// Get physical value of 'IO_DEBUG_test_unsigned'
     ///
@@ -303,7 +303,7 @@ impl IoDebug {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn io_debug_test_unsigned_phys(&self) -> u8 {
+    pub fn io_debug_test_unsigned_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -315,12 +315,12 @@ impl IoDebug {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn io_debug_test_unsigned_raw(&self) -> u8 {
+    pub fn io_debug_test_unsigned_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
     }
     /// Set raw value of 'IO_DEBUG_test_unsigned'
     #[inline(always)]
-    pub fn set_io_debug_test_unsigned_raw(&mut self, value: u8) {
+    pub fn set_io_debug_test_unsigned_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'IO_DEBUG_test_unsigned'
@@ -353,7 +353,7 @@ impl IoDebug {
         match signal {
             2 => IoDebugIoDebugTestEnum::IoDebugTest2EnumTwo,
             1 => IoDebugIoDebugTestEnum::IoDebugTest2EnumOne,
-            _ => IoDebugIoDebugTestEnum::_Other(self.io_debug_test_enum_phys()),
+            _ => IoDebugIoDebugTestEnum::_Other(self.io_debug_test_enum_phys_val()),
         }
     }
     /// Get physical value of 'IO_DEBUG_test_enum'
@@ -362,7 +362,7 @@ impl IoDebug {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn io_debug_test_enum_phys(&self) -> u8 {
+    pub fn io_debug_test_enum_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -374,12 +374,12 @@ impl IoDebug {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn io_debug_test_enum_raw(&self) -> u8 {
+    pub fn io_debug_test_enum_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'IO_DEBUG_test_enum'
     #[inline(always)]
-    pub fn set_io_debug_test_enum_raw(&mut self, value: u8) {
+    pub fn set_io_debug_test_enum_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'IO_DEBUG_test_enum'
@@ -412,7 +412,7 @@ impl IoDebug {
     /// - Receivers: DBG
     #[inline(always)]
     pub fn io_debug_test_signed(&self) -> i8 {
-        self.io_debug_test_signed_phys()
+        self.io_debug_test_signed_phys_val()
     }
     /// Get physical value of 'IO_DEBUG_test_signed'
     ///
@@ -420,7 +420,7 @@ impl IoDebug {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn io_debug_test_signed_phys(&self) -> i8 {
+    pub fn io_debug_test_signed_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -433,12 +433,12 @@ impl IoDebug {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn io_debug_test_signed_raw(&self) -> i8 {
+    pub fn io_debug_test_signed_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>()
     }
     /// Set raw value of 'IO_DEBUG_test_signed'
     #[inline(always)]
-    pub fn set_io_debug_test_signed_raw(&mut self, value: i8) {
+    pub fn set_io_debug_test_signed_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
@@ -469,7 +469,7 @@ impl IoDebug {
     /// - Receivers: DBG
     #[inline(always)]
     pub fn io_debug_test_float(&self) -> f32 {
-        self.io_debug_test_float_phys()
+        self.io_debug_test_float_phys_val()
     }
     /// Get physical value of 'IO_DEBUG_test_float'
     ///
@@ -477,7 +477,7 @@ impl IoDebug {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn io_debug_test_float_phys(&self) -> f32 {
+    pub fn io_debug_test_float_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 0.5_f32;
         let offset = 0_f32;
@@ -490,12 +490,12 @@ impl IoDebug {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn io_debug_test_float_raw(&self) -> u8 {
+    pub fn io_debug_test_float_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'IO_DEBUG_test_float'
     #[inline(always)]
-    pub fn set_io_debug_test_float_raw(&mut self, value: u8) {
+    pub fn set_io_debug_test_float_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'IO_DEBUG_test_float'
@@ -623,7 +623,7 @@ impl MotorCmd {
     /// - Receivers: MOTOR
     #[inline(always)]
     pub fn motor_cmd_steer(&self) -> i8 {
-        self.motor_cmd_steer_phys()
+        self.motor_cmd_steer_phys_val()
     }
     /// Get physical value of 'MOTOR_CMD_steer'
     ///
@@ -631,7 +631,7 @@ impl MotorCmd {
     /// - Offset: -5
     /// - Unit: ""
     #[inline(always)]
-    pub fn motor_cmd_steer_phys(&self) -> i8 {
+    pub fn motor_cmd_steer_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..4].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -644,12 +644,12 @@ impl MotorCmd {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn motor_cmd_steer_raw(&self) -> i8 {
+    pub fn motor_cmd_steer_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..4].load_le::<i8>()
     }
     /// Set raw value of 'MOTOR_CMD_steer'
     #[inline(always)]
-    pub fn set_motor_cmd_steer_raw(&mut self, value: i8) {
+    pub fn set_motor_cmd_steer_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
     }
@@ -680,7 +680,7 @@ impl MotorCmd {
     /// - Receivers: MOTOR
     #[inline(always)]
     pub fn motor_cmd_drive(&self) -> u8 {
-        self.motor_cmd_drive_phys()
+        self.motor_cmd_drive_phys_val()
     }
     /// Get physical value of 'MOTOR_CMD_drive'
     ///
@@ -688,7 +688,7 @@ impl MotorCmd {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn motor_cmd_drive_phys(&self) -> u8 {
+    pub fn motor_cmd_drive_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[4..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -700,12 +700,12 @@ impl MotorCmd {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn motor_cmd_drive_raw(&self) -> u8 {
+    pub fn motor_cmd_drive_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[4..8].load_le::<u8>()
     }
     /// Set raw value of 'MOTOR_CMD_drive'
     #[inline(always)]
-    pub fn set_motor_cmd_drive_raw(&mut self, value: u8) {
+    pub fn set_motor_cmd_drive_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[4..8].store_le(value);
     }
     /// Set value of 'MOTOR_CMD_drive'
@@ -813,7 +813,7 @@ impl MotorStatus {
     /// - Receivers: DRIVER, IO
     #[inline(always)]
     pub fn motor_status_wheel_error(&self) -> bool {
-        self.motor_status_wheel_error_phys()
+        self.motor_status_wheel_error_phys_val()
     }
     /// Get physical value of 'MOTOR_STATUS_wheel_error'
     ///
@@ -821,7 +821,7 @@ impl MotorStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn motor_status_wheel_error_phys(&self) -> bool {
+    pub fn motor_status_wheel_error_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -832,12 +832,12 @@ impl MotorStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn motor_status_wheel_error_raw(&self) -> u8 {
+    pub fn motor_status_wheel_error_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'MOTOR_STATUS_wheel_error'
     #[inline(always)]
-    pub fn set_motor_status_wheel_error_raw(&mut self, value: u8) {
+    pub fn set_motor_status_wheel_error_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'MOTOR_STATUS_wheel_error'
@@ -855,7 +855,7 @@ impl MotorStatus {
     /// - Receivers: DRIVER, IO
     #[inline(always)]
     pub fn motor_status_speed_kph(&self) -> f32 {
-        self.motor_status_speed_kph_phys()
+        self.motor_status_speed_kph_phys_val()
     }
     /// Get physical value of 'MOTOR_STATUS_speed_kph'
     ///
@@ -863,7 +863,7 @@ impl MotorStatus {
     /// - Offset: 0
     /// - Unit: "kph"
     #[inline(always)]
-    pub fn motor_status_speed_kph_phys(&self) -> f32 {
+    pub fn motor_status_speed_kph_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..24].load_le::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -876,12 +876,12 @@ impl MotorStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn motor_status_speed_kph_raw(&self) -> u16 {
+    pub fn motor_status_speed_kph_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[8..24].load_le::<u16>()
     }
     /// Set raw value of 'MOTOR_STATUS_speed_kph'
     #[inline(always)]
-    pub fn set_motor_status_speed_kph_raw(&mut self, value: u16) {
+    pub fn set_motor_status_speed_kph_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[8..24].store_le(value);
     }
     /// Set value of 'MOTOR_STATUS_speed_kph'
@@ -1001,7 +1001,7 @@ impl SensorSonars {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sensor_sonars_mux_phys(&self) -> u8 {
+    pub fn sensor_sonars_mux_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..4].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1013,19 +1013,19 @@ impl SensorSonars {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sensor_sonars_mux_raw(&self) -> u8 {
+    pub fn sensor_sonars_mux_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..4].load_le::<u8>()
     }
     /// Set raw value of 'SENSOR_SONARS_mux'
     #[allow(dead_code)]
     #[inline(always)]
-    fn set_sensor_sonars_mux_raw(&mut self, value: u8) {
+    fn set_sensor_sonars_mux_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
     }
     pub fn sensor_sonars_mux(
         &mut self,
     ) -> Result<SensorSonarsSensorSonarsMuxIndex, CanError> {
-        match self.sensor_sonars_mux_phys() {
+        match self.sensor_sonars_mux_phys_val() {
             0 => {
                 Ok(
                     SensorSonarsSensorSonarsMuxIndex::M0(SensorSonarsSensorSonarsMuxM0 {
@@ -1098,7 +1098,7 @@ impl SensorSonars {
     /// - Receivers: DRIVER, IO
     #[inline(always)]
     pub fn sensor_sonars_err_count(&self) -> u16 {
-        self.sensor_sonars_err_count_phys()
+        self.sensor_sonars_err_count_phys_val()
     }
     /// Get physical value of 'SENSOR_SONARS_err_count'
     ///
@@ -1106,7 +1106,7 @@ impl SensorSonars {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sensor_sonars_err_count_phys(&self) -> u16 {
+    pub fn sensor_sonars_err_count_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[4..16].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1118,12 +1118,12 @@ impl SensorSonars {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sensor_sonars_err_count_raw(&self) -> u16 {
+    pub fn sensor_sonars_err_count_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[4..16].load_le::<u16>()
     }
     /// Set raw value of 'SENSOR_SONARS_err_count'
     #[inline(always)]
-    pub fn set_sensor_sonars_err_count_raw(&mut self, value: u16) {
+    pub fn set_sensor_sonars_err_count_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[4..16].store_le(value);
     }
     /// Set value of 'SENSOR_SONARS_err_count'
@@ -1231,7 +1231,7 @@ impl SensorSonarsSensorSonarsMuxM0 {
     /// - Receivers: DRIVER, IO
     #[inline(always)]
     pub fn sensor_sonars_left(&self) -> f32 {
-        self.sensor_sonars_left_phys()
+        self.sensor_sonars_left_phys_val()
     }
     /// Get physical value of 'SENSOR_SONARS_left'
     ///
@@ -1239,7 +1239,7 @@ impl SensorSonarsSensorSonarsMuxM0 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sensor_sonars_left_phys(&self) -> f32 {
+    pub fn sensor_sonars_left_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..28].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -1252,12 +1252,12 @@ impl SensorSonarsSensorSonarsMuxM0 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sensor_sonars_left_raw(&self) -> u16 {
+    pub fn sensor_sonars_left_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..28].load_le::<u16>()
     }
     /// Set raw value of 'SENSOR_SONARS_left'
     #[inline(always)]
-    pub fn set_sensor_sonars_left_raw(&mut self, value: u16) {
+    pub fn set_sensor_sonars_left_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..28].store_le(value);
     }
     /// Set value of 'SENSOR_SONARS_left'
@@ -1282,7 +1282,7 @@ impl SensorSonarsSensorSonarsMuxM0 {
     /// - Receivers: DRIVER, IO
     #[inline(always)]
     pub fn sensor_sonars_middle(&self) -> f32 {
-        self.sensor_sonars_middle_phys()
+        self.sensor_sonars_middle_phys_val()
     }
     /// Get physical value of 'SENSOR_SONARS_middle'
     ///
@@ -1290,7 +1290,7 @@ impl SensorSonarsSensorSonarsMuxM0 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sensor_sonars_middle_phys(&self) -> f32 {
+    pub fn sensor_sonars_middle_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[28..40].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -1303,12 +1303,12 @@ impl SensorSonarsSensorSonarsMuxM0 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sensor_sonars_middle_raw(&self) -> u16 {
+    pub fn sensor_sonars_middle_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[28..40].load_le::<u16>()
     }
     /// Set raw value of 'SENSOR_SONARS_middle'
     #[inline(always)]
-    pub fn set_sensor_sonars_middle_raw(&mut self, value: u16) {
+    pub fn set_sensor_sonars_middle_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[28..40].store_le(value);
     }
     /// Set value of 'SENSOR_SONARS_middle'
@@ -1333,7 +1333,7 @@ impl SensorSonarsSensorSonarsMuxM0 {
     /// - Receivers: DRIVER, IO
     #[inline(always)]
     pub fn sensor_sonars_right(&self) -> f32 {
-        self.sensor_sonars_right_phys()
+        self.sensor_sonars_right_phys_val()
     }
     /// Get physical value of 'SENSOR_SONARS_right'
     ///
@@ -1341,7 +1341,7 @@ impl SensorSonarsSensorSonarsMuxM0 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sensor_sonars_right_phys(&self) -> f32 {
+    pub fn sensor_sonars_right_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..52].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -1354,12 +1354,12 @@ impl SensorSonarsSensorSonarsMuxM0 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sensor_sonars_right_raw(&self) -> u16 {
+    pub fn sensor_sonars_right_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[40..52].load_le::<u16>()
     }
     /// Set raw value of 'SENSOR_SONARS_right'
     #[inline(always)]
-    pub fn set_sensor_sonars_right_raw(&mut self, value: u16) {
+    pub fn set_sensor_sonars_right_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[40..52].store_le(value);
     }
     /// Set value of 'SENSOR_SONARS_right'
@@ -1384,7 +1384,7 @@ impl SensorSonarsSensorSonarsMuxM0 {
     /// - Receivers: DRIVER, IO
     #[inline(always)]
     pub fn sensor_sonars_rear(&self) -> f32 {
-        self.sensor_sonars_rear_phys()
+        self.sensor_sonars_rear_phys_val()
     }
     /// Get physical value of 'SENSOR_SONARS_rear'
     ///
@@ -1392,7 +1392,7 @@ impl SensorSonarsSensorSonarsMuxM0 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sensor_sonars_rear_phys(&self) -> f32 {
+    pub fn sensor_sonars_rear_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[52..64].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -1405,12 +1405,12 @@ impl SensorSonarsSensorSonarsMuxM0 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sensor_sonars_rear_raw(&self) -> u16 {
+    pub fn sensor_sonars_rear_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[52..64].load_le::<u16>()
     }
     /// Set raw value of 'SENSOR_SONARS_rear'
     #[inline(always)]
-    pub fn set_sensor_sonars_rear_raw(&mut self, value: u16) {
+    pub fn set_sensor_sonars_rear_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[52..64].store_le(value);
     }
     /// Set value of 'SENSOR_SONARS_rear'
@@ -1462,7 +1462,7 @@ impl SensorSonarsSensorSonarsMuxM1 {
     /// - Receivers: DBG
     #[inline(always)]
     pub fn sensor_sonars_no_filt_left(&self) -> f32 {
-        self.sensor_sonars_no_filt_left_phys()
+        self.sensor_sonars_no_filt_left_phys_val()
     }
     /// Get physical value of 'SENSOR_SONARS_no_filt_left'
     ///
@@ -1470,7 +1470,7 @@ impl SensorSonarsSensorSonarsMuxM1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sensor_sonars_no_filt_left_phys(&self) -> f32 {
+    pub fn sensor_sonars_no_filt_left_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..28].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -1483,12 +1483,12 @@ impl SensorSonarsSensorSonarsMuxM1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sensor_sonars_no_filt_left_raw(&self) -> u16 {
+    pub fn sensor_sonars_no_filt_left_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..28].load_le::<u16>()
     }
     /// Set raw value of 'SENSOR_SONARS_no_filt_left'
     #[inline(always)]
-    pub fn set_sensor_sonars_no_filt_left_raw(&mut self, value: u16) {
+    pub fn set_sensor_sonars_no_filt_left_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..28].store_le(value);
     }
     /// Set value of 'SENSOR_SONARS_no_filt_left'
@@ -1516,7 +1516,7 @@ impl SensorSonarsSensorSonarsMuxM1 {
     /// - Receivers: DBG
     #[inline(always)]
     pub fn sensor_sonars_no_filt_middle(&self) -> f32 {
-        self.sensor_sonars_no_filt_middle_phys()
+        self.sensor_sonars_no_filt_middle_phys_val()
     }
     /// Get physical value of 'SENSOR_SONARS_no_filt_middle'
     ///
@@ -1524,7 +1524,7 @@ impl SensorSonarsSensorSonarsMuxM1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sensor_sonars_no_filt_middle_phys(&self) -> f32 {
+    pub fn sensor_sonars_no_filt_middle_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[28..40].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -1537,12 +1537,12 @@ impl SensorSonarsSensorSonarsMuxM1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sensor_sonars_no_filt_middle_raw(&self) -> u16 {
+    pub fn sensor_sonars_no_filt_middle_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[28..40].load_le::<u16>()
     }
     /// Set raw value of 'SENSOR_SONARS_no_filt_middle'
     #[inline(always)]
-    pub fn set_sensor_sonars_no_filt_middle_raw(&mut self, value: u16) {
+    pub fn set_sensor_sonars_no_filt_middle_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[28..40].store_le(value);
     }
     /// Set value of 'SENSOR_SONARS_no_filt_middle'
@@ -1570,7 +1570,7 @@ impl SensorSonarsSensorSonarsMuxM1 {
     /// - Receivers: DBG
     #[inline(always)]
     pub fn sensor_sonars_no_filt_right(&self) -> f32 {
-        self.sensor_sonars_no_filt_right_phys()
+        self.sensor_sonars_no_filt_right_phys_val()
     }
     /// Get physical value of 'SENSOR_SONARS_no_filt_right'
     ///
@@ -1578,7 +1578,7 @@ impl SensorSonarsSensorSonarsMuxM1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sensor_sonars_no_filt_right_phys(&self) -> f32 {
+    pub fn sensor_sonars_no_filt_right_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..52].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -1591,12 +1591,12 @@ impl SensorSonarsSensorSonarsMuxM1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sensor_sonars_no_filt_right_raw(&self) -> u16 {
+    pub fn sensor_sonars_no_filt_right_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[40..52].load_le::<u16>()
     }
     /// Set raw value of 'SENSOR_SONARS_no_filt_right'
     #[inline(always)]
-    pub fn set_sensor_sonars_no_filt_right_raw(&mut self, value: u16) {
+    pub fn set_sensor_sonars_no_filt_right_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[40..52].store_le(value);
     }
     /// Set value of 'SENSOR_SONARS_no_filt_right'
@@ -1624,7 +1624,7 @@ impl SensorSonarsSensorSonarsMuxM1 {
     /// - Receivers: DBG
     #[inline(always)]
     pub fn sensor_sonars_no_filt_rear(&self) -> f32 {
-        self.sensor_sonars_no_filt_rear_phys()
+        self.sensor_sonars_no_filt_rear_phys_val()
     }
     /// Get physical value of 'SENSOR_SONARS_no_filt_rear'
     ///
@@ -1632,7 +1632,7 @@ impl SensorSonarsSensorSonarsMuxM1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn sensor_sonars_no_filt_rear_phys(&self) -> f32 {
+    pub fn sensor_sonars_no_filt_rear_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[52..64].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -1645,12 +1645,12 @@ impl SensorSonarsSensorSonarsMuxM1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sensor_sonars_no_filt_rear_raw(&self) -> u16 {
+    pub fn sensor_sonars_no_filt_rear_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[52..64].load_le::<u16>()
     }
     /// Set raw value of 'SENSOR_SONARS_no_filt_rear'
     #[inline(always)]
-    pub fn set_sensor_sonars_no_filt_rear_raw(&mut self, value: u16) {
+    pub fn set_sensor_sonars_no_filt_rear_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[52..64].store_le(value);
     }
     /// Set value of 'SENSOR_SONARS_no_filt_rear'

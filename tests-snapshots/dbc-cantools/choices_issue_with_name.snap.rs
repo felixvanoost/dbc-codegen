@@ -93,7 +93,9 @@ impl TestMessage {
         match signal {
             1 => TestMessageSignalWithChoices::SignalWithChoicesCmdRespOk,
             0 => TestMessageSignalWithChoices::SignalWithChoicesCmdRespErr,
-            _ => TestMessageSignalWithChoices::_Other(self.signal_with_choices_phys()),
+            _ => {
+                TestMessageSignalWithChoices::_Other(self.signal_with_choices_phys_val())
+            }
         }
     }
     /// Get physical value of 'SignalWithChoices'
@@ -102,7 +104,7 @@ impl TestMessage {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn signal_with_choices_phys(&self) -> bool {
+    pub fn signal_with_choices_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -113,12 +115,12 @@ impl TestMessage {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn signal_with_choices_raw(&self) -> u8 {
+    pub fn signal_with_choices_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'SignalWithChoices'
     #[inline(always)]
-    pub fn set_signal_with_choices_raw(&mut self, value: u8) {
+    pub fn set_signal_with_choices_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'SignalWithChoices'

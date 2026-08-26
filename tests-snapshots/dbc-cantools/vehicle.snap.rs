@@ -1203,7 +1203,7 @@ impl RtSbInsVelBodyAxes {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_vel_sideways_2d(&self) -> f32 {
-        self.ins_vel_sideways_2d_phys()
+        self.ins_vel_sideways_2d_phys_val()
     }
     /// Get physical value of 'INS_Vel_Sideways_2D'
     ///
@@ -1211,7 +1211,7 @@ impl RtSbInsVelBodyAxes {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_sideways_2d_phys(&self) -> f32 {
+    pub fn ins_vel_sideways_2d_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..64].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -1224,12 +1224,12 @@ impl RtSbInsVelBodyAxes {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_vel_sideways_2d_raw(&self) -> i32 {
+    pub fn ins_vel_sideways_2d_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[40..64].load_le::<i32>()
     }
     /// Set raw value of 'INS_Vel_Sideways_2D'
     #[inline(always)]
-    pub fn set_ins_vel_sideways_2d_raw(&mut self, value: i32) {
+    pub fn set_ins_vel_sideways_2d_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[40..64].store_le(value);
     }
@@ -1258,7 +1258,7 @@ impl RtSbInsVelBodyAxes {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_vel_forwards_2d(&self) -> f32 {
-        self.ins_vel_forwards_2d_phys()
+        self.ins_vel_forwards_2d_phys_val()
     }
     /// Get physical value of 'INS_Vel_Forwards_2D'
     ///
@@ -1266,7 +1266,7 @@ impl RtSbInsVelBodyAxes {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_forwards_2d_phys(&self) -> f32 {
+    pub fn ins_vel_forwards_2d_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -1279,12 +1279,12 @@ impl RtSbInsVelBodyAxes {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_vel_forwards_2d_raw(&self) -> i32 {
+    pub fn ins_vel_forwards_2d_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>()
     }
     /// Set raw value of 'INS_Vel_Forwards_2D'
     #[inline(always)]
-    pub fn set_ins_vel_forwards_2d_raw(&mut self, value: i32) {
+    pub fn set_ins_vel_forwards_2d_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..40].store_le(value);
     }
@@ -1313,7 +1313,7 @@ impl RtSbInsVelBodyAxes {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_vel_body(&self) -> u8 {
-        self.accuracy_ins_vel_body_phys()
+        self.accuracy_ins_vel_body_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Vel_Body'
     ///
@@ -1321,7 +1321,7 @@ impl RtSbInsVelBodyAxes {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_vel_body_phys(&self) -> u8 {
+    pub fn accuracy_ins_vel_body_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1333,12 +1333,12 @@ impl RtSbInsVelBodyAxes {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_vel_body_raw(&self) -> u8 {
+    pub fn accuracy_ins_vel_body_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Vel_Body'
     #[inline(always)]
-    pub fn set_accuracy_ins_vel_body_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_vel_body_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Vel_Body'
@@ -1369,7 +1369,7 @@ impl RtSbInsVelBodyAxes {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_vel_sideways(&self) -> bool {
-        self.validity_ins_vel_sideways_phys()
+        self.validity_ins_vel_sideways_phys_val()
     }
     /// Get physical value of 'Validity_INS_Vel_Sideways'
     ///
@@ -1377,7 +1377,7 @@ impl RtSbInsVelBodyAxes {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_vel_sideways_phys(&self) -> bool {
+    pub fn validity_ins_vel_sideways_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -1388,12 +1388,12 @@ impl RtSbInsVelBodyAxes {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_vel_sideways_raw(&self) -> u8 {
+    pub fn validity_ins_vel_sideways_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Vel_Sideways'
     #[inline(always)]
-    pub fn set_validity_ins_vel_sideways_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_vel_sideways_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_INS_Vel_Sideways'
@@ -1416,7 +1416,7 @@ impl RtSbInsVelBodyAxes {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_vel_forwards(&self) -> bool {
-        self.validity_ins_vel_forwards_phys()
+        self.validity_ins_vel_forwards_phys_val()
     }
     /// Get physical value of 'Validity_INS_Vel_Forwards'
     ///
@@ -1424,7 +1424,7 @@ impl RtSbInsVelBodyAxes {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_vel_forwards_phys(&self) -> bool {
+    pub fn validity_ins_vel_forwards_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -1435,12 +1435,12 @@ impl RtSbInsVelBodyAxes {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_vel_forwards_raw(&self) -> u8 {
+    pub fn validity_ins_vel_forwards_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Vel_Forwards'
     #[inline(always)]
-    pub fn set_validity_ins_vel_forwards_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_vel_forwards_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_INS_Vel_Forwards'
@@ -1542,7 +1542,7 @@ impl RtDl1mk3Speed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn speed(&self) -> f32 {
-        self.speed_phys()
+        self.speed_phys_val()
     }
     /// Get physical value of 'Speed'
     ///
@@ -1550,7 +1550,7 @@ impl RtDl1mk3Speed {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn speed_phys(&self) -> f32 {
+    pub fn speed_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..48].load_le::<i32>();
         let factor = 0.00001_f32;
         let offset = 0_f32;
@@ -1563,12 +1563,12 @@ impl RtDl1mk3Speed {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn speed_raw(&self) -> i32 {
+    pub fn speed_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[16..48].load_le::<i32>()
     }
     /// Set raw value of 'Speed'
     #[inline(always)]
-    pub fn set_speed_raw(&mut self, value: i32) {
+    pub fn set_speed_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..48].store_le(value);
     }
@@ -1597,7 +1597,7 @@ impl RtDl1mk3Speed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_speed(&self) -> u8 {
-        self.accuracy_speed_phys()
+        self.accuracy_speed_phys_val()
     }
     /// Get physical value of 'Accuracy_Speed'
     ///
@@ -1605,7 +1605,7 @@ impl RtDl1mk3Speed {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_speed_phys(&self) -> u8 {
+    pub fn accuracy_speed_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1617,12 +1617,12 @@ impl RtDl1mk3Speed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_speed_raw(&self) -> u8 {
+    pub fn accuracy_speed_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_Speed'
     #[inline(always)]
-    pub fn set_accuracy_speed_raw(&mut self, value: u8) {
+    pub fn set_accuracy_speed_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_Speed'
@@ -1653,7 +1653,7 @@ impl RtDl1mk3Speed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_speed(&self) -> bool {
-        self.validity_speed_phys()
+        self.validity_speed_phys_val()
     }
     /// Get physical value of 'Validity_Speed'
     ///
@@ -1661,7 +1661,7 @@ impl RtDl1mk3Speed {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_speed_phys(&self) -> bool {
+    pub fn validity_speed_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -1672,12 +1672,12 @@ impl RtDl1mk3Speed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_speed_raw(&self) -> u8 {
+    pub fn validity_speed_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Speed'
     #[inline(always)]
-    pub fn set_validity_speed_raw(&mut self, value: u8) {
+    pub fn set_validity_speed_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_Speed'
@@ -1782,7 +1782,7 @@ impl RtDl1mk3GpsTime {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_week(&self) -> u16 {
-        self.gps_week_phys()
+        self.gps_week_phys_val()
     }
     /// Get physical value of 'GPS_Week'
     ///
@@ -1790,7 +1790,7 @@ impl RtDl1mk3GpsTime {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn gps_week_phys(&self) -> u16 {
+    pub fn gps_week_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1802,12 +1802,12 @@ impl RtDl1mk3GpsTime {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_week_raw(&self) -> u16 {
+    pub fn gps_week_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>()
     }
     /// Set raw value of 'GPS_Week'
     #[inline(always)]
-    pub fn set_gps_week_raw(&mut self, value: u16) {
+    pub fn set_gps_week_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
     /// Set value of 'GPS_Week'
@@ -1838,7 +1838,7 @@ impl RtDl1mk3GpsTime {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_time(&self) -> f32 {
-        self.gps_time_phys()
+        self.gps_time_phys_val()
     }
     /// Get physical value of 'GPS_Time'
     ///
@@ -1846,7 +1846,7 @@ impl RtDl1mk3GpsTime {
     /// - Offset: 0
     /// - Unit: "s"
     #[inline(always)]
-    pub fn gps_time_phys(&self) -> f32 {
+    pub fn gps_time_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..48].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -1859,12 +1859,12 @@ impl RtDl1mk3GpsTime {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_time_raw(&self) -> u32 {
+    pub fn gps_time_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[16..48].load_le::<u32>()
     }
     /// Set raw value of 'GPS_Time'
     #[inline(always)]
-    pub fn set_gps_time_raw(&mut self, value: u32) {
+    pub fn set_gps_time_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[16..48].store_le(value);
     }
     /// Set value of 'GPS_Time'
@@ -1889,7 +1889,7 @@ impl RtDl1mk3GpsTime {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_time(&self) -> u8 {
-        self.accuracy_gps_time_phys()
+        self.accuracy_gps_time_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Time'
     ///
@@ -1897,7 +1897,7 @@ impl RtDl1mk3GpsTime {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_time_phys(&self) -> u8 {
+    pub fn accuracy_gps_time_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1909,12 +1909,12 @@ impl RtDl1mk3GpsTime {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_time_raw(&self) -> u8 {
+    pub fn accuracy_gps_time_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Time'
     #[inline(always)]
-    pub fn set_accuracy_gps_time_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_time_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Time'
@@ -1945,7 +1945,7 @@ impl RtDl1mk3GpsTime {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_week(&self) -> bool {
-        self.validity_gps_week_phys()
+        self.validity_gps_week_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Week'
     ///
@@ -1953,7 +1953,7 @@ impl RtDl1mk3GpsTime {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_week_phys(&self) -> bool {
+    pub fn validity_gps_week_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -1964,12 +1964,12 @@ impl RtDl1mk3GpsTime {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_week_raw(&self) -> u8 {
+    pub fn validity_gps_week_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Week'
     #[inline(always)]
-    pub fn set_validity_gps_week_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_week_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_GPS_Week'
@@ -1989,7 +1989,7 @@ impl RtDl1mk3GpsTime {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_time(&self) -> bool {
-        self.validity_gps_time_phys()
+        self.validity_gps_time_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Time'
     ///
@@ -1997,7 +1997,7 @@ impl RtDl1mk3GpsTime {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_time_phys(&self) -> bool {
+    pub fn validity_gps_time_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -2008,12 +2008,12 @@ impl RtDl1mk3GpsTime {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_time_raw(&self) -> u8 {
+    pub fn validity_gps_time_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Time'
     #[inline(always)]
-    pub fn set_validity_gps_time_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_time_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_GPS_Time'
@@ -2110,7 +2110,7 @@ impl RtDl1mk3GpsPosLlh2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_pos_llh_altitude(&self) -> f32 {
-        self.gps_pos_llh_altitude_phys()
+        self.gps_pos_llh_altitude_phys_val()
     }
     /// Get physical value of 'GPS_Pos_LLH_Altitude'
     ///
@@ -2118,7 +2118,7 @@ impl RtDl1mk3GpsPosLlh2 {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn gps_pos_llh_altitude_phys(&self) -> f32 {
+    pub fn gps_pos_llh_altitude_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -2131,12 +2131,12 @@ impl RtDl1mk3GpsPosLlh2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_pos_llh_altitude_raw(&self) -> i32 {
+    pub fn gps_pos_llh_altitude_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Pos_LLH_Altitude'
     #[inline(always)]
-    pub fn set_gps_pos_llh_altitude_raw(&mut self, value: i32) {
+    pub fn set_gps_pos_llh_altitude_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
@@ -2163,7 +2163,7 @@ impl RtDl1mk3GpsPosLlh2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_pos_llh_longitude(&self) -> f32 {
-        self.gps_pos_llh_longitude_phys()
+        self.gps_pos_llh_longitude_phys_val()
     }
     /// Get physical value of 'GPS_Pos_LLH_Longitude'
     ///
@@ -2171,7 +2171,7 @@ impl RtDl1mk3GpsPosLlh2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_pos_llh_longitude_phys(&self) -> f32 {
+    pub fn gps_pos_llh_longitude_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 0.0000001_f32;
         let offset = 0_f32;
@@ -2184,12 +2184,12 @@ impl RtDl1mk3GpsPosLlh2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_pos_llh_longitude_raw(&self) -> i32 {
+    pub fn gps_pos_llh_longitude_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Pos_LLH_Longitude'
     #[inline(always)]
-    pub fn set_gps_pos_llh_longitude_raw(&mut self, value: i32) {
+    pub fn set_gps_pos_llh_longitude_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
     }
@@ -2309,7 +2309,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_pos_llh_latitude(&self) -> f32 {
-        self.gps_pos_llh_latitude_phys()
+        self.gps_pos_llh_latitude_phys_val()
     }
     /// Get physical value of 'GPS_Pos_LLH_Latitude'
     ///
@@ -2317,7 +2317,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_pos_llh_latitude_phys(&self) -> f32 {
+    pub fn gps_pos_llh_latitude_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.0000001_f32;
         let offset = 0_f32;
@@ -2330,12 +2330,12 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_pos_llh_latitude_raw(&self) -> i32 {
+    pub fn gps_pos_llh_latitude_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Pos_LLH_Latitude'
     #[inline(always)]
-    pub fn set_gps_pos_llh_latitude_raw(&mut self, value: i32) {
+    pub fn set_gps_pos_llh_latitude_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
@@ -2364,7 +2364,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_pos_llh_altitude(&self) -> u8 {
-        self.accuracy_gps_pos_llh_altitude_phys()
+        self.accuracy_gps_pos_llh_altitude_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Pos_LLH_Altitude'
     ///
@@ -2372,7 +2372,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_altitude_phys(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_altitude_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2384,12 +2384,12 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_altitude_raw(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_altitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Pos_LLH_Altitude'
     #[inline(always)]
-    pub fn set_accuracy_gps_pos_llh_altitude_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_pos_llh_altitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Pos_LLH_Altitude'
@@ -2423,7 +2423,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_pos_llh_longitude(&self) -> u8 {
-        self.accuracy_gps_pos_llh_longitude_phys()
+        self.accuracy_gps_pos_llh_longitude_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Pos_LLH_Longitude'
     ///
@@ -2431,7 +2431,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_longitude_phys(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_longitude_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2443,12 +2443,12 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_longitude_raw(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_longitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Pos_LLH_Longitude'
     #[inline(always)]
-    pub fn set_accuracy_gps_pos_llh_longitude_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_pos_llh_longitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Pos_LLH_Longitude'
@@ -2482,7 +2482,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_pos_llh_latitude(&self) -> u8 {
-        self.accuracy_gps_pos_llh_latitude_phys()
+        self.accuracy_gps_pos_llh_latitude_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Pos_LLH_Latitude'
     ///
@@ -2490,7 +2490,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_latitude_phys(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_latitude_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2502,12 +2502,12 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_latitude_raw(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_latitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Pos_LLH_Latitude'
     #[inline(always)]
-    pub fn set_accuracy_gps_pos_llh_latitude_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_pos_llh_latitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Pos_LLH_Latitude'
@@ -2541,7 +2541,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_pos_llh_altitude(&self) -> bool {
-        self.validity_gps_pos_llh_altitude_phys()
+        self.validity_gps_pos_llh_altitude_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Pos_LLH_Altitude'
     ///
@@ -2549,7 +2549,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_pos_llh_altitude_phys(&self) -> bool {
+    pub fn validity_gps_pos_llh_altitude_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -2560,12 +2560,12 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_pos_llh_altitude_raw(&self) -> u8 {
+    pub fn validity_gps_pos_llh_altitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Pos_LLH_Altitude'
     #[inline(always)]
-    pub fn set_validity_gps_pos_llh_altitude_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_pos_llh_altitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'Validity_GPS_Pos_LLH_Altitude'
@@ -2588,7 +2588,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_pos_llh_longitude(&self) -> bool {
-        self.validity_gps_pos_llh_longitude_phys()
+        self.validity_gps_pos_llh_longitude_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Pos_LLH_Longitude'
     ///
@@ -2596,7 +2596,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_pos_llh_longitude_phys(&self) -> bool {
+    pub fn validity_gps_pos_llh_longitude_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -2607,12 +2607,12 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_pos_llh_longitude_raw(&self) -> u8 {
+    pub fn validity_gps_pos_llh_longitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Pos_LLH_Longitude'
     #[inline(always)]
-    pub fn set_validity_gps_pos_llh_longitude_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_pos_llh_longitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_GPS_Pos_LLH_Longitude'
@@ -2635,7 +2635,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_pos_llh_latitude(&self) -> bool {
-        self.validity_gps_pos_llh_latitude_phys()
+        self.validity_gps_pos_llh_latitude_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Pos_LLH_Latitude'
     ///
@@ -2643,7 +2643,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_pos_llh_latitude_phys(&self) -> bool {
+    pub fn validity_gps_pos_llh_latitude_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -2654,12 +2654,12 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_pos_llh_latitude_raw(&self) -> u8 {
+    pub fn validity_gps_pos_llh_latitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Pos_LLH_Latitude'
     #[inline(always)]
-    pub fn set_validity_gps_pos_llh_latitude_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_pos_llh_latitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_GPS_Pos_LLH_Latitude'
@@ -2769,7 +2769,7 @@ impl RtDl1mk3GpsSpeed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_speed_3d(&self) -> f32 {
-        self.gps_speed_3d_phys()
+        self.gps_speed_3d_phys_val()
     }
     /// Get physical value of 'GPS_Speed_3D'
     ///
@@ -2777,7 +2777,7 @@ impl RtDl1mk3GpsSpeed {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_speed_3d_phys(&self) -> f32 {
+    pub fn gps_speed_3d_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..64].load_le::<u32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -2790,12 +2790,12 @@ impl RtDl1mk3GpsSpeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_speed_3d_raw(&self) -> u32 {
+    pub fn gps_speed_3d_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[40..64].load_le::<u32>()
     }
     /// Set raw value of 'GPS_Speed_3D'
     #[inline(always)]
-    pub fn set_gps_speed_3d_raw(&mut self, value: u32) {
+    pub fn set_gps_speed_3d_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[40..64].store_le(value);
     }
     /// Set value of 'GPS_Speed_3D'
@@ -2822,7 +2822,7 @@ impl RtDl1mk3GpsSpeed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_speed_2d(&self) -> f32 {
-        self.gps_speed_2d_phys()
+        self.gps_speed_2d_phys_val()
     }
     /// Get physical value of 'GPS_Speed_2D'
     ///
@@ -2830,7 +2830,7 @@ impl RtDl1mk3GpsSpeed {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_speed_2d_phys(&self) -> f32 {
+    pub fn gps_speed_2d_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..40].load_le::<u32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -2843,12 +2843,12 @@ impl RtDl1mk3GpsSpeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_speed_2d_raw(&self) -> u32 {
+    pub fn gps_speed_2d_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[16..40].load_le::<u32>()
     }
     /// Set raw value of 'GPS_Speed_2D'
     #[inline(always)]
-    pub fn set_gps_speed_2d_raw(&mut self, value: u32) {
+    pub fn set_gps_speed_2d_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[16..40].store_le(value);
     }
     /// Set value of 'GPS_Speed_2D'
@@ -2875,7 +2875,7 @@ impl RtDl1mk3GpsSpeed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_speed(&self) -> u8 {
-        self.accuracy_gps_speed_phys()
+        self.accuracy_gps_speed_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Speed'
     ///
@@ -2883,7 +2883,7 @@ impl RtDl1mk3GpsSpeed {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_speed_phys(&self) -> u8 {
+    pub fn accuracy_gps_speed_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2895,12 +2895,12 @@ impl RtDl1mk3GpsSpeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_speed_raw(&self) -> u8 {
+    pub fn accuracy_gps_speed_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Speed'
     #[inline(always)]
-    pub fn set_accuracy_gps_speed_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_speed_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Speed'
@@ -2931,7 +2931,7 @@ impl RtDl1mk3GpsSpeed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_speed_3d(&self) -> bool {
-        self.validity_gps_speed_3d_phys()
+        self.validity_gps_speed_3d_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Speed_3D'
     ///
@@ -2939,7 +2939,7 @@ impl RtDl1mk3GpsSpeed {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_speed_3d_phys(&self) -> bool {
+    pub fn validity_gps_speed_3d_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -2950,12 +2950,12 @@ impl RtDl1mk3GpsSpeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_speed_3d_raw(&self) -> u8 {
+    pub fn validity_gps_speed_3d_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Speed_3D'
     #[inline(always)]
-    pub fn set_validity_gps_speed_3d_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_speed_3d_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_GPS_Speed_3D'
@@ -2975,7 +2975,7 @@ impl RtDl1mk3GpsSpeed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_speed_2d(&self) -> bool {
-        self.validity_gps_speed_2d_phys()
+        self.validity_gps_speed_2d_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Speed_2D'
     ///
@@ -2983,7 +2983,7 @@ impl RtDl1mk3GpsSpeed {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_speed_2d_phys(&self) -> bool {
+    pub fn validity_gps_speed_2d_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -2994,12 +2994,12 @@ impl RtDl1mk3GpsSpeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_speed_2d_raw(&self) -> u8 {
+    pub fn validity_gps_speed_2d_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Speed_2D'
     #[inline(always)]
-    pub fn set_validity_gps_speed_2d_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_speed_2d_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_GPS_Speed_2D'
@@ -3090,7 +3090,7 @@ impl RtIrTempTemp7 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_7(&self) -> f32 {
-        self.ir_temperature_7_phys()
+        self.ir_temperature_7_phys_val()
     }
     /// Get physical value of 'IR_Temperature_7'
     ///
@@ -3098,7 +3098,7 @@ impl RtIrTempTemp7 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_7_phys(&self) -> f32 {
+    pub fn ir_temperature_7_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3111,12 +3111,12 @@ impl RtIrTempTemp7 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_7_raw(&self) -> i16 {
+    pub fn ir_temperature_7_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_7'
     #[inline(always)]
-    pub fn set_ir_temperature_7_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_7_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -3230,7 +3230,7 @@ impl RtIrTempTempRr2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_32(&self) -> f32 {
-        self.ir_temperature_32_phys()
+        self.ir_temperature_32_phys_val()
     }
     /// Get physical value of 'IR_Temperature_32'
     ///
@@ -3238,7 +3238,7 @@ impl RtIrTempTempRr2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_32_phys(&self) -> f32 {
+    pub fn ir_temperature_32_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3251,12 +3251,12 @@ impl RtIrTempTempRr2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_32_raw(&self) -> i16 {
+    pub fn ir_temperature_32_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_32'
     #[inline(always)]
-    pub fn set_ir_temperature_32_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_32_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -3283,7 +3283,7 @@ impl RtIrTempTempRr2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_31(&self) -> f32 {
-        self.ir_temperature_31_phys()
+        self.ir_temperature_31_phys_val()
     }
     /// Get physical value of 'IR_Temperature_31'
     ///
@@ -3291,7 +3291,7 @@ impl RtIrTempTempRr2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_31_phys(&self) -> f32 {
+    pub fn ir_temperature_31_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3304,12 +3304,12 @@ impl RtIrTempTempRr2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_31_raw(&self) -> i16 {
+    pub fn ir_temperature_31_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_31'
     #[inline(always)]
-    pub fn set_ir_temperature_31_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_31_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -3336,7 +3336,7 @@ impl RtIrTempTempRr2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_30(&self) -> f32 {
-        self.ir_temperature_30_phys()
+        self.ir_temperature_30_phys_val()
     }
     /// Get physical value of 'IR_Temperature_30'
     ///
@@ -3344,7 +3344,7 @@ impl RtIrTempTempRr2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_30_phys(&self) -> f32 {
+    pub fn ir_temperature_30_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3357,12 +3357,12 @@ impl RtIrTempTempRr2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_30_raw(&self) -> i16 {
+    pub fn ir_temperature_30_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_30'
     #[inline(always)]
-    pub fn set_ir_temperature_30_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_30_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -3389,7 +3389,7 @@ impl RtIrTempTempRr2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_29(&self) -> f32 {
-        self.ir_temperature_29_phys()
+        self.ir_temperature_29_phys_val()
     }
     /// Get physical value of 'IR_Temperature_29'
     ///
@@ -3397,7 +3397,7 @@ impl RtIrTempTempRr2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_29_phys(&self) -> f32 {
+    pub fn ir_temperature_29_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3410,12 +3410,12 @@ impl RtIrTempTempRr2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_29_raw(&self) -> i16 {
+    pub fn ir_temperature_29_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_29'
     #[inline(always)]
-    pub fn set_ir_temperature_29_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_29_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -3529,7 +3529,7 @@ impl RtIrTempTempRl2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_24(&self) -> f32 {
-        self.ir_temperature_24_phys()
+        self.ir_temperature_24_phys_val()
     }
     /// Get physical value of 'IR_Temperature_24'
     ///
@@ -3537,7 +3537,7 @@ impl RtIrTempTempRl2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_24_phys(&self) -> f32 {
+    pub fn ir_temperature_24_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3550,12 +3550,12 @@ impl RtIrTempTempRl2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_24_raw(&self) -> i16 {
+    pub fn ir_temperature_24_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_24'
     #[inline(always)]
-    pub fn set_ir_temperature_24_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_24_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -3582,7 +3582,7 @@ impl RtIrTempTempRl2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_23(&self) -> f32 {
-        self.ir_temperature_23_phys()
+        self.ir_temperature_23_phys_val()
     }
     /// Get physical value of 'IR_Temperature_23'
     ///
@@ -3590,7 +3590,7 @@ impl RtIrTempTempRl2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_23_phys(&self) -> f32 {
+    pub fn ir_temperature_23_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3603,12 +3603,12 @@ impl RtIrTempTempRl2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_23_raw(&self) -> i16 {
+    pub fn ir_temperature_23_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_23'
     #[inline(always)]
-    pub fn set_ir_temperature_23_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_23_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -3635,7 +3635,7 @@ impl RtIrTempTempRl2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_22(&self) -> f32 {
-        self.ir_temperature_22_phys()
+        self.ir_temperature_22_phys_val()
     }
     /// Get physical value of 'IR_Temperature_22'
     ///
@@ -3643,7 +3643,7 @@ impl RtIrTempTempRl2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_22_phys(&self) -> f32 {
+    pub fn ir_temperature_22_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3656,12 +3656,12 @@ impl RtIrTempTempRl2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_22_raw(&self) -> i16 {
+    pub fn ir_temperature_22_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_22'
     #[inline(always)]
-    pub fn set_ir_temperature_22_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_22_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -3688,7 +3688,7 @@ impl RtIrTempTempRl2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_21(&self) -> f32 {
-        self.ir_temperature_21_phys()
+        self.ir_temperature_21_phys_val()
     }
     /// Get physical value of 'IR_Temperature_21'
     ///
@@ -3696,7 +3696,7 @@ impl RtIrTempTempRl2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_21_phys(&self) -> f32 {
+    pub fn ir_temperature_21_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3709,12 +3709,12 @@ impl RtIrTempTempRl2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_21_raw(&self) -> i16 {
+    pub fn ir_temperature_21_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_21'
     #[inline(always)]
-    pub fn set_ir_temperature_21_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_21_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -3828,7 +3828,7 @@ impl RtIrTempTempFr2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_16(&self) -> f32 {
-        self.ir_temperature_16_phys()
+        self.ir_temperature_16_phys_val()
     }
     /// Get physical value of 'IR_Temperature_16'
     ///
@@ -3836,7 +3836,7 @@ impl RtIrTempTempFr2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_16_phys(&self) -> f32 {
+    pub fn ir_temperature_16_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3849,12 +3849,12 @@ impl RtIrTempTempFr2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_16_raw(&self) -> i16 {
+    pub fn ir_temperature_16_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_16'
     #[inline(always)]
-    pub fn set_ir_temperature_16_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_16_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -3881,7 +3881,7 @@ impl RtIrTempTempFr2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_15(&self) -> f32 {
-        self.ir_temperature_15_phys()
+        self.ir_temperature_15_phys_val()
     }
     /// Get physical value of 'IR_Temperature_15'
     ///
@@ -3889,7 +3889,7 @@ impl RtIrTempTempFr2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_15_phys(&self) -> f32 {
+    pub fn ir_temperature_15_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3902,12 +3902,12 @@ impl RtIrTempTempFr2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_15_raw(&self) -> i16 {
+    pub fn ir_temperature_15_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_15'
     #[inline(always)]
-    pub fn set_ir_temperature_15_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_15_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -3934,7 +3934,7 @@ impl RtIrTempTempFr2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_14(&self) -> f32 {
-        self.ir_temperature_14_phys()
+        self.ir_temperature_14_phys_val()
     }
     /// Get physical value of 'IR_Temperature_14'
     ///
@@ -3942,7 +3942,7 @@ impl RtIrTempTempFr2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_14_phys(&self) -> f32 {
+    pub fn ir_temperature_14_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3955,12 +3955,12 @@ impl RtIrTempTempFr2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_14_raw(&self) -> i16 {
+    pub fn ir_temperature_14_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_14'
     #[inline(always)]
-    pub fn set_ir_temperature_14_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_14_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -3987,7 +3987,7 @@ impl RtIrTempTempFr2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_13(&self) -> f32 {
-        self.ir_temperature_13_phys()
+        self.ir_temperature_13_phys_val()
     }
     /// Get physical value of 'IR_Temperature_13'
     ///
@@ -3995,7 +3995,7 @@ impl RtIrTempTempFr2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_13_phys(&self) -> f32 {
+    pub fn ir_temperature_13_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4008,12 +4008,12 @@ impl RtIrTempTempFr2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_13_raw(&self) -> i16 {
+    pub fn ir_temperature_13_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_13'
     #[inline(always)]
-    pub fn set_ir_temperature_13_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_13_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -4127,7 +4127,7 @@ impl RtIrTempTempFl2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_8(&self) -> f32 {
-        self.ir_temperature_8_phys()
+        self.ir_temperature_8_phys_val()
     }
     /// Get physical value of 'IR_Temperature_8'
     ///
@@ -4135,7 +4135,7 @@ impl RtIrTempTempFl2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_8_phys(&self) -> f32 {
+    pub fn ir_temperature_8_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4148,12 +4148,12 @@ impl RtIrTempTempFl2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_8_raw(&self) -> i16 {
+    pub fn ir_temperature_8_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_8'
     #[inline(always)]
-    pub fn set_ir_temperature_8_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_8_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -4180,7 +4180,7 @@ impl RtIrTempTempFl2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_7(&self) -> f32 {
-        self.ir_temperature_7_phys()
+        self.ir_temperature_7_phys_val()
     }
     /// Get physical value of 'IR_Temperature_7'
     ///
@@ -4188,7 +4188,7 @@ impl RtIrTempTempFl2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_7_phys(&self) -> f32 {
+    pub fn ir_temperature_7_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4201,12 +4201,12 @@ impl RtIrTempTempFl2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_7_raw(&self) -> i16 {
+    pub fn ir_temperature_7_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_7'
     #[inline(always)]
-    pub fn set_ir_temperature_7_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_7_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -4233,7 +4233,7 @@ impl RtIrTempTempFl2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_6(&self) -> f32 {
-        self.ir_temperature_6_phys()
+        self.ir_temperature_6_phys_val()
     }
     /// Get physical value of 'IR_Temperature_6'
     ///
@@ -4241,7 +4241,7 @@ impl RtIrTempTempFl2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_6_phys(&self) -> f32 {
+    pub fn ir_temperature_6_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4254,12 +4254,12 @@ impl RtIrTempTempFl2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_6_raw(&self) -> i16 {
+    pub fn ir_temperature_6_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_6'
     #[inline(always)]
-    pub fn set_ir_temperature_6_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_6_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -4286,7 +4286,7 @@ impl RtIrTempTempFl2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_5(&self) -> f32 {
-        self.ir_temperature_5_phys()
+        self.ir_temperature_5_phys_val()
     }
     /// Get physical value of 'IR_Temperature_5'
     ///
@@ -4294,7 +4294,7 @@ impl RtIrTempTempFl2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_5_phys(&self) -> f32 {
+    pub fn ir_temperature_5_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4307,12 +4307,12 @@ impl RtIrTempTempFl2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_5_raw(&self) -> i16 {
+    pub fn ir_temperature_5_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_5'
     #[inline(always)]
-    pub fn set_ir_temperature_5_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_5_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -4426,7 +4426,7 @@ impl RtIrTempTempRr1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_28(&self) -> f32 {
-        self.ir_temperature_28_phys()
+        self.ir_temperature_28_phys_val()
     }
     /// Get physical value of 'IR_Temperature_28'
     ///
@@ -4434,7 +4434,7 @@ impl RtIrTempTempRr1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_28_phys(&self) -> f32 {
+    pub fn ir_temperature_28_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4447,12 +4447,12 @@ impl RtIrTempTempRr1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_28_raw(&self) -> i16 {
+    pub fn ir_temperature_28_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_28'
     #[inline(always)]
-    pub fn set_ir_temperature_28_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_28_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -4479,7 +4479,7 @@ impl RtIrTempTempRr1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_27(&self) -> f32 {
-        self.ir_temperature_27_phys()
+        self.ir_temperature_27_phys_val()
     }
     /// Get physical value of 'IR_Temperature_27'
     ///
@@ -4487,7 +4487,7 @@ impl RtIrTempTempRr1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_27_phys(&self) -> f32 {
+    pub fn ir_temperature_27_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4500,12 +4500,12 @@ impl RtIrTempTempRr1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_27_raw(&self) -> i16 {
+    pub fn ir_temperature_27_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_27'
     #[inline(always)]
-    pub fn set_ir_temperature_27_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_27_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -4532,7 +4532,7 @@ impl RtIrTempTempRr1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_26(&self) -> f32 {
-        self.ir_temperature_26_phys()
+        self.ir_temperature_26_phys_val()
     }
     /// Get physical value of 'IR_Temperature_26'
     ///
@@ -4540,7 +4540,7 @@ impl RtIrTempTempRr1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_26_phys(&self) -> f32 {
+    pub fn ir_temperature_26_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4553,12 +4553,12 @@ impl RtIrTempTempRr1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_26_raw(&self) -> i16 {
+    pub fn ir_temperature_26_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_26'
     #[inline(always)]
-    pub fn set_ir_temperature_26_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_26_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -4585,7 +4585,7 @@ impl RtIrTempTempRr1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_25(&self) -> f32 {
-        self.ir_temperature_25_phys()
+        self.ir_temperature_25_phys_val()
     }
     /// Get physical value of 'IR_Temperature_25'
     ///
@@ -4593,7 +4593,7 @@ impl RtIrTempTempRr1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_25_phys(&self) -> f32 {
+    pub fn ir_temperature_25_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4606,12 +4606,12 @@ impl RtIrTempTempRr1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_25_raw(&self) -> i16 {
+    pub fn ir_temperature_25_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_25'
     #[inline(always)]
-    pub fn set_ir_temperature_25_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_25_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -4725,7 +4725,7 @@ impl RtIrTempTempRl1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_20(&self) -> f32 {
-        self.ir_temperature_20_phys()
+        self.ir_temperature_20_phys_val()
     }
     /// Get physical value of 'IR_Temperature_20'
     ///
@@ -4733,7 +4733,7 @@ impl RtIrTempTempRl1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_20_phys(&self) -> f32 {
+    pub fn ir_temperature_20_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4746,12 +4746,12 @@ impl RtIrTempTempRl1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_20_raw(&self) -> i16 {
+    pub fn ir_temperature_20_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_20'
     #[inline(always)]
-    pub fn set_ir_temperature_20_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_20_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -4778,7 +4778,7 @@ impl RtIrTempTempRl1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_19(&self) -> f32 {
-        self.ir_temperature_19_phys()
+        self.ir_temperature_19_phys_val()
     }
     /// Get physical value of 'IR_Temperature_19'
     ///
@@ -4786,7 +4786,7 @@ impl RtIrTempTempRl1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_19_phys(&self) -> f32 {
+    pub fn ir_temperature_19_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4799,12 +4799,12 @@ impl RtIrTempTempRl1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_19_raw(&self) -> i16 {
+    pub fn ir_temperature_19_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_19'
     #[inline(always)]
-    pub fn set_ir_temperature_19_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_19_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -4831,7 +4831,7 @@ impl RtIrTempTempRl1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_18(&self) -> f32 {
-        self.ir_temperature_18_phys()
+        self.ir_temperature_18_phys_val()
     }
     /// Get physical value of 'IR_Temperature_18'
     ///
@@ -4839,7 +4839,7 @@ impl RtIrTempTempRl1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_18_phys(&self) -> f32 {
+    pub fn ir_temperature_18_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4852,12 +4852,12 @@ impl RtIrTempTempRl1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_18_raw(&self) -> i16 {
+    pub fn ir_temperature_18_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_18'
     #[inline(always)]
-    pub fn set_ir_temperature_18_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_18_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -4884,7 +4884,7 @@ impl RtIrTempTempRl1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_17(&self) -> f32 {
-        self.ir_temperature_17_phys()
+        self.ir_temperature_17_phys_val()
     }
     /// Get physical value of 'IR_Temperature_17'
     ///
@@ -4892,7 +4892,7 @@ impl RtIrTempTempRl1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_17_phys(&self) -> f32 {
+    pub fn ir_temperature_17_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4905,12 +4905,12 @@ impl RtIrTempTempRl1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_17_raw(&self) -> i16 {
+    pub fn ir_temperature_17_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_17'
     #[inline(always)]
-    pub fn set_ir_temperature_17_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_17_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -5024,7 +5024,7 @@ impl RtIrTempTempFr1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_12(&self) -> f32 {
-        self.ir_temperature_12_phys()
+        self.ir_temperature_12_phys_val()
     }
     /// Get physical value of 'IR_Temperature_12'
     ///
@@ -5032,7 +5032,7 @@ impl RtIrTempTempFr1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_12_phys(&self) -> f32 {
+    pub fn ir_temperature_12_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5045,12 +5045,12 @@ impl RtIrTempTempFr1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_12_raw(&self) -> i16 {
+    pub fn ir_temperature_12_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_12'
     #[inline(always)]
-    pub fn set_ir_temperature_12_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_12_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -5077,7 +5077,7 @@ impl RtIrTempTempFr1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_11(&self) -> f32 {
-        self.ir_temperature_11_phys()
+        self.ir_temperature_11_phys_val()
     }
     /// Get physical value of 'IR_Temperature_11'
     ///
@@ -5085,7 +5085,7 @@ impl RtIrTempTempFr1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_11_phys(&self) -> f32 {
+    pub fn ir_temperature_11_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5098,12 +5098,12 @@ impl RtIrTempTempFr1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_11_raw(&self) -> i16 {
+    pub fn ir_temperature_11_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_11'
     #[inline(always)]
-    pub fn set_ir_temperature_11_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_11_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -5130,7 +5130,7 @@ impl RtIrTempTempFr1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_10(&self) -> f32 {
-        self.ir_temperature_10_phys()
+        self.ir_temperature_10_phys_val()
     }
     /// Get physical value of 'IR_Temperature_10'
     ///
@@ -5138,7 +5138,7 @@ impl RtIrTempTempFr1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_10_phys(&self) -> f32 {
+    pub fn ir_temperature_10_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5151,12 +5151,12 @@ impl RtIrTempTempFr1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_10_raw(&self) -> i16 {
+    pub fn ir_temperature_10_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_10'
     #[inline(always)]
-    pub fn set_ir_temperature_10_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_10_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -5183,7 +5183,7 @@ impl RtIrTempTempFr1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_9(&self) -> f32 {
-        self.ir_temperature_9_phys()
+        self.ir_temperature_9_phys_val()
     }
     /// Get physical value of 'IR_Temperature_9'
     ///
@@ -5191,7 +5191,7 @@ impl RtIrTempTempFr1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_9_phys(&self) -> f32 {
+    pub fn ir_temperature_9_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5204,12 +5204,12 @@ impl RtIrTempTempFr1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_9_raw(&self) -> i16 {
+    pub fn ir_temperature_9_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_9'
     #[inline(always)]
-    pub fn set_ir_temperature_9_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_9_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -5323,7 +5323,7 @@ impl RtIrTempTempFl1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_4(&self) -> f32 {
-        self.ir_temperature_4_phys()
+        self.ir_temperature_4_phys_val()
     }
     /// Get physical value of 'IR_Temperature_4'
     ///
@@ -5331,7 +5331,7 @@ impl RtIrTempTempFl1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_4_phys(&self) -> f32 {
+    pub fn ir_temperature_4_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5344,12 +5344,12 @@ impl RtIrTempTempFl1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_4_raw(&self) -> i16 {
+    pub fn ir_temperature_4_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_4'
     #[inline(always)]
-    pub fn set_ir_temperature_4_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_4_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -5376,7 +5376,7 @@ impl RtIrTempTempFl1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_3(&self) -> f32 {
-        self.ir_temperature_3_phys()
+        self.ir_temperature_3_phys_val()
     }
     /// Get physical value of 'IR_Temperature_3'
     ///
@@ -5384,7 +5384,7 @@ impl RtIrTempTempFl1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_3_phys(&self) -> f32 {
+    pub fn ir_temperature_3_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5397,12 +5397,12 @@ impl RtIrTempTempFl1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_3_raw(&self) -> i16 {
+    pub fn ir_temperature_3_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_3'
     #[inline(always)]
-    pub fn set_ir_temperature_3_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_3_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -5429,7 +5429,7 @@ impl RtIrTempTempFl1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_2(&self) -> f32 {
-        self.ir_temperature_2_phys()
+        self.ir_temperature_2_phys_val()
     }
     /// Get physical value of 'IR_Temperature_2'
     ///
@@ -5437,7 +5437,7 @@ impl RtIrTempTempFl1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_2_phys(&self) -> f32 {
+    pub fn ir_temperature_2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5450,12 +5450,12 @@ impl RtIrTempTempFl1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_2_raw(&self) -> i16 {
+    pub fn ir_temperature_2_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_2'
     #[inline(always)]
-    pub fn set_ir_temperature_2_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_2_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -5482,7 +5482,7 @@ impl RtIrTempTempFl1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_1(&self) -> f32 {
-        self.ir_temperature_1_phys()
+        self.ir_temperature_1_phys_val()
     }
     /// Get physical value of 'IR_Temperature_1'
     ///
@@ -5490,7 +5490,7 @@ impl RtIrTempTempFl1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_1_phys(&self) -> f32 {
+    pub fn ir_temperature_1_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5503,12 +5503,12 @@ impl RtIrTempTempFl1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_1_raw(&self) -> i16 {
+    pub fn ir_temperature_1_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_1'
     #[inline(always)]
-    pub fn set_ir_temperature_1_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_1_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -5608,7 +5608,7 @@ impl RtIrTempTemp32 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_32(&self) -> f32 {
-        self.ir_temperature_32_phys()
+        self.ir_temperature_32_phys_val()
     }
     /// Get physical value of 'IR_Temperature_32'
     ///
@@ -5616,7 +5616,7 @@ impl RtIrTempTemp32 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_32_phys(&self) -> f32 {
+    pub fn ir_temperature_32_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5629,12 +5629,12 @@ impl RtIrTempTemp32 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_32_raw(&self) -> i16 {
+    pub fn ir_temperature_32_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_32'
     #[inline(always)]
-    pub fn set_ir_temperature_32_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_32_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -5734,7 +5734,7 @@ impl RtIrTempTemp31 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_31(&self) -> f32 {
-        self.ir_temperature_31_phys()
+        self.ir_temperature_31_phys_val()
     }
     /// Get physical value of 'IR_Temperature_31'
     ///
@@ -5742,7 +5742,7 @@ impl RtIrTempTemp31 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_31_phys(&self) -> f32 {
+    pub fn ir_temperature_31_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5755,12 +5755,12 @@ impl RtIrTempTemp31 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_31_raw(&self) -> i16 {
+    pub fn ir_temperature_31_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_31'
     #[inline(always)]
-    pub fn set_ir_temperature_31_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_31_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -5860,7 +5860,7 @@ impl RtIrTempTemp30 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_30(&self) -> f32 {
-        self.ir_temperature_30_phys()
+        self.ir_temperature_30_phys_val()
     }
     /// Get physical value of 'IR_Temperature_30'
     ///
@@ -5868,7 +5868,7 @@ impl RtIrTempTemp30 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_30_phys(&self) -> f32 {
+    pub fn ir_temperature_30_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5881,12 +5881,12 @@ impl RtIrTempTemp30 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_30_raw(&self) -> i16 {
+    pub fn ir_temperature_30_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_30'
     #[inline(always)]
-    pub fn set_ir_temperature_30_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_30_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -5986,7 +5986,7 @@ impl RtIrTempTemp29 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_29(&self) -> f32 {
-        self.ir_temperature_29_phys()
+        self.ir_temperature_29_phys_val()
     }
     /// Get physical value of 'IR_Temperature_29'
     ///
@@ -5994,7 +5994,7 @@ impl RtIrTempTemp29 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_29_phys(&self) -> f32 {
+    pub fn ir_temperature_29_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6007,12 +6007,12 @@ impl RtIrTempTemp29 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_29_raw(&self) -> i16 {
+    pub fn ir_temperature_29_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_29'
     #[inline(always)]
-    pub fn set_ir_temperature_29_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_29_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -6112,7 +6112,7 @@ impl RtIrTempTemp28 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_28(&self) -> f32 {
-        self.ir_temperature_28_phys()
+        self.ir_temperature_28_phys_val()
     }
     /// Get physical value of 'IR_Temperature_28'
     ///
@@ -6120,7 +6120,7 @@ impl RtIrTempTemp28 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_28_phys(&self) -> f32 {
+    pub fn ir_temperature_28_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6133,12 +6133,12 @@ impl RtIrTempTemp28 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_28_raw(&self) -> i16 {
+    pub fn ir_temperature_28_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_28'
     #[inline(always)]
-    pub fn set_ir_temperature_28_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_28_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -6238,7 +6238,7 @@ impl RtIrTempTemp27 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_27(&self) -> f32 {
-        self.ir_temperature_27_phys()
+        self.ir_temperature_27_phys_val()
     }
     /// Get physical value of 'IR_Temperature_27'
     ///
@@ -6246,7 +6246,7 @@ impl RtIrTempTemp27 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_27_phys(&self) -> f32 {
+    pub fn ir_temperature_27_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6259,12 +6259,12 @@ impl RtIrTempTemp27 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_27_raw(&self) -> i16 {
+    pub fn ir_temperature_27_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_27'
     #[inline(always)]
-    pub fn set_ir_temperature_27_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_27_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -6364,7 +6364,7 @@ impl RtIrTempTemp26 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_26(&self) -> f32 {
-        self.ir_temperature_26_phys()
+        self.ir_temperature_26_phys_val()
     }
     /// Get physical value of 'IR_Temperature_26'
     ///
@@ -6372,7 +6372,7 @@ impl RtIrTempTemp26 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_26_phys(&self) -> f32 {
+    pub fn ir_temperature_26_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6385,12 +6385,12 @@ impl RtIrTempTemp26 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_26_raw(&self) -> i16 {
+    pub fn ir_temperature_26_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_26'
     #[inline(always)]
-    pub fn set_ir_temperature_26_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_26_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -6490,7 +6490,7 @@ impl RtIrTempTemp25 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_25(&self) -> f32 {
-        self.ir_temperature_25_phys()
+        self.ir_temperature_25_phys_val()
     }
     /// Get physical value of 'IR_Temperature_25'
     ///
@@ -6498,7 +6498,7 @@ impl RtIrTempTemp25 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_25_phys(&self) -> f32 {
+    pub fn ir_temperature_25_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6511,12 +6511,12 @@ impl RtIrTempTemp25 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_25_raw(&self) -> i16 {
+    pub fn ir_temperature_25_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_25'
     #[inline(always)]
-    pub fn set_ir_temperature_25_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_25_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -6616,7 +6616,7 @@ impl RtIrTempTemp24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_24(&self) -> f32 {
-        self.ir_temperature_24_phys()
+        self.ir_temperature_24_phys_val()
     }
     /// Get physical value of 'IR_Temperature_24'
     ///
@@ -6624,7 +6624,7 @@ impl RtIrTempTemp24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_24_phys(&self) -> f32 {
+    pub fn ir_temperature_24_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6637,12 +6637,12 @@ impl RtIrTempTemp24 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_24_raw(&self) -> i16 {
+    pub fn ir_temperature_24_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_24'
     #[inline(always)]
-    pub fn set_ir_temperature_24_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_24_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -6742,7 +6742,7 @@ impl RtIrTempTemp22 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_22(&self) -> f32 {
-        self.ir_temperature_22_phys()
+        self.ir_temperature_22_phys_val()
     }
     /// Get physical value of 'IR_Temperature_22'
     ///
@@ -6750,7 +6750,7 @@ impl RtIrTempTemp22 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_22_phys(&self) -> f32 {
+    pub fn ir_temperature_22_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6763,12 +6763,12 @@ impl RtIrTempTemp22 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_22_raw(&self) -> i16 {
+    pub fn ir_temperature_22_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_22'
     #[inline(always)]
-    pub fn set_ir_temperature_22_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_22_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -6868,7 +6868,7 @@ impl RtIrTempTemp23 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_23(&self) -> f32 {
-        self.ir_temperature_23_phys()
+        self.ir_temperature_23_phys_val()
     }
     /// Get physical value of 'IR_Temperature_23'
     ///
@@ -6876,7 +6876,7 @@ impl RtIrTempTemp23 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_23_phys(&self) -> f32 {
+    pub fn ir_temperature_23_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6889,12 +6889,12 @@ impl RtIrTempTemp23 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_23_raw(&self) -> i16 {
+    pub fn ir_temperature_23_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_23'
     #[inline(always)]
-    pub fn set_ir_temperature_23_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_23_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -6994,7 +6994,7 @@ impl RtIrTempTemp21 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_21(&self) -> f32 {
-        self.ir_temperature_21_phys()
+        self.ir_temperature_21_phys_val()
     }
     /// Get physical value of 'IR_Temperature_21'
     ///
@@ -7002,7 +7002,7 @@ impl RtIrTempTemp21 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_21_phys(&self) -> f32 {
+    pub fn ir_temperature_21_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7015,12 +7015,12 @@ impl RtIrTempTemp21 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_21_raw(&self) -> i16 {
+    pub fn ir_temperature_21_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_21'
     #[inline(always)]
-    pub fn set_ir_temperature_21_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_21_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -7120,7 +7120,7 @@ impl RtIrTempTemp20 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_20(&self) -> f32 {
-        self.ir_temperature_20_phys()
+        self.ir_temperature_20_phys_val()
     }
     /// Get physical value of 'IR_Temperature_20'
     ///
@@ -7128,7 +7128,7 @@ impl RtIrTempTemp20 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_20_phys(&self) -> f32 {
+    pub fn ir_temperature_20_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7141,12 +7141,12 @@ impl RtIrTempTemp20 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_20_raw(&self) -> i16 {
+    pub fn ir_temperature_20_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_20'
     #[inline(always)]
-    pub fn set_ir_temperature_20_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_20_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -7246,7 +7246,7 @@ impl RtIrTempTemp19 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_19(&self) -> f32 {
-        self.ir_temperature_19_phys()
+        self.ir_temperature_19_phys_val()
     }
     /// Get physical value of 'IR_Temperature_19'
     ///
@@ -7254,7 +7254,7 @@ impl RtIrTempTemp19 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_19_phys(&self) -> f32 {
+    pub fn ir_temperature_19_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7267,12 +7267,12 @@ impl RtIrTempTemp19 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_19_raw(&self) -> i16 {
+    pub fn ir_temperature_19_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_19'
     #[inline(always)]
-    pub fn set_ir_temperature_19_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_19_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -7372,7 +7372,7 @@ impl RtIrTempTemp18 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_18(&self) -> f32 {
-        self.ir_temperature_18_phys()
+        self.ir_temperature_18_phys_val()
     }
     /// Get physical value of 'IR_Temperature_18'
     ///
@@ -7380,7 +7380,7 @@ impl RtIrTempTemp18 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_18_phys(&self) -> f32 {
+    pub fn ir_temperature_18_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7393,12 +7393,12 @@ impl RtIrTempTemp18 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_18_raw(&self) -> i16 {
+    pub fn ir_temperature_18_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_18'
     #[inline(always)]
-    pub fn set_ir_temperature_18_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_18_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -7498,7 +7498,7 @@ impl RtIrTempTemp16 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_16(&self) -> f32 {
-        self.ir_temperature_16_phys()
+        self.ir_temperature_16_phys_val()
     }
     /// Get physical value of 'IR_Temperature_16'
     ///
@@ -7506,7 +7506,7 @@ impl RtIrTempTemp16 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_16_phys(&self) -> f32 {
+    pub fn ir_temperature_16_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7519,12 +7519,12 @@ impl RtIrTempTemp16 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_16_raw(&self) -> i16 {
+    pub fn ir_temperature_16_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_16'
     #[inline(always)]
-    pub fn set_ir_temperature_16_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_16_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -7624,7 +7624,7 @@ impl RtIrTempTemp15 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_15(&self) -> f32 {
-        self.ir_temperature_15_phys()
+        self.ir_temperature_15_phys_val()
     }
     /// Get physical value of 'IR_Temperature_15'
     ///
@@ -7632,7 +7632,7 @@ impl RtIrTempTemp15 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_15_phys(&self) -> f32 {
+    pub fn ir_temperature_15_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7645,12 +7645,12 @@ impl RtIrTempTemp15 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_15_raw(&self) -> i16 {
+    pub fn ir_temperature_15_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_15'
     #[inline(always)]
-    pub fn set_ir_temperature_15_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_15_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -7750,7 +7750,7 @@ impl RtIrTempTemp14 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_14(&self) -> f32 {
-        self.ir_temperature_14_phys()
+        self.ir_temperature_14_phys_val()
     }
     /// Get physical value of 'IR_Temperature_14'
     ///
@@ -7758,7 +7758,7 @@ impl RtIrTempTemp14 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_14_phys(&self) -> f32 {
+    pub fn ir_temperature_14_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7771,12 +7771,12 @@ impl RtIrTempTemp14 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_14_raw(&self) -> i16 {
+    pub fn ir_temperature_14_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_14'
     #[inline(always)]
-    pub fn set_ir_temperature_14_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_14_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -7876,7 +7876,7 @@ impl RtIrTempTemp13 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_13(&self) -> f32 {
-        self.ir_temperature_13_phys()
+        self.ir_temperature_13_phys_val()
     }
     /// Get physical value of 'IR_Temperature_13'
     ///
@@ -7884,7 +7884,7 @@ impl RtIrTempTemp13 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_13_phys(&self) -> f32 {
+    pub fn ir_temperature_13_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7897,12 +7897,12 @@ impl RtIrTempTemp13 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_13_raw(&self) -> i16 {
+    pub fn ir_temperature_13_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_13'
     #[inline(always)]
-    pub fn set_ir_temperature_13_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_13_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -8002,7 +8002,7 @@ impl RtIrTempTemp12 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_12(&self) -> f32 {
-        self.ir_temperature_12_phys()
+        self.ir_temperature_12_phys_val()
     }
     /// Get physical value of 'IR_Temperature_12'
     ///
@@ -8010,7 +8010,7 @@ impl RtIrTempTemp12 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_12_phys(&self) -> f32 {
+    pub fn ir_temperature_12_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8023,12 +8023,12 @@ impl RtIrTempTemp12 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_12_raw(&self) -> i16 {
+    pub fn ir_temperature_12_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_12'
     #[inline(always)]
-    pub fn set_ir_temperature_12_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_12_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -8128,7 +8128,7 @@ impl RtIrTempTemp11 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_11(&self) -> f32 {
-        self.ir_temperature_11_phys()
+        self.ir_temperature_11_phys_val()
     }
     /// Get physical value of 'IR_Temperature_11'
     ///
@@ -8136,7 +8136,7 @@ impl RtIrTempTemp11 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_11_phys(&self) -> f32 {
+    pub fn ir_temperature_11_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8149,12 +8149,12 @@ impl RtIrTempTemp11 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_11_raw(&self) -> i16 {
+    pub fn ir_temperature_11_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_11'
     #[inline(always)]
-    pub fn set_ir_temperature_11_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_11_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -8254,7 +8254,7 @@ impl RtIrTempTemp10 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_10(&self) -> f32 {
-        self.ir_temperature_10_phys()
+        self.ir_temperature_10_phys_val()
     }
     /// Get physical value of 'IR_Temperature_10'
     ///
@@ -8262,7 +8262,7 @@ impl RtIrTempTemp10 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_10_phys(&self) -> f32 {
+    pub fn ir_temperature_10_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8275,12 +8275,12 @@ impl RtIrTempTemp10 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_10_raw(&self) -> i16 {
+    pub fn ir_temperature_10_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_10'
     #[inline(always)]
-    pub fn set_ir_temperature_10_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_10_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -8380,7 +8380,7 @@ impl RtIrTempTemp8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_8(&self) -> f32 {
-        self.ir_temperature_8_phys()
+        self.ir_temperature_8_phys_val()
     }
     /// Get physical value of 'IR_Temperature_8'
     ///
@@ -8388,7 +8388,7 @@ impl RtIrTempTemp8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_8_phys(&self) -> f32 {
+    pub fn ir_temperature_8_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8401,12 +8401,12 @@ impl RtIrTempTemp8 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_8_raw(&self) -> i16 {
+    pub fn ir_temperature_8_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_8'
     #[inline(always)]
-    pub fn set_ir_temperature_8_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_8_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -8506,7 +8506,7 @@ impl RtIrTempTemp9 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_9(&self) -> f32 {
-        self.ir_temperature_9_phys()
+        self.ir_temperature_9_phys_val()
     }
     /// Get physical value of 'IR_Temperature_9'
     ///
@@ -8514,7 +8514,7 @@ impl RtIrTempTemp9 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_9_phys(&self) -> f32 {
+    pub fn ir_temperature_9_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8527,12 +8527,12 @@ impl RtIrTempTemp9 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_9_raw(&self) -> i16 {
+    pub fn ir_temperature_9_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_9'
     #[inline(always)]
-    pub fn set_ir_temperature_9_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_9_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -8632,7 +8632,7 @@ impl RtIrTempTemp17 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_17(&self) -> f32 {
-        self.ir_temperature_17_phys()
+        self.ir_temperature_17_phys_val()
     }
     /// Get physical value of 'IR_Temperature_17'
     ///
@@ -8640,7 +8640,7 @@ impl RtIrTempTemp17 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_17_phys(&self) -> f32 {
+    pub fn ir_temperature_17_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8653,12 +8653,12 @@ impl RtIrTempTemp17 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_17_raw(&self) -> i16 {
+    pub fn ir_temperature_17_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_17'
     #[inline(always)]
-    pub fn set_ir_temperature_17_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_17_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -8758,7 +8758,7 @@ impl RtIrTempTemp6 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_6(&self) -> f32 {
-        self.ir_temperature_6_phys()
+        self.ir_temperature_6_phys_val()
     }
     /// Get physical value of 'IR_Temperature_6'
     ///
@@ -8766,7 +8766,7 @@ impl RtIrTempTemp6 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_6_phys(&self) -> f32 {
+    pub fn ir_temperature_6_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8779,12 +8779,12 @@ impl RtIrTempTemp6 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_6_raw(&self) -> i16 {
+    pub fn ir_temperature_6_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_6'
     #[inline(always)]
-    pub fn set_ir_temperature_6_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_6_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -8884,7 +8884,7 @@ impl RtIrTempTemp5 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_5(&self) -> f32 {
-        self.ir_temperature_5_phys()
+        self.ir_temperature_5_phys_val()
     }
     /// Get physical value of 'IR_Temperature_5'
     ///
@@ -8892,7 +8892,7 @@ impl RtIrTempTemp5 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_5_phys(&self) -> f32 {
+    pub fn ir_temperature_5_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8905,12 +8905,12 @@ impl RtIrTempTemp5 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_5_raw(&self) -> i16 {
+    pub fn ir_temperature_5_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_5'
     #[inline(always)]
-    pub fn set_ir_temperature_5_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_5_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -9010,7 +9010,7 @@ impl RtIrTempTemp4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_4(&self) -> f32 {
-        self.ir_temperature_4_phys()
+        self.ir_temperature_4_phys_val()
     }
     /// Get physical value of 'IR_Temperature_4'
     ///
@@ -9018,7 +9018,7 @@ impl RtIrTempTemp4 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_4_phys(&self) -> f32 {
+    pub fn ir_temperature_4_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -9031,12 +9031,12 @@ impl RtIrTempTemp4 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_4_raw(&self) -> i16 {
+    pub fn ir_temperature_4_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_4'
     #[inline(always)]
-    pub fn set_ir_temperature_4_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_4_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -9136,7 +9136,7 @@ impl RtIrTempTemp3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_3(&self) -> f32 {
-        self.ir_temperature_3_phys()
+        self.ir_temperature_3_phys_val()
     }
     /// Get physical value of 'IR_Temperature_3'
     ///
@@ -9144,7 +9144,7 @@ impl RtIrTempTemp3 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_3_phys(&self) -> f32 {
+    pub fn ir_temperature_3_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -9157,12 +9157,12 @@ impl RtIrTempTemp3 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_3_raw(&self) -> i16 {
+    pub fn ir_temperature_3_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_3'
     #[inline(always)]
-    pub fn set_ir_temperature_3_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_3_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -9262,7 +9262,7 @@ impl RtIrTempTemp2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_2(&self) -> f32 {
-        self.ir_temperature_2_phys()
+        self.ir_temperature_2_phys_val()
     }
     /// Get physical value of 'IR_Temperature_2'
     ///
@@ -9270,7 +9270,7 @@ impl RtIrTempTemp2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_2_phys(&self) -> f32 {
+    pub fn ir_temperature_2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -9283,12 +9283,12 @@ impl RtIrTempTemp2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_2_raw(&self) -> i16 {
+    pub fn ir_temperature_2_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_2'
     #[inline(always)]
-    pub fn set_ir_temperature_2_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_2_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -9388,7 +9388,7 @@ impl RtIrTempTemp1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ir_temperature_1(&self) -> f32 {
-        self.ir_temperature_1_phys()
+        self.ir_temperature_1_phys_val()
     }
     /// Get physical value of 'IR_Temperature_1'
     ///
@@ -9396,7 +9396,7 @@ impl RtIrTempTemp1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ir_temperature_1_phys(&self) -> f32 {
+    pub fn ir_temperature_1_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -9409,12 +9409,12 @@ impl RtIrTempTemp1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ir_temperature_1_raw(&self) -> i16 {
+    pub fn ir_temperature_1_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'IR_Temperature_1'
     #[inline(always)]
-    pub fn set_ir_temperature_1_raw(&mut self, value: i16) {
+    pub fn set_ir_temperature_1_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -9517,7 +9517,7 @@ impl RtSbTrigFinalCondition {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn final_speed(&self) -> f32 {
-        self.final_speed_phys()
+        self.final_speed_phys_val()
     }
     /// Get physical value of 'Final_Speed'
     ///
@@ -9525,7 +9525,7 @@ impl RtSbTrigFinalCondition {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn final_speed_phys(&self) -> f32 {
+    pub fn final_speed_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..32].load_le::<u32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -9538,12 +9538,12 @@ impl RtSbTrigFinalCondition {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn final_speed_raw(&self) -> u32 {
+    pub fn final_speed_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[8..32].load_le::<u32>()
     }
     /// Set raw value of 'Final_Speed'
     #[inline(always)]
-    pub fn set_final_speed_raw(&mut self, value: u32) {
+    pub fn set_final_speed_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[8..32].store_le(value);
     }
     /// Set value of 'Final_Speed'
@@ -9570,7 +9570,7 @@ impl RtSbTrigFinalCondition {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_final_speed(&self) -> bool {
-        self.validity_final_speed_phys()
+        self.validity_final_speed_phys_val()
     }
     /// Get physical value of 'Validity_Final_Speed'
     ///
@@ -9578,7 +9578,7 @@ impl RtSbTrigFinalCondition {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_final_speed_phys(&self) -> bool {
+    pub fn validity_final_speed_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -9589,12 +9589,12 @@ impl RtSbTrigFinalCondition {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_final_speed_raw(&self) -> u8 {
+    pub fn validity_final_speed_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Final_Speed'
     #[inline(always)]
-    pub fn set_validity_final_speed_raw(&mut self, value: u8) {
+    pub fn set_validity_final_speed_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_Final_Speed'
@@ -9703,7 +9703,7 @@ impl RtSbTrigInitialCondition {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn mfdd_end_threshold(&self) -> u8 {
-        self.mfdd_end_threshold_phys()
+        self.mfdd_end_threshold_phys_val()
     }
     /// Get physical value of 'MFDD_End_Threshold'
     ///
@@ -9711,7 +9711,7 @@ impl RtSbTrigInitialCondition {
     /// - Offset: 0
     /// - Unit: "%"
     #[inline(always)]
-    pub fn mfdd_end_threshold_phys(&self) -> u8 {
+    pub fn mfdd_end_threshold_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -9723,12 +9723,12 @@ impl RtSbTrigInitialCondition {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn mfdd_end_threshold_raw(&self) -> u8 {
+    pub fn mfdd_end_threshold_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>()
     }
     /// Set raw value of 'MFDD_End_Threshold'
     #[inline(always)]
-    pub fn set_mfdd_end_threshold_raw(&mut self, value: u8) {
+    pub fn set_mfdd_end_threshold_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
     }
     /// Set value of 'MFDD_End_Threshold'
@@ -9757,7 +9757,7 @@ impl RtSbTrigInitialCondition {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn mfdd_start_threshold(&self) -> u8 {
-        self.mfdd_start_threshold_phys()
+        self.mfdd_start_threshold_phys_val()
     }
     /// Get physical value of 'MFDD_Start_Threshold'
     ///
@@ -9765,7 +9765,7 @@ impl RtSbTrigInitialCondition {
     /// - Offset: 0
     /// - Unit: "%"
     #[inline(always)]
-    pub fn mfdd_start_threshold_phys(&self) -> u8 {
+    pub fn mfdd_start_threshold_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -9777,12 +9777,12 @@ impl RtSbTrigInitialCondition {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn mfdd_start_threshold_raw(&self) -> u8 {
+    pub fn mfdd_start_threshold_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>()
     }
     /// Set raw value of 'MFDD_Start_Threshold'
     #[inline(always)]
-    pub fn set_mfdd_start_threshold_raw(&mut self, value: u8) {
+    pub fn set_mfdd_start_threshold_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
     }
     /// Set value of 'MFDD_Start_Threshold'
@@ -9813,7 +9813,7 @@ impl RtSbTrigInitialCondition {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn initial_heading(&self) -> f32 {
-        self.initial_heading_phys()
+        self.initial_heading_phys_val()
     }
     /// Get physical value of 'Initial_Heading'
     ///
@@ -9821,7 +9821,7 @@ impl RtSbTrigInitialCondition {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn initial_heading_phys(&self) -> f32 {
+    pub fn initial_heading_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -9834,12 +9834,12 @@ impl RtSbTrigInitialCondition {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn initial_heading_raw(&self) -> i16 {
+    pub fn initial_heading_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Initial_Heading'
     #[inline(always)]
-    pub fn set_initial_heading_raw(&mut self, value: i16) {
+    pub fn set_initial_heading_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -9868,7 +9868,7 @@ impl RtSbTrigInitialCondition {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn initial_speed(&self) -> f32 {
-        self.initial_speed_phys()
+        self.initial_speed_phys_val()
     }
     /// Get physical value of 'Initial_Speed'
     ///
@@ -9876,7 +9876,7 @@ impl RtSbTrigInitialCondition {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn initial_speed_phys(&self) -> f32 {
+    pub fn initial_speed_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..32].load_le::<u32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -9889,12 +9889,12 @@ impl RtSbTrigInitialCondition {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn initial_speed_raw(&self) -> u32 {
+    pub fn initial_speed_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[8..32].load_le::<u32>()
     }
     /// Set raw value of 'Initial_Speed'
     #[inline(always)]
-    pub fn set_initial_speed_raw(&mut self, value: u32) {
+    pub fn set_initial_speed_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[8..32].store_le(value);
     }
     /// Set value of 'Initial_Speed'
@@ -9921,7 +9921,7 @@ impl RtSbTrigInitialCondition {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_initial_heading(&self) -> bool {
-        self.validity_initial_heading_phys()
+        self.validity_initial_heading_phys_val()
     }
     /// Get physical value of 'Validity_Initial_Heading'
     ///
@@ -9929,7 +9929,7 @@ impl RtSbTrigInitialCondition {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_initial_heading_phys(&self) -> bool {
+    pub fn validity_initial_heading_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -9940,12 +9940,12 @@ impl RtSbTrigInitialCondition {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_initial_heading_raw(&self) -> u8 {
+    pub fn validity_initial_heading_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Initial_Heading'
     #[inline(always)]
-    pub fn set_validity_initial_heading_raw(&mut self, value: u8) {
+    pub fn set_validity_initial_heading_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_Initial_Heading'
@@ -9965,7 +9965,7 @@ impl RtSbTrigInitialCondition {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_initial_speed(&self) -> bool {
-        self.validity_initial_speed_phys()
+        self.validity_initial_speed_phys_val()
     }
     /// Get physical value of 'Validity_Initial_Speed'
     ///
@@ -9973,7 +9973,7 @@ impl RtSbTrigInitialCondition {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_initial_speed_phys(&self) -> bool {
+    pub fn validity_initial_speed_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -9984,12 +9984,12 @@ impl RtSbTrigInitialCondition {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_initial_speed_raw(&self) -> u8 {
+    pub fn validity_initial_speed_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Initial_Speed'
     #[inline(always)]
-    pub fn set_validity_initial_speed_raw(&mut self, value: u8) {
+    pub fn set_validity_initial_speed_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_Initial_Speed'
@@ -10085,7 +10085,7 @@ impl RtSbTrigDirectDist {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn path_distance_2d(&self) -> f32 {
-        self.path_distance_2d_phys()
+        self.path_distance_2d_phys_val()
     }
     /// Get physical value of 'Path_Distance_2D'
     ///
@@ -10093,7 +10093,7 @@ impl RtSbTrigDirectDist {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn path_distance_2d_phys(&self) -> f32 {
+    pub fn path_distance_2d_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -10106,12 +10106,12 @@ impl RtSbTrigDirectDist {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn path_distance_2d_raw(&self) -> u32 {
+    pub fn path_distance_2d_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>()
     }
     /// Set raw value of 'Path_Distance_2D'
     #[inline(always)]
-    pub fn set_path_distance_2d_raw(&mut self, value: u32) {
+    pub fn set_path_distance_2d_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
     /// Set value of 'Path_Distance_2D'
@@ -10138,7 +10138,7 @@ impl RtSbTrigDirectDist {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn direct_distance(&self) -> f32 {
-        self.direct_distance_phys()
+        self.direct_distance_phys_val()
     }
     /// Get physical value of 'Direct_Distance'
     ///
@@ -10146,7 +10146,7 @@ impl RtSbTrigDirectDist {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn direct_distance_phys(&self) -> f32 {
+    pub fn direct_distance_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -10159,12 +10159,12 @@ impl RtSbTrigDirectDist {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn direct_distance_raw(&self) -> u32 {
+    pub fn direct_distance_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..32].load_le::<u32>()
     }
     /// Set raw value of 'Direct_Distance'
     #[inline(always)]
-    pub fn set_direct_distance_raw(&mut self, value: u32) {
+    pub fn set_direct_distance_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
     }
     /// Set value of 'Direct_Distance'
@@ -10270,7 +10270,7 @@ impl RtSbTrigForwardDist {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn deviation_distance(&self) -> f32 {
-        self.deviation_distance_phys()
+        self.deviation_distance_phys_val()
     }
     /// Get physical value of 'Deviation_Distance'
     ///
@@ -10278,7 +10278,7 @@ impl RtSbTrigForwardDist {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn deviation_distance_phys(&self) -> f32 {
+    pub fn deviation_distance_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -10291,12 +10291,12 @@ impl RtSbTrigForwardDist {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn deviation_distance_raw(&self) -> i32 {
+    pub fn deviation_distance_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>()
     }
     /// Set raw value of 'Deviation_Distance'
     #[inline(always)]
-    pub fn set_deviation_distance_raw(&mut self, value: i32) {
+    pub fn set_deviation_distance_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
@@ -10325,7 +10325,7 @@ impl RtSbTrigForwardDist {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn forward_distance(&self) -> f32 {
-        self.forward_distance_phys()
+        self.forward_distance_phys_val()
     }
     /// Get physical value of 'Forward_Distance'
     ///
@@ -10333,7 +10333,7 @@ impl RtSbTrigForwardDist {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn forward_distance_phys(&self) -> f32 {
+    pub fn forward_distance_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -10346,12 +10346,12 @@ impl RtSbTrigForwardDist {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn forward_distance_raw(&self) -> i32 {
+    pub fn forward_distance_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
     }
     /// Set raw value of 'Forward_Distance'
     #[inline(always)]
-    pub fn set_forward_distance_raw(&mut self, value: i32) {
+    pub fn set_forward_distance_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
     }
@@ -10453,7 +10453,7 @@ impl RtSbTrigPathDist {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn path_distance_3d(&self) -> f32 {
-        self.path_distance_3d_phys()
+        self.path_distance_3d_phys_val()
     }
     /// Get physical value of 'Path_Distance_3D'
     ///
@@ -10461,7 +10461,7 @@ impl RtSbTrigPathDist {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn path_distance_3d_phys(&self) -> f32 {
+    pub fn path_distance_3d_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -10474,12 +10474,12 @@ impl RtSbTrigPathDist {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn path_distance_3d_raw(&self) -> u32 {
+    pub fn path_distance_3d_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..32].load_le::<u32>()
     }
     /// Set raw value of 'Path_Distance_3D'
     #[inline(always)]
-    pub fn set_path_distance_3d_raw(&mut self, value: u32) {
+    pub fn set_path_distance_3d_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
     }
     /// Set value of 'Path_Distance_3D'
@@ -10595,7 +10595,7 @@ impl RtSbTrigAccel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn triggered_time(&self) -> f32 {
-        self.triggered_time_phys()
+        self.triggered_time_phys_val()
     }
     /// Get physical value of 'Triggered_Time'
     ///
@@ -10603,7 +10603,7 @@ impl RtSbTrigAccel {
     /// - Offset: 0
     /// - Unit: "s"
     #[inline(always)]
-    pub fn triggered_time_phys(&self) -> f32 {
+    pub fn triggered_time_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..64].load_le::<u32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -10616,12 +10616,12 @@ impl RtSbTrigAccel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn triggered_time_raw(&self) -> u32 {
+    pub fn triggered_time_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[40..64].load_le::<u32>()
     }
     /// Set raw value of 'Triggered_Time'
     #[inline(always)]
-    pub fn set_triggered_time_raw(&mut self, value: u32) {
+    pub fn set_triggered_time_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[40..64].store_le(value);
     }
     /// Set value of 'Triggered_Time'
@@ -10648,7 +10648,7 @@ impl RtSbTrigAccel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn average_accel(&self) -> f32 {
-        self.average_accel_phys()
+        self.average_accel_phys_val()
     }
     /// Get physical value of 'Average_Accel'
     ///
@@ -10656,7 +10656,7 @@ impl RtSbTrigAccel {
     /// - Offset: 0
     /// - Unit: "g"
     #[inline(always)]
-    pub fn average_accel_phys(&self) -> f32 {
+    pub fn average_accel_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[24..40].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -10669,12 +10669,12 @@ impl RtSbTrigAccel {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn average_accel_raw(&self) -> i16 {
+    pub fn average_accel_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[24..40].load_le::<i16>()
     }
     /// Set raw value of 'Average_Accel'
     #[inline(always)]
-    pub fn set_average_accel_raw(&mut self, value: i16) {
+    pub fn set_average_accel_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[24..40].store_le(value);
     }
@@ -10703,7 +10703,7 @@ impl RtSbTrigAccel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn mfdd(&self) -> f32 {
-        self.mfdd_phys()
+        self.mfdd_phys_val()
     }
     /// Get physical value of 'MFDD'
     ///
@@ -10711,7 +10711,7 @@ impl RtSbTrigAccel {
     /// - Offset: 0
     /// - Unit: "g"
     #[inline(always)]
-    pub fn mfdd_phys(&self) -> f32 {
+    pub fn mfdd_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..24].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -10724,12 +10724,12 @@ impl RtSbTrigAccel {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn mfdd_raw(&self) -> i16 {
+    pub fn mfdd_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[8..24].load_le::<i16>()
     }
     /// Set raw value of 'MFDD'
     #[inline(always)]
-    pub fn set_mfdd_raw(&mut self, value: i16) {
+    pub fn set_mfdd_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..24].store_le(value);
     }
@@ -10758,7 +10758,7 @@ impl RtSbTrigAccel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_triggered_time(&self) -> bool {
-        self.validity_triggered_time_phys()
+        self.validity_triggered_time_phys_val()
     }
     /// Get physical value of 'Validity_Triggered_Time'
     ///
@@ -10766,7 +10766,7 @@ impl RtSbTrigAccel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_triggered_time_phys(&self) -> bool {
+    pub fn validity_triggered_time_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -10777,12 +10777,12 @@ impl RtSbTrigAccel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_triggered_time_raw(&self) -> u8 {
+    pub fn validity_triggered_time_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Triggered_Time'
     #[inline(always)]
-    pub fn set_validity_triggered_time_raw(&mut self, value: u8) {
+    pub fn set_validity_triggered_time_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'Validity_Triggered_Time'
@@ -10802,7 +10802,7 @@ impl RtSbTrigAccel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_average_accel(&self) -> bool {
-        self.validity_average_accel_phys()
+        self.validity_average_accel_phys_val()
     }
     /// Get physical value of 'Validity_Average_Accel'
     ///
@@ -10810,7 +10810,7 @@ impl RtSbTrigAccel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_average_accel_phys(&self) -> bool {
+    pub fn validity_average_accel_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -10821,12 +10821,12 @@ impl RtSbTrigAccel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_average_accel_raw(&self) -> u8 {
+    pub fn validity_average_accel_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Average_Accel'
     #[inline(always)]
-    pub fn set_validity_average_accel_raw(&mut self, value: u8) {
+    pub fn set_validity_average_accel_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_Average_Accel'
@@ -10846,7 +10846,7 @@ impl RtSbTrigAccel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_mfdd(&self) -> bool {
-        self.validity_mfdd_phys()
+        self.validity_mfdd_phys_val()
     }
     /// Get physical value of 'Validity_MFDD'
     ///
@@ -10854,7 +10854,7 @@ impl RtSbTrigAccel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_mfdd_phys(&self) -> bool {
+    pub fn validity_mfdd_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -10865,12 +10865,12 @@ impl RtSbTrigAccel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_mfdd_raw(&self) -> u8 {
+    pub fn validity_mfdd_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_MFDD'
     #[inline(always)]
-    pub fn set_validity_mfdd_raw(&mut self, value: u8) {
+    pub fn set_validity_mfdd_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_MFDD'
@@ -10961,7 +10961,7 @@ impl RtDl1mk3MeasureTime12 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn measured_time_12(&self) -> u32 {
-        self.measured_time_12_phys()
+        self.measured_time_12_phys_val()
     }
     /// Get physical value of 'Measured_Time_12'
     ///
@@ -10969,7 +10969,7 @@ impl RtDl1mk3MeasureTime12 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn measured_time_12_phys(&self) -> u32 {
+    pub fn measured_time_12_phys_val(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -10981,12 +10981,12 @@ impl RtDl1mk3MeasureTime12 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn measured_time_12_raw(&self) -> u32 {
+    pub fn measured_time_12_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Measured_Time_12'
     #[inline(always)]
-    pub fn set_measured_time_12_raw(&mut self, value: u32) {
+    pub fn set_measured_time_12_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Measured_Time_12'
@@ -11088,7 +11088,7 @@ impl RtDl1mk3MeasureTime11 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn measured_time_11(&self) -> u32 {
-        self.measured_time_11_phys()
+        self.measured_time_11_phys_val()
     }
     /// Get physical value of 'Measured_Time_11'
     ///
@@ -11096,7 +11096,7 @@ impl RtDl1mk3MeasureTime11 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn measured_time_11_phys(&self) -> u32 {
+    pub fn measured_time_11_phys_val(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11108,12 +11108,12 @@ impl RtDl1mk3MeasureTime11 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn measured_time_11_raw(&self) -> u32 {
+    pub fn measured_time_11_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Measured_Time_11'
     #[inline(always)]
-    pub fn set_measured_time_11_raw(&mut self, value: u32) {
+    pub fn set_measured_time_11_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Measured_Time_11'
@@ -11215,7 +11215,7 @@ impl RtDl1mk3MeasureTime10 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn measured_time_10(&self) -> u32 {
-        self.measured_time_10_phys()
+        self.measured_time_10_phys_val()
     }
     /// Get physical value of 'Measured_Time_10'
     ///
@@ -11223,7 +11223,7 @@ impl RtDl1mk3MeasureTime10 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn measured_time_10_phys(&self) -> u32 {
+    pub fn measured_time_10_phys_val(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11235,12 +11235,12 @@ impl RtDl1mk3MeasureTime10 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn measured_time_10_raw(&self) -> u32 {
+    pub fn measured_time_10_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Measured_Time_10'
     #[inline(always)]
-    pub fn set_measured_time_10_raw(&mut self, value: u32) {
+    pub fn set_measured_time_10_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Measured_Time_10'
@@ -11342,7 +11342,7 @@ impl RtDl1mk3MeasureTime9 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn measured_time_9(&self) -> u32 {
-        self.measured_time_9_phys()
+        self.measured_time_9_phys_val()
     }
     /// Get physical value of 'Measured_Time_9'
     ///
@@ -11350,7 +11350,7 @@ impl RtDl1mk3MeasureTime9 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn measured_time_9_phys(&self) -> u32 {
+    pub fn measured_time_9_phys_val(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11362,12 +11362,12 @@ impl RtDl1mk3MeasureTime9 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn measured_time_9_raw(&self) -> u32 {
+    pub fn measured_time_9_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Measured_Time_9'
     #[inline(always)]
-    pub fn set_measured_time_9_raw(&mut self, value: u32) {
+    pub fn set_measured_time_9_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Measured_Time_9'
@@ -11469,7 +11469,7 @@ impl RtDl1mk3MeasureTime8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn measured_time_8(&self) -> u32 {
-        self.measured_time_8_phys()
+        self.measured_time_8_phys_val()
     }
     /// Get physical value of 'Measured_Time_8'
     ///
@@ -11477,7 +11477,7 @@ impl RtDl1mk3MeasureTime8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn measured_time_8_phys(&self) -> u32 {
+    pub fn measured_time_8_phys_val(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11489,12 +11489,12 @@ impl RtDl1mk3MeasureTime8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn measured_time_8_raw(&self) -> u32 {
+    pub fn measured_time_8_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Measured_Time_8'
     #[inline(always)]
-    pub fn set_measured_time_8_raw(&mut self, value: u32) {
+    pub fn set_measured_time_8_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Measured_Time_8'
@@ -11596,7 +11596,7 @@ impl RtDl1mk3MeasureTime7 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn measured_time_7(&self) -> u32 {
-        self.measured_time_7_phys()
+        self.measured_time_7_phys_val()
     }
     /// Get physical value of 'Measured_Time_7'
     ///
@@ -11604,7 +11604,7 @@ impl RtDl1mk3MeasureTime7 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn measured_time_7_phys(&self) -> u32 {
+    pub fn measured_time_7_phys_val(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11616,12 +11616,12 @@ impl RtDl1mk3MeasureTime7 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn measured_time_7_raw(&self) -> u32 {
+    pub fn measured_time_7_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Measured_Time_7'
     #[inline(always)]
-    pub fn set_measured_time_7_raw(&mut self, value: u32) {
+    pub fn set_measured_time_7_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Measured_Time_7'
@@ -11723,7 +11723,7 @@ impl RtDl1mk3MeasureTime6 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn measured_time_6(&self) -> u32 {
-        self.measured_time_6_phys()
+        self.measured_time_6_phys_val()
     }
     /// Get physical value of 'Measured_Time_6'
     ///
@@ -11731,7 +11731,7 @@ impl RtDl1mk3MeasureTime6 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn measured_time_6_phys(&self) -> u32 {
+    pub fn measured_time_6_phys_val(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11743,12 +11743,12 @@ impl RtDl1mk3MeasureTime6 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn measured_time_6_raw(&self) -> u32 {
+    pub fn measured_time_6_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Measured_Time_6'
     #[inline(always)]
-    pub fn set_measured_time_6_raw(&mut self, value: u32) {
+    pub fn set_measured_time_6_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Measured_Time_6'
@@ -11850,7 +11850,7 @@ impl RtDl1mk3MeasureTime5 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn measured_time_5(&self) -> u32 {
-        self.measured_time_5_phys()
+        self.measured_time_5_phys_val()
     }
     /// Get physical value of 'Measured_Time_5'
     ///
@@ -11858,7 +11858,7 @@ impl RtDl1mk3MeasureTime5 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn measured_time_5_phys(&self) -> u32 {
+    pub fn measured_time_5_phys_val(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11870,12 +11870,12 @@ impl RtDl1mk3MeasureTime5 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn measured_time_5_raw(&self) -> u32 {
+    pub fn measured_time_5_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Measured_Time_5'
     #[inline(always)]
-    pub fn set_measured_time_5_raw(&mut self, value: u32) {
+    pub fn set_measured_time_5_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Measured_Time_5'
@@ -11977,7 +11977,7 @@ impl RtDl1mk3MeasureTime4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn measured_time_4(&self) -> u32 {
-        self.measured_time_4_phys()
+        self.measured_time_4_phys_val()
     }
     /// Get physical value of 'Measured_Time_4'
     ///
@@ -11985,7 +11985,7 @@ impl RtDl1mk3MeasureTime4 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn measured_time_4_phys(&self) -> u32 {
+    pub fn measured_time_4_phys_val(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11997,12 +11997,12 @@ impl RtDl1mk3MeasureTime4 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn measured_time_4_raw(&self) -> u32 {
+    pub fn measured_time_4_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Measured_Time_4'
     #[inline(always)]
-    pub fn set_measured_time_4_raw(&mut self, value: u32) {
+    pub fn set_measured_time_4_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Measured_Time_4'
@@ -12104,7 +12104,7 @@ impl RtDl1mk3MeasureTime3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn measured_time_3(&self) -> u32 {
-        self.measured_time_3_phys()
+        self.measured_time_3_phys_val()
     }
     /// Get physical value of 'Measured_Time_3'
     ///
@@ -12112,7 +12112,7 @@ impl RtDl1mk3MeasureTime3 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn measured_time_3_phys(&self) -> u32 {
+    pub fn measured_time_3_phys_val(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -12124,12 +12124,12 @@ impl RtDl1mk3MeasureTime3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn measured_time_3_raw(&self) -> u32 {
+    pub fn measured_time_3_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Measured_Time_3'
     #[inline(always)]
-    pub fn set_measured_time_3_raw(&mut self, value: u32) {
+    pub fn set_measured_time_3_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Measured_Time_3'
@@ -12231,7 +12231,7 @@ impl RtDl1mk3MeasureTime2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn measured_time_2(&self) -> u32 {
-        self.measured_time_2_phys()
+        self.measured_time_2_phys_val()
     }
     /// Get physical value of 'Measured_Time_2'
     ///
@@ -12239,7 +12239,7 @@ impl RtDl1mk3MeasureTime2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn measured_time_2_phys(&self) -> u32 {
+    pub fn measured_time_2_phys_val(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -12251,12 +12251,12 @@ impl RtDl1mk3MeasureTime2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn measured_time_2_raw(&self) -> u32 {
+    pub fn measured_time_2_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Measured_Time_2'
     #[inline(always)]
-    pub fn set_measured_time_2_raw(&mut self, value: u32) {
+    pub fn set_measured_time_2_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Measured_Time_2'
@@ -12358,7 +12358,7 @@ impl RtDl1mk3MeasureTime1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn measured_time_1(&self) -> u32 {
-        self.measured_time_1_phys()
+        self.measured_time_1_phys_val()
     }
     /// Get physical value of 'Measured_Time_1'
     ///
@@ -12366,7 +12366,7 @@ impl RtDl1mk3MeasureTime1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn measured_time_1_phys(&self) -> u32 {
+    pub fn measured_time_1_phys_val(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -12378,12 +12378,12 @@ impl RtDl1mk3MeasureTime1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn measured_time_1_raw(&self) -> u32 {
+    pub fn measured_time_1_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Measured_Time_1'
     #[inline(always)]
-    pub fn set_measured_time_1_raw(&mut self, value: u32) {
+    pub fn set_measured_time_1_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Measured_Time_1'
@@ -12485,7 +12485,7 @@ impl RtDl1mk3Rpm {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn rpm(&self) -> u16 {
-        self.rpm_phys()
+        self.rpm_phys_val()
     }
     /// Get physical value of 'RPM'
     ///
@@ -12493,7 +12493,7 @@ impl RtDl1mk3Rpm {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn rpm_phys(&self) -> u16 {
+    pub fn rpm_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -12505,12 +12505,12 @@ impl RtDl1mk3Rpm {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn rpm_raw(&self) -> u16 {
+    pub fn rpm_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'RPM'
     #[inline(always)]
-    pub fn set_rpm_raw(&mut self, value: u16) {
+    pub fn set_rpm_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'RPM'
@@ -12612,7 +12612,7 @@ impl RtDl1mk3Freq4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn frequency_4(&self) -> f32 {
-        self.frequency_4_phys()
+        self.frequency_4_phys_val()
     }
     /// Get physical value of 'Frequency_4'
     ///
@@ -12620,7 +12620,7 @@ impl RtDl1mk3Freq4 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn frequency_4_phys(&self) -> f32 {
+    pub fn frequency_4_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -12633,12 +12633,12 @@ impl RtDl1mk3Freq4 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn frequency_4_raw(&self) -> u16 {
+    pub fn frequency_4_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'Frequency_4'
     #[inline(always)]
-    pub fn set_frequency_4_raw(&mut self, value: u16) {
+    pub fn set_frequency_4_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Frequency_4'
@@ -12736,7 +12736,7 @@ impl RtDl1mk3Freq3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn frequency_3(&self) -> f32 {
-        self.frequency_3_phys()
+        self.frequency_3_phys_val()
     }
     /// Get physical value of 'Frequency_3'
     ///
@@ -12744,7 +12744,7 @@ impl RtDl1mk3Freq3 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn frequency_3_phys(&self) -> f32 {
+    pub fn frequency_3_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -12757,12 +12757,12 @@ impl RtDl1mk3Freq3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn frequency_3_raw(&self) -> u16 {
+    pub fn frequency_3_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'Frequency_3'
     #[inline(always)]
-    pub fn set_frequency_3_raw(&mut self, value: u16) {
+    pub fn set_frequency_3_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Frequency_3'
@@ -12860,7 +12860,7 @@ impl RtDl1mk3Freq2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn frequency_2(&self) -> f32 {
-        self.frequency_2_phys()
+        self.frequency_2_phys_val()
     }
     /// Get physical value of 'Frequency_2'
     ///
@@ -12868,7 +12868,7 @@ impl RtDl1mk3Freq2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn frequency_2_phys(&self) -> f32 {
+    pub fn frequency_2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -12881,12 +12881,12 @@ impl RtDl1mk3Freq2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn frequency_2_raw(&self) -> u16 {
+    pub fn frequency_2_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'Frequency_2'
     #[inline(always)]
-    pub fn set_frequency_2_raw(&mut self, value: u16) {
+    pub fn set_frequency_2_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Frequency_2'
@@ -12984,7 +12984,7 @@ impl RtDl1mk3Misc3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn misc_3(&self) -> f32 {
-        self.misc_3_phys()
+        self.misc_3_phys_val()
     }
     /// Get physical value of 'Misc_3'
     ///
@@ -12992,7 +12992,7 @@ impl RtDl1mk3Misc3 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn misc_3_phys(&self) -> f32 {
+    pub fn misc_3_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -13005,12 +13005,12 @@ impl RtDl1mk3Misc3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn misc_3_raw(&self) -> u16 {
+    pub fn misc_3_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'Misc_3'
     #[inline(always)]
-    pub fn set_misc_3_raw(&mut self, value: u16) {
+    pub fn set_misc_3_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Misc_3'
@@ -13108,7 +13108,7 @@ impl RtDl1mk3Misc2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn misc_2(&self) -> f32 {
-        self.misc_2_phys()
+        self.misc_2_phys_val()
     }
     /// Get physical value of 'Misc_2'
     ///
@@ -13116,7 +13116,7 @@ impl RtDl1mk3Misc2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn misc_2_phys(&self) -> f32 {
+    pub fn misc_2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -13129,12 +13129,12 @@ impl RtDl1mk3Misc2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn misc_2_raw(&self) -> u16 {
+    pub fn misc_2_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'Misc_2'
     #[inline(always)]
-    pub fn set_misc_2_raw(&mut self, value: u16) {
+    pub fn set_misc_2_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Misc_2'
@@ -13232,7 +13232,7 @@ impl RtDl1mk3Misc1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn misc_1(&self) -> f32 {
-        self.misc_1_phys()
+        self.misc_1_phys_val()
     }
     /// Get physical value of 'Misc_1'
     ///
@@ -13240,7 +13240,7 @@ impl RtDl1mk3Misc1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn misc_1_phys(&self) -> f32 {
+    pub fn misc_1_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -13253,12 +13253,12 @@ impl RtDl1mk3Misc1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn misc_1_raw(&self) -> u16 {
+    pub fn misc_1_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'Misc_1'
     #[inline(always)]
-    pub fn set_misc_1_raw(&mut self, value: u16) {
+    pub fn set_misc_1_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'Misc_1'
@@ -13356,7 +13356,7 @@ impl RtDl1mk3Aux31 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_31(&self) -> f32 {
-        self.aux_31_phys()
+        self.aux_31_phys_val()
     }
     /// Get physical value of 'AUX_31'
     ///
@@ -13364,7 +13364,7 @@ impl RtDl1mk3Aux31 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_31_phys(&self) -> f32 {
+    pub fn aux_31_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -13377,12 +13377,12 @@ impl RtDl1mk3Aux31 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_31_raw(&self) -> u16 {
+    pub fn aux_31_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_31'
     #[inline(always)]
-    pub fn set_aux_31_raw(&mut self, value: u16) {
+    pub fn set_aux_31_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_31'
@@ -13480,7 +13480,7 @@ impl RtDl1mk3Aux30 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_30(&self) -> f32 {
-        self.aux_30_phys()
+        self.aux_30_phys_val()
     }
     /// Get physical value of 'AUX_30'
     ///
@@ -13488,7 +13488,7 @@ impl RtDl1mk3Aux30 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_30_phys(&self) -> f32 {
+    pub fn aux_30_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -13501,12 +13501,12 @@ impl RtDl1mk3Aux30 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_30_raw(&self) -> u16 {
+    pub fn aux_30_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_30'
     #[inline(always)]
-    pub fn set_aux_30_raw(&mut self, value: u16) {
+    pub fn set_aux_30_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_30'
@@ -13604,7 +13604,7 @@ impl RtDl1mk3Aux29 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_29(&self) -> f32 {
-        self.aux_29_phys()
+        self.aux_29_phys_val()
     }
     /// Get physical value of 'AUX_29'
     ///
@@ -13612,7 +13612,7 @@ impl RtDl1mk3Aux29 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_29_phys(&self) -> f32 {
+    pub fn aux_29_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -13625,12 +13625,12 @@ impl RtDl1mk3Aux29 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_29_raw(&self) -> u16 {
+    pub fn aux_29_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_29'
     #[inline(always)]
-    pub fn set_aux_29_raw(&mut self, value: u16) {
+    pub fn set_aux_29_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_29'
@@ -13728,7 +13728,7 @@ impl RtDl1mk3Aux28 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_28(&self) -> f32 {
-        self.aux_28_phys()
+        self.aux_28_phys_val()
     }
     /// Get physical value of 'AUX_28'
     ///
@@ -13736,7 +13736,7 @@ impl RtDl1mk3Aux28 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_28_phys(&self) -> f32 {
+    pub fn aux_28_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -13749,12 +13749,12 @@ impl RtDl1mk3Aux28 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_28_raw(&self) -> u16 {
+    pub fn aux_28_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_28'
     #[inline(always)]
-    pub fn set_aux_28_raw(&mut self, value: u16) {
+    pub fn set_aux_28_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_28'
@@ -13852,7 +13852,7 @@ impl RtDl1mk3Aux27 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_27(&self) -> f32 {
-        self.aux_27_phys()
+        self.aux_27_phys_val()
     }
     /// Get physical value of 'AUX_27'
     ///
@@ -13860,7 +13860,7 @@ impl RtDl1mk3Aux27 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_27_phys(&self) -> f32 {
+    pub fn aux_27_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -13873,12 +13873,12 @@ impl RtDl1mk3Aux27 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_27_raw(&self) -> u16 {
+    pub fn aux_27_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_27'
     #[inline(always)]
-    pub fn set_aux_27_raw(&mut self, value: u16) {
+    pub fn set_aux_27_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_27'
@@ -13976,7 +13976,7 @@ impl RtDl1mk3Aux26 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_26(&self) -> f32 {
-        self.aux_26_phys()
+        self.aux_26_phys_val()
     }
     /// Get physical value of 'AUX_26'
     ///
@@ -13984,7 +13984,7 @@ impl RtDl1mk3Aux26 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_26_phys(&self) -> f32 {
+    pub fn aux_26_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -13997,12 +13997,12 @@ impl RtDl1mk3Aux26 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_26_raw(&self) -> u16 {
+    pub fn aux_26_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_26'
     #[inline(always)]
-    pub fn set_aux_26_raw(&mut self, value: u16) {
+    pub fn set_aux_26_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_26'
@@ -14100,7 +14100,7 @@ impl RtDl1mk3Aux25 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_25(&self) -> f32 {
-        self.aux_25_phys()
+        self.aux_25_phys_val()
     }
     /// Get physical value of 'AUX_25'
     ///
@@ -14108,7 +14108,7 @@ impl RtDl1mk3Aux25 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_25_phys(&self) -> f32 {
+    pub fn aux_25_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -14121,12 +14121,12 @@ impl RtDl1mk3Aux25 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_25_raw(&self) -> u16 {
+    pub fn aux_25_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_25'
     #[inline(always)]
-    pub fn set_aux_25_raw(&mut self, value: u16) {
+    pub fn set_aux_25_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_25'
@@ -14224,7 +14224,7 @@ impl RtDl1mk3Aux24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_24(&self) -> f32 {
-        self.aux_24_phys()
+        self.aux_24_phys_val()
     }
     /// Get physical value of 'AUX_24'
     ///
@@ -14232,7 +14232,7 @@ impl RtDl1mk3Aux24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_24_phys(&self) -> f32 {
+    pub fn aux_24_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -14245,12 +14245,12 @@ impl RtDl1mk3Aux24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_24_raw(&self) -> u16 {
+    pub fn aux_24_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_24'
     #[inline(always)]
-    pub fn set_aux_24_raw(&mut self, value: u16) {
+    pub fn set_aux_24_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_24'
@@ -14348,7 +14348,7 @@ impl RtDl1mk3Aux23 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_23(&self) -> f32 {
-        self.aux_23_phys()
+        self.aux_23_phys_val()
     }
     /// Get physical value of 'AUX_23'
     ///
@@ -14356,7 +14356,7 @@ impl RtDl1mk3Aux23 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_23_phys(&self) -> f32 {
+    pub fn aux_23_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -14369,12 +14369,12 @@ impl RtDl1mk3Aux23 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_23_raw(&self) -> u16 {
+    pub fn aux_23_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_23'
     #[inline(always)]
-    pub fn set_aux_23_raw(&mut self, value: u16) {
+    pub fn set_aux_23_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_23'
@@ -14472,7 +14472,7 @@ impl RtDl1mk3Aux22 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_22(&self) -> u32 {
-        self.aux_22_phys()
+        self.aux_22_phys_val()
     }
     /// Get physical value of 'AUX_22'
     ///
@@ -14480,7 +14480,7 @@ impl RtDl1mk3Aux22 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_22_phys(&self) -> u32 {
+    pub fn aux_22_phys_val(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 10;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -14492,12 +14492,12 @@ impl RtDl1mk3Aux22 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_22_raw(&self) -> u16 {
+    pub fn aux_22_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_22'
     #[inline(always)]
-    pub fn set_aux_22_raw(&mut self, value: u16) {
+    pub fn set_aux_22_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_22'
@@ -14599,7 +14599,7 @@ impl RtDl1mk3Aux21 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_21(&self) -> f32 {
-        self.aux_21_phys()
+        self.aux_21_phys_val()
     }
     /// Get physical value of 'AUX_21'
     ///
@@ -14607,7 +14607,7 @@ impl RtDl1mk3Aux21 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_21_phys(&self) -> f32 {
+    pub fn aux_21_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -14620,12 +14620,12 @@ impl RtDl1mk3Aux21 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_21_raw(&self) -> u16 {
+    pub fn aux_21_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_21'
     #[inline(always)]
-    pub fn set_aux_21_raw(&mut self, value: u16) {
+    pub fn set_aux_21_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_21'
@@ -14723,7 +14723,7 @@ impl RtDl1mk3Aux20 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_20(&self) -> f32 {
-        self.aux_20_phys()
+        self.aux_20_phys_val()
     }
     /// Get physical value of 'AUX_20'
     ///
@@ -14731,7 +14731,7 @@ impl RtDl1mk3Aux20 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_20_phys(&self) -> f32 {
+    pub fn aux_20_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -14744,12 +14744,12 @@ impl RtDl1mk3Aux20 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_20_raw(&self) -> u16 {
+    pub fn aux_20_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_20'
     #[inline(always)]
-    pub fn set_aux_20_raw(&mut self, value: u16) {
+    pub fn set_aux_20_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_20'
@@ -14847,7 +14847,7 @@ impl RtDl1mk3Aux19 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_19(&self) -> f32 {
-        self.aux_19_phys()
+        self.aux_19_phys_val()
     }
     /// Get physical value of 'AUX_19'
     ///
@@ -14855,7 +14855,7 @@ impl RtDl1mk3Aux19 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_19_phys(&self) -> f32 {
+    pub fn aux_19_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -14868,12 +14868,12 @@ impl RtDl1mk3Aux19 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_19_raw(&self) -> u16 {
+    pub fn aux_19_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_19'
     #[inline(always)]
-    pub fn set_aux_19_raw(&mut self, value: u16) {
+    pub fn set_aux_19_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_19'
@@ -14971,7 +14971,7 @@ impl RtDl1mk3Aux18 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_18(&self) -> f32 {
-        self.aux_18_phys()
+        self.aux_18_phys_val()
     }
     /// Get physical value of 'AUX_18'
     ///
@@ -14979,7 +14979,7 @@ impl RtDl1mk3Aux18 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_18_phys(&self) -> f32 {
+    pub fn aux_18_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -14992,12 +14992,12 @@ impl RtDl1mk3Aux18 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_18_raw(&self) -> u16 {
+    pub fn aux_18_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_18'
     #[inline(always)]
-    pub fn set_aux_18_raw(&mut self, value: u16) {
+    pub fn set_aux_18_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_18'
@@ -15095,7 +15095,7 @@ impl RtDl1mk3Aux17 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_17(&self) -> f32 {
-        self.aux_17_phys()
+        self.aux_17_phys_val()
     }
     /// Get physical value of 'AUX_17'
     ///
@@ -15103,7 +15103,7 @@ impl RtDl1mk3Aux17 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_17_phys(&self) -> f32 {
+    pub fn aux_17_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15116,12 +15116,12 @@ impl RtDl1mk3Aux17 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_17_raw(&self) -> u16 {
+    pub fn aux_17_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_17'
     #[inline(always)]
-    pub fn set_aux_17_raw(&mut self, value: u16) {
+    pub fn set_aux_17_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_17'
@@ -15219,7 +15219,7 @@ impl RtDl1mk3Aux16 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_16(&self) -> f32 {
-        self.aux_16_phys()
+        self.aux_16_phys_val()
     }
     /// Get physical value of 'AUX_16'
     ///
@@ -15227,7 +15227,7 @@ impl RtDl1mk3Aux16 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_16_phys(&self) -> f32 {
+    pub fn aux_16_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15240,12 +15240,12 @@ impl RtDl1mk3Aux16 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_16_raw(&self) -> u16 {
+    pub fn aux_16_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_16'
     #[inline(always)]
-    pub fn set_aux_16_raw(&mut self, value: u16) {
+    pub fn set_aux_16_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_16'
@@ -15343,7 +15343,7 @@ impl RtDl1mk3Aux15 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_15(&self) -> f32 {
-        self.aux_15_phys()
+        self.aux_15_phys_val()
     }
     /// Get physical value of 'AUX_15'
     ///
@@ -15351,7 +15351,7 @@ impl RtDl1mk3Aux15 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_15_phys(&self) -> f32 {
+    pub fn aux_15_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15364,12 +15364,12 @@ impl RtDl1mk3Aux15 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_15_raw(&self) -> u16 {
+    pub fn aux_15_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_15'
     #[inline(always)]
-    pub fn set_aux_15_raw(&mut self, value: u16) {
+    pub fn set_aux_15_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_15'
@@ -15467,7 +15467,7 @@ impl RtDl1mk3Aux14 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_14(&self) -> f32 {
-        self.aux_14_phys()
+        self.aux_14_phys_val()
     }
     /// Get physical value of 'AUX_14'
     ///
@@ -15475,7 +15475,7 @@ impl RtDl1mk3Aux14 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_14_phys(&self) -> f32 {
+    pub fn aux_14_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15488,12 +15488,12 @@ impl RtDl1mk3Aux14 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_14_raw(&self) -> u16 {
+    pub fn aux_14_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_14'
     #[inline(always)]
-    pub fn set_aux_14_raw(&mut self, value: u16) {
+    pub fn set_aux_14_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_14'
@@ -15591,7 +15591,7 @@ impl RtDl1mk3Aux13 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_13(&self) -> f32 {
-        self.aux_13_phys()
+        self.aux_13_phys_val()
     }
     /// Get physical value of 'AUX_13'
     ///
@@ -15599,7 +15599,7 @@ impl RtDl1mk3Aux13 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_13_phys(&self) -> f32 {
+    pub fn aux_13_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15612,12 +15612,12 @@ impl RtDl1mk3Aux13 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_13_raw(&self) -> u16 {
+    pub fn aux_13_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_13'
     #[inline(always)]
-    pub fn set_aux_13_raw(&mut self, value: u16) {
+    pub fn set_aux_13_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_13'
@@ -15715,7 +15715,7 @@ impl RtDl1mk3Aux12 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_12(&self) -> f32 {
-        self.aux_12_phys()
+        self.aux_12_phys_val()
     }
     /// Get physical value of 'AUX_12'
     ///
@@ -15723,7 +15723,7 @@ impl RtDl1mk3Aux12 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_12_phys(&self) -> f32 {
+    pub fn aux_12_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15736,12 +15736,12 @@ impl RtDl1mk3Aux12 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_12_raw(&self) -> u16 {
+    pub fn aux_12_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_12'
     #[inline(always)]
-    pub fn set_aux_12_raw(&mut self, value: u16) {
+    pub fn set_aux_12_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_12'
@@ -15839,7 +15839,7 @@ impl RtDl1mk3Aux11 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_11(&self) -> f32 {
-        self.aux_11_phys()
+        self.aux_11_phys_val()
     }
     /// Get physical value of 'AUX_11'
     ///
@@ -15847,7 +15847,7 @@ impl RtDl1mk3Aux11 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_11_phys(&self) -> f32 {
+    pub fn aux_11_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15860,12 +15860,12 @@ impl RtDl1mk3Aux11 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_11_raw(&self) -> u16 {
+    pub fn aux_11_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_11'
     #[inline(always)]
-    pub fn set_aux_11_raw(&mut self, value: u16) {
+    pub fn set_aux_11_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_11'
@@ -15963,7 +15963,7 @@ impl RtDl1mk3Aux9 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_9(&self) -> f32 {
-        self.aux_9_phys()
+        self.aux_9_phys_val()
     }
     /// Get physical value of 'AUX_9'
     ///
@@ -15971,7 +15971,7 @@ impl RtDl1mk3Aux9 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_9_phys(&self) -> f32 {
+    pub fn aux_9_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15984,12 +15984,12 @@ impl RtDl1mk3Aux9 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_9_raw(&self) -> u16 {
+    pub fn aux_9_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_9'
     #[inline(always)]
-    pub fn set_aux_9_raw(&mut self, value: u16) {
+    pub fn set_aux_9_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_9'
@@ -16087,7 +16087,7 @@ impl RtDl1mk3Aux10 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_10(&self) -> f32 {
-        self.aux_10_phys()
+        self.aux_10_phys_val()
     }
     /// Get physical value of 'AUX_10'
     ///
@@ -16095,7 +16095,7 @@ impl RtDl1mk3Aux10 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_10_phys(&self) -> f32 {
+    pub fn aux_10_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16108,12 +16108,12 @@ impl RtDl1mk3Aux10 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_10_raw(&self) -> u16 {
+    pub fn aux_10_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_10'
     #[inline(always)]
-    pub fn set_aux_10_raw(&mut self, value: u16) {
+    pub fn set_aux_10_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_10'
@@ -16211,7 +16211,7 @@ impl RtDl1mk3Aux8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_8(&self) -> f32 {
-        self.aux_8_phys()
+        self.aux_8_phys_val()
     }
     /// Get physical value of 'AUX_8'
     ///
@@ -16219,7 +16219,7 @@ impl RtDl1mk3Aux8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_8_phys(&self) -> f32 {
+    pub fn aux_8_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16232,12 +16232,12 @@ impl RtDl1mk3Aux8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_8_raw(&self) -> u16 {
+    pub fn aux_8_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_8'
     #[inline(always)]
-    pub fn set_aux_8_raw(&mut self, value: u16) {
+    pub fn set_aux_8_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_8'
@@ -16335,7 +16335,7 @@ impl RtDl1mk3Aux7 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_7(&self) -> f32 {
-        self.aux_7_phys()
+        self.aux_7_phys_val()
     }
     /// Get physical value of 'AUX_7'
     ///
@@ -16343,7 +16343,7 @@ impl RtDl1mk3Aux7 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_7_phys(&self) -> f32 {
+    pub fn aux_7_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16356,12 +16356,12 @@ impl RtDl1mk3Aux7 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_7_raw(&self) -> u16 {
+    pub fn aux_7_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_7'
     #[inline(always)]
-    pub fn set_aux_7_raw(&mut self, value: u16) {
+    pub fn set_aux_7_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_7'
@@ -16459,7 +16459,7 @@ impl RtDl1mk3Aux6 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_6(&self) -> f32 {
-        self.aux_6_phys()
+        self.aux_6_phys_val()
     }
     /// Get physical value of 'AUX_6'
     ///
@@ -16467,7 +16467,7 @@ impl RtDl1mk3Aux6 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_6_phys(&self) -> f32 {
+    pub fn aux_6_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16480,12 +16480,12 @@ impl RtDl1mk3Aux6 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_6_raw(&self) -> u16 {
+    pub fn aux_6_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_6'
     #[inline(always)]
-    pub fn set_aux_6_raw(&mut self, value: u16) {
+    pub fn set_aux_6_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_6'
@@ -16583,7 +16583,7 @@ impl RtDl1mk3Aux5 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_5(&self) -> f32 {
-        self.aux_5_phys()
+        self.aux_5_phys_val()
     }
     /// Get physical value of 'AUX_5'
     ///
@@ -16591,7 +16591,7 @@ impl RtDl1mk3Aux5 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_5_phys(&self) -> f32 {
+    pub fn aux_5_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16604,12 +16604,12 @@ impl RtDl1mk3Aux5 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_5_raw(&self) -> u16 {
+    pub fn aux_5_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_5'
     #[inline(always)]
-    pub fn set_aux_5_raw(&mut self, value: u16) {
+    pub fn set_aux_5_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_5'
@@ -16707,7 +16707,7 @@ impl RtDl1mk3Aux4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_4(&self) -> f32 {
-        self.aux_4_phys()
+        self.aux_4_phys_val()
     }
     /// Get physical value of 'AUX_4'
     ///
@@ -16715,7 +16715,7 @@ impl RtDl1mk3Aux4 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_4_phys(&self) -> f32 {
+    pub fn aux_4_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16728,12 +16728,12 @@ impl RtDl1mk3Aux4 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_4_raw(&self) -> u16 {
+    pub fn aux_4_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_4'
     #[inline(always)]
-    pub fn set_aux_4_raw(&mut self, value: u16) {
+    pub fn set_aux_4_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_4'
@@ -16831,7 +16831,7 @@ impl RtDl1mk3Aux3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_3(&self) -> f32 {
-        self.aux_3_phys()
+        self.aux_3_phys_val()
     }
     /// Get physical value of 'AUX_3'
     ///
@@ -16839,7 +16839,7 @@ impl RtDl1mk3Aux3 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_3_phys(&self) -> f32 {
+    pub fn aux_3_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16852,12 +16852,12 @@ impl RtDl1mk3Aux3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_3_raw(&self) -> u16 {
+    pub fn aux_3_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_3'
     #[inline(always)]
-    pub fn set_aux_3_raw(&mut self, value: u16) {
+    pub fn set_aux_3_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_3'
@@ -16955,7 +16955,7 @@ impl RtDl1mk3Aux2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_2(&self) -> f32 {
-        self.aux_2_phys()
+        self.aux_2_phys_val()
     }
     /// Get physical value of 'AUX_2'
     ///
@@ -16963,7 +16963,7 @@ impl RtDl1mk3Aux2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_2_phys(&self) -> f32 {
+    pub fn aux_2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16976,12 +16976,12 @@ impl RtDl1mk3Aux2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_2_raw(&self) -> u16 {
+    pub fn aux_2_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_2'
     #[inline(always)]
-    pub fn set_aux_2_raw(&mut self, value: u16) {
+    pub fn set_aux_2_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_2'
@@ -17079,7 +17079,7 @@ impl RtDl1mk3Aux1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn aux_1(&self) -> f32 {
-        self.aux_1_phys()
+        self.aux_1_phys_val()
     }
     /// Get physical value of 'AUX_1'
     ///
@@ -17087,7 +17087,7 @@ impl RtDl1mk3Aux1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn aux_1_phys(&self) -> f32 {
+    pub fn aux_1_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17100,12 +17100,12 @@ impl RtDl1mk3Aux1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn aux_1_raw(&self) -> u16 {
+    pub fn aux_1_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'AUX_1'
     #[inline(always)]
-    pub fn set_aux_1_raw(&mut self, value: u16) {
+    pub fn set_aux_1_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     /// Set value of 'AUX_1'
@@ -17203,7 +17203,7 @@ impl RtDl1mk3Pressure5 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn pressure_5(&self) -> f32 {
-        self.pressure_5_phys()
+        self.pressure_5_phys_val()
     }
     /// Get physical value of 'Pressure_5'
     ///
@@ -17211,7 +17211,7 @@ impl RtDl1mk3Pressure5 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn pressure_5_phys(&self) -> f32 {
+    pub fn pressure_5_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17224,12 +17224,12 @@ impl RtDl1mk3Pressure5 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn pressure_5_raw(&self) -> u32 {
+    pub fn pressure_5_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Pressure_5'
     #[inline(always)]
-    pub fn set_pressure_5_raw(&mut self, value: u32) {
+    pub fn set_pressure_5_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Pressure_5'
@@ -17327,7 +17327,7 @@ impl RtDl1mk3Pressure4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn pressure_4(&self) -> f32 {
-        self.pressure_4_phys()
+        self.pressure_4_phys_val()
     }
     /// Get physical value of 'Pressure_4'
     ///
@@ -17335,7 +17335,7 @@ impl RtDl1mk3Pressure4 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn pressure_4_phys(&self) -> f32 {
+    pub fn pressure_4_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17348,12 +17348,12 @@ impl RtDl1mk3Pressure4 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn pressure_4_raw(&self) -> u32 {
+    pub fn pressure_4_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Pressure_4'
     #[inline(always)]
-    pub fn set_pressure_4_raw(&mut self, value: u32) {
+    pub fn set_pressure_4_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Pressure_4'
@@ -17451,7 +17451,7 @@ impl RtDl1mk3Pressure3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn pressure_3(&self) -> f32 {
-        self.pressure_3_phys()
+        self.pressure_3_phys_val()
     }
     /// Get physical value of 'Pressure_3'
     ///
@@ -17459,7 +17459,7 @@ impl RtDl1mk3Pressure3 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn pressure_3_phys(&self) -> f32 {
+    pub fn pressure_3_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17472,12 +17472,12 @@ impl RtDl1mk3Pressure3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn pressure_3_raw(&self) -> u32 {
+    pub fn pressure_3_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Pressure_3'
     #[inline(always)]
-    pub fn set_pressure_3_raw(&mut self, value: u32) {
+    pub fn set_pressure_3_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Pressure_3'
@@ -17575,7 +17575,7 @@ impl RtDl1mk3Pressure2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn pressure_2(&self) -> f32 {
-        self.pressure_2_phys()
+        self.pressure_2_phys_val()
     }
     /// Get physical value of 'Pressure_2'
     ///
@@ -17583,7 +17583,7 @@ impl RtDl1mk3Pressure2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn pressure_2_phys(&self) -> f32 {
+    pub fn pressure_2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17596,12 +17596,12 @@ impl RtDl1mk3Pressure2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn pressure_2_raw(&self) -> u32 {
+    pub fn pressure_2_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Pressure_2'
     #[inline(always)]
-    pub fn set_pressure_2_raw(&mut self, value: u32) {
+    pub fn set_pressure_2_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Pressure_2'
@@ -17699,7 +17699,7 @@ impl RtDl1mk3Pressure1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn pressure_1(&self) -> f32 {
-        self.pressure_1_phys()
+        self.pressure_1_phys_val()
     }
     /// Get physical value of 'Pressure_1'
     ///
@@ -17707,7 +17707,7 @@ impl RtDl1mk3Pressure1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn pressure_1_phys(&self) -> f32 {
+    pub fn pressure_1_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17720,12 +17720,12 @@ impl RtDl1mk3Pressure1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn pressure_1_raw(&self) -> u32 {
+    pub fn pressure_1_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>()
     }
     /// Set raw value of 'Pressure_1'
     #[inline(always)]
-    pub fn set_pressure_1_raw(&mut self, value: u32) {
+    pub fn set_pressure_1_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
     /// Set value of 'Pressure_1'
@@ -17823,7 +17823,7 @@ impl RtDl1mk3Angle3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn angle_3(&self) -> f32 {
-        self.angle_3_phys()
+        self.angle_3_phys_val()
     }
     /// Get physical value of 'Angle_3'
     ///
@@ -17831,7 +17831,7 @@ impl RtDl1mk3Angle3 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn angle_3_phys(&self) -> f32 {
+    pub fn angle_3_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17844,12 +17844,12 @@ impl RtDl1mk3Angle3 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn angle_3_raw(&self) -> i16 {
+    pub fn angle_3_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Angle_3'
     #[inline(always)]
-    pub fn set_angle_3_raw(&mut self, value: i16) {
+    pub fn set_angle_3_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -17949,7 +17949,7 @@ impl RtDl1mk3Angle2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn angle_2(&self) -> f32 {
-        self.angle_2_phys()
+        self.angle_2_phys_val()
     }
     /// Get physical value of 'Angle_2'
     ///
@@ -17957,7 +17957,7 @@ impl RtDl1mk3Angle2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn angle_2_phys(&self) -> f32 {
+    pub fn angle_2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17970,12 +17970,12 @@ impl RtDl1mk3Angle2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn angle_2_raw(&self) -> i16 {
+    pub fn angle_2_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Angle_2'
     #[inline(always)]
-    pub fn set_angle_2_raw(&mut self, value: i16) {
+    pub fn set_angle_2_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -18075,7 +18075,7 @@ impl RtDl1mk3Angle1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn angle_1(&self) -> f32 {
-        self.angle_1_phys()
+        self.angle_1_phys_val()
     }
     /// Get physical value of 'Angle_1'
     ///
@@ -18083,7 +18083,7 @@ impl RtDl1mk3Angle1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn angle_1_phys(&self) -> f32 {
+    pub fn angle_1_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18096,12 +18096,12 @@ impl RtDl1mk3Angle1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn angle_1_raw(&self) -> i16 {
+    pub fn angle_1_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Angle_1'
     #[inline(always)]
-    pub fn set_angle_1_raw(&mut self, value: i16) {
+    pub fn set_angle_1_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -18201,7 +18201,7 @@ impl RtDl1mk3Temp25 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_25(&self) -> f32 {
-        self.temperature_25_phys()
+        self.temperature_25_phys_val()
     }
     /// Get physical value of 'Temperature_25'
     ///
@@ -18209,7 +18209,7 @@ impl RtDl1mk3Temp25 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_25_phys(&self) -> f32 {
+    pub fn temperature_25_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18222,12 +18222,12 @@ impl RtDl1mk3Temp25 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_25_raw(&self) -> i16 {
+    pub fn temperature_25_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_25'
     #[inline(always)]
-    pub fn set_temperature_25_raw(&mut self, value: i16) {
+    pub fn set_temperature_25_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -18327,7 +18327,7 @@ impl RtDl1mk3Temp24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_24(&self) -> f32 {
-        self.temperature_24_phys()
+        self.temperature_24_phys_val()
     }
     /// Get physical value of 'Temperature_24'
     ///
@@ -18335,7 +18335,7 @@ impl RtDl1mk3Temp24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_24_phys(&self) -> f32 {
+    pub fn temperature_24_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18348,12 +18348,12 @@ impl RtDl1mk3Temp24 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_24_raw(&self) -> i16 {
+    pub fn temperature_24_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_24'
     #[inline(always)]
-    pub fn set_temperature_24_raw(&mut self, value: i16) {
+    pub fn set_temperature_24_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -18453,7 +18453,7 @@ impl RtDl1mk3Temp23 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_23(&self) -> f32 {
-        self.temperature_23_phys()
+        self.temperature_23_phys_val()
     }
     /// Get physical value of 'Temperature_23'
     ///
@@ -18461,7 +18461,7 @@ impl RtDl1mk3Temp23 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_23_phys(&self) -> f32 {
+    pub fn temperature_23_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18474,12 +18474,12 @@ impl RtDl1mk3Temp23 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_23_raw(&self) -> i16 {
+    pub fn temperature_23_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_23'
     #[inline(always)]
-    pub fn set_temperature_23_raw(&mut self, value: i16) {
+    pub fn set_temperature_23_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -18579,7 +18579,7 @@ impl RtDl1mk3Temp22 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_22(&self) -> f32 {
-        self.temperature_22_phys()
+        self.temperature_22_phys_val()
     }
     /// Get physical value of 'Temperature_22'
     ///
@@ -18587,7 +18587,7 @@ impl RtDl1mk3Temp22 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_22_phys(&self) -> f32 {
+    pub fn temperature_22_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18600,12 +18600,12 @@ impl RtDl1mk3Temp22 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_22_raw(&self) -> i16 {
+    pub fn temperature_22_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_22'
     #[inline(always)]
-    pub fn set_temperature_22_raw(&mut self, value: i16) {
+    pub fn set_temperature_22_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -18705,7 +18705,7 @@ impl RtDl1mk3Temp21 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_21(&self) -> f32 {
-        self.temperature_21_phys()
+        self.temperature_21_phys_val()
     }
     /// Get physical value of 'Temperature_21'
     ///
@@ -18713,7 +18713,7 @@ impl RtDl1mk3Temp21 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_21_phys(&self) -> f32 {
+    pub fn temperature_21_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18726,12 +18726,12 @@ impl RtDl1mk3Temp21 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_21_raw(&self) -> i16 {
+    pub fn temperature_21_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_21'
     #[inline(always)]
-    pub fn set_temperature_21_raw(&mut self, value: i16) {
+    pub fn set_temperature_21_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -18831,7 +18831,7 @@ impl RtDl1mk3Temp20 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_20(&self) -> f32 {
-        self.temperature_20_phys()
+        self.temperature_20_phys_val()
     }
     /// Get physical value of 'Temperature_20'
     ///
@@ -18839,7 +18839,7 @@ impl RtDl1mk3Temp20 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_20_phys(&self) -> f32 {
+    pub fn temperature_20_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18852,12 +18852,12 @@ impl RtDl1mk3Temp20 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_20_raw(&self) -> i16 {
+    pub fn temperature_20_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_20'
     #[inline(always)]
-    pub fn set_temperature_20_raw(&mut self, value: i16) {
+    pub fn set_temperature_20_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -18957,7 +18957,7 @@ impl RtDl1mk3Temp19 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_19(&self) -> f32 {
-        self.temperature_19_phys()
+        self.temperature_19_phys_val()
     }
     /// Get physical value of 'Temperature_19'
     ///
@@ -18965,7 +18965,7 @@ impl RtDl1mk3Temp19 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_19_phys(&self) -> f32 {
+    pub fn temperature_19_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18978,12 +18978,12 @@ impl RtDl1mk3Temp19 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_19_raw(&self) -> i16 {
+    pub fn temperature_19_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_19'
     #[inline(always)]
-    pub fn set_temperature_19_raw(&mut self, value: i16) {
+    pub fn set_temperature_19_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -19083,7 +19083,7 @@ impl RtDl1mk3Temp18 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_18(&self) -> f32 {
-        self.temperature_18_phys()
+        self.temperature_18_phys_val()
     }
     /// Get physical value of 'Temperature_18'
     ///
@@ -19091,7 +19091,7 @@ impl RtDl1mk3Temp18 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_18_phys(&self) -> f32 {
+    pub fn temperature_18_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19104,12 +19104,12 @@ impl RtDl1mk3Temp18 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_18_raw(&self) -> i16 {
+    pub fn temperature_18_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_18'
     #[inline(always)]
-    pub fn set_temperature_18_raw(&mut self, value: i16) {
+    pub fn set_temperature_18_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -19209,7 +19209,7 @@ impl RtDl1mk3Temp17 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_17(&self) -> f32 {
-        self.temperature_17_phys()
+        self.temperature_17_phys_val()
     }
     /// Get physical value of 'Temperature_17'
     ///
@@ -19217,7 +19217,7 @@ impl RtDl1mk3Temp17 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_17_phys(&self) -> f32 {
+    pub fn temperature_17_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19230,12 +19230,12 @@ impl RtDl1mk3Temp17 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_17_raw(&self) -> i16 {
+    pub fn temperature_17_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_17'
     #[inline(always)]
-    pub fn set_temperature_17_raw(&mut self, value: i16) {
+    pub fn set_temperature_17_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -19335,7 +19335,7 @@ impl RtDl1mk3Temp16 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_16(&self) -> f32 {
-        self.temperature_16_phys()
+        self.temperature_16_phys_val()
     }
     /// Get physical value of 'Temperature_16'
     ///
@@ -19343,7 +19343,7 @@ impl RtDl1mk3Temp16 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_16_phys(&self) -> f32 {
+    pub fn temperature_16_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19356,12 +19356,12 @@ impl RtDl1mk3Temp16 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_16_raw(&self) -> i16 {
+    pub fn temperature_16_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_16'
     #[inline(always)]
-    pub fn set_temperature_16_raw(&mut self, value: i16) {
+    pub fn set_temperature_16_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -19461,7 +19461,7 @@ impl RtDl1mk3Temp15 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_15(&self) -> f32 {
-        self.temperature_15_phys()
+        self.temperature_15_phys_val()
     }
     /// Get physical value of 'Temperature_15'
     ///
@@ -19469,7 +19469,7 @@ impl RtDl1mk3Temp15 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_15_phys(&self) -> f32 {
+    pub fn temperature_15_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19482,12 +19482,12 @@ impl RtDl1mk3Temp15 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_15_raw(&self) -> i16 {
+    pub fn temperature_15_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_15'
     #[inline(always)]
-    pub fn set_temperature_15_raw(&mut self, value: i16) {
+    pub fn set_temperature_15_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -19587,7 +19587,7 @@ impl RtDl1mk3Temp14 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_14(&self) -> f32 {
-        self.temperature_14_phys()
+        self.temperature_14_phys_val()
     }
     /// Get physical value of 'Temperature_14'
     ///
@@ -19595,7 +19595,7 @@ impl RtDl1mk3Temp14 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_14_phys(&self) -> f32 {
+    pub fn temperature_14_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19608,12 +19608,12 @@ impl RtDl1mk3Temp14 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_14_raw(&self) -> i16 {
+    pub fn temperature_14_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_14'
     #[inline(always)]
-    pub fn set_temperature_14_raw(&mut self, value: i16) {
+    pub fn set_temperature_14_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -19713,7 +19713,7 @@ impl RtDl1mk3Temp13 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_13(&self) -> f32 {
-        self.temperature_13_phys()
+        self.temperature_13_phys_val()
     }
     /// Get physical value of 'Temperature_13'
     ///
@@ -19721,7 +19721,7 @@ impl RtDl1mk3Temp13 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_13_phys(&self) -> f32 {
+    pub fn temperature_13_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19734,12 +19734,12 @@ impl RtDl1mk3Temp13 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_13_raw(&self) -> i16 {
+    pub fn temperature_13_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_13'
     #[inline(always)]
-    pub fn set_temperature_13_raw(&mut self, value: i16) {
+    pub fn set_temperature_13_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -19839,7 +19839,7 @@ impl RtDl1mk3Temp12 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_12(&self) -> f32 {
-        self.temperature_12_phys()
+        self.temperature_12_phys_val()
     }
     /// Get physical value of 'Temperature_12'
     ///
@@ -19847,7 +19847,7 @@ impl RtDl1mk3Temp12 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_12_phys(&self) -> f32 {
+    pub fn temperature_12_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19860,12 +19860,12 @@ impl RtDl1mk3Temp12 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_12_raw(&self) -> i16 {
+    pub fn temperature_12_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_12'
     #[inline(always)]
-    pub fn set_temperature_12_raw(&mut self, value: i16) {
+    pub fn set_temperature_12_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -19965,7 +19965,7 @@ impl RtDl1mk3Temp11 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_11(&self) -> f32 {
-        self.temperature_11_phys()
+        self.temperature_11_phys_val()
     }
     /// Get physical value of 'Temperature_11'
     ///
@@ -19973,7 +19973,7 @@ impl RtDl1mk3Temp11 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_11_phys(&self) -> f32 {
+    pub fn temperature_11_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19986,12 +19986,12 @@ impl RtDl1mk3Temp11 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_11_raw(&self) -> i16 {
+    pub fn temperature_11_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_11'
     #[inline(always)]
-    pub fn set_temperature_11_raw(&mut self, value: i16) {
+    pub fn set_temperature_11_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -20091,7 +20091,7 @@ impl RtDl1mk3Temp10 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_10(&self) -> f32 {
-        self.temperature_10_phys()
+        self.temperature_10_phys_val()
     }
     /// Get physical value of 'Temperature_10'
     ///
@@ -20099,7 +20099,7 @@ impl RtDl1mk3Temp10 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_10_phys(&self) -> f32 {
+    pub fn temperature_10_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20112,12 +20112,12 @@ impl RtDl1mk3Temp10 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_10_raw(&self) -> i16 {
+    pub fn temperature_10_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_10'
     #[inline(always)]
-    pub fn set_temperature_10_raw(&mut self, value: i16) {
+    pub fn set_temperature_10_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -20217,7 +20217,7 @@ impl RtDl1mk3Temp9 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_9(&self) -> f32 {
-        self.temperature_9_phys()
+        self.temperature_9_phys_val()
     }
     /// Get physical value of 'Temperature_9'
     ///
@@ -20225,7 +20225,7 @@ impl RtDl1mk3Temp9 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_9_phys(&self) -> f32 {
+    pub fn temperature_9_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20238,12 +20238,12 @@ impl RtDl1mk3Temp9 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_9_raw(&self) -> i16 {
+    pub fn temperature_9_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_9'
     #[inline(always)]
-    pub fn set_temperature_9_raw(&mut self, value: i16) {
+    pub fn set_temperature_9_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -20343,7 +20343,7 @@ impl RtDl1mk3Temp8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_8(&self) -> f32 {
-        self.temperature_8_phys()
+        self.temperature_8_phys_val()
     }
     /// Get physical value of 'Temperature_8'
     ///
@@ -20351,7 +20351,7 @@ impl RtDl1mk3Temp8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_8_phys(&self) -> f32 {
+    pub fn temperature_8_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20364,12 +20364,12 @@ impl RtDl1mk3Temp8 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_8_raw(&self) -> i16 {
+    pub fn temperature_8_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_8'
     #[inline(always)]
-    pub fn set_temperature_8_raw(&mut self, value: i16) {
+    pub fn set_temperature_8_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -20469,7 +20469,7 @@ impl RtDl1mk3Temp7 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_7(&self) -> f32 {
-        self.temperature_7_phys()
+        self.temperature_7_phys_val()
     }
     /// Get physical value of 'Temperature_7'
     ///
@@ -20477,7 +20477,7 @@ impl RtDl1mk3Temp7 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_7_phys(&self) -> f32 {
+    pub fn temperature_7_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20490,12 +20490,12 @@ impl RtDl1mk3Temp7 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_7_raw(&self) -> i16 {
+    pub fn temperature_7_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_7'
     #[inline(always)]
-    pub fn set_temperature_7_raw(&mut self, value: i16) {
+    pub fn set_temperature_7_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -20595,7 +20595,7 @@ impl RtDl1mk3Temp6 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_6(&self) -> f32 {
-        self.temperature_6_phys()
+        self.temperature_6_phys_val()
     }
     /// Get physical value of 'Temperature_6'
     ///
@@ -20603,7 +20603,7 @@ impl RtDl1mk3Temp6 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_6_phys(&self) -> f32 {
+    pub fn temperature_6_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20616,12 +20616,12 @@ impl RtDl1mk3Temp6 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_6_raw(&self) -> i16 {
+    pub fn temperature_6_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_6'
     #[inline(always)]
-    pub fn set_temperature_6_raw(&mut self, value: i16) {
+    pub fn set_temperature_6_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -20721,7 +20721,7 @@ impl RtDl1mk3Temp5 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_5(&self) -> f32 {
-        self.temperature_5_phys()
+        self.temperature_5_phys_val()
     }
     /// Get physical value of 'Temperature_5'
     ///
@@ -20729,7 +20729,7 @@ impl RtDl1mk3Temp5 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_5_phys(&self) -> f32 {
+    pub fn temperature_5_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20742,12 +20742,12 @@ impl RtDl1mk3Temp5 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_5_raw(&self) -> i16 {
+    pub fn temperature_5_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_5'
     #[inline(always)]
-    pub fn set_temperature_5_raw(&mut self, value: i16) {
+    pub fn set_temperature_5_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -20847,7 +20847,7 @@ impl RtDl1mk3Temp4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_4(&self) -> f32 {
-        self.temperature_4_phys()
+        self.temperature_4_phys_val()
     }
     /// Get physical value of 'Temperature_4'
     ///
@@ -20855,7 +20855,7 @@ impl RtDl1mk3Temp4 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_4_phys(&self) -> f32 {
+    pub fn temperature_4_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20868,12 +20868,12 @@ impl RtDl1mk3Temp4 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_4_raw(&self) -> i16 {
+    pub fn temperature_4_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_4'
     #[inline(always)]
-    pub fn set_temperature_4_raw(&mut self, value: i16) {
+    pub fn set_temperature_4_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -20973,7 +20973,7 @@ impl RtDl1mk3Temp3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_3(&self) -> f32 {
-        self.temperature_3_phys()
+        self.temperature_3_phys_val()
     }
     /// Get physical value of 'Temperature_3'
     ///
@@ -20981,7 +20981,7 @@ impl RtDl1mk3Temp3 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_3_phys(&self) -> f32 {
+    pub fn temperature_3_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20994,12 +20994,12 @@ impl RtDl1mk3Temp3 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_3_raw(&self) -> i16 {
+    pub fn temperature_3_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_3'
     #[inline(always)]
-    pub fn set_temperature_3_raw(&mut self, value: i16) {
+    pub fn set_temperature_3_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -21099,7 +21099,7 @@ impl RtDl1mk3Temp2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_2(&self) -> f32 {
-        self.temperature_2_phys()
+        self.temperature_2_phys_val()
     }
     /// Get physical value of 'Temperature_2'
     ///
@@ -21107,7 +21107,7 @@ impl RtDl1mk3Temp2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_2_phys(&self) -> f32 {
+    pub fn temperature_2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -21120,12 +21120,12 @@ impl RtDl1mk3Temp2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_2_raw(&self) -> i16 {
+    pub fn temperature_2_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_2'
     #[inline(always)]
-    pub fn set_temperature_2_raw(&mut self, value: i16) {
+    pub fn set_temperature_2_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -21225,7 +21225,7 @@ impl RtDl1mk3Temp1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn temperature_1(&self) -> f32 {
-        self.temperature_1_phys()
+        self.temperature_1_phys_val()
     }
     /// Get physical value of 'Temperature_1'
     ///
@@ -21233,7 +21233,7 @@ impl RtDl1mk3Temp1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn temperature_1_phys(&self) -> f32 {
+    pub fn temperature_1_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -21246,12 +21246,12 @@ impl RtDl1mk3Temp1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn temperature_1_raw(&self) -> i16 {
+    pub fn temperature_1_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Temperature_1'
     #[inline(always)]
-    pub fn set_temperature_1_raw(&mut self, value: i16) {
+    pub fn set_temperature_1_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -21351,7 +21351,7 @@ impl RtDl1mk3Analog32 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_32(&self) -> f32 {
-        self.analog_32_phys()
+        self.analog_32_phys_val()
     }
     /// Get physical value of 'Analog_32'
     ///
@@ -21359,7 +21359,7 @@ impl RtDl1mk3Analog32 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_32_phys(&self) -> f32 {
+    pub fn analog_32_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -21372,12 +21372,12 @@ impl RtDl1mk3Analog32 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_32_raw(&self) -> u16 {
+    pub fn analog_32_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_32'
     #[inline(always)]
-    pub fn set_analog_32_raw(&mut self, value: u16) {
+    pub fn set_analog_32_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_32'
@@ -21475,7 +21475,7 @@ impl RtDl1mk3Analog31 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_31(&self) -> f32 {
-        self.analog_31_phys()
+        self.analog_31_phys_val()
     }
     /// Get physical value of 'Analog_31'
     ///
@@ -21483,7 +21483,7 @@ impl RtDl1mk3Analog31 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_31_phys(&self) -> f32 {
+    pub fn analog_31_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -21496,12 +21496,12 @@ impl RtDl1mk3Analog31 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_31_raw(&self) -> u16 {
+    pub fn analog_31_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_31'
     #[inline(always)]
-    pub fn set_analog_31_raw(&mut self, value: u16) {
+    pub fn set_analog_31_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_31'
@@ -21599,7 +21599,7 @@ impl RtDl1mk3Analog30 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_30(&self) -> f32 {
-        self.analog_30_phys()
+        self.analog_30_phys_val()
     }
     /// Get physical value of 'Analog_30'
     ///
@@ -21607,7 +21607,7 @@ impl RtDl1mk3Analog30 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_30_phys(&self) -> f32 {
+    pub fn analog_30_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -21620,12 +21620,12 @@ impl RtDl1mk3Analog30 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_30_raw(&self) -> u16 {
+    pub fn analog_30_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_30'
     #[inline(always)]
-    pub fn set_analog_30_raw(&mut self, value: u16) {
+    pub fn set_analog_30_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_30'
@@ -21723,7 +21723,7 @@ impl RtDl1mk3Analog29 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_29(&self) -> f32 {
-        self.analog_29_phys()
+        self.analog_29_phys_val()
     }
     /// Get physical value of 'Analog_29'
     ///
@@ -21731,7 +21731,7 @@ impl RtDl1mk3Analog29 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_29_phys(&self) -> f32 {
+    pub fn analog_29_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -21744,12 +21744,12 @@ impl RtDl1mk3Analog29 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_29_raw(&self) -> u16 {
+    pub fn analog_29_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_29'
     #[inline(always)]
-    pub fn set_analog_29_raw(&mut self, value: u16) {
+    pub fn set_analog_29_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_29'
@@ -21847,7 +21847,7 @@ impl RtDl1mk3Analog28 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_28(&self) -> f32 {
-        self.analog_28_phys()
+        self.analog_28_phys_val()
     }
     /// Get physical value of 'Analog_28'
     ///
@@ -21855,7 +21855,7 @@ impl RtDl1mk3Analog28 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_28_phys(&self) -> f32 {
+    pub fn analog_28_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -21868,12 +21868,12 @@ impl RtDl1mk3Analog28 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_28_raw(&self) -> u16 {
+    pub fn analog_28_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_28'
     #[inline(always)]
-    pub fn set_analog_28_raw(&mut self, value: u16) {
+    pub fn set_analog_28_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_28'
@@ -21971,7 +21971,7 @@ impl RtDl1mk3Analog27 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_27(&self) -> f32 {
-        self.analog_27_phys()
+        self.analog_27_phys_val()
     }
     /// Get physical value of 'Analog_27'
     ///
@@ -21979,7 +21979,7 @@ impl RtDl1mk3Analog27 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_27_phys(&self) -> f32 {
+    pub fn analog_27_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -21992,12 +21992,12 @@ impl RtDl1mk3Analog27 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_27_raw(&self) -> u16 {
+    pub fn analog_27_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_27'
     #[inline(always)]
-    pub fn set_analog_27_raw(&mut self, value: u16) {
+    pub fn set_analog_27_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_27'
@@ -22095,7 +22095,7 @@ impl RtDl1mk3Analog26 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_26(&self) -> f32 {
-        self.analog_26_phys()
+        self.analog_26_phys_val()
     }
     /// Get physical value of 'Analog_26'
     ///
@@ -22103,7 +22103,7 @@ impl RtDl1mk3Analog26 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_26_phys(&self) -> f32 {
+    pub fn analog_26_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22116,12 +22116,12 @@ impl RtDl1mk3Analog26 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_26_raw(&self) -> u16 {
+    pub fn analog_26_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_26'
     #[inline(always)]
-    pub fn set_analog_26_raw(&mut self, value: u16) {
+    pub fn set_analog_26_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_26'
@@ -22219,7 +22219,7 @@ impl RtDl1mk3Analog25 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_25(&self) -> f32 {
-        self.analog_25_phys()
+        self.analog_25_phys_val()
     }
     /// Get physical value of 'Analog_25'
     ///
@@ -22227,7 +22227,7 @@ impl RtDl1mk3Analog25 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_25_phys(&self) -> f32 {
+    pub fn analog_25_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22240,12 +22240,12 @@ impl RtDl1mk3Analog25 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_25_raw(&self) -> u16 {
+    pub fn analog_25_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_25'
     #[inline(always)]
-    pub fn set_analog_25_raw(&mut self, value: u16) {
+    pub fn set_analog_25_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_25'
@@ -22343,7 +22343,7 @@ impl RtDl1mk3Analog15 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_15(&self) -> f32 {
-        self.analog_15_phys()
+        self.analog_15_phys_val()
     }
     /// Get physical value of 'Analog_15'
     ///
@@ -22351,7 +22351,7 @@ impl RtDl1mk3Analog15 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_15_phys(&self) -> f32 {
+    pub fn analog_15_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22364,12 +22364,12 @@ impl RtDl1mk3Analog15 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_15_raw(&self) -> u16 {
+    pub fn analog_15_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_15'
     #[inline(always)]
-    pub fn set_analog_15_raw(&mut self, value: u16) {
+    pub fn set_analog_15_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_15'
@@ -22467,7 +22467,7 @@ impl RtDl1mk3Analog14 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_14(&self) -> f32 {
-        self.analog_14_phys()
+        self.analog_14_phys_val()
     }
     /// Get physical value of 'Analog_14'
     ///
@@ -22475,7 +22475,7 @@ impl RtDl1mk3Analog14 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_14_phys(&self) -> f32 {
+    pub fn analog_14_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22488,12 +22488,12 @@ impl RtDl1mk3Analog14 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_14_raw(&self) -> u16 {
+    pub fn analog_14_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_14'
     #[inline(always)]
-    pub fn set_analog_14_raw(&mut self, value: u16) {
+    pub fn set_analog_14_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_14'
@@ -22591,7 +22591,7 @@ impl RtDl1mk3Analog17 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_17(&self) -> f32 {
-        self.analog_17_phys()
+        self.analog_17_phys_val()
     }
     /// Get physical value of 'Analog_17'
     ///
@@ -22599,7 +22599,7 @@ impl RtDl1mk3Analog17 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_17_phys(&self) -> f32 {
+    pub fn analog_17_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22612,12 +22612,12 @@ impl RtDl1mk3Analog17 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_17_raw(&self) -> u16 {
+    pub fn analog_17_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_17'
     #[inline(always)]
-    pub fn set_analog_17_raw(&mut self, value: u16) {
+    pub fn set_analog_17_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_17'
@@ -22715,7 +22715,7 @@ impl RtDl1mk3Analog24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_24(&self) -> f32 {
-        self.analog_24_phys()
+        self.analog_24_phys_val()
     }
     /// Get physical value of 'Analog_24'
     ///
@@ -22723,7 +22723,7 @@ impl RtDl1mk3Analog24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_24_phys(&self) -> f32 {
+    pub fn analog_24_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22736,12 +22736,12 @@ impl RtDl1mk3Analog24 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_24_raw(&self) -> u16 {
+    pub fn analog_24_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_24'
     #[inline(always)]
-    pub fn set_analog_24_raw(&mut self, value: u16) {
+    pub fn set_analog_24_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_24'
@@ -22839,7 +22839,7 @@ impl RtDl1mk3Analog23 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_23(&self) -> f32 {
-        self.analog_23_phys()
+        self.analog_23_phys_val()
     }
     /// Get physical value of 'Analog_23'
     ///
@@ -22847,7 +22847,7 @@ impl RtDl1mk3Analog23 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_23_phys(&self) -> f32 {
+    pub fn analog_23_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22860,12 +22860,12 @@ impl RtDl1mk3Analog23 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_23_raw(&self) -> u16 {
+    pub fn analog_23_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_23'
     #[inline(always)]
-    pub fn set_analog_23_raw(&mut self, value: u16) {
+    pub fn set_analog_23_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_23'
@@ -22963,7 +22963,7 @@ impl RtDl1mk3Analog22 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_22(&self) -> f32 {
-        self.analog_22_phys()
+        self.analog_22_phys_val()
     }
     /// Get physical value of 'Analog_22'
     ///
@@ -22971,7 +22971,7 @@ impl RtDl1mk3Analog22 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_22_phys(&self) -> f32 {
+    pub fn analog_22_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22984,12 +22984,12 @@ impl RtDl1mk3Analog22 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_22_raw(&self) -> u16 {
+    pub fn analog_22_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_22'
     #[inline(always)]
-    pub fn set_analog_22_raw(&mut self, value: u16) {
+    pub fn set_analog_22_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_22'
@@ -23087,7 +23087,7 @@ impl RtDl1mk3Analog21 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_21(&self) -> f32 {
-        self.analog_21_phys()
+        self.analog_21_phys_val()
     }
     /// Get physical value of 'Analog_21'
     ///
@@ -23095,7 +23095,7 @@ impl RtDl1mk3Analog21 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_21_phys(&self) -> f32 {
+    pub fn analog_21_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23108,12 +23108,12 @@ impl RtDl1mk3Analog21 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_21_raw(&self) -> u16 {
+    pub fn analog_21_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_21'
     #[inline(always)]
-    pub fn set_analog_21_raw(&mut self, value: u16) {
+    pub fn set_analog_21_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_21'
@@ -23211,7 +23211,7 @@ impl RtDl1mk3Analog20 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_20(&self) -> f32 {
-        self.analog_20_phys()
+        self.analog_20_phys_val()
     }
     /// Get physical value of 'Analog_20'
     ///
@@ -23219,7 +23219,7 @@ impl RtDl1mk3Analog20 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_20_phys(&self) -> f32 {
+    pub fn analog_20_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23232,12 +23232,12 @@ impl RtDl1mk3Analog20 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_20_raw(&self) -> u16 {
+    pub fn analog_20_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_20'
     #[inline(always)]
-    pub fn set_analog_20_raw(&mut self, value: u16) {
+    pub fn set_analog_20_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_20'
@@ -23335,7 +23335,7 @@ impl RtDl1mk3Analog19 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_19(&self) -> f32 {
-        self.analog_19_phys()
+        self.analog_19_phys_val()
     }
     /// Get physical value of 'Analog_19'
     ///
@@ -23343,7 +23343,7 @@ impl RtDl1mk3Analog19 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_19_phys(&self) -> f32 {
+    pub fn analog_19_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23356,12 +23356,12 @@ impl RtDl1mk3Analog19 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_19_raw(&self) -> u16 {
+    pub fn analog_19_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_19'
     #[inline(always)]
-    pub fn set_analog_19_raw(&mut self, value: u16) {
+    pub fn set_analog_19_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_19'
@@ -23459,7 +23459,7 @@ impl RtDl1mk3Analog16 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_16(&self) -> f32 {
-        self.analog_16_phys()
+        self.analog_16_phys_val()
     }
     /// Get physical value of 'Analog_16'
     ///
@@ -23467,7 +23467,7 @@ impl RtDl1mk3Analog16 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_16_phys(&self) -> f32 {
+    pub fn analog_16_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23480,12 +23480,12 @@ impl RtDl1mk3Analog16 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_16_raw(&self) -> u16 {
+    pub fn analog_16_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_16'
     #[inline(always)]
-    pub fn set_analog_16_raw(&mut self, value: u16) {
+    pub fn set_analog_16_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_16'
@@ -23583,7 +23583,7 @@ impl RtDl1mk3Analog18 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_18(&self) -> f32 {
-        self.analog_18_phys()
+        self.analog_18_phys_val()
     }
     /// Get physical value of 'Analog_18'
     ///
@@ -23591,7 +23591,7 @@ impl RtDl1mk3Analog18 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_18_phys(&self) -> f32 {
+    pub fn analog_18_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23604,12 +23604,12 @@ impl RtDl1mk3Analog18 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_18_raw(&self) -> u16 {
+    pub fn analog_18_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_18'
     #[inline(always)]
-    pub fn set_analog_18_raw(&mut self, value: u16) {
+    pub fn set_analog_18_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_18'
@@ -23707,7 +23707,7 @@ impl RtDl1mk3Analog12 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_12(&self) -> f32 {
-        self.analog_12_phys()
+        self.analog_12_phys_val()
     }
     /// Get physical value of 'Analog_12'
     ///
@@ -23715,7 +23715,7 @@ impl RtDl1mk3Analog12 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_12_phys(&self) -> f32 {
+    pub fn analog_12_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23728,12 +23728,12 @@ impl RtDl1mk3Analog12 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_12_raw(&self) -> u16 {
+    pub fn analog_12_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_12'
     #[inline(always)]
-    pub fn set_analog_12_raw(&mut self, value: u16) {
+    pub fn set_analog_12_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_12'
@@ -23831,7 +23831,7 @@ impl RtDl1mk3Analog11 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_11(&self) -> f32 {
-        self.analog_11_phys()
+        self.analog_11_phys_val()
     }
     /// Get physical value of 'Analog_11'
     ///
@@ -23839,7 +23839,7 @@ impl RtDl1mk3Analog11 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_11_phys(&self) -> f32 {
+    pub fn analog_11_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23852,12 +23852,12 @@ impl RtDl1mk3Analog11 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_11_raw(&self) -> u16 {
+    pub fn analog_11_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_11'
     #[inline(always)]
-    pub fn set_analog_11_raw(&mut self, value: u16) {
+    pub fn set_analog_11_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_11'
@@ -23955,7 +23955,7 @@ impl RtDl1mk3Analog10 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_10(&self) -> f32 {
-        self.analog_10_phys()
+        self.analog_10_phys_val()
     }
     /// Get physical value of 'Analog_10'
     ///
@@ -23963,7 +23963,7 @@ impl RtDl1mk3Analog10 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_10_phys(&self) -> f32 {
+    pub fn analog_10_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23976,12 +23976,12 @@ impl RtDl1mk3Analog10 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_10_raw(&self) -> u16 {
+    pub fn analog_10_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_10'
     #[inline(always)]
-    pub fn set_analog_10_raw(&mut self, value: u16) {
+    pub fn set_analog_10_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_10'
@@ -24079,7 +24079,7 @@ impl RtDl1mk3Analog9 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_9(&self) -> f32 {
-        self.analog_9_phys()
+        self.analog_9_phys_val()
     }
     /// Get physical value of 'Analog_9'
     ///
@@ -24087,7 +24087,7 @@ impl RtDl1mk3Analog9 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_9_phys(&self) -> f32 {
+    pub fn analog_9_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24100,12 +24100,12 @@ impl RtDl1mk3Analog9 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_9_raw(&self) -> u16 {
+    pub fn analog_9_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_9'
     #[inline(always)]
-    pub fn set_analog_9_raw(&mut self, value: u16) {
+    pub fn set_analog_9_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_9'
@@ -24203,7 +24203,7 @@ impl RtDl1mk3Analog8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_8(&self) -> f32 {
-        self.analog_8_phys()
+        self.analog_8_phys_val()
     }
     /// Get physical value of 'Analog_8'
     ///
@@ -24211,7 +24211,7 @@ impl RtDl1mk3Analog8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_8_phys(&self) -> f32 {
+    pub fn analog_8_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24224,12 +24224,12 @@ impl RtDl1mk3Analog8 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_8_raw(&self) -> u16 {
+    pub fn analog_8_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_8'
     #[inline(always)]
-    pub fn set_analog_8_raw(&mut self, value: u16) {
+    pub fn set_analog_8_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_8'
@@ -24327,7 +24327,7 @@ impl RtDl1mk3Analog7 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_7(&self) -> f32 {
-        self.analog_7_phys()
+        self.analog_7_phys_val()
     }
     /// Get physical value of 'Analog_7'
     ///
@@ -24335,7 +24335,7 @@ impl RtDl1mk3Analog7 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_7_phys(&self) -> f32 {
+    pub fn analog_7_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24348,12 +24348,12 @@ impl RtDl1mk3Analog7 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_7_raw(&self) -> u16 {
+    pub fn analog_7_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_7'
     #[inline(always)]
-    pub fn set_analog_7_raw(&mut self, value: u16) {
+    pub fn set_analog_7_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_7'
@@ -24451,7 +24451,7 @@ impl RtDl1mk3Analog6 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_6(&self) -> f32 {
-        self.analog_6_phys()
+        self.analog_6_phys_val()
     }
     /// Get physical value of 'Analog_6'
     ///
@@ -24459,7 +24459,7 @@ impl RtDl1mk3Analog6 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_6_phys(&self) -> f32 {
+    pub fn analog_6_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24472,12 +24472,12 @@ impl RtDl1mk3Analog6 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_6_raw(&self) -> u16 {
+    pub fn analog_6_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_6'
     #[inline(always)]
-    pub fn set_analog_6_raw(&mut self, value: u16) {
+    pub fn set_analog_6_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_6'
@@ -24575,7 +24575,7 @@ impl RtDl1mk3Analog5 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_5(&self) -> f32 {
-        self.analog_5_phys()
+        self.analog_5_phys_val()
     }
     /// Get physical value of 'Analog_5'
     ///
@@ -24583,7 +24583,7 @@ impl RtDl1mk3Analog5 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_5_phys(&self) -> f32 {
+    pub fn analog_5_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24596,12 +24596,12 @@ impl RtDl1mk3Analog5 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_5_raw(&self) -> u16 {
+    pub fn analog_5_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_5'
     #[inline(always)]
-    pub fn set_analog_5_raw(&mut self, value: u16) {
+    pub fn set_analog_5_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_5'
@@ -24699,7 +24699,7 @@ impl RtDl1mk3Analog4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_4(&self) -> f32 {
-        self.analog_4_phys()
+        self.analog_4_phys_val()
     }
     /// Get physical value of 'Analog_4'
     ///
@@ -24707,7 +24707,7 @@ impl RtDl1mk3Analog4 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_4_phys(&self) -> f32 {
+    pub fn analog_4_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24720,12 +24720,12 @@ impl RtDl1mk3Analog4 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_4_raw(&self) -> u16 {
+    pub fn analog_4_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_4'
     #[inline(always)]
-    pub fn set_analog_4_raw(&mut self, value: u16) {
+    pub fn set_analog_4_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_4'
@@ -24823,7 +24823,7 @@ impl RtDl1mk3Analog3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_3(&self) -> f32 {
-        self.analog_3_phys()
+        self.analog_3_phys_val()
     }
     /// Get physical value of 'Analog_3'
     ///
@@ -24831,7 +24831,7 @@ impl RtDl1mk3Analog3 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_3_phys(&self) -> f32 {
+    pub fn analog_3_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24844,12 +24844,12 @@ impl RtDl1mk3Analog3 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_3_raw(&self) -> u16 {
+    pub fn analog_3_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_3'
     #[inline(always)]
-    pub fn set_analog_3_raw(&mut self, value: u16) {
+    pub fn set_analog_3_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_3'
@@ -24947,7 +24947,7 @@ impl RtDl1mk3Analog2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_2(&self) -> f32 {
-        self.analog_2_phys()
+        self.analog_2_phys_val()
     }
     /// Get physical value of 'Analog_2'
     ///
@@ -24955,7 +24955,7 @@ impl RtDl1mk3Analog2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_2_phys(&self) -> f32 {
+    pub fn analog_2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24968,12 +24968,12 @@ impl RtDl1mk3Analog2 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_2_raw(&self) -> u16 {
+    pub fn analog_2_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_2'
     #[inline(always)]
-    pub fn set_analog_2_raw(&mut self, value: u16) {
+    pub fn set_analog_2_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_2'
@@ -25071,7 +25071,7 @@ impl RtDl1mk3Analog1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn analog_1(&self) -> f32 {
-        self.analog_1_phys()
+        self.analog_1_phys_val()
     }
     /// Get physical value of 'Analog_1'
     ///
@@ -25079,7 +25079,7 @@ impl RtDl1mk3Analog1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn analog_1_phys(&self) -> f32 {
+    pub fn analog_1_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -25092,12 +25092,12 @@ impl RtDl1mk3Analog1 {
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn analog_1_raw(&self) -> u16 {
+    pub fn analog_1_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
     }
     /// Set raw value of 'Analog_1'
     #[inline(always)]
-    pub fn set_analog_1_raw(&mut self, value: u16) {
+    pub fn set_analog_1_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
     }
     /// Set value of 'Analog_1'
@@ -25217,7 +25217,7 @@ impl RtDl1mk3Accel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accel_vertical(&self) -> f32 {
-        self.accel_vertical_phys()
+        self.accel_vertical_phys_val()
     }
     /// Get physical value of 'Accel_Vertical'
     ///
@@ -25225,7 +25225,7 @@ impl RtDl1mk3Accel {
     /// - Offset: 0
     /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_vertical_phys(&self) -> f32 {
+    pub fn accel_vertical_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -25238,12 +25238,12 @@ impl RtDl1mk3Accel {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn accel_vertical_raw(&self) -> i16 {
+    pub fn accel_vertical_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'Accel_Vertical'
     #[inline(always)]
-    pub fn set_accel_vertical_raw(&mut self, value: i16) {
+    pub fn set_accel_vertical_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -25272,7 +25272,7 @@ impl RtDl1mk3Accel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accel_lateral(&self) -> f32 {
-        self.accel_lateral_phys()
+        self.accel_lateral_phys_val()
     }
     /// Get physical value of 'Accel_Lateral'
     ///
@@ -25280,7 +25280,7 @@ impl RtDl1mk3Accel {
     /// - Offset: 0
     /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_lateral_phys(&self) -> f32 {
+    pub fn accel_lateral_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -25293,12 +25293,12 @@ impl RtDl1mk3Accel {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn accel_lateral_raw(&self) -> i16 {
+    pub fn accel_lateral_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Accel_Lateral'
     #[inline(always)]
-    pub fn set_accel_lateral_raw(&mut self, value: i16) {
+    pub fn set_accel_lateral_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -25327,7 +25327,7 @@ impl RtDl1mk3Accel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accel_longitudinal(&self) -> f32 {
-        self.accel_longitudinal_phys()
+        self.accel_longitudinal_phys_val()
     }
     /// Get physical value of 'Accel_Longitudinal'
     ///
@@ -25335,7 +25335,7 @@ impl RtDl1mk3Accel {
     /// - Offset: 0
     /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_longitudinal_phys(&self) -> f32 {
+    pub fn accel_longitudinal_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -25348,12 +25348,12 @@ impl RtDl1mk3Accel {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn accel_longitudinal_raw(&self) -> i16 {
+    pub fn accel_longitudinal_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'Accel_Longitudinal'
     #[inline(always)]
-    pub fn set_accel_longitudinal_raw(&mut self, value: i16) {
+    pub fn set_accel_longitudinal_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -25382,7 +25382,7 @@ impl RtDl1mk3Accel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_accel(&self) -> u8 {
-        self.accuracy_accel_phys()
+        self.accuracy_accel_phys_val()
     }
     /// Get physical value of 'Accuracy_Accel'
     ///
@@ -25390,7 +25390,7 @@ impl RtDl1mk3Accel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_accel_phys(&self) -> u8 {
+    pub fn accuracy_accel_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -25402,12 +25402,12 @@ impl RtDl1mk3Accel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_accel_raw(&self) -> u8 {
+    pub fn accuracy_accel_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_Accel'
     #[inline(always)]
-    pub fn set_accuracy_accel_raw(&mut self, value: u8) {
+    pub fn set_accuracy_accel_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_Accel'
@@ -25438,7 +25438,7 @@ impl RtDl1mk3Accel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_accel_vertical(&self) -> bool {
-        self.validity_accel_vertical_phys()
+        self.validity_accel_vertical_phys_val()
     }
     /// Get physical value of 'Validity_Accel_Vertical'
     ///
@@ -25446,7 +25446,7 @@ impl RtDl1mk3Accel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_accel_vertical_phys(&self) -> bool {
+    pub fn validity_accel_vertical_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -25457,12 +25457,12 @@ impl RtDl1mk3Accel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_accel_vertical_raw(&self) -> u8 {
+    pub fn validity_accel_vertical_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Accel_Vertical'
     #[inline(always)]
-    pub fn set_validity_accel_vertical_raw(&mut self, value: u8) {
+    pub fn set_validity_accel_vertical_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'Validity_Accel_Vertical'
@@ -25482,7 +25482,7 @@ impl RtDl1mk3Accel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_accel_lateral(&self) -> bool {
-        self.validity_accel_lateral_phys()
+        self.validity_accel_lateral_phys_val()
     }
     /// Get physical value of 'Validity_Accel_Lateral'
     ///
@@ -25490,7 +25490,7 @@ impl RtDl1mk3Accel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_accel_lateral_phys(&self) -> bool {
+    pub fn validity_accel_lateral_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -25501,12 +25501,12 @@ impl RtDl1mk3Accel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_accel_lateral_raw(&self) -> u8 {
+    pub fn validity_accel_lateral_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Accel_Lateral'
     #[inline(always)]
-    pub fn set_validity_accel_lateral_raw(&mut self, value: u8) {
+    pub fn set_validity_accel_lateral_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_Accel_Lateral'
@@ -25526,7 +25526,7 @@ impl RtDl1mk3Accel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_accel_longitudinal(&self) -> bool {
-        self.validity_accel_longitudinal_phys()
+        self.validity_accel_longitudinal_phys_val()
     }
     /// Get physical value of 'Validity_Accel_Longitudinal'
     ///
@@ -25534,7 +25534,7 @@ impl RtDl1mk3Accel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_accel_longitudinal_phys(&self) -> bool {
+    pub fn validity_accel_longitudinal_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -25545,12 +25545,12 @@ impl RtDl1mk3Accel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_accel_longitudinal_raw(&self) -> u8 {
+    pub fn validity_accel_longitudinal_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Accel_Longitudinal'
     #[inline(always)]
-    pub fn set_validity_accel_longitudinal_raw(&mut self, value: u8) {
+    pub fn set_validity_accel_longitudinal_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_Accel_Longitudinal'
@@ -25656,7 +25656,7 @@ impl RtSbInsVpt4VelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_4_slip(&self) -> f32 {
-        self.virtual_4_slip_phys()
+        self.virtual_4_slip_phys_val()
     }
     /// Get physical value of 'Virtual_4_Slip'
     ///
@@ -25664,7 +25664,7 @@ impl RtSbInsVpt4VelNed2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_4_slip_phys(&self) -> f32 {
+    pub fn virtual_4_slip_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -25677,12 +25677,12 @@ impl RtSbInsVpt4VelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_4_slip_raw(&self) -> i16 {
+    pub fn virtual_4_slip_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_4_Slip'
     #[inline(always)]
-    pub fn set_virtual_4_slip_raw(&mut self, value: i16) {
+    pub fn set_virtual_4_slip_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -25711,7 +25711,7 @@ impl RtSbInsVpt4VelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_4_heading(&self) -> f32 {
-        self.virtual_4_heading_phys()
+        self.virtual_4_heading_phys_val()
     }
     /// Get physical value of 'Virtual_4_Heading'
     ///
@@ -25719,7 +25719,7 @@ impl RtSbInsVpt4VelNed2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_4_heading_phys(&self) -> f32 {
+    pub fn virtual_4_heading_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -25732,12 +25732,12 @@ impl RtSbInsVpt4VelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_4_heading_raw(&self) -> i16 {
+    pub fn virtual_4_heading_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_4_Heading'
     #[inline(always)]
-    pub fn set_virtual_4_heading_raw(&mut self, value: i16) {
+    pub fn set_virtual_4_heading_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -25766,7 +25766,7 @@ impl RtSbInsVpt4VelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_4_vel_ned_d(&self) -> f32 {
-        self.virtual_4_vel_ned_d_phys()
+        self.virtual_4_vel_ned_d_phys_val()
     }
     /// Get physical value of 'Virtual_4_Vel_NED_D'
     ///
@@ -25774,7 +25774,7 @@ impl RtSbInsVpt4VelNed2 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_4_vel_ned_d_phys(&self) -> f32 {
+    pub fn virtual_4_vel_ned_d_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -25787,12 +25787,12 @@ impl RtSbInsVpt4VelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_4_vel_ned_d_raw(&self) -> i32 {
+    pub fn virtual_4_vel_ned_d_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>()
     }
     /// Set raw value of 'Virtual_4_Vel_NED_D'
     #[inline(always)]
-    pub fn set_virtual_4_vel_ned_d_raw(&mut self, value: i32) {
+    pub fn set_virtual_4_vel_ned_d_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
@@ -25900,7 +25900,7 @@ impl RtSbInsVpt4VelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_4_vel_ned_e(&self) -> f32 {
-        self.virtual_4_vel_ned_e_phys()
+        self.virtual_4_vel_ned_e_phys_val()
     }
     /// Get physical value of 'Virtual_4_Vel_NED_E'
     ///
@@ -25908,7 +25908,7 @@ impl RtSbInsVpt4VelNed1 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_4_vel_ned_e_phys(&self) -> f32 {
+    pub fn virtual_4_vel_ned_e_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -25921,12 +25921,12 @@ impl RtSbInsVpt4VelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_4_vel_ned_e_raw(&self) -> i32 {
+    pub fn virtual_4_vel_ned_e_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>()
     }
     /// Set raw value of 'Virtual_4_Vel_NED_E'
     #[inline(always)]
-    pub fn set_virtual_4_vel_ned_e_raw(&mut self, value: i32) {
+    pub fn set_virtual_4_vel_ned_e_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..56].store_le(value);
     }
@@ -25955,7 +25955,7 @@ impl RtSbInsVpt4VelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_4_vel_ned_n(&self) -> f32 {
-        self.virtual_4_vel_ned_n_phys()
+        self.virtual_4_vel_ned_n_phys_val()
     }
     /// Get physical value of 'Virtual_4_Vel_NED_N'
     ///
@@ -25963,7 +25963,7 @@ impl RtSbInsVpt4VelNed1 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_4_vel_ned_n_phys(&self) -> f32 {
+    pub fn virtual_4_vel_ned_n_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -25976,12 +25976,12 @@ impl RtSbInsVpt4VelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_4_vel_ned_n_raw(&self) -> i32 {
+    pub fn virtual_4_vel_ned_n_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>()
     }
     /// Set raw value of 'Virtual_4_Vel_NED_N'
     #[inline(always)]
-    pub fn set_virtual_4_vel_ned_n_raw(&mut self, value: i32) {
+    pub fn set_virtual_4_vel_ned_n_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
@@ -26093,7 +26093,7 @@ impl RtSbInsVpt4Offset {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_4_offset_z(&self) -> f32 {
-        self.virtual_4_offset_z_phys()
+        self.virtual_4_offset_z_phys_val()
     }
     /// Get physical value of 'Virtual_4_Offset_Z'
     ///
@@ -26101,7 +26101,7 @@ impl RtSbInsVpt4Offset {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_4_offset_z_phys(&self) -> f32 {
+    pub fn virtual_4_offset_z_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -26114,12 +26114,12 @@ impl RtSbInsVpt4Offset {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_4_offset_z_raw(&self) -> i16 {
+    pub fn virtual_4_offset_z_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_4_Offset_Z'
     #[inline(always)]
-    pub fn set_virtual_4_offset_z_raw(&mut self, value: i16) {
+    pub fn set_virtual_4_offset_z_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -26148,7 +26148,7 @@ impl RtSbInsVpt4Offset {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_4_offset_y(&self) -> f32 {
-        self.virtual_4_offset_y_phys()
+        self.virtual_4_offset_y_phys_val()
     }
     /// Get physical value of 'Virtual_4_Offset_Y'
     ///
@@ -26156,7 +26156,7 @@ impl RtSbInsVpt4Offset {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_4_offset_y_phys(&self) -> f32 {
+    pub fn virtual_4_offset_y_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -26169,12 +26169,12 @@ impl RtSbInsVpt4Offset {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_4_offset_y_raw(&self) -> i16 {
+    pub fn virtual_4_offset_y_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_4_Offset_Y'
     #[inline(always)]
-    pub fn set_virtual_4_offset_y_raw(&mut self, value: i16) {
+    pub fn set_virtual_4_offset_y_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -26203,7 +26203,7 @@ impl RtSbInsVpt4Offset {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_4_offset_x(&self) -> f32 {
-        self.virtual_4_offset_x_phys()
+        self.virtual_4_offset_x_phys_val()
     }
     /// Get physical value of 'Virtual_4_Offset_X'
     ///
@@ -26211,7 +26211,7 @@ impl RtSbInsVpt4Offset {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_4_offset_x_phys(&self) -> f32 {
+    pub fn virtual_4_offset_x_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -26224,12 +26224,12 @@ impl RtSbInsVpt4Offset {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_4_offset_x_raw(&self) -> i16 {
+    pub fn virtual_4_offset_x_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_4_Offset_X'
     #[inline(always)]
-    pub fn set_virtual_4_offset_x_raw(&mut self, value: i16) {
+    pub fn set_virtual_4_offset_x_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -26341,7 +26341,7 @@ impl RtSbInsVpt3VelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_3_slip(&self) -> f32 {
-        self.virtual_3_slip_phys()
+        self.virtual_3_slip_phys_val()
     }
     /// Get physical value of 'Virtual_3_Slip'
     ///
@@ -26349,7 +26349,7 @@ impl RtSbInsVpt3VelNed2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_3_slip_phys(&self) -> f32 {
+    pub fn virtual_3_slip_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -26362,12 +26362,12 @@ impl RtSbInsVpt3VelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_3_slip_raw(&self) -> i16 {
+    pub fn virtual_3_slip_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_3_Slip'
     #[inline(always)]
-    pub fn set_virtual_3_slip_raw(&mut self, value: i16) {
+    pub fn set_virtual_3_slip_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -26396,7 +26396,7 @@ impl RtSbInsVpt3VelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_3_heading(&self) -> f32 {
-        self.virtual_3_heading_phys()
+        self.virtual_3_heading_phys_val()
     }
     /// Get physical value of 'Virtual_3_Heading'
     ///
@@ -26404,7 +26404,7 @@ impl RtSbInsVpt3VelNed2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_3_heading_phys(&self) -> f32 {
+    pub fn virtual_3_heading_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -26417,12 +26417,12 @@ impl RtSbInsVpt3VelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_3_heading_raw(&self) -> i16 {
+    pub fn virtual_3_heading_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_3_Heading'
     #[inline(always)]
-    pub fn set_virtual_3_heading_raw(&mut self, value: i16) {
+    pub fn set_virtual_3_heading_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -26451,7 +26451,7 @@ impl RtSbInsVpt3VelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_3_vel_ned_d(&self) -> f32 {
-        self.virtual_3_vel_ned_d_phys()
+        self.virtual_3_vel_ned_d_phys_val()
     }
     /// Get physical value of 'Virtual_3_Vel_NED_D'
     ///
@@ -26459,7 +26459,7 @@ impl RtSbInsVpt3VelNed2 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_3_vel_ned_d_phys(&self) -> f32 {
+    pub fn virtual_3_vel_ned_d_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -26472,12 +26472,12 @@ impl RtSbInsVpt3VelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_3_vel_ned_d_raw(&self) -> i32 {
+    pub fn virtual_3_vel_ned_d_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>()
     }
     /// Set raw value of 'Virtual_3_Vel_NED_D'
     #[inline(always)]
-    pub fn set_virtual_3_vel_ned_d_raw(&mut self, value: i32) {
+    pub fn set_virtual_3_vel_ned_d_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
@@ -26585,7 +26585,7 @@ impl RtSbInsVpt3VelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_3_vel_ned_e(&self) -> f32 {
-        self.virtual_3_vel_ned_e_phys()
+        self.virtual_3_vel_ned_e_phys_val()
     }
     /// Get physical value of 'Virtual_3_Vel_NED_E'
     ///
@@ -26593,7 +26593,7 @@ impl RtSbInsVpt3VelNed1 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_3_vel_ned_e_phys(&self) -> f32 {
+    pub fn virtual_3_vel_ned_e_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -26606,12 +26606,12 @@ impl RtSbInsVpt3VelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_3_vel_ned_e_raw(&self) -> i32 {
+    pub fn virtual_3_vel_ned_e_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>()
     }
     /// Set raw value of 'Virtual_3_Vel_NED_E'
     #[inline(always)]
-    pub fn set_virtual_3_vel_ned_e_raw(&mut self, value: i32) {
+    pub fn set_virtual_3_vel_ned_e_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..56].store_le(value);
     }
@@ -26640,7 +26640,7 @@ impl RtSbInsVpt3VelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_3_vel_ned_n(&self) -> f32 {
-        self.virtual_3_vel_ned_n_phys()
+        self.virtual_3_vel_ned_n_phys_val()
     }
     /// Get physical value of 'Virtual_3_Vel_NED_N'
     ///
@@ -26648,7 +26648,7 @@ impl RtSbInsVpt3VelNed1 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_3_vel_ned_n_phys(&self) -> f32 {
+    pub fn virtual_3_vel_ned_n_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -26661,12 +26661,12 @@ impl RtSbInsVpt3VelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_3_vel_ned_n_raw(&self) -> i32 {
+    pub fn virtual_3_vel_ned_n_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>()
     }
     /// Set raw value of 'Virtual_3_Vel_NED_N'
     #[inline(always)]
-    pub fn set_virtual_3_vel_ned_n_raw(&mut self, value: i32) {
+    pub fn set_virtual_3_vel_ned_n_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
@@ -26778,7 +26778,7 @@ impl RtSbInsVpt3Offset {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_3_offset_z(&self) -> f32 {
-        self.virtual_3_offset_z_phys()
+        self.virtual_3_offset_z_phys_val()
     }
     /// Get physical value of 'Virtual_3_Offset_Z'
     ///
@@ -26786,7 +26786,7 @@ impl RtSbInsVpt3Offset {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_3_offset_z_phys(&self) -> f32 {
+    pub fn virtual_3_offset_z_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -26799,12 +26799,12 @@ impl RtSbInsVpt3Offset {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_3_offset_z_raw(&self) -> i16 {
+    pub fn virtual_3_offset_z_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_3_Offset_Z'
     #[inline(always)]
-    pub fn set_virtual_3_offset_z_raw(&mut self, value: i16) {
+    pub fn set_virtual_3_offset_z_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -26833,7 +26833,7 @@ impl RtSbInsVpt3Offset {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_3_offset_y(&self) -> f32 {
-        self.virtual_3_offset_y_phys()
+        self.virtual_3_offset_y_phys_val()
     }
     /// Get physical value of 'Virtual_3_Offset_Y'
     ///
@@ -26841,7 +26841,7 @@ impl RtSbInsVpt3Offset {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_3_offset_y_phys(&self) -> f32 {
+    pub fn virtual_3_offset_y_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -26854,12 +26854,12 @@ impl RtSbInsVpt3Offset {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_3_offset_y_raw(&self) -> i16 {
+    pub fn virtual_3_offset_y_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_3_Offset_Y'
     #[inline(always)]
-    pub fn set_virtual_3_offset_y_raw(&mut self, value: i16) {
+    pub fn set_virtual_3_offset_y_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -26888,7 +26888,7 @@ impl RtSbInsVpt3Offset {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_3_offset_x(&self) -> f32 {
-        self.virtual_3_offset_x_phys()
+        self.virtual_3_offset_x_phys_val()
     }
     /// Get physical value of 'Virtual_3_Offset_X'
     ///
@@ -26896,7 +26896,7 @@ impl RtSbInsVpt3Offset {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_3_offset_x_phys(&self) -> f32 {
+    pub fn virtual_3_offset_x_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -26909,12 +26909,12 @@ impl RtSbInsVpt3Offset {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_3_offset_x_raw(&self) -> i16 {
+    pub fn virtual_3_offset_x_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_3_Offset_X'
     #[inline(always)]
-    pub fn set_virtual_3_offset_x_raw(&mut self, value: i16) {
+    pub fn set_virtual_3_offset_x_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -27026,7 +27026,7 @@ impl RtSbInsVpt2VelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_2_slip(&self) -> f32 {
-        self.virtual_2_slip_phys()
+        self.virtual_2_slip_phys_val()
     }
     /// Get physical value of 'Virtual_2_Slip'
     ///
@@ -27034,7 +27034,7 @@ impl RtSbInsVpt2VelNed2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_2_slip_phys(&self) -> f32 {
+    pub fn virtual_2_slip_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -27047,12 +27047,12 @@ impl RtSbInsVpt2VelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_2_slip_raw(&self) -> i16 {
+    pub fn virtual_2_slip_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_2_Slip'
     #[inline(always)]
-    pub fn set_virtual_2_slip_raw(&mut self, value: i16) {
+    pub fn set_virtual_2_slip_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -27081,7 +27081,7 @@ impl RtSbInsVpt2VelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_2_heading(&self) -> f32 {
-        self.virtual_2_heading_phys()
+        self.virtual_2_heading_phys_val()
     }
     /// Get physical value of 'Virtual_2_Heading'
     ///
@@ -27089,7 +27089,7 @@ impl RtSbInsVpt2VelNed2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_2_heading_phys(&self) -> f32 {
+    pub fn virtual_2_heading_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -27102,12 +27102,12 @@ impl RtSbInsVpt2VelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_2_heading_raw(&self) -> i16 {
+    pub fn virtual_2_heading_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_2_Heading'
     #[inline(always)]
-    pub fn set_virtual_2_heading_raw(&mut self, value: i16) {
+    pub fn set_virtual_2_heading_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -27136,7 +27136,7 @@ impl RtSbInsVpt2VelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_2_vel_ned_d(&self) -> f32 {
-        self.virtual_2_vel_ned_d_phys()
+        self.virtual_2_vel_ned_d_phys_val()
     }
     /// Get physical value of 'Virtual_2_Vel_NED_D'
     ///
@@ -27144,7 +27144,7 @@ impl RtSbInsVpt2VelNed2 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_2_vel_ned_d_phys(&self) -> f32 {
+    pub fn virtual_2_vel_ned_d_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -27157,12 +27157,12 @@ impl RtSbInsVpt2VelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_2_vel_ned_d_raw(&self) -> i32 {
+    pub fn virtual_2_vel_ned_d_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>()
     }
     /// Set raw value of 'Virtual_2_Vel_NED_D'
     #[inline(always)]
-    pub fn set_virtual_2_vel_ned_d_raw(&mut self, value: i32) {
+    pub fn set_virtual_2_vel_ned_d_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
@@ -27270,7 +27270,7 @@ impl RtSbInsVpt2VelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_2_vel_ned_e(&self) -> f32 {
-        self.virtual_2_vel_ned_e_phys()
+        self.virtual_2_vel_ned_e_phys_val()
     }
     /// Get physical value of 'Virtual_2_Vel_NED_E'
     ///
@@ -27278,7 +27278,7 @@ impl RtSbInsVpt2VelNed1 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_2_vel_ned_e_phys(&self) -> f32 {
+    pub fn virtual_2_vel_ned_e_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -27291,12 +27291,12 @@ impl RtSbInsVpt2VelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_2_vel_ned_e_raw(&self) -> i32 {
+    pub fn virtual_2_vel_ned_e_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>()
     }
     /// Set raw value of 'Virtual_2_Vel_NED_E'
     #[inline(always)]
-    pub fn set_virtual_2_vel_ned_e_raw(&mut self, value: i32) {
+    pub fn set_virtual_2_vel_ned_e_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..56].store_le(value);
     }
@@ -27325,7 +27325,7 @@ impl RtSbInsVpt2VelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_2_vel_ned_n(&self) -> f32 {
-        self.virtual_2_vel_ned_n_phys()
+        self.virtual_2_vel_ned_n_phys_val()
     }
     /// Get physical value of 'Virtual_2_Vel_NED_N'
     ///
@@ -27333,7 +27333,7 @@ impl RtSbInsVpt2VelNed1 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_2_vel_ned_n_phys(&self) -> f32 {
+    pub fn virtual_2_vel_ned_n_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -27346,12 +27346,12 @@ impl RtSbInsVpt2VelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_2_vel_ned_n_raw(&self) -> i32 {
+    pub fn virtual_2_vel_ned_n_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>()
     }
     /// Set raw value of 'Virtual_2_Vel_NED_N'
     #[inline(always)]
-    pub fn set_virtual_2_vel_ned_n_raw(&mut self, value: i32) {
+    pub fn set_virtual_2_vel_ned_n_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
@@ -27463,7 +27463,7 @@ impl RtSbInsVpt2Offset {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_2_offset_z(&self) -> f32 {
-        self.virtual_2_offset_z_phys()
+        self.virtual_2_offset_z_phys_val()
     }
     /// Get physical value of 'Virtual_2_Offset_Z'
     ///
@@ -27471,7 +27471,7 @@ impl RtSbInsVpt2Offset {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_2_offset_z_phys(&self) -> f32 {
+    pub fn virtual_2_offset_z_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -27484,12 +27484,12 @@ impl RtSbInsVpt2Offset {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_2_offset_z_raw(&self) -> i16 {
+    pub fn virtual_2_offset_z_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_2_Offset_Z'
     #[inline(always)]
-    pub fn set_virtual_2_offset_z_raw(&mut self, value: i16) {
+    pub fn set_virtual_2_offset_z_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -27518,7 +27518,7 @@ impl RtSbInsVpt2Offset {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_2_offset_y(&self) -> f32 {
-        self.virtual_2_offset_y_phys()
+        self.virtual_2_offset_y_phys_val()
     }
     /// Get physical value of 'Virtual_2_Offset_Y'
     ///
@@ -27526,7 +27526,7 @@ impl RtSbInsVpt2Offset {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_2_offset_y_phys(&self) -> f32 {
+    pub fn virtual_2_offset_y_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -27539,12 +27539,12 @@ impl RtSbInsVpt2Offset {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_2_offset_y_raw(&self) -> i16 {
+    pub fn virtual_2_offset_y_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_2_Offset_Y'
     #[inline(always)]
-    pub fn set_virtual_2_offset_y_raw(&mut self, value: i16) {
+    pub fn set_virtual_2_offset_y_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -27573,7 +27573,7 @@ impl RtSbInsVpt2Offset {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_2_offset_x(&self) -> f32 {
-        self.virtual_2_offset_x_phys()
+        self.virtual_2_offset_x_phys_val()
     }
     /// Get physical value of 'Virtual_2_Offset_X'
     ///
@@ -27581,7 +27581,7 @@ impl RtSbInsVpt2Offset {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_2_offset_x_phys(&self) -> f32 {
+    pub fn virtual_2_offset_x_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -27594,12 +27594,12 @@ impl RtSbInsVpt2Offset {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_2_offset_x_raw(&self) -> i16 {
+    pub fn virtual_2_offset_x_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_2_Offset_X'
     #[inline(always)]
-    pub fn set_virtual_2_offset_x_raw(&mut self, value: i16) {
+    pub fn set_virtual_2_offset_x_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -27711,7 +27711,7 @@ impl RtSbInsVpt1VelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_1_slip(&self) -> f32 {
-        self.virtual_1_slip_phys()
+        self.virtual_1_slip_phys_val()
     }
     /// Get physical value of 'Virtual_1_Slip'
     ///
@@ -27719,7 +27719,7 @@ impl RtSbInsVpt1VelNed2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_1_slip_phys(&self) -> f32 {
+    pub fn virtual_1_slip_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -27732,12 +27732,12 @@ impl RtSbInsVpt1VelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_1_slip_raw(&self) -> i16 {
+    pub fn virtual_1_slip_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_1_Slip'
     #[inline(always)]
-    pub fn set_virtual_1_slip_raw(&mut self, value: i16) {
+    pub fn set_virtual_1_slip_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -27766,7 +27766,7 @@ impl RtSbInsVpt1VelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_1_heading(&self) -> f32 {
-        self.virtual_1_heading_phys()
+        self.virtual_1_heading_phys_val()
     }
     /// Get physical value of 'Virtual_1_Heading'
     ///
@@ -27774,7 +27774,7 @@ impl RtSbInsVpt1VelNed2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_1_heading_phys(&self) -> f32 {
+    pub fn virtual_1_heading_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -27787,12 +27787,12 @@ impl RtSbInsVpt1VelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_1_heading_raw(&self) -> i16 {
+    pub fn virtual_1_heading_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_1_Heading'
     #[inline(always)]
-    pub fn set_virtual_1_heading_raw(&mut self, value: i16) {
+    pub fn set_virtual_1_heading_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -27821,7 +27821,7 @@ impl RtSbInsVpt1VelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_1_vel_ned_d(&self) -> f32 {
-        self.virtual_1_vel_ned_d_phys()
+        self.virtual_1_vel_ned_d_phys_val()
     }
     /// Get physical value of 'Virtual_1_Vel_NED_D'
     ///
@@ -27829,7 +27829,7 @@ impl RtSbInsVpt1VelNed2 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_1_vel_ned_d_phys(&self) -> f32 {
+    pub fn virtual_1_vel_ned_d_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -27842,12 +27842,12 @@ impl RtSbInsVpt1VelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_1_vel_ned_d_raw(&self) -> i32 {
+    pub fn virtual_1_vel_ned_d_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>()
     }
     /// Set raw value of 'Virtual_1_Vel_NED_D'
     #[inline(always)]
-    pub fn set_virtual_1_vel_ned_d_raw(&mut self, value: i32) {
+    pub fn set_virtual_1_vel_ned_d_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
@@ -27955,7 +27955,7 @@ impl RtSbInsVpt1VelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_1_vel_ned_e(&self) -> f32 {
-        self.virtual_1_vel_ned_e_phys()
+        self.virtual_1_vel_ned_e_phys_val()
     }
     /// Get physical value of 'Virtual_1_Vel_NED_E'
     ///
@@ -27963,7 +27963,7 @@ impl RtSbInsVpt1VelNed1 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_1_vel_ned_e_phys(&self) -> f32 {
+    pub fn virtual_1_vel_ned_e_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -27976,12 +27976,12 @@ impl RtSbInsVpt1VelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_1_vel_ned_e_raw(&self) -> i32 {
+    pub fn virtual_1_vel_ned_e_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>()
     }
     /// Set raw value of 'Virtual_1_Vel_NED_E'
     #[inline(always)]
-    pub fn set_virtual_1_vel_ned_e_raw(&mut self, value: i32) {
+    pub fn set_virtual_1_vel_ned_e_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..56].store_le(value);
     }
@@ -28010,7 +28010,7 @@ impl RtSbInsVpt1VelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_1_vel_ned_n(&self) -> f32 {
-        self.virtual_1_vel_ned_n_phys()
+        self.virtual_1_vel_ned_n_phys_val()
     }
     /// Get physical value of 'Virtual_1_Vel_NED_N'
     ///
@@ -28018,7 +28018,7 @@ impl RtSbInsVpt1VelNed1 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_1_vel_ned_n_phys(&self) -> f32 {
+    pub fn virtual_1_vel_ned_n_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -28031,12 +28031,12 @@ impl RtSbInsVpt1VelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_1_vel_ned_n_raw(&self) -> i32 {
+    pub fn virtual_1_vel_ned_n_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>()
     }
     /// Set raw value of 'Virtual_1_Vel_NED_N'
     #[inline(always)]
-    pub fn set_virtual_1_vel_ned_n_raw(&mut self, value: i32) {
+    pub fn set_virtual_1_vel_ned_n_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
     }
@@ -28148,7 +28148,7 @@ impl RtSbInsVpt1Offset {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_1_offset_z(&self) -> f32 {
-        self.virtual_1_offset_z_phys()
+        self.virtual_1_offset_z_phys_val()
     }
     /// Get physical value of 'Virtual_1_Offset_Z'
     ///
@@ -28156,7 +28156,7 @@ impl RtSbInsVpt1Offset {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_1_offset_z_phys(&self) -> f32 {
+    pub fn virtual_1_offset_z_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -28169,12 +28169,12 @@ impl RtSbInsVpt1Offset {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_1_offset_z_raw(&self) -> i16 {
+    pub fn virtual_1_offset_z_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_1_Offset_Z'
     #[inline(always)]
-    pub fn set_virtual_1_offset_z_raw(&mut self, value: i16) {
+    pub fn set_virtual_1_offset_z_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -28203,7 +28203,7 @@ impl RtSbInsVpt1Offset {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_1_offset_y(&self) -> f32 {
-        self.virtual_1_offset_y_phys()
+        self.virtual_1_offset_y_phys_val()
     }
     /// Get physical value of 'Virtual_1_Offset_Y'
     ///
@@ -28211,7 +28211,7 @@ impl RtSbInsVpt1Offset {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_1_offset_y_phys(&self) -> f32 {
+    pub fn virtual_1_offset_y_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -28224,12 +28224,12 @@ impl RtSbInsVpt1Offset {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_1_offset_y_raw(&self) -> i16 {
+    pub fn virtual_1_offset_y_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_1_Offset_Y'
     #[inline(always)]
-    pub fn set_virtual_1_offset_y_raw(&mut self, value: i16) {
+    pub fn set_virtual_1_offset_y_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -28258,7 +28258,7 @@ impl RtSbInsVpt1Offset {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn virtual_1_offset_x(&self) -> f32 {
-        self.virtual_1_offset_x_phys()
+        self.virtual_1_offset_x_phys_val()
     }
     /// Get physical value of 'Virtual_1_Offset_X'
     ///
@@ -28266,7 +28266,7 @@ impl RtSbInsVpt1Offset {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_1_offset_x_phys(&self) -> f32 {
+    pub fn virtual_1_offset_x_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -28279,12 +28279,12 @@ impl RtSbInsVpt1Offset {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn virtual_1_offset_x_raw(&self) -> i16 {
+    pub fn virtual_1_offset_x_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>()
     }
     /// Set raw value of 'Virtual_1_Offset_X'
     #[inline(always)]
-    pub fn set_virtual_1_offset_x_raw(&mut self, value: i16) {
+    pub fn set_virtual_1_offset_x_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
@@ -28404,7 +28404,7 @@ impl RtSbInsSlip {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_squat(&self) -> f32 {
-        self.ins_squat_phys()
+        self.ins_squat_phys_val()
     }
     /// Get physical value of 'INS_Squat'
     ///
@@ -28412,7 +28412,7 @@ impl RtSbInsSlip {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_squat_phys(&self) -> f32 {
+    pub fn ins_squat_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -28425,12 +28425,12 @@ impl RtSbInsSlip {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_squat_raw(&self) -> i16 {
+    pub fn ins_squat_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>()
     }
     /// Set raw value of 'INS_Squat'
     #[inline(always)]
-    pub fn set_ins_squat_raw(&mut self, value: i16) {
+    pub fn set_ins_squat_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[40..56].store_le(value);
     }
@@ -28459,7 +28459,7 @@ impl RtSbInsSlip {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_squat(&self) -> u8 {
-        self.accuracy_ins_squat_phys()
+        self.accuracy_ins_squat_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Squat'
     ///
@@ -28467,7 +28467,7 @@ impl RtSbInsSlip {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_squat_phys(&self) -> u8 {
+    pub fn accuracy_ins_squat_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -28479,12 +28479,12 @@ impl RtSbInsSlip {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_squat_raw(&self) -> u8 {
+    pub fn accuracy_ins_squat_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Squat'
     #[inline(always)]
-    pub fn set_accuracy_ins_squat_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_squat_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Squat'
@@ -28515,7 +28515,7 @@ impl RtSbInsSlip {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_slip(&self) -> f32 {
-        self.ins_slip_phys()
+        self.ins_slip_phys_val()
     }
     /// Get physical value of 'INS_Slip'
     ///
@@ -28523,7 +28523,7 @@ impl RtSbInsSlip {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_slip_phys(&self) -> f32 {
+    pub fn ins_slip_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -28536,12 +28536,12 @@ impl RtSbInsSlip {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_slip_raw(&self) -> i16 {
+    pub fn ins_slip_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'INS_Slip'
     #[inline(always)]
-    pub fn set_ins_slip_raw(&mut self, value: i16) {
+    pub fn set_ins_slip_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -28570,7 +28570,7 @@ impl RtSbInsSlip {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_slip(&self) -> u8 {
-        self.accuracy_ins_slip_phys()
+        self.accuracy_ins_slip_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Slip'
     ///
@@ -28578,7 +28578,7 @@ impl RtSbInsSlip {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_slip_phys(&self) -> u8 {
+    pub fn accuracy_ins_slip_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -28590,12 +28590,12 @@ impl RtSbInsSlip {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_slip_raw(&self) -> u8 {
+    pub fn accuracy_ins_slip_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Slip'
     #[inline(always)]
-    pub fn set_accuracy_ins_slip_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_slip_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Slip'
@@ -28624,7 +28624,7 @@ impl RtSbInsSlip {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_squat(&self) -> bool {
-        self.validity_ins_squat_phys()
+        self.validity_ins_squat_phys_val()
     }
     /// Get physical value of 'Validity_INS_Squat'
     ///
@@ -28632,7 +28632,7 @@ impl RtSbInsSlip {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_squat_phys(&self) -> bool {
+    pub fn validity_ins_squat_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -28643,12 +28643,12 @@ impl RtSbInsSlip {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_squat_raw(&self) -> u8 {
+    pub fn validity_ins_squat_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Squat'
     #[inline(always)]
-    pub fn set_validity_ins_squat_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_squat_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_INS_Squat'
@@ -28666,7 +28666,7 @@ impl RtSbInsSlip {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_slip(&self) -> bool {
-        self.validity_ins_slip_phys()
+        self.validity_ins_slip_phys_val()
     }
     /// Get physical value of 'Validity_INS_Slip'
     ///
@@ -28674,7 +28674,7 @@ impl RtSbInsSlip {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_slip_phys(&self) -> bool {
+    pub fn validity_ins_slip_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -28685,12 +28685,12 @@ impl RtSbInsSlip {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_slip_raw(&self) -> u8 {
+    pub fn validity_ins_slip_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Slip'
     #[inline(always)]
-    pub fn set_validity_ins_slip_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_slip_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_INS_Slip'
@@ -28793,7 +28793,7 @@ impl RtSbInsVelEcef2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_vel_ecef_z(&self) -> f32 {
-        self.ins_vel_ecef_z_phys()
+        self.ins_vel_ecef_z_phys_val()
     }
     /// Get physical value of 'INS_Vel_ECEF_Z'
     ///
@@ -28801,7 +28801,7 @@ impl RtSbInsVelEcef2 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_ecef_z_phys(&self) -> f32 {
+    pub fn ins_vel_ecef_z_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -28814,12 +28814,12 @@ impl RtSbInsVelEcef2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_vel_ecef_z_raw(&self) -> i32 {
+    pub fn ins_vel_ecef_z_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>()
     }
     /// Set raw value of 'INS_Vel_ECEF_Z'
     #[inline(always)]
-    pub fn set_ins_vel_ecef_z_raw(&mut self, value: i32) {
+    pub fn set_ins_vel_ecef_z_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..56].store_le(value);
     }
@@ -28848,7 +28848,7 @@ impl RtSbInsVelEcef2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_vel_ecef_y(&self) -> f32 {
-        self.ins_vel_ecef_y_phys()
+        self.ins_vel_ecef_y_phys_val()
     }
     /// Get physical value of 'INS_Vel_ECEF_Y'
     ///
@@ -28856,7 +28856,7 @@ impl RtSbInsVelEcef2 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_ecef_y_phys(&self) -> f32 {
+    pub fn ins_vel_ecef_y_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..32].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -28869,12 +28869,12 @@ impl RtSbInsVelEcef2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_vel_ecef_y_raw(&self) -> i32 {
+    pub fn ins_vel_ecef_y_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[8..32].load_le::<i32>()
     }
     /// Set raw value of 'INS_Vel_ECEF_Y'
     #[inline(always)]
-    pub fn set_ins_vel_ecef_y_raw(&mut self, value: i32) {
+    pub fn set_ins_vel_ecef_y_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..32].store_le(value);
     }
@@ -28903,7 +28903,7 @@ impl RtSbInsVelEcef2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_vel_ecef_z(&self) -> bool {
-        self.validity_ins_vel_ecef_z_phys()
+        self.validity_ins_vel_ecef_z_phys_val()
     }
     /// Get physical value of 'Validity_INS_Vel_ECEF_Z'
     ///
@@ -28911,7 +28911,7 @@ impl RtSbInsVelEcef2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_vel_ecef_z_phys(&self) -> bool {
+    pub fn validity_ins_vel_ecef_z_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -28922,12 +28922,12 @@ impl RtSbInsVelEcef2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_vel_ecef_z_raw(&self) -> u8 {
+    pub fn validity_ins_vel_ecef_z_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Vel_ECEF_Z'
     #[inline(always)]
-    pub fn set_validity_ins_vel_ecef_z_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_vel_ecef_z_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_INS_Vel_ECEF_Z'
@@ -28947,7 +28947,7 @@ impl RtSbInsVelEcef2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_vel_ecef_y(&self) -> bool {
-        self.validity_ins_vel_ecef_y_phys()
+        self.validity_ins_vel_ecef_y_phys_val()
     }
     /// Get physical value of 'Validity_INS_Vel_ECEF_Y'
     ///
@@ -28955,7 +28955,7 @@ impl RtSbInsVelEcef2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_vel_ecef_y_phys(&self) -> bool {
+    pub fn validity_ins_vel_ecef_y_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -28966,12 +28966,12 @@ impl RtSbInsVelEcef2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_vel_ecef_y_raw(&self) -> u8 {
+    pub fn validity_ins_vel_ecef_y_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Vel_ECEF_Y'
     #[inline(always)]
-    pub fn set_validity_ins_vel_ecef_y_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_vel_ecef_y_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_INS_Vel_ECEF_Y'
@@ -29080,7 +29080,7 @@ impl RtSbInsVelEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_vel_ecef_x(&self) -> f32 {
-        self.ins_vel_ecef_x_phys()
+        self.ins_vel_ecef_x_phys_val()
     }
     /// Get physical value of 'INS_Vel_ECEF_X'
     ///
@@ -29088,7 +29088,7 @@ impl RtSbInsVelEcef1 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_ecef_x_phys(&self) -> f32 {
+    pub fn ins_vel_ecef_x_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -29101,12 +29101,12 @@ impl RtSbInsVelEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_vel_ecef_x_raw(&self) -> i32 {
+    pub fn ins_vel_ecef_x_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>()
     }
     /// Set raw value of 'INS_Vel_ECEF_X'
     #[inline(always)]
-    pub fn set_ins_vel_ecef_x_raw(&mut self, value: i32) {
+    pub fn set_ins_vel_ecef_x_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..56].store_le(value);
     }
@@ -29133,7 +29133,7 @@ impl RtSbInsVelEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_vel_ecef_z(&self) -> u8 {
-        self.accuracy_ins_vel_ecef_z_phys()
+        self.accuracy_ins_vel_ecef_z_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Vel_ECEF_Z'
     ///
@@ -29141,7 +29141,7 @@ impl RtSbInsVelEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_vel_ecef_z_phys(&self) -> u8 {
+    pub fn accuracy_ins_vel_ecef_z_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -29153,12 +29153,12 @@ impl RtSbInsVelEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_vel_ecef_z_raw(&self) -> u8 {
+    pub fn accuracy_ins_vel_ecef_z_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Vel_ECEF_Z'
     #[inline(always)]
-    pub fn set_accuracy_ins_vel_ecef_z_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_vel_ecef_z_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Vel_ECEF_Z'
@@ -29187,7 +29187,7 @@ impl RtSbInsVelEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_vel_ecef_y(&self) -> u8 {
-        self.accuracy_ins_vel_ecef_y_phys()
+        self.accuracy_ins_vel_ecef_y_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Vel_ECEF_Y'
     ///
@@ -29195,7 +29195,7 @@ impl RtSbInsVelEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_vel_ecef_y_phys(&self) -> u8 {
+    pub fn accuracy_ins_vel_ecef_y_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -29207,12 +29207,12 @@ impl RtSbInsVelEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_vel_ecef_y_raw(&self) -> u8 {
+    pub fn accuracy_ins_vel_ecef_y_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Vel_ECEF_Y'
     #[inline(always)]
-    pub fn set_accuracy_ins_vel_ecef_y_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_vel_ecef_y_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Vel_ECEF_Y'
@@ -29241,7 +29241,7 @@ impl RtSbInsVelEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_vel_ecef_x(&self) -> u8 {
-        self.accuracy_ins_vel_ecef_x_phys()
+        self.accuracy_ins_vel_ecef_x_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Vel_ECEF_X'
     ///
@@ -29249,7 +29249,7 @@ impl RtSbInsVelEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_vel_ecef_x_phys(&self) -> u8 {
+    pub fn accuracy_ins_vel_ecef_x_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -29261,12 +29261,12 @@ impl RtSbInsVelEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_vel_ecef_x_raw(&self) -> u8 {
+    pub fn accuracy_ins_vel_ecef_x_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Vel_ECEF_X'
     #[inline(always)]
-    pub fn set_accuracy_ins_vel_ecef_x_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_vel_ecef_x_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Vel_ECEF_X'
@@ -29297,7 +29297,7 @@ impl RtSbInsVelEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_vel_ecef_x(&self) -> bool {
-        self.validity_ins_vel_ecef_x_phys()
+        self.validity_ins_vel_ecef_x_phys_val()
     }
     /// Get physical value of 'Validity_INS_Vel_ECEF_X'
     ///
@@ -29305,7 +29305,7 @@ impl RtSbInsVelEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_vel_ecef_x_phys(&self) -> bool {
+    pub fn validity_ins_vel_ecef_x_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -29316,12 +29316,12 @@ impl RtSbInsVelEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_vel_ecef_x_raw(&self) -> u8 {
+    pub fn validity_ins_vel_ecef_x_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Vel_ECEF_X'
     #[inline(always)]
-    pub fn set_validity_ins_vel_ecef_x_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_vel_ecef_x_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_INS_Vel_ECEF_X'
@@ -29422,7 +29422,7 @@ impl RtSbInsVelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_vel_ned_d(&self) -> f32 {
-        self.ins_vel_ned_d_phys()
+        self.ins_vel_ned_d_phys_val()
     }
     /// Get physical value of 'INS_Vel_NED_D'
     ///
@@ -29430,7 +29430,7 @@ impl RtSbInsVelNed2 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_ned_d_phys(&self) -> f32 {
+    pub fn ins_vel_ned_d_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -29443,12 +29443,12 @@ impl RtSbInsVelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_vel_ned_d_raw(&self) -> i32 {
+    pub fn ins_vel_ned_d_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>()
     }
     /// Set raw value of 'INS_Vel_NED_D'
     #[inline(always)]
-    pub fn set_ins_vel_ned_d_raw(&mut self, value: i32) {
+    pub fn set_ins_vel_ned_d_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..40].store_le(value);
     }
@@ -29475,7 +29475,7 @@ impl RtSbInsVelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_vel_d(&self) -> u8 {
-        self.accuracy_ins_vel_d_phys()
+        self.accuracy_ins_vel_d_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Vel_D'
     ///
@@ -29483,7 +29483,7 @@ impl RtSbInsVelNed2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_vel_d_phys(&self) -> u8 {
+    pub fn accuracy_ins_vel_d_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -29495,12 +29495,12 @@ impl RtSbInsVelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_vel_d_raw(&self) -> u8 {
+    pub fn accuracy_ins_vel_d_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Vel_D'
     #[inline(always)]
-    pub fn set_accuracy_ins_vel_d_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_vel_d_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Vel_D'
@@ -29531,7 +29531,7 @@ impl RtSbInsVelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_vel_ned_d(&self) -> bool {
-        self.validity_ins_vel_ned_d_phys()
+        self.validity_ins_vel_ned_d_phys_val()
     }
     /// Get physical value of 'Validity_INS_Vel_NED_D'
     ///
@@ -29539,7 +29539,7 @@ impl RtSbInsVelNed2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_vel_ned_d_phys(&self) -> bool {
+    pub fn validity_ins_vel_ned_d_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -29550,12 +29550,12 @@ impl RtSbInsVelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_vel_ned_d_raw(&self) -> u8 {
+    pub fn validity_ins_vel_ned_d_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Vel_NED_D'
     #[inline(always)]
-    pub fn set_validity_ins_vel_ned_d_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_vel_ned_d_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_INS_Vel_NED_D'
@@ -29662,7 +29662,7 @@ impl RtSbInsVelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_vel_ned_e(&self) -> f32 {
-        self.ins_vel_ned_e_phys()
+        self.ins_vel_ned_e_phys_val()
     }
     /// Get physical value of 'INS_Vel_NED_E'
     ///
@@ -29670,7 +29670,7 @@ impl RtSbInsVelNed1 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_ned_e_phys(&self) -> f32 {
+    pub fn ins_vel_ned_e_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..64].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -29683,12 +29683,12 @@ impl RtSbInsVelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_vel_ned_e_raw(&self) -> i32 {
+    pub fn ins_vel_ned_e_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[40..64].load_le::<i32>()
     }
     /// Set raw value of 'INS_Vel_NED_E'
     #[inline(always)]
-    pub fn set_ins_vel_ned_e_raw(&mut self, value: i32) {
+    pub fn set_ins_vel_ned_e_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[40..64].store_le(value);
     }
@@ -29717,7 +29717,7 @@ impl RtSbInsVelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_vel_ned_n(&self) -> f32 {
-        self.ins_vel_ned_n_phys()
+        self.ins_vel_ned_n_phys_val()
     }
     /// Get physical value of 'INS_Vel_NED_N'
     ///
@@ -29725,7 +29725,7 @@ impl RtSbInsVelNed1 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_ned_n_phys(&self) -> f32 {
+    pub fn ins_vel_ned_n_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -29738,12 +29738,12 @@ impl RtSbInsVelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_vel_ned_n_raw(&self) -> i32 {
+    pub fn ins_vel_ned_n_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>()
     }
     /// Set raw value of 'INS_Vel_NED_N'
     #[inline(always)]
-    pub fn set_ins_vel_ned_n_raw(&mut self, value: i32) {
+    pub fn set_ins_vel_ned_n_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..40].store_le(value);
     }
@@ -29770,7 +29770,7 @@ impl RtSbInsVelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_vel_ne(&self) -> u8 {
-        self.accuracy_ins_vel_ne_phys()
+        self.accuracy_ins_vel_ne_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Vel_NE'
     ///
@@ -29778,7 +29778,7 @@ impl RtSbInsVelNed1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_vel_ne_phys(&self) -> u8 {
+    pub fn accuracy_ins_vel_ne_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -29790,12 +29790,12 @@ impl RtSbInsVelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_vel_ne_raw(&self) -> u8 {
+    pub fn accuracy_ins_vel_ne_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Vel_NE'
     #[inline(always)]
-    pub fn set_accuracy_ins_vel_ne_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_vel_ne_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Vel_NE'
@@ -29826,7 +29826,7 @@ impl RtSbInsVelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_vel_ned_e(&self) -> bool {
-        self.validity_ins_vel_ned_e_phys()
+        self.validity_ins_vel_ned_e_phys_val()
     }
     /// Get physical value of 'Validity_INS_Vel_NED_E'
     ///
@@ -29834,7 +29834,7 @@ impl RtSbInsVelNed1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_vel_ned_e_phys(&self) -> bool {
+    pub fn validity_ins_vel_ned_e_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -29845,12 +29845,12 @@ impl RtSbInsVelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_vel_ned_e_raw(&self) -> u8 {
+    pub fn validity_ins_vel_ned_e_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Vel_NED_E'
     #[inline(always)]
-    pub fn set_validity_ins_vel_ned_e_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_vel_ned_e_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_INS_Vel_NED_E'
@@ -29870,7 +29870,7 @@ impl RtSbInsVelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_vel_ned_n(&self) -> bool {
-        self.validity_ins_vel_ned_n_phys()
+        self.validity_ins_vel_ned_n_phys_val()
     }
     /// Get physical value of 'Validity_INS_Vel_NED_N'
     ///
@@ -29878,7 +29878,7 @@ impl RtSbInsVelNed1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_vel_ned_n_phys(&self) -> bool {
+    pub fn validity_ins_vel_ned_n_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -29889,12 +29889,12 @@ impl RtSbInsVelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_vel_ned_n_raw(&self) -> u8 {
+    pub fn validity_ins_vel_ned_n_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Vel_NED_N'
     #[inline(always)]
-    pub fn set_validity_ins_vel_ned_n_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_vel_ned_n_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_INS_Vel_NED_N'
@@ -29990,7 +29990,7 @@ impl RtSbInsPosEcef2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_pos_ecef_z(&self) -> f32 {
-        self.ins_pos_ecef_z_phys()
+        self.ins_pos_ecef_z_phys_val()
     }
     /// Get physical value of 'INS_Pos_ECEF_Z'
     ///
@@ -29998,7 +29998,7 @@ impl RtSbInsPosEcef2 {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn ins_pos_ecef_z_phys(&self) -> f32 {
+    pub fn ins_pos_ecef_z_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -30011,12 +30011,12 @@ impl RtSbInsPosEcef2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_pos_ecef_z_raw(&self) -> i32 {
+    pub fn ins_pos_ecef_z_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>()
     }
     /// Set raw value of 'INS_Pos_ECEF_Z'
     #[inline(always)]
-    pub fn set_ins_pos_ecef_z_raw(&mut self, value: i32) {
+    pub fn set_ins_pos_ecef_z_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
@@ -30045,7 +30045,7 @@ impl RtSbInsPosEcef2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_pos_ecef_y(&self) -> f32 {
-        self.ins_pos_ecef_y_phys()
+        self.ins_pos_ecef_y_phys_val()
     }
     /// Get physical value of 'INS_Pos_ECEF_Y'
     ///
@@ -30053,7 +30053,7 @@ impl RtSbInsPosEcef2 {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn ins_pos_ecef_y_phys(&self) -> f32 {
+    pub fn ins_pos_ecef_y_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -30066,12 +30066,12 @@ impl RtSbInsPosEcef2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_pos_ecef_y_raw(&self) -> i32 {
+    pub fn ins_pos_ecef_y_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
     }
     /// Set raw value of 'INS_Pos_ECEF_Y'
     #[inline(always)]
-    pub fn set_ins_pos_ecef_y_raw(&mut self, value: i32) {
+    pub fn set_ins_pos_ecef_y_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
     }
@@ -30193,7 +30193,7 @@ impl RtSbInsPosEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_pos_ecef_x(&self) -> f32 {
-        self.ins_pos_ecef_x_phys()
+        self.ins_pos_ecef_x_phys_val()
     }
     /// Get physical value of 'INS_Pos_ECEF_X'
     ///
@@ -30201,7 +30201,7 @@ impl RtSbInsPosEcef1 {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn ins_pos_ecef_x_phys(&self) -> f32 {
+    pub fn ins_pos_ecef_x_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -30214,12 +30214,12 @@ impl RtSbInsPosEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_pos_ecef_x_raw(&self) -> i32 {
+    pub fn ins_pos_ecef_x_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>()
     }
     /// Set raw value of 'INS_Pos_ECEF_X'
     #[inline(always)]
-    pub fn set_ins_pos_ecef_x_raw(&mut self, value: i32) {
+    pub fn set_ins_pos_ecef_x_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
@@ -30248,7 +30248,7 @@ impl RtSbInsPosEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_pos_ecef_z(&self) -> u8 {
-        self.accuracy_ins_pos_ecef_z_phys()
+        self.accuracy_ins_pos_ecef_z_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Pos_ECEF_Z'
     ///
@@ -30256,7 +30256,7 @@ impl RtSbInsPosEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_pos_ecef_z_phys(&self) -> u8 {
+    pub fn accuracy_ins_pos_ecef_z_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -30268,12 +30268,12 @@ impl RtSbInsPosEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_pos_ecef_z_raw(&self) -> u8 {
+    pub fn accuracy_ins_pos_ecef_z_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Pos_ECEF_Z'
     #[inline(always)]
-    pub fn set_accuracy_ins_pos_ecef_z_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_pos_ecef_z_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Pos_ECEF_Z'
@@ -30304,7 +30304,7 @@ impl RtSbInsPosEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_pos_ecef_y(&self) -> u8 {
-        self.accuracy_ins_pos_ecef_y_phys()
+        self.accuracy_ins_pos_ecef_y_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Pos_ECEF_Y'
     ///
@@ -30312,7 +30312,7 @@ impl RtSbInsPosEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_pos_ecef_y_phys(&self) -> u8 {
+    pub fn accuracy_ins_pos_ecef_y_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -30324,12 +30324,12 @@ impl RtSbInsPosEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_pos_ecef_y_raw(&self) -> u8 {
+    pub fn accuracy_ins_pos_ecef_y_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Pos_ECEF_Y'
     #[inline(always)]
-    pub fn set_accuracy_ins_pos_ecef_y_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_pos_ecef_y_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Pos_ECEF_Y'
@@ -30360,7 +30360,7 @@ impl RtSbInsPosEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_pos_ecef_x(&self) -> u8 {
-        self.accuracy_ins_pos_ecef_x_phys()
+        self.accuracy_ins_pos_ecef_x_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Pos_ECEF_X'
     ///
@@ -30368,7 +30368,7 @@ impl RtSbInsPosEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_pos_ecef_x_phys(&self) -> u8 {
+    pub fn accuracy_ins_pos_ecef_x_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -30380,12 +30380,12 @@ impl RtSbInsPosEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_pos_ecef_x_raw(&self) -> u8 {
+    pub fn accuracy_ins_pos_ecef_x_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Pos_ECEF_X'
     #[inline(always)]
-    pub fn set_accuracy_ins_pos_ecef_x_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_pos_ecef_x_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Pos_ECEF_X'
@@ -30416,7 +30416,7 @@ impl RtSbInsPosEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_pos_ecef_z(&self) -> bool {
-        self.validity_ins_pos_ecef_z_phys()
+        self.validity_ins_pos_ecef_z_phys_val()
     }
     /// Get physical value of 'Validity_INS_Pos_ECEF_Z'
     ///
@@ -30424,7 +30424,7 @@ impl RtSbInsPosEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_pos_ecef_z_phys(&self) -> bool {
+    pub fn validity_ins_pos_ecef_z_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -30435,12 +30435,12 @@ impl RtSbInsPosEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_pos_ecef_z_raw(&self) -> u8 {
+    pub fn validity_ins_pos_ecef_z_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Pos_ECEF_Z'
     #[inline(always)]
-    pub fn set_validity_ins_pos_ecef_z_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_pos_ecef_z_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'Validity_INS_Pos_ECEF_Z'
@@ -30460,7 +30460,7 @@ impl RtSbInsPosEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_pos_ecef_y(&self) -> bool {
-        self.validity_ins_pos_ecef_y_phys()
+        self.validity_ins_pos_ecef_y_phys_val()
     }
     /// Get physical value of 'Validity_INS_Pos_ECEF_Y'
     ///
@@ -30468,7 +30468,7 @@ impl RtSbInsPosEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_pos_ecef_y_phys(&self) -> bool {
+    pub fn validity_ins_pos_ecef_y_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -30479,12 +30479,12 @@ impl RtSbInsPosEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_pos_ecef_y_raw(&self) -> u8 {
+    pub fn validity_ins_pos_ecef_y_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Pos_ECEF_Y'
     #[inline(always)]
-    pub fn set_validity_ins_pos_ecef_y_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_pos_ecef_y_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_INS_Pos_ECEF_Y'
@@ -30504,7 +30504,7 @@ impl RtSbInsPosEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_pos_ecef_x(&self) -> bool {
-        self.validity_ins_pos_ecef_x_phys()
+        self.validity_ins_pos_ecef_x_phys_val()
     }
     /// Get physical value of 'Validity_INS_Pos_ECEF_X'
     ///
@@ -30512,7 +30512,7 @@ impl RtSbInsPosEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_pos_ecef_x_phys(&self) -> bool {
+    pub fn validity_ins_pos_ecef_x_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -30523,12 +30523,12 @@ impl RtSbInsPosEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_pos_ecef_x_raw(&self) -> u8 {
+    pub fn validity_ins_pos_ecef_x_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Pos_ECEF_X'
     #[inline(always)]
-    pub fn set_validity_ins_pos_ecef_x_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_pos_ecef_x_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_INS_Pos_ECEF_X'
@@ -30625,7 +30625,7 @@ impl RtSbInsPosLlh2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_pos_llh_altitude(&self) -> f32 {
-        self.ins_pos_llh_altitude_phys()
+        self.ins_pos_llh_altitude_phys_val()
     }
     /// Get physical value of 'INS_Pos_LLH_Altitude'
     ///
@@ -30633,7 +30633,7 @@ impl RtSbInsPosLlh2 {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn ins_pos_llh_altitude_phys(&self) -> f32 {
+    pub fn ins_pos_llh_altitude_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -30646,12 +30646,12 @@ impl RtSbInsPosLlh2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_pos_llh_altitude_raw(&self) -> i32 {
+    pub fn ins_pos_llh_altitude_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>()
     }
     /// Set raw value of 'INS_Pos_LLH_Altitude'
     #[inline(always)]
-    pub fn set_ins_pos_llh_altitude_raw(&mut self, value: i32) {
+    pub fn set_ins_pos_llh_altitude_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
@@ -30678,7 +30678,7 @@ impl RtSbInsPosLlh2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_pos_llh_longitude(&self) -> f32 {
-        self.ins_pos_llh_longitude_phys()
+        self.ins_pos_llh_longitude_phys_val()
     }
     /// Get physical value of 'INS_Pos_LLH_Longitude'
     ///
@@ -30686,7 +30686,7 @@ impl RtSbInsPosLlh2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_pos_llh_longitude_phys(&self) -> f32 {
+    pub fn ins_pos_llh_longitude_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 0.0000001_f32;
         let offset = 0_f32;
@@ -30699,12 +30699,12 @@ impl RtSbInsPosLlh2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_pos_llh_longitude_raw(&self) -> i32 {
+    pub fn ins_pos_llh_longitude_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
     }
     /// Set raw value of 'INS_Pos_LLH_Longitude'
     #[inline(always)]
-    pub fn set_ins_pos_llh_longitude_raw(&mut self, value: i32) {
+    pub fn set_ins_pos_llh_longitude_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
     }
@@ -30824,7 +30824,7 @@ impl RtSbInsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_pos_llh_latitude(&self) -> f32 {
-        self.ins_pos_llh_latitude_phys()
+        self.ins_pos_llh_latitude_phys_val()
     }
     /// Get physical value of 'INS_Pos_LLH_Latitude'
     ///
@@ -30832,7 +30832,7 @@ impl RtSbInsPosLlh1 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_pos_llh_latitude_phys(&self) -> f32 {
+    pub fn ins_pos_llh_latitude_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.0000001_f32;
         let offset = 0_f32;
@@ -30845,12 +30845,12 @@ impl RtSbInsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_pos_llh_latitude_raw(&self) -> i32 {
+    pub fn ins_pos_llh_latitude_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>()
     }
     /// Set raw value of 'INS_Pos_LLH_Latitude'
     #[inline(always)]
-    pub fn set_ins_pos_llh_latitude_raw(&mut self, value: i32) {
+    pub fn set_ins_pos_llh_latitude_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
@@ -30879,7 +30879,7 @@ impl RtSbInsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_pos_llh_altitude(&self) -> u8 {
-        self.accuracy_ins_pos_llh_altitude_phys()
+        self.accuracy_ins_pos_llh_altitude_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Pos_LLH_Altitude'
     ///
@@ -30887,7 +30887,7 @@ impl RtSbInsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_pos_llh_altitude_phys(&self) -> u8 {
+    pub fn accuracy_ins_pos_llh_altitude_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -30899,12 +30899,12 @@ impl RtSbInsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_pos_llh_altitude_raw(&self) -> u8 {
+    pub fn accuracy_ins_pos_llh_altitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Pos_LLH_Altitude'
     #[inline(always)]
-    pub fn set_accuracy_ins_pos_llh_altitude_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_pos_llh_altitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Pos_LLH_Altitude'
@@ -30938,7 +30938,7 @@ impl RtSbInsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_pos_llh_longitude(&self) -> u8 {
-        self.accuracy_ins_pos_llh_longitude_phys()
+        self.accuracy_ins_pos_llh_longitude_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Pos_LLH_Longitude'
     ///
@@ -30946,7 +30946,7 @@ impl RtSbInsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_pos_llh_longitude_phys(&self) -> u8 {
+    pub fn accuracy_ins_pos_llh_longitude_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -30958,12 +30958,12 @@ impl RtSbInsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_pos_llh_longitude_raw(&self) -> u8 {
+    pub fn accuracy_ins_pos_llh_longitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Pos_LLH_Longitude'
     #[inline(always)]
-    pub fn set_accuracy_ins_pos_llh_longitude_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_pos_llh_longitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Pos_LLH_Longitude'
@@ -30997,7 +30997,7 @@ impl RtSbInsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_pos_llh_latitude(&self) -> u8 {
-        self.accuracy_ins_pos_llh_latitude_phys()
+        self.accuracy_ins_pos_llh_latitude_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Pos_LLH_Latitude'
     ///
@@ -31005,7 +31005,7 @@ impl RtSbInsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_pos_llh_latitude_phys(&self) -> u8 {
+    pub fn accuracy_ins_pos_llh_latitude_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -31017,12 +31017,12 @@ impl RtSbInsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_pos_llh_latitude_raw(&self) -> u8 {
+    pub fn accuracy_ins_pos_llh_latitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Pos_LLH_Latitude'
     #[inline(always)]
-    pub fn set_accuracy_ins_pos_llh_latitude_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_pos_llh_latitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Pos_LLH_Latitude'
@@ -31056,7 +31056,7 @@ impl RtSbInsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_pos_llh_altitude(&self) -> bool {
-        self.validity_ins_pos_llh_altitude_phys()
+        self.validity_ins_pos_llh_altitude_phys_val()
     }
     /// Get physical value of 'Validity_INS_Pos_LLH_Altitude'
     ///
@@ -31064,7 +31064,7 @@ impl RtSbInsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_pos_llh_altitude_phys(&self) -> bool {
+    pub fn validity_ins_pos_llh_altitude_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -31075,12 +31075,12 @@ impl RtSbInsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_pos_llh_altitude_raw(&self) -> u8 {
+    pub fn validity_ins_pos_llh_altitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Pos_LLH_Altitude'
     #[inline(always)]
-    pub fn set_validity_ins_pos_llh_altitude_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_pos_llh_altitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'Validity_INS_Pos_LLH_Altitude'
@@ -31103,7 +31103,7 @@ impl RtSbInsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_pos_llh_longitude(&self) -> bool {
-        self.validity_ins_pos_llh_longitude_phys()
+        self.validity_ins_pos_llh_longitude_phys_val()
     }
     /// Get physical value of 'Validity_INS_Pos_LLH_Longitude'
     ///
@@ -31111,7 +31111,7 @@ impl RtSbInsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_pos_llh_longitude_phys(&self) -> bool {
+    pub fn validity_ins_pos_llh_longitude_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -31122,12 +31122,12 @@ impl RtSbInsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_pos_llh_longitude_raw(&self) -> u8 {
+    pub fn validity_ins_pos_llh_longitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Pos_LLH_Longitude'
     #[inline(always)]
-    pub fn set_validity_ins_pos_llh_longitude_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_pos_llh_longitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_INS_Pos_LLH_Longitude'
@@ -31150,7 +31150,7 @@ impl RtSbInsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_pos_llh_latitude(&self) -> bool {
-        self.validity_ins_pos_llh_latitude_phys()
+        self.validity_ins_pos_llh_latitude_phys_val()
     }
     /// Get physical value of 'Validity_INS_Pos_LLH_Latitude'
     ///
@@ -31158,7 +31158,7 @@ impl RtSbInsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_pos_llh_latitude_phys(&self) -> bool {
+    pub fn validity_ins_pos_llh_latitude_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -31169,12 +31169,12 @@ impl RtSbInsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_pos_llh_latitude_raw(&self) -> u8 {
+    pub fn validity_ins_pos_llh_latitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Pos_LLH_Latitude'
     #[inline(always)]
-    pub fn set_validity_ins_pos_llh_latitude_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_pos_llh_latitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_INS_Pos_LLH_Latitude'
@@ -31288,7 +31288,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_gradient(&self) -> f32 {
-        self.ins_gradient_phys()
+        self.ins_gradient_phys_val()
     }
     /// Get physical value of 'INS_Gradient'
     ///
@@ -31296,7 +31296,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_gradient_phys(&self) -> f32 {
+    pub fn ins_gradient_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -31309,12 +31309,12 @@ impl RtSbInsHeadingGradient2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_gradient_raw(&self) -> i16 {
+    pub fn ins_gradient_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>()
     }
     /// Set raw value of 'INS_Gradient'
     #[inline(always)]
-    pub fn set_ins_gradient_raw(&mut self, value: i16) {
+    pub fn set_ins_gradient_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[40..56].store_le(value);
     }
@@ -31343,7 +31343,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_gradient(&self) -> u8 {
-        self.accuracy_ins_gradient_phys()
+        self.accuracy_ins_gradient_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Gradient'
     ///
@@ -31351,7 +31351,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_gradient_phys(&self) -> u8 {
+    pub fn accuracy_ins_gradient_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -31363,12 +31363,12 @@ impl RtSbInsHeadingGradient2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_gradient_raw(&self) -> u8 {
+    pub fn accuracy_ins_gradient_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Gradient'
     #[inline(always)]
-    pub fn set_accuracy_ins_gradient_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_gradient_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Gradient'
@@ -31399,7 +31399,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_heading_2(&self) -> f32 {
-        self.ins_heading_2_phys()
+        self.ins_heading_2_phys_val()
     }
     /// Get physical value of 'INS_Heading_2'
     ///
@@ -31407,7 +31407,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_heading_2_phys(&self) -> f32 {
+    pub fn ins_heading_2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -31420,12 +31420,12 @@ impl RtSbInsHeadingGradient2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn ins_heading_2_raw(&self) -> u16 {
+    pub fn ins_heading_2_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'INS_Heading_2'
     #[inline(always)]
-    pub fn set_ins_heading_2_raw(&mut self, value: u16) {
+    pub fn set_ins_heading_2_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'INS_Heading_2'
@@ -31452,7 +31452,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_heading(&self) -> u8 {
-        self.accuracy_ins_heading_phys()
+        self.accuracy_ins_heading_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Heading'
     ///
@@ -31460,7 +31460,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_heading_phys(&self) -> u8 {
+    pub fn accuracy_ins_heading_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -31472,12 +31472,12 @@ impl RtSbInsHeadingGradient2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_heading_raw(&self) -> u8 {
+    pub fn accuracy_ins_heading_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Heading'
     #[inline(always)]
-    pub fn set_accuracy_ins_heading_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_heading_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Heading'
@@ -31508,7 +31508,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_gradient(&self) -> bool {
-        self.validity_ins_gradient_phys()
+        self.validity_ins_gradient_phys_val()
     }
     /// Get physical value of 'Validity_INS_Gradient'
     ///
@@ -31516,7 +31516,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_gradient_phys(&self) -> bool {
+    pub fn validity_ins_gradient_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -31527,12 +31527,12 @@ impl RtSbInsHeadingGradient2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_gradient_raw(&self) -> u8 {
+    pub fn validity_ins_gradient_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Gradient'
     #[inline(always)]
-    pub fn set_validity_ins_gradient_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_gradient_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_INS_Gradient'
@@ -31552,7 +31552,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_heading(&self) -> bool {
-        self.validity_ins_heading_phys()
+        self.validity_ins_heading_phys_val()
     }
     /// Get physical value of 'Validity_INS_Heading'
     ///
@@ -31560,7 +31560,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_heading_phys(&self) -> bool {
+    pub fn validity_ins_heading_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -31571,12 +31571,12 @@ impl RtSbInsHeadingGradient2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_heading_raw(&self) -> u8 {
+    pub fn validity_ins_heading_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Heading'
     #[inline(always)]
-    pub fn set_validity_ins_heading_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_heading_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_INS_Heading'
@@ -31687,7 +31687,7 @@ impl RtSbInsHeadingGradient {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_gradient(&self) -> f32 {
-        self.ins_gradient_phys()
+        self.ins_gradient_phys_val()
     }
     /// Get physical value of 'INS_Gradient'
     ///
@@ -31695,7 +31695,7 @@ impl RtSbInsHeadingGradient {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_gradient_phys(&self) -> f32 {
+    pub fn ins_gradient_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -31708,12 +31708,12 @@ impl RtSbInsHeadingGradient {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_gradient_raw(&self) -> i16 {
+    pub fn ins_gradient_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>()
     }
     /// Set raw value of 'INS_Gradient'
     #[inline(always)]
-    pub fn set_ins_gradient_raw(&mut self, value: i16) {
+    pub fn set_ins_gradient_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[40..56].store_le(value);
     }
@@ -31742,7 +31742,7 @@ impl RtSbInsHeadingGradient {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_gradient(&self) -> u8 {
-        self.accuracy_ins_gradient_phys()
+        self.accuracy_ins_gradient_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Gradient'
     ///
@@ -31750,7 +31750,7 @@ impl RtSbInsHeadingGradient {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_gradient_phys(&self) -> u8 {
+    pub fn accuracy_ins_gradient_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -31762,12 +31762,12 @@ impl RtSbInsHeadingGradient {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_gradient_raw(&self) -> u8 {
+    pub fn accuracy_ins_gradient_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Gradient'
     #[inline(always)]
-    pub fn set_accuracy_ins_gradient_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_gradient_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Gradient'
@@ -31798,7 +31798,7 @@ impl RtSbInsHeadingGradient {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn ins_heading(&self) -> f32 {
-        self.ins_heading_phys()
+        self.ins_heading_phys_val()
     }
     /// Get physical value of 'INS_Heading'
     ///
@@ -31806,7 +31806,7 @@ impl RtSbInsHeadingGradient {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_heading_phys(&self) -> f32 {
+    pub fn ins_heading_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -31819,12 +31819,12 @@ impl RtSbInsHeadingGradient {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ins_heading_raw(&self) -> i16 {
+    pub fn ins_heading_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'INS_Heading'
     #[inline(always)]
-    pub fn set_ins_heading_raw(&mut self, value: i16) {
+    pub fn set_ins_heading_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -31853,7 +31853,7 @@ impl RtSbInsHeadingGradient {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_ins_heading(&self) -> u8 {
-        self.accuracy_ins_heading_phys()
+        self.accuracy_ins_heading_phys_val()
     }
     /// Get physical value of 'Accuracy_INS_Heading'
     ///
@@ -31861,7 +31861,7 @@ impl RtSbInsHeadingGradient {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_ins_heading_phys(&self) -> u8 {
+    pub fn accuracy_ins_heading_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -31873,12 +31873,12 @@ impl RtSbInsHeadingGradient {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_ins_heading_raw(&self) -> u8 {
+    pub fn accuracy_ins_heading_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_INS_Heading'
     #[inline(always)]
-    pub fn set_accuracy_ins_heading_raw(&mut self, value: u8) {
+    pub fn set_accuracy_ins_heading_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_INS_Heading'
@@ -31909,7 +31909,7 @@ impl RtSbInsHeadingGradient {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_gradient(&self) -> bool {
-        self.validity_ins_gradient_phys()
+        self.validity_ins_gradient_phys_val()
     }
     /// Get physical value of 'Validity_INS_Gradient'
     ///
@@ -31917,7 +31917,7 @@ impl RtSbInsHeadingGradient {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_gradient_phys(&self) -> bool {
+    pub fn validity_ins_gradient_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -31928,12 +31928,12 @@ impl RtSbInsHeadingGradient {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_gradient_raw(&self) -> u8 {
+    pub fn validity_ins_gradient_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Gradient'
     #[inline(always)]
-    pub fn set_validity_ins_gradient_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_gradient_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_INS_Gradient'
@@ -31953,7 +31953,7 @@ impl RtSbInsHeadingGradient {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_ins_heading(&self) -> bool {
-        self.validity_ins_heading_phys()
+        self.validity_ins_heading_phys_val()
     }
     /// Get physical value of 'Validity_INS_Heading'
     ///
@@ -31961,7 +31961,7 @@ impl RtSbInsHeadingGradient {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_ins_heading_phys(&self) -> bool {
+    pub fn validity_ins_heading_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -31972,12 +31972,12 @@ impl RtSbInsHeadingGradient {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_ins_heading_raw(&self) -> u8 {
+    pub fn validity_ins_heading_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_INS_Heading'
     #[inline(always)]
-    pub fn set_validity_ins_heading_raw(&mut self, value: u8) {
+    pub fn set_validity_ins_heading_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_INS_Heading'
@@ -32073,7 +32073,7 @@ impl RtSbInsStatus {
             2 => RtSbInsStatusInsStatus::Converged,
             1 => RtSbInsStatusInsStatus::Initialised,
             0 => RtSbInsStatusInsStatus::Uninitialised,
-            _ => RtSbInsStatusInsStatus::_Other(self.ins_status_phys()),
+            _ => RtSbInsStatusInsStatus::_Other(self.ins_status_phys_val()),
         }
     }
     /// Get physical value of 'INS_Status'
@@ -32082,7 +32082,7 @@ impl RtSbInsStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn ins_status_phys(&self) -> u8 {
+    pub fn ins_status_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -32094,12 +32094,12 @@ impl RtSbInsStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn ins_status_raw(&self) -> u8 {
+    pub fn ins_status_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
     }
     /// Set raw value of 'INS_Status'
     #[inline(always)]
-    pub fn set_ins_status_raw(&mut self, value: u8) {
+    pub fn set_ins_status_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'INS_Status'
@@ -32252,7 +32252,7 @@ impl RtSbInsAttitude {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn attitude_roll(&self) -> f32 {
-        self.attitude_roll_phys()
+        self.attitude_roll_phys_val()
     }
     /// Get physical value of 'Attitude_Roll'
     ///
@@ -32260,7 +32260,7 @@ impl RtSbInsAttitude {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn attitude_roll_phys(&self) -> f32 {
+    pub fn attitude_roll_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -32273,12 +32273,12 @@ impl RtSbInsAttitude {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn attitude_roll_raw(&self) -> i16 {
+    pub fn attitude_roll_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'Attitude_Roll'
     #[inline(always)]
-    pub fn set_attitude_roll_raw(&mut self, value: i16) {
+    pub fn set_attitude_roll_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -32305,7 +32305,7 @@ impl RtSbInsAttitude {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn attitude_pitch(&self) -> f32 {
-        self.attitude_pitch_phys()
+        self.attitude_pitch_phys_val()
     }
     /// Get physical value of 'Attitude_Pitch'
     ///
@@ -32313,7 +32313,7 @@ impl RtSbInsAttitude {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn attitude_pitch_phys(&self) -> f32 {
+    pub fn attitude_pitch_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -32326,12 +32326,12 @@ impl RtSbInsAttitude {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn attitude_pitch_raw(&self) -> i16 {
+    pub fn attitude_pitch_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Attitude_Pitch'
     #[inline(always)]
-    pub fn set_attitude_pitch_raw(&mut self, value: i16) {
+    pub fn set_attitude_pitch_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -32358,7 +32358,7 @@ impl RtSbInsAttitude {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn attitude_yaw(&self) -> f32 {
-        self.attitude_yaw_phys()
+        self.attitude_yaw_phys_val()
     }
     /// Get physical value of 'Attitude_Yaw'
     ///
@@ -32366,7 +32366,7 @@ impl RtSbInsAttitude {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn attitude_yaw_phys(&self) -> f32 {
+    pub fn attitude_yaw_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -32379,12 +32379,12 @@ impl RtSbInsAttitude {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn attitude_yaw_raw(&self) -> i16 {
+    pub fn attitude_yaw_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'Attitude_Yaw'
     #[inline(always)]
-    pub fn set_attitude_yaw_raw(&mut self, value: i16) {
+    pub fn set_attitude_yaw_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -32411,7 +32411,7 @@ impl RtSbInsAttitude {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_attitude(&self) -> u8 {
-        self.accuracy_attitude_phys()
+        self.accuracy_attitude_phys_val()
     }
     /// Get physical value of 'Accuracy_Attitude'
     ///
@@ -32419,7 +32419,7 @@ impl RtSbInsAttitude {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_attitude_phys(&self) -> u8 {
+    pub fn accuracy_attitude_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -32431,12 +32431,12 @@ impl RtSbInsAttitude {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_attitude_raw(&self) -> u8 {
+    pub fn accuracy_attitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_Attitude'
     #[inline(always)]
-    pub fn set_accuracy_attitude_raw(&mut self, value: u8) {
+    pub fn set_accuracy_attitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_Attitude'
@@ -32469,7 +32469,7 @@ impl RtSbInsAttitude {
         match signal {
             1 => RtSbInsAttitudeValidityRoll::Valid,
             0 => RtSbInsAttitudeValidityRoll::Invalid,
-            _ => RtSbInsAttitudeValidityRoll::_Other(self.validity_roll_phys()),
+            _ => RtSbInsAttitudeValidityRoll::_Other(self.validity_roll_phys_val()),
         }
     }
     /// Get physical value of 'Validity_Roll'
@@ -32478,7 +32478,7 @@ impl RtSbInsAttitude {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_roll_phys(&self) -> bool {
+    pub fn validity_roll_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -32489,12 +32489,12 @@ impl RtSbInsAttitude {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_roll_raw(&self) -> u8 {
+    pub fn validity_roll_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Roll'
     #[inline(always)]
-    pub fn set_validity_roll_raw(&mut self, value: u8) {
+    pub fn set_validity_roll_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'Validity_Roll'
@@ -32520,7 +32520,7 @@ impl RtSbInsAttitude {
         match signal {
             1 => RtSbInsAttitudeValidityPitch::Valid,
             0 => RtSbInsAttitudeValidityPitch::Invalid,
-            _ => RtSbInsAttitudeValidityPitch::_Other(self.validity_pitch_phys()),
+            _ => RtSbInsAttitudeValidityPitch::_Other(self.validity_pitch_phys_val()),
         }
     }
     /// Get physical value of 'Validity_Pitch'
@@ -32529,7 +32529,7 @@ impl RtSbInsAttitude {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_pitch_phys(&self) -> bool {
+    pub fn validity_pitch_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -32540,12 +32540,12 @@ impl RtSbInsAttitude {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_pitch_raw(&self) -> u8 {
+    pub fn validity_pitch_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Pitch'
     #[inline(always)]
-    pub fn set_validity_pitch_raw(&mut self, value: u8) {
+    pub fn set_validity_pitch_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_Pitch'
@@ -32571,7 +32571,7 @@ impl RtSbInsAttitude {
         match signal {
             1 => RtSbInsAttitudeValidityYaw::Valid,
             0 => RtSbInsAttitudeValidityYaw::Invalid,
-            _ => RtSbInsAttitudeValidityYaw::_Other(self.validity_yaw_phys()),
+            _ => RtSbInsAttitudeValidityYaw::_Other(self.validity_yaw_phys_val()),
         }
     }
     /// Get physical value of 'Validity_Yaw'
@@ -32580,7 +32580,7 @@ impl RtSbInsAttitude {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_yaw_phys(&self) -> bool {
+    pub fn validity_yaw_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -32591,12 +32591,12 @@ impl RtSbInsAttitude {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_yaw_raw(&self) -> u8 {
+    pub fn validity_yaw_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Yaw'
     #[inline(always)]
-    pub fn set_validity_yaw_raw(&mut self, value: u8) {
+    pub fn set_validity_yaw_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_Yaw'
@@ -32788,7 +32788,7 @@ impl RtSbOutputStatus {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_time(&self) -> f32 {
-        self.gps_time_phys()
+        self.gps_time_phys_val()
     }
     /// Get physical value of 'GPS_Time'
     ///
@@ -32796,7 +32796,7 @@ impl RtSbOutputStatus {
     /// - Offset: 0
     /// - Unit: "s"
     #[inline(always)]
-    pub fn gps_time_phys(&self) -> f32 {
+    pub fn gps_time_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -32809,12 +32809,12 @@ impl RtSbOutputStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_time_raw(&self) -> u32 {
+    pub fn gps_time_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>()
     }
     /// Set raw value of 'GPS_Time'
     #[inline(always)]
-    pub fn set_gps_time_raw(&mut self, value: u32) {
+    pub fn set_gps_time_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
     /// Set value of 'GPS_Time'
@@ -32845,7 +32845,7 @@ impl RtSbOutputStatus {
         match signal {
             1 => RtSbOutputStatusStatusTrigger::Active,
             0 => RtSbOutputStatusStatusTrigger::Inactive,
-            _ => RtSbOutputStatusStatusTrigger::_Other(self.status_trigger_phys()),
+            _ => RtSbOutputStatusStatusTrigger::_Other(self.status_trigger_phys_val()),
         }
     }
     /// Get physical value of 'Status_Trigger'
@@ -32854,7 +32854,7 @@ impl RtSbOutputStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn status_trigger_phys(&self) -> bool {
+    pub fn status_trigger_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[15..16].load_le::<u8>();
         signal == 1
     }
@@ -32865,12 +32865,12 @@ impl RtSbOutputStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn status_trigger_raw(&self) -> u8 {
+    pub fn status_trigger_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[15..16].load_le::<u8>()
     }
     /// Set raw value of 'Status_Trigger'
     #[inline(always)]
-    pub fn set_status_trigger_raw(&mut self, value: u8) {
+    pub fn set_status_trigger_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[15..16].store_le(value);
     }
     /// Set value of 'Status_Trigger'
@@ -32900,7 +32900,7 @@ impl RtSbOutputStatus {
             0 => RtSbOutputStatusStatusSerialOutput2::Inactive,
             _ => {
                 RtSbOutputStatusStatusSerialOutput2::_Other(
-                    self.status_serial_output_2_phys(),
+                    self.status_serial_output_2_phys_val(),
                 )
             }
         }
@@ -32911,7 +32911,7 @@ impl RtSbOutputStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn status_serial_output_2_phys(&self) -> bool {
+    pub fn status_serial_output_2_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[14..15].load_le::<u8>();
         signal == 1
     }
@@ -32922,12 +32922,12 @@ impl RtSbOutputStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn status_serial_output_2_raw(&self) -> u8 {
+    pub fn status_serial_output_2_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[14..15].load_le::<u8>()
     }
     /// Set raw value of 'Status_Serial_Output_2'
     #[inline(always)]
-    pub fn set_status_serial_output_2_raw(&mut self, value: u8) {
+    pub fn set_status_serial_output_2_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[14..15].store_le(value);
     }
     /// Set value of 'Status_Serial_Output_2'
@@ -32957,7 +32957,7 @@ impl RtSbOutputStatus {
             0 => RtSbOutputStatusStatusSerialOutput1::Inactive,
             _ => {
                 RtSbOutputStatusStatusSerialOutput1::_Other(
-                    self.status_serial_output_1_phys(),
+                    self.status_serial_output_1_phys_val(),
                 )
             }
         }
@@ -32968,7 +32968,7 @@ impl RtSbOutputStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn status_serial_output_1_phys(&self) -> bool {
+    pub fn status_serial_output_1_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[13..14].load_le::<u8>();
         signal == 1
     }
@@ -32979,12 +32979,12 @@ impl RtSbOutputStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn status_serial_output_1_raw(&self) -> u8 {
+    pub fn status_serial_output_1_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[13..14].load_le::<u8>()
     }
     /// Set raw value of 'Status_Serial_Output_1'
     #[inline(always)]
-    pub fn set_status_serial_output_1_raw(&mut self, value: u8) {
+    pub fn set_status_serial_output_1_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[13..14].store_le(value);
     }
     /// Set value of 'Status_Serial_Output_1'
@@ -33014,7 +33014,7 @@ impl RtSbOutputStatus {
             0 => RtSbOutputStatusStatusPulseOutput::Inactive,
             _ => {
                 RtSbOutputStatusStatusPulseOutput::_Other(
-                    self.status_pulse_output_phys(),
+                    self.status_pulse_output_phys_val(),
                 )
             }
         }
@@ -33025,7 +33025,7 @@ impl RtSbOutputStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn status_pulse_output_phys(&self) -> bool {
+    pub fn status_pulse_output_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[12..13].load_le::<u8>();
         signal == 1
     }
@@ -33036,12 +33036,12 @@ impl RtSbOutputStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn status_pulse_output_raw(&self) -> u8 {
+    pub fn status_pulse_output_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[12..13].load_le::<u8>()
     }
     /// Set raw value of 'Status_Pulse_Output'
     #[inline(always)]
-    pub fn set_status_pulse_output_raw(&mut self, value: u8) {
+    pub fn set_status_pulse_output_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[12..13].store_le(value);
     }
     /// Set value of 'Status_Pulse_Output'
@@ -33069,7 +33069,11 @@ impl RtSbOutputStatus {
         match signal {
             1 => RtSbOutputStatusStatusAnalogue4::Active,
             0 => RtSbOutputStatusStatusAnalogue4::Inactive,
-            _ => RtSbOutputStatusStatusAnalogue4::_Other(self.status_analogue_4_phys()),
+            _ => {
+                RtSbOutputStatusStatusAnalogue4::_Other(
+                    self.status_analogue_4_phys_val(),
+                )
+            }
         }
     }
     /// Get physical value of 'Status_Analogue_4'
@@ -33078,7 +33082,7 @@ impl RtSbOutputStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn status_analogue_4_phys(&self) -> bool {
+    pub fn status_analogue_4_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[11..12].load_le::<u8>();
         signal == 1
     }
@@ -33089,12 +33093,12 @@ impl RtSbOutputStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn status_analogue_4_raw(&self) -> u8 {
+    pub fn status_analogue_4_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[11..12].load_le::<u8>()
     }
     /// Set raw value of 'Status_Analogue_4'
     #[inline(always)]
-    pub fn set_status_analogue_4_raw(&mut self, value: u8) {
+    pub fn set_status_analogue_4_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[11..12].store_le(value);
     }
     /// Set value of 'Status_Analogue_4'
@@ -33122,7 +33126,11 @@ impl RtSbOutputStatus {
         match signal {
             1 => RtSbOutputStatusStatusAnalogue3::Active,
             0 => RtSbOutputStatusStatusAnalogue3::Inactive,
-            _ => RtSbOutputStatusStatusAnalogue3::_Other(self.status_analogue_3_phys()),
+            _ => {
+                RtSbOutputStatusStatusAnalogue3::_Other(
+                    self.status_analogue_3_phys_val(),
+                )
+            }
         }
     }
     /// Get physical value of 'Status_Analogue_3'
@@ -33131,7 +33139,7 @@ impl RtSbOutputStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn status_analogue_3_phys(&self) -> bool {
+    pub fn status_analogue_3_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[10..11].load_le::<u8>();
         signal == 1
     }
@@ -33142,12 +33150,12 @@ impl RtSbOutputStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn status_analogue_3_raw(&self) -> u8 {
+    pub fn status_analogue_3_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[10..11].load_le::<u8>()
     }
     /// Set raw value of 'Status_Analogue_3'
     #[inline(always)]
-    pub fn set_status_analogue_3_raw(&mut self, value: u8) {
+    pub fn set_status_analogue_3_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[10..11].store_le(value);
     }
     /// Set value of 'Status_Analogue_3'
@@ -33175,7 +33183,11 @@ impl RtSbOutputStatus {
         match signal {
             1 => RtSbOutputStatusStatusAnalogue2::Active,
             0 => RtSbOutputStatusStatusAnalogue2::Inactive,
-            _ => RtSbOutputStatusStatusAnalogue2::_Other(self.status_analogue_2_phys()),
+            _ => {
+                RtSbOutputStatusStatusAnalogue2::_Other(
+                    self.status_analogue_2_phys_val(),
+                )
+            }
         }
     }
     /// Get physical value of 'Status_Analogue_2'
@@ -33184,7 +33196,7 @@ impl RtSbOutputStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn status_analogue_2_phys(&self) -> bool {
+    pub fn status_analogue_2_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[9..10].load_le::<u8>();
         signal == 1
     }
@@ -33195,12 +33207,12 @@ impl RtSbOutputStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn status_analogue_2_raw(&self) -> u8 {
+    pub fn status_analogue_2_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[9..10].load_le::<u8>()
     }
     /// Set raw value of 'Status_Analogue_2'
     #[inline(always)]
-    pub fn set_status_analogue_2_raw(&mut self, value: u8) {
+    pub fn set_status_analogue_2_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[9..10].store_le(value);
     }
     /// Set value of 'Status_Analogue_2'
@@ -33228,7 +33240,11 @@ impl RtSbOutputStatus {
         match signal {
             1 => RtSbOutputStatusStatusAnalogue1::Active,
             0 => RtSbOutputStatusStatusAnalogue1::Inactive,
-            _ => RtSbOutputStatusStatusAnalogue1::_Other(self.status_analogue_1_phys()),
+            _ => {
+                RtSbOutputStatusStatusAnalogue1::_Other(
+                    self.status_analogue_1_phys_val(),
+                )
+            }
         }
     }
     /// Get physical value of 'Status_Analogue_1'
@@ -33237,7 +33253,7 @@ impl RtSbOutputStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn status_analogue_1_phys(&self) -> bool {
+    pub fn status_analogue_1_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[8..9].load_le::<u8>();
         signal == 1
     }
@@ -33248,12 +33264,12 @@ impl RtSbOutputStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn status_analogue_1_raw(&self) -> u8 {
+    pub fn status_analogue_1_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..9].load_le::<u8>()
     }
     /// Set raw value of 'Status_Analogue_1'
     #[inline(always)]
-    pub fn set_status_analogue_1_raw(&mut self, value: u8) {
+    pub fn set_status_analogue_1_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..9].store_le(value);
     }
     /// Set value of 'Status_Analogue_1'
@@ -33277,7 +33293,7 @@ impl RtSbOutputStatus {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_status_timestamp(&self) -> bool {
-        self.validity_status_timestamp_phys()
+        self.validity_status_timestamp_phys_val()
     }
     /// Get physical value of 'Validity_Status_Timestamp'
     ///
@@ -33285,7 +33301,7 @@ impl RtSbOutputStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_status_timestamp_phys(&self) -> bool {
+    pub fn validity_status_timestamp_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -33296,12 +33312,12 @@ impl RtSbOutputStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_status_timestamp_raw(&self) -> u8 {
+    pub fn validity_status_timestamp_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Status_Timestamp'
     #[inline(always)]
-    pub fn set_validity_status_timestamp_raw(&mut self, value: u8) {
+    pub fn set_validity_status_timestamp_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_Status_Timestamp'
@@ -33615,7 +33631,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_gradient(&self) -> f32 {
-        self.gps_gradient_phys()
+        self.gps_gradient_phys_val()
     }
     /// Get physical value of 'GPS_Gradient'
     ///
@@ -33623,7 +33639,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_gradient_phys(&self) -> f32 {
+    pub fn gps_gradient_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -33636,12 +33652,12 @@ impl RtSbGpsHeadingGradient2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_gradient_raw(&self) -> i16 {
+    pub fn gps_gradient_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>()
     }
     /// Set raw value of 'GPS_Gradient'
     #[inline(always)]
-    pub fn set_gps_gradient_raw(&mut self, value: i16) {
+    pub fn set_gps_gradient_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[40..56].store_le(value);
     }
@@ -33670,7 +33686,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_gradient(&self) -> u8 {
-        self.accuracy_gps_gradient_phys()
+        self.accuracy_gps_gradient_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Gradient'
     ///
@@ -33678,7 +33694,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_gradient_phys(&self) -> u8 {
+    pub fn accuracy_gps_gradient_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -33690,12 +33706,12 @@ impl RtSbGpsHeadingGradient2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_gradient_raw(&self) -> u8 {
+    pub fn accuracy_gps_gradient_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Gradient'
     #[inline(always)]
-    pub fn set_accuracy_gps_gradient_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_gradient_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Gradient'
@@ -33726,7 +33742,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_heading_2(&self) -> f32 {
-        self.gps_heading_2_phys()
+        self.gps_heading_2_phys_val()
     }
     /// Get physical value of 'GPS_Heading_2'
     ///
@@ -33734,7 +33750,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_heading_2_phys(&self) -> f32 {
+    pub fn gps_heading_2_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -33747,12 +33763,12 @@ impl RtSbGpsHeadingGradient2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_heading_2_raw(&self) -> u16 {
+    pub fn gps_heading_2_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'GPS_Heading_2'
     #[inline(always)]
-    pub fn set_gps_heading_2_raw(&mut self, value: u16) {
+    pub fn set_gps_heading_2_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'GPS_Heading_2'
@@ -33779,7 +33795,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_heading(&self) -> u8 {
-        self.accuracy_gps_heading_phys()
+        self.accuracy_gps_heading_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Heading'
     ///
@@ -33787,7 +33803,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_heading_phys(&self) -> u8 {
+    pub fn accuracy_gps_heading_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -33799,12 +33815,12 @@ impl RtSbGpsHeadingGradient2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_heading_raw(&self) -> u8 {
+    pub fn accuracy_gps_heading_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Heading'
     #[inline(always)]
-    pub fn set_accuracy_gps_heading_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_heading_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Heading'
@@ -33835,7 +33851,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_gradient(&self) -> bool {
-        self.validity_gps_gradient_phys()
+        self.validity_gps_gradient_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Gradient'
     ///
@@ -33843,7 +33859,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_gradient_phys(&self) -> bool {
+    pub fn validity_gps_gradient_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -33854,12 +33870,12 @@ impl RtSbGpsHeadingGradient2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_gradient_raw(&self) -> u8 {
+    pub fn validity_gps_gradient_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Gradient'
     #[inline(always)]
-    pub fn set_validity_gps_gradient_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_gradient_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_GPS_Gradient'
@@ -33879,7 +33895,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_heading(&self) -> bool {
-        self.validity_gps_heading_phys()
+        self.validity_gps_heading_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Heading'
     ///
@@ -33887,7 +33903,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_heading_phys(&self) -> bool {
+    pub fn validity_gps_heading_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -33898,12 +33914,12 @@ impl RtSbGpsHeadingGradient2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_heading_raw(&self) -> u8 {
+    pub fn validity_gps_heading_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Heading'
     #[inline(always)]
-    pub fn set_validity_gps_heading_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_heading_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_GPS_Heading'
@@ -34006,7 +34022,7 @@ impl RtSbCumulativeDistance2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn cumulative_distance(&self) -> f32 {
-        self.cumulative_distance_phys()
+        self.cumulative_distance_phys_val()
     }
     /// Get physical value of 'Cumulative_Distance'
     ///
@@ -34014,7 +34030,7 @@ impl RtSbCumulativeDistance2 {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn cumulative_distance_phys(&self) -> f32 {
+    pub fn cumulative_distance_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -34027,12 +34043,12 @@ impl RtSbCumulativeDistance2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cumulative_distance_raw(&self) -> u32 {
+    pub fn cumulative_distance_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>()
     }
     /// Set raw value of 'Cumulative_Distance'
     #[inline(always)]
-    pub fn set_cumulative_distance_raw(&mut self, value: u32) {
+    pub fn set_cumulative_distance_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
     /// Set value of 'Cumulative_Distance'
@@ -34057,7 +34073,7 @@ impl RtSbCumulativeDistance2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn cumulative_time(&self) -> f32 {
-        self.cumulative_time_phys()
+        self.cumulative_time_phys_val()
     }
     /// Get physical value of 'Cumulative_Time'
     ///
@@ -34065,7 +34081,7 @@ impl RtSbCumulativeDistance2 {
     /// - Offset: 0
     /// - Unit: "s"
     #[inline(always)]
-    pub fn cumulative_time_phys(&self) -> f32 {
+    pub fn cumulative_time_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..32].load_le::<u32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -34078,12 +34094,12 @@ impl RtSbCumulativeDistance2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cumulative_time_raw(&self) -> u32 {
+    pub fn cumulative_time_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[8..32].load_le::<u32>()
     }
     /// Set raw value of 'Cumulative_Time'
     #[inline(always)]
-    pub fn set_cumulative_time_raw(&mut self, value: u32) {
+    pub fn set_cumulative_time_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[8..32].store_le(value);
     }
     /// Set value of 'Cumulative_Time'
@@ -34110,7 +34126,7 @@ impl RtSbCumulativeDistance2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_cumulative_distance(&self) -> bool {
-        self.validity_cumulative_distance_phys()
+        self.validity_cumulative_distance_phys_val()
     }
     /// Get physical value of 'Validity_Cumulative_Distance'
     ///
@@ -34118,7 +34134,7 @@ impl RtSbCumulativeDistance2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_cumulative_distance_phys(&self) -> bool {
+    pub fn validity_cumulative_distance_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -34129,12 +34145,12 @@ impl RtSbCumulativeDistance2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_cumulative_distance_raw(&self) -> u8 {
+    pub fn validity_cumulative_distance_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Cumulative_Distance'
     #[inline(always)]
-    pub fn set_validity_cumulative_distance_raw(&mut self, value: u8) {
+    pub fn set_validity_cumulative_distance_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_Cumulative_Distance'
@@ -34157,7 +34173,7 @@ impl RtSbCumulativeDistance2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_cumulative_time(&self) -> bool {
-        self.validity_cumulative_time_phys()
+        self.validity_cumulative_time_phys_val()
     }
     /// Get physical value of 'Validity_Cumulative_Time'
     ///
@@ -34165,7 +34181,7 @@ impl RtSbCumulativeDistance2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_cumulative_time_phys(&self) -> bool {
+    pub fn validity_cumulative_time_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -34176,12 +34192,12 @@ impl RtSbCumulativeDistance2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_cumulative_time_raw(&self) -> u8 {
+    pub fn validity_cumulative_time_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Cumulative_Time'
     #[inline(always)]
-    pub fn set_validity_cumulative_time_raw(&mut self, value: u8) {
+    pub fn set_validity_cumulative_time_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_Cumulative_Time'
@@ -34284,7 +34300,7 @@ impl RtSbCumulativeDistance1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn cumulative_distance(&self) -> f32 {
-        self.cumulative_distance_phys()
+        self.cumulative_distance_phys_val()
     }
     /// Get physical value of 'Cumulative_Distance'
     ///
@@ -34292,7 +34308,7 @@ impl RtSbCumulativeDistance1 {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn cumulative_distance_phys(&self) -> f32 {
+    pub fn cumulative_distance_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -34305,12 +34321,12 @@ impl RtSbCumulativeDistance1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cumulative_distance_raw(&self) -> u32 {
+    pub fn cumulative_distance_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>()
     }
     /// Set raw value of 'Cumulative_Distance'
     #[inline(always)]
-    pub fn set_cumulative_distance_raw(&mut self, value: u32) {
+    pub fn set_cumulative_distance_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
     /// Set value of 'Cumulative_Distance'
@@ -34335,7 +34351,7 @@ impl RtSbCumulativeDistance1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn cumulative_time(&self) -> f32 {
-        self.cumulative_time_phys()
+        self.cumulative_time_phys_val()
     }
     /// Get physical value of 'Cumulative_Time'
     ///
@@ -34343,7 +34359,7 @@ impl RtSbCumulativeDistance1 {
     /// - Offset: 0
     /// - Unit: "s"
     #[inline(always)]
-    pub fn cumulative_time_phys(&self) -> f32 {
+    pub fn cumulative_time_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..32].load_le::<u32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -34356,12 +34372,12 @@ impl RtSbCumulativeDistance1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cumulative_time_raw(&self) -> u32 {
+    pub fn cumulative_time_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[8..32].load_le::<u32>()
     }
     /// Set raw value of 'Cumulative_Time'
     #[inline(always)]
-    pub fn set_cumulative_time_raw(&mut self, value: u32) {
+    pub fn set_cumulative_time_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[8..32].store_le(value);
     }
     /// Set value of 'Cumulative_Time'
@@ -34388,7 +34404,7 @@ impl RtSbCumulativeDistance1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_cumulative_distance(&self) -> bool {
-        self.validity_cumulative_distance_phys()
+        self.validity_cumulative_distance_phys_val()
     }
     /// Get physical value of 'Validity_Cumulative_Distance'
     ///
@@ -34396,7 +34412,7 @@ impl RtSbCumulativeDistance1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_cumulative_distance_phys(&self) -> bool {
+    pub fn validity_cumulative_distance_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -34407,12 +34423,12 @@ impl RtSbCumulativeDistance1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_cumulative_distance_raw(&self) -> u8 {
+    pub fn validity_cumulative_distance_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Cumulative_Distance'
     #[inline(always)]
-    pub fn set_validity_cumulative_distance_raw(&mut self, value: u8) {
+    pub fn set_validity_cumulative_distance_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_Cumulative_Distance'
@@ -34435,7 +34451,7 @@ impl RtSbCumulativeDistance1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_cumulative_time(&self) -> bool {
-        self.validity_cumulative_time_phys()
+        self.validity_cumulative_time_phys_val()
     }
     /// Get physical value of 'Validity_Cumulative_Time'
     ///
@@ -34443,7 +34459,7 @@ impl RtSbCumulativeDistance1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_cumulative_time_phys(&self) -> bool {
+    pub fn validity_cumulative_time_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -34454,12 +34470,12 @@ impl RtSbCumulativeDistance1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_cumulative_time_raw(&self) -> u8 {
+    pub fn validity_cumulative_time_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Cumulative_Time'
     #[inline(always)]
-    pub fn set_validity_cumulative_time_raw(&mut self, value: u8) {
+    pub fn set_validity_cumulative_time_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_Cumulative_Time'
@@ -34566,7 +34582,7 @@ impl RtSbTriggerTimestamp {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_high_resolution_time(&self) -> f32 {
-        self.gps_high_resolution_time_phys()
+        self.gps_high_resolution_time_phys_val()
     }
     /// Get physical value of 'GPS_High_Resolution_Time'
     ///
@@ -34574,7 +34590,7 @@ impl RtSbTriggerTimestamp {
     /// - Offset: 0
     /// - Unit: "s"
     #[inline(always)]
-    pub fn gps_high_resolution_time_phys(&self) -> f32 {
+    pub fn gps_high_resolution_time_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[24..64].load_le::<u64>();
         let factor = 0.000001_f32;
         let offset = 0_f32;
@@ -34587,12 +34603,12 @@ impl RtSbTriggerTimestamp {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_high_resolution_time_raw(&self) -> u64 {
+    pub fn gps_high_resolution_time_raw_val(&self) -> u64 {
         self.raw.view_bits::<Lsb0>()[24..64].load_le::<u64>()
     }
     /// Set raw value of 'GPS_High_Resolution_Time'
     #[inline(always)]
-    pub fn set_gps_high_resolution_time_raw(&mut self, value: u64) {
+    pub fn set_gps_high_resolution_time_raw_val(&mut self, value: u64) {
         self.raw.view_bits_mut::<Lsb0>()[24..64].store_le(value);
     }
     /// Set value of 'GPS_High_Resolution_Time'
@@ -34623,7 +34639,7 @@ impl RtSbTriggerTimestamp {
             0 => RtSbTriggerTimestampTriggerTimestampType::FallingEdge,
             _ => {
                 RtSbTriggerTimestampTriggerTimestampType::_Other(
-                    self.trigger_timestamp_type_phys(),
+                    self.trigger_timestamp_type_phys_val(),
                 )
             }
         }
@@ -34634,7 +34650,7 @@ impl RtSbTriggerTimestamp {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn trigger_timestamp_type_phys(&self) -> bool {
+    pub fn trigger_timestamp_type_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[23..24].load_le::<u8>();
         signal == 1
     }
@@ -34645,12 +34661,12 @@ impl RtSbTriggerTimestamp {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn trigger_timestamp_type_raw(&self) -> u8 {
+    pub fn trigger_timestamp_type_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[23..24].load_le::<u8>()
     }
     /// Set raw value of 'Trigger_Timestamp_Type'
     #[inline(always)]
-    pub fn set_trigger_timestamp_type_raw(&mut self, value: u8) {
+    pub fn set_trigger_timestamp_type_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[23..24].store_le(value);
     }
     /// Set value of 'Trigger_Timestamp_Type'
@@ -34674,7 +34690,7 @@ impl RtSbTriggerTimestamp {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn trigger_number(&self) -> u8 {
-        self.trigger_number_phys()
+        self.trigger_number_phys_val()
     }
     /// Get physical value of 'Trigger_Number'
     ///
@@ -34682,7 +34698,7 @@ impl RtSbTriggerTimestamp {
     /// - Offset: 1
     /// - Unit: ""
     #[inline(always)]
-    pub fn trigger_number_phys(&self) -> u8 {
+    pub fn trigger_number_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..23].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(1)
@@ -34694,12 +34710,12 @@ impl RtSbTriggerTimestamp {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn trigger_number_raw(&self) -> u8 {
+    pub fn trigger_number_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..23].load_le::<u8>()
     }
     /// Set raw value of 'Trigger_Number'
     #[inline(always)]
-    pub fn set_trigger_number_raw(&mut self, value: u8) {
+    pub fn set_trigger_number_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..23].store_le(value);
     }
     /// Set value of 'Trigger_Number'
@@ -34730,7 +34746,7 @@ impl RtSbTriggerTimestamp {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_trigger_timestamp(&self) -> u8 {
-        self.accuracy_trigger_timestamp_phys()
+        self.accuracy_trigger_timestamp_phys_val()
     }
     /// Get physical value of 'Accuracy_Trigger_Timestamp'
     ///
@@ -34738,7 +34754,7 @@ impl RtSbTriggerTimestamp {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_trigger_timestamp_phys(&self) -> u8 {
+    pub fn accuracy_trigger_timestamp_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -34750,12 +34766,12 @@ impl RtSbTriggerTimestamp {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_trigger_timestamp_raw(&self) -> u8 {
+    pub fn accuracy_trigger_timestamp_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_Trigger_Timestamp'
     #[inline(always)]
-    pub fn set_accuracy_trigger_timestamp_raw(&mut self, value: u8) {
+    pub fn set_accuracy_trigger_timestamp_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_Trigger_Timestamp'
@@ -34786,7 +34802,7 @@ impl RtSbTriggerTimestamp {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_trigger_timestamp(&self) -> bool {
-        self.validity_trigger_timestamp_phys()
+        self.validity_trigger_timestamp_phys_val()
     }
     /// Get physical value of 'Validity_Trigger_Timestamp'
     ///
@@ -34794,7 +34810,7 @@ impl RtSbTriggerTimestamp {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_trigger_timestamp_phys(&self) -> bool {
+    pub fn validity_trigger_timestamp_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -34805,12 +34821,12 @@ impl RtSbTriggerTimestamp {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_trigger_timestamp_raw(&self) -> u8 {
+    pub fn validity_trigger_timestamp_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Trigger_Timestamp'
     #[inline(always)]
-    pub fn set_validity_trigger_timestamp_raw(&mut self, value: u8) {
+    pub fn set_validity_trigger_timestamp_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_Trigger_Timestamp'
@@ -34951,7 +34967,7 @@ impl RtImu06GyroRates {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gyro_rate_roll(&self) -> f32 {
-        self.gyro_rate_roll_phys()
+        self.gyro_rate_roll_phys_val()
     }
     /// Get physical value of 'Gyro_Rate_Roll'
     ///
@@ -34959,7 +34975,7 @@ impl RtImu06GyroRates {
     /// - Offset: 0
     /// - Unit: "degrees/s"
     #[inline(always)]
-    pub fn gyro_rate_roll_phys(&self) -> f32 {
+    pub fn gyro_rate_roll_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -34972,12 +34988,12 @@ impl RtImu06GyroRates {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gyro_rate_roll_raw(&self) -> i16 {
+    pub fn gyro_rate_roll_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'Gyro_Rate_Roll'
     #[inline(always)]
-    pub fn set_gyro_rate_roll_raw(&mut self, value: i16) {
+    pub fn set_gyro_rate_roll_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -35006,7 +35022,7 @@ impl RtImu06GyroRates {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gyro_rate_pitch(&self) -> f32 {
-        self.gyro_rate_pitch_phys()
+        self.gyro_rate_pitch_phys_val()
     }
     /// Get physical value of 'Gyro_Rate_Pitch'
     ///
@@ -35014,7 +35030,7 @@ impl RtImu06GyroRates {
     /// - Offset: 0
     /// - Unit: "degrees/s"
     #[inline(always)]
-    pub fn gyro_rate_pitch_phys(&self) -> f32 {
+    pub fn gyro_rate_pitch_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -35027,12 +35043,12 @@ impl RtImu06GyroRates {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gyro_rate_pitch_raw(&self) -> i16 {
+    pub fn gyro_rate_pitch_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Gyro_Rate_Pitch'
     #[inline(always)]
-    pub fn set_gyro_rate_pitch_raw(&mut self, value: i16) {
+    pub fn set_gyro_rate_pitch_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -35061,7 +35077,7 @@ impl RtImu06GyroRates {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gyro_rate_yaw(&self) -> f32 {
-        self.gyro_rate_yaw_phys()
+        self.gyro_rate_yaw_phys_val()
     }
     /// Get physical value of 'Gyro_Rate_Yaw'
     ///
@@ -35069,7 +35085,7 @@ impl RtImu06GyroRates {
     /// - Offset: 0
     /// - Unit: "degrees/s"
     #[inline(always)]
-    pub fn gyro_rate_yaw_phys(&self) -> f32 {
+    pub fn gyro_rate_yaw_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -35082,12 +35098,12 @@ impl RtImu06GyroRates {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gyro_rate_yaw_raw(&self) -> i16 {
+    pub fn gyro_rate_yaw_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'Gyro_Rate_Yaw'
     #[inline(always)]
-    pub fn set_gyro_rate_yaw_raw(&mut self, value: i16) {
+    pub fn set_gyro_rate_yaw_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -35116,7 +35132,7 @@ impl RtImu06GyroRates {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gyro_rates(&self) -> u8 {
-        self.accuracy_gyro_rates_phys()
+        self.accuracy_gyro_rates_phys_val()
     }
     /// Get physical value of 'Accuracy_Gyro_Rates'
     ///
@@ -35124,7 +35140,7 @@ impl RtImu06GyroRates {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gyro_rates_phys(&self) -> u8 {
+    pub fn accuracy_gyro_rates_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -35136,12 +35152,12 @@ impl RtImu06GyroRates {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gyro_rates_raw(&self) -> u8 {
+    pub fn accuracy_gyro_rates_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_Gyro_Rates'
     #[inline(always)]
-    pub fn set_accuracy_gyro_rates_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gyro_rates_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_Gyro_Rates'
@@ -35172,7 +35188,7 @@ impl RtImu06GyroRates {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gyro_rate_roll(&self) -> bool {
-        self.validity_gyro_rate_roll_phys()
+        self.validity_gyro_rate_roll_phys_val()
     }
     /// Get physical value of 'Validity_Gyro_Rate_Roll'
     ///
@@ -35180,7 +35196,7 @@ impl RtImu06GyroRates {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gyro_rate_roll_phys(&self) -> bool {
+    pub fn validity_gyro_rate_roll_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -35191,12 +35207,12 @@ impl RtImu06GyroRates {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gyro_rate_roll_raw(&self) -> u8 {
+    pub fn validity_gyro_rate_roll_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Gyro_Rate_Roll'
     #[inline(always)]
-    pub fn set_validity_gyro_rate_roll_raw(&mut self, value: u8) {
+    pub fn set_validity_gyro_rate_roll_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'Validity_Gyro_Rate_Roll'
@@ -35216,7 +35232,7 @@ impl RtImu06GyroRates {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gyro_rate_pitch(&self) -> bool {
-        self.validity_gyro_rate_pitch_phys()
+        self.validity_gyro_rate_pitch_phys_val()
     }
     /// Get physical value of 'Validity_Gyro_Rate_Pitch'
     ///
@@ -35224,7 +35240,7 @@ impl RtImu06GyroRates {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gyro_rate_pitch_phys(&self) -> bool {
+    pub fn validity_gyro_rate_pitch_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -35235,12 +35251,12 @@ impl RtImu06GyroRates {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gyro_rate_pitch_raw(&self) -> u8 {
+    pub fn validity_gyro_rate_pitch_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Gyro_Rate_Pitch'
     #[inline(always)]
-    pub fn set_validity_gyro_rate_pitch_raw(&mut self, value: u8) {
+    pub fn set_validity_gyro_rate_pitch_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_Gyro_Rate_Pitch'
@@ -35260,7 +35276,7 @@ impl RtImu06GyroRates {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gyro_rate_yaw(&self) -> bool {
-        self.validity_gyro_rate_yaw_phys()
+        self.validity_gyro_rate_yaw_phys_val()
     }
     /// Get physical value of 'Validity_Gyro_Rate_Yaw'
     ///
@@ -35268,7 +35284,7 @@ impl RtImu06GyroRates {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gyro_rate_yaw_phys(&self) -> bool {
+    pub fn validity_gyro_rate_yaw_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -35279,12 +35295,12 @@ impl RtImu06GyroRates {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gyro_rate_yaw_raw(&self) -> u8 {
+    pub fn validity_gyro_rate_yaw_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Gyro_Rate_Yaw'
     #[inline(always)]
-    pub fn set_validity_gyro_rate_yaw_raw(&mut self, value: u8) {
+    pub fn set_validity_gyro_rate_yaw_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_Gyro_Rate_Yaw'
@@ -35397,7 +35413,7 @@ impl RtImu06Accel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accel_vertical(&self) -> f32 {
-        self.accel_vertical_phys()
+        self.accel_vertical_phys_val()
     }
     /// Get physical value of 'Accel_Vertical'
     ///
@@ -35405,7 +35421,7 @@ impl RtImu06Accel {
     /// - Offset: 0
     /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_vertical_phys(&self) -> f32 {
+    pub fn accel_vertical_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -35418,12 +35434,12 @@ impl RtImu06Accel {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn accel_vertical_raw(&self) -> i16 {
+    pub fn accel_vertical_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'Accel_Vertical'
     #[inline(always)]
-    pub fn set_accel_vertical_raw(&mut self, value: i16) {
+    pub fn set_accel_vertical_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -35452,7 +35468,7 @@ impl RtImu06Accel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accel_lateral(&self) -> f32 {
-        self.accel_lateral_phys()
+        self.accel_lateral_phys_val()
     }
     /// Get physical value of 'Accel_Lateral'
     ///
@@ -35460,7 +35476,7 @@ impl RtImu06Accel {
     /// - Offset: 0
     /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_lateral_phys(&self) -> f32 {
+    pub fn accel_lateral_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -35473,12 +35489,12 @@ impl RtImu06Accel {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn accel_lateral_raw(&self) -> i16 {
+    pub fn accel_lateral_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Accel_Lateral'
     #[inline(always)]
-    pub fn set_accel_lateral_raw(&mut self, value: i16) {
+    pub fn set_accel_lateral_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -35507,7 +35523,7 @@ impl RtImu06Accel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accel_longitudinal(&self) -> f32 {
-        self.accel_longitudinal_phys()
+        self.accel_longitudinal_phys_val()
     }
     /// Get physical value of 'Accel_Longitudinal'
     ///
@@ -35515,7 +35531,7 @@ impl RtImu06Accel {
     /// - Offset: 0
     /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_longitudinal_phys(&self) -> f32 {
+    pub fn accel_longitudinal_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -35528,12 +35544,12 @@ impl RtImu06Accel {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn accel_longitudinal_raw(&self) -> i16 {
+    pub fn accel_longitudinal_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'Accel_Longitudinal'
     #[inline(always)]
-    pub fn set_accel_longitudinal_raw(&mut self, value: i16) {
+    pub fn set_accel_longitudinal_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -35562,7 +35578,7 @@ impl RtImu06Accel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_accel(&self) -> u8 {
-        self.accuracy_accel_phys()
+        self.accuracy_accel_phys_val()
     }
     /// Get physical value of 'Accuracy_Accel'
     ///
@@ -35570,7 +35586,7 @@ impl RtImu06Accel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_accel_phys(&self) -> u8 {
+    pub fn accuracy_accel_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -35582,12 +35598,12 @@ impl RtImu06Accel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_accel_raw(&self) -> u8 {
+    pub fn accuracy_accel_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_Accel'
     #[inline(always)]
-    pub fn set_accuracy_accel_raw(&mut self, value: u8) {
+    pub fn set_accuracy_accel_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_Accel'
@@ -35618,7 +35634,7 @@ impl RtImu06Accel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_accel_vertical(&self) -> bool {
-        self.validity_accel_vertical_phys()
+        self.validity_accel_vertical_phys_val()
     }
     /// Get physical value of 'Validity_Accel_Vertical'
     ///
@@ -35626,7 +35642,7 @@ impl RtImu06Accel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_accel_vertical_phys(&self) -> bool {
+    pub fn validity_accel_vertical_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -35637,12 +35653,12 @@ impl RtImu06Accel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_accel_vertical_raw(&self) -> u8 {
+    pub fn validity_accel_vertical_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Accel_Vertical'
     #[inline(always)]
-    pub fn set_validity_accel_vertical_raw(&mut self, value: u8) {
+    pub fn set_validity_accel_vertical_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'Validity_Accel_Vertical'
@@ -35662,7 +35678,7 @@ impl RtImu06Accel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_accel_lateral(&self) -> bool {
-        self.validity_accel_lateral_phys()
+        self.validity_accel_lateral_phys_val()
     }
     /// Get physical value of 'Validity_Accel_Lateral'
     ///
@@ -35670,7 +35686,7 @@ impl RtImu06Accel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_accel_lateral_phys(&self) -> bool {
+    pub fn validity_accel_lateral_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -35681,12 +35697,12 @@ impl RtImu06Accel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_accel_lateral_raw(&self) -> u8 {
+    pub fn validity_accel_lateral_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Accel_Lateral'
     #[inline(always)]
-    pub fn set_validity_accel_lateral_raw(&mut self, value: u8) {
+    pub fn set_validity_accel_lateral_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_Accel_Lateral'
@@ -35706,7 +35722,7 @@ impl RtImu06Accel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_accel_longitudinal(&self) -> bool {
-        self.validity_accel_longitudinal_phys()
+        self.validity_accel_longitudinal_phys_val()
     }
     /// Get physical value of 'Validity_Accel_Longitudinal'
     ///
@@ -35714,7 +35730,7 @@ impl RtImu06Accel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_accel_longitudinal_phys(&self) -> bool {
+    pub fn validity_accel_longitudinal_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -35725,12 +35741,12 @@ impl RtImu06Accel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_accel_longitudinal_raw(&self) -> u8 {
+    pub fn validity_accel_longitudinal_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Accel_Longitudinal'
     #[inline(always)]
-    pub fn set_validity_accel_longitudinal_raw(&mut self, value: u8) {
+    pub fn set_validity_accel_longitudinal_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_Accel_Longitudinal'
@@ -35832,7 +35848,7 @@ impl RtSbSpeed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn speed(&self) -> f32 {
-        self.speed_phys()
+        self.speed_phys_val()
     }
     /// Get physical value of 'Speed'
     ///
@@ -35840,7 +35856,7 @@ impl RtSbSpeed {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn speed_phys(&self) -> f32 {
+    pub fn speed_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..48].load_le::<i32>();
         let factor = 0.00001_f32;
         let offset = 0_f32;
@@ -35853,12 +35869,12 @@ impl RtSbSpeed {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn speed_raw(&self) -> i32 {
+    pub fn speed_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[16..48].load_le::<i32>()
     }
     /// Set raw value of 'Speed'
     #[inline(always)]
-    pub fn set_speed_raw(&mut self, value: i32) {
+    pub fn set_speed_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..48].store_le(value);
     }
@@ -35887,7 +35903,7 @@ impl RtSbSpeed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_speed(&self) -> u8 {
-        self.accuracy_speed_phys()
+        self.accuracy_speed_phys_val()
     }
     /// Get physical value of 'Accuracy_Speed'
     ///
@@ -35895,7 +35911,7 @@ impl RtSbSpeed {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_speed_phys(&self) -> u8 {
+    pub fn accuracy_speed_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -35907,12 +35923,12 @@ impl RtSbSpeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_speed_raw(&self) -> u8 {
+    pub fn accuracy_speed_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_Speed'
     #[inline(always)]
-    pub fn set_accuracy_speed_raw(&mut self, value: u8) {
+    pub fn set_accuracy_speed_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_Speed'
@@ -35943,7 +35959,7 @@ impl RtSbSpeed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_speed(&self) -> bool {
-        self.validity_speed_phys()
+        self.validity_speed_phys_val()
     }
     /// Get physical value of 'Validity_Speed'
     ///
@@ -35951,7 +35967,7 @@ impl RtSbSpeed {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_speed_phys(&self) -> bool {
+    pub fn validity_speed_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -35962,12 +35978,12 @@ impl RtSbSpeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_speed_raw(&self) -> u8 {
+    pub fn validity_speed_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Speed'
     #[inline(always)]
-    pub fn set_validity_speed_raw(&mut self, value: u8) {
+    pub fn set_validity_speed_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_Speed'
@@ -36080,7 +36096,7 @@ impl RtSbRtkSlip {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn rtk_baseline(&self) -> u16 {
-        self.rtk_baseline_phys()
+        self.rtk_baseline_phys_val()
     }
     /// Get physical value of 'RTK_Baseline'
     ///
@@ -36088,7 +36104,7 @@ impl RtSbRtkSlip {
     /// - Offset: 0
     /// - Unit: "mm"
     #[inline(always)]
-    pub fn rtk_baseline_phys(&self) -> u16 {
+    pub fn rtk_baseline_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -36100,12 +36116,12 @@ impl RtSbRtkSlip {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn rtk_baseline_raw(&self) -> u16 {
+    pub fn rtk_baseline_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>()
     }
     /// Set raw value of 'RTK_Baseline'
     #[inline(always)]
-    pub fn set_rtk_baseline_raw(&mut self, value: u16) {
+    pub fn set_rtk_baseline_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
     /// Set value of 'RTK_Baseline'
@@ -36136,7 +36152,7 @@ impl RtSbRtkSlip {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn rtk_squat(&self) -> f32 {
-        self.rtk_squat_phys()
+        self.rtk_squat_phys_val()
     }
     /// Get physical value of 'RTK_Squat'
     ///
@@ -36144,7 +36160,7 @@ impl RtSbRtkSlip {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn rtk_squat_phys(&self) -> f32 {
+    pub fn rtk_squat_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -36157,12 +36173,12 @@ impl RtSbRtkSlip {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rtk_squat_raw(&self) -> i16 {
+    pub fn rtk_squat_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'RTK_Squat'
     #[inline(always)]
-    pub fn set_rtk_squat_raw(&mut self, value: i16) {
+    pub fn set_rtk_squat_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -36191,7 +36207,7 @@ impl RtSbRtkSlip {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn rtk_slip(&self) -> f32 {
-        self.rtk_slip_phys()
+        self.rtk_slip_phys_val()
     }
     /// Get physical value of 'RTK_Slip'
     ///
@@ -36199,7 +36215,7 @@ impl RtSbRtkSlip {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn rtk_slip_phys(&self) -> f32 {
+    pub fn rtk_slip_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -36212,12 +36228,12 @@ impl RtSbRtkSlip {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rtk_slip_raw(&self) -> i16 {
+    pub fn rtk_slip_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'RTK_Slip'
     #[inline(always)]
-    pub fn set_rtk_slip_raw(&mut self, value: i16) {
+    pub fn set_rtk_slip_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -36244,7 +36260,7 @@ impl RtSbRtkSlip {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_rtk_baseline(&self) -> u8 {
-        self.accuracy_rtk_baseline_phys()
+        self.accuracy_rtk_baseline_phys_val()
     }
     /// Get physical value of 'Accuracy_RTK_Baseline'
     ///
@@ -36252,7 +36268,7 @@ impl RtSbRtkSlip {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_rtk_baseline_phys(&self) -> u8 {
+    pub fn accuracy_rtk_baseline_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -36264,12 +36280,12 @@ impl RtSbRtkSlip {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_rtk_baseline_raw(&self) -> u8 {
+    pub fn accuracy_rtk_baseline_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_RTK_Baseline'
     #[inline(always)]
-    pub fn set_accuracy_rtk_baseline_raw(&mut self, value: u8) {
+    pub fn set_accuracy_rtk_baseline_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_RTK_Baseline'
@@ -36300,7 +36316,7 @@ impl RtSbRtkSlip {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_rtk_baseline(&self) -> bool {
-        self.validity_rtk_baseline_phys()
+        self.validity_rtk_baseline_phys_val()
     }
     /// Get physical value of 'Validity_RTK_Baseline'
     ///
@@ -36308,7 +36324,7 @@ impl RtSbRtkSlip {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_rtk_baseline_phys(&self) -> bool {
+    pub fn validity_rtk_baseline_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -36319,12 +36335,12 @@ impl RtSbRtkSlip {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_rtk_baseline_raw(&self) -> u8 {
+    pub fn validity_rtk_baseline_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'Validity_RTK_Baseline'
     #[inline(always)]
-    pub fn set_validity_rtk_baseline_raw(&mut self, value: u8) {
+    pub fn set_validity_rtk_baseline_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'Validity_RTK_Baseline'
@@ -36344,7 +36360,7 @@ impl RtSbRtkSlip {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_rtk_squat(&self) -> bool {
-        self.validity_rtk_squat_phys()
+        self.validity_rtk_squat_phys_val()
     }
     /// Get physical value of 'Validity_RTK_Squat'
     ///
@@ -36352,7 +36368,7 @@ impl RtSbRtkSlip {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_rtk_squat_phys(&self) -> bool {
+    pub fn validity_rtk_squat_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -36363,12 +36379,12 @@ impl RtSbRtkSlip {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_rtk_squat_raw(&self) -> u8 {
+    pub fn validity_rtk_squat_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_RTK_Squat'
     #[inline(always)]
-    pub fn set_validity_rtk_squat_raw(&mut self, value: u8) {
+    pub fn set_validity_rtk_squat_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_RTK_Squat'
@@ -36388,7 +36404,7 @@ impl RtSbRtkSlip {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_rtk_slip(&self) -> bool {
-        self.validity_rtk_slip_phys()
+        self.validity_rtk_slip_phys_val()
     }
     /// Get physical value of 'Validity_RTK_Slip'
     ///
@@ -36396,7 +36412,7 @@ impl RtSbRtkSlip {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_rtk_slip_phys(&self) -> bool {
+    pub fn validity_rtk_slip_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -36407,12 +36423,12 @@ impl RtSbRtkSlip {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_rtk_slip_raw(&self) -> u8 {
+    pub fn validity_rtk_slip_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_RTK_Slip'
     #[inline(always)]
-    pub fn set_validity_rtk_slip_raw(&mut self, value: u8) {
+    pub fn set_validity_rtk_slip_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_RTK_Slip'
@@ -36525,7 +36541,7 @@ impl RtSbRtkAttitude {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn rtk_attitude_roll(&self) -> f32 {
-        self.rtk_attitude_roll_phys()
+        self.rtk_attitude_roll_phys_val()
     }
     /// Get physical value of 'RTK_Attitude_Roll'
     ///
@@ -36533,7 +36549,7 @@ impl RtSbRtkAttitude {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn rtk_attitude_roll_phys(&self) -> f32 {
+    pub fn rtk_attitude_roll_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -36546,12 +36562,12 @@ impl RtSbRtkAttitude {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rtk_attitude_roll_raw(&self) -> i16 {
+    pub fn rtk_attitude_roll_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'RTK_Attitude_Roll'
     #[inline(always)]
-    pub fn set_rtk_attitude_roll_raw(&mut self, value: i16) {
+    pub fn set_rtk_attitude_roll_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -36580,7 +36596,7 @@ impl RtSbRtkAttitude {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn rtk_attitude_pitch(&self) -> f32 {
-        self.rtk_attitude_pitch_phys()
+        self.rtk_attitude_pitch_phys_val()
     }
     /// Get physical value of 'RTK_Attitude_Pitch'
     ///
@@ -36588,7 +36604,7 @@ impl RtSbRtkAttitude {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn rtk_attitude_pitch_phys(&self) -> f32 {
+    pub fn rtk_attitude_pitch_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -36601,12 +36617,12 @@ impl RtSbRtkAttitude {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rtk_attitude_pitch_raw(&self) -> i16 {
+    pub fn rtk_attitude_pitch_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'RTK_Attitude_Pitch'
     #[inline(always)]
-    pub fn set_rtk_attitude_pitch_raw(&mut self, value: i16) {
+    pub fn set_rtk_attitude_pitch_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -36635,7 +36651,7 @@ impl RtSbRtkAttitude {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn rtk_attitude_yaw(&self) -> f32 {
-        self.rtk_attitude_yaw_phys()
+        self.rtk_attitude_yaw_phys_val()
     }
     /// Get physical value of 'RTK_Attitude_Yaw'
     ///
@@ -36643,7 +36659,7 @@ impl RtSbRtkAttitude {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn rtk_attitude_yaw_phys(&self) -> f32 {
+    pub fn rtk_attitude_yaw_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -36656,12 +36672,12 @@ impl RtSbRtkAttitude {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rtk_attitude_yaw_raw(&self) -> i16 {
+    pub fn rtk_attitude_yaw_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'RTK_Attitude_Yaw'
     #[inline(always)]
-    pub fn set_rtk_attitude_yaw_raw(&mut self, value: i16) {
+    pub fn set_rtk_attitude_yaw_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -36690,7 +36706,7 @@ impl RtSbRtkAttitude {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_rtk_attitude(&self) -> u8 {
-        self.accuracy_rtk_attitude_phys()
+        self.accuracy_rtk_attitude_phys_val()
     }
     /// Get physical value of 'Accuracy_RTK_Attitude'
     ///
@@ -36698,7 +36714,7 @@ impl RtSbRtkAttitude {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_rtk_attitude_phys(&self) -> u8 {
+    pub fn accuracy_rtk_attitude_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -36710,12 +36726,12 @@ impl RtSbRtkAttitude {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_rtk_attitude_raw(&self) -> u8 {
+    pub fn accuracy_rtk_attitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_RTK_Attitude'
     #[inline(always)]
-    pub fn set_accuracy_rtk_attitude_raw(&mut self, value: u8) {
+    pub fn set_accuracy_rtk_attitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_RTK_Attitude'
@@ -36746,7 +36762,7 @@ impl RtSbRtkAttitude {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_rtk_roll(&self) -> bool {
-        self.validity_rtk_roll_phys()
+        self.validity_rtk_roll_phys_val()
     }
     /// Get physical value of 'Validity_RTK_Roll'
     ///
@@ -36754,7 +36770,7 @@ impl RtSbRtkAttitude {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_rtk_roll_phys(&self) -> bool {
+    pub fn validity_rtk_roll_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -36765,12 +36781,12 @@ impl RtSbRtkAttitude {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_rtk_roll_raw(&self) -> u8 {
+    pub fn validity_rtk_roll_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'Validity_RTK_Roll'
     #[inline(always)]
-    pub fn set_validity_rtk_roll_raw(&mut self, value: u8) {
+    pub fn set_validity_rtk_roll_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'Validity_RTK_Roll'
@@ -36790,7 +36806,7 @@ impl RtSbRtkAttitude {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_rtk_pitch(&self) -> bool {
-        self.validity_rtk_pitch_phys()
+        self.validity_rtk_pitch_phys_val()
     }
     /// Get physical value of 'Validity_RTK_Pitch'
     ///
@@ -36798,7 +36814,7 @@ impl RtSbRtkAttitude {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_rtk_pitch_phys(&self) -> bool {
+    pub fn validity_rtk_pitch_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -36809,12 +36825,12 @@ impl RtSbRtkAttitude {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_rtk_pitch_raw(&self) -> u8 {
+    pub fn validity_rtk_pitch_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_RTK_Pitch'
     #[inline(always)]
-    pub fn set_validity_rtk_pitch_raw(&mut self, value: u8) {
+    pub fn set_validity_rtk_pitch_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_RTK_Pitch'
@@ -36834,7 +36850,7 @@ impl RtSbRtkAttitude {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_rtk_yaw(&self) -> bool {
-        self.validity_rtk_yaw_phys()
+        self.validity_rtk_yaw_phys_val()
     }
     /// Get physical value of 'Validity_RTK_Yaw'
     ///
@@ -36842,7 +36858,7 @@ impl RtSbRtkAttitude {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_rtk_yaw_phys(&self) -> bool {
+    pub fn validity_rtk_yaw_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -36853,12 +36869,12 @@ impl RtSbRtkAttitude {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_rtk_yaw_raw(&self) -> u8 {
+    pub fn validity_rtk_yaw_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_RTK_Yaw'
     #[inline(always)]
-    pub fn set_validity_rtk_yaw_raw(&mut self, value: u8) {
+    pub fn set_validity_rtk_yaw_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_RTK_Yaw'
@@ -36965,7 +36981,7 @@ impl RtSbGpsMcycleLean {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_mcycle_lean_angle(&self) -> f32 {
-        self.gps_mcycle_lean_angle_phys()
+        self.gps_mcycle_lean_angle_phys_val()
     }
     /// Get physical value of 'GPS_Mcycle_Lean_Angle'
     ///
@@ -36973,7 +36989,7 @@ impl RtSbGpsMcycleLean {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_mcycle_lean_angle_phys(&self) -> f32 {
+    pub fn gps_mcycle_lean_angle_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -36986,12 +37002,12 @@ impl RtSbGpsMcycleLean {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_mcycle_lean_angle_raw(&self) -> i16 {
+    pub fn gps_mcycle_lean_angle_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'GPS_Mcycle_Lean_Angle'
     #[inline(always)]
-    pub fn set_gps_mcycle_lean_angle_raw(&mut self, value: i16) {
+    pub fn set_gps_mcycle_lean_angle_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -37020,7 +37036,7 @@ impl RtSbGpsMcycleLean {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_lateral_accel(&self) -> f32 {
-        self.gps_lateral_accel_phys()
+        self.gps_lateral_accel_phys_val()
     }
     /// Get physical value of 'GPS_Lateral_Accel'
     ///
@@ -37028,7 +37044,7 @@ impl RtSbGpsMcycleLean {
     /// - Offset: 0
     /// - Unit: "g"
     #[inline(always)]
-    pub fn gps_lateral_accel_phys(&self) -> f32 {
+    pub fn gps_lateral_accel_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -37041,12 +37057,12 @@ impl RtSbGpsMcycleLean {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_lateral_accel_raw(&self) -> i16 {
+    pub fn gps_lateral_accel_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'GPS_Lateral_Accel'
     #[inline(always)]
-    pub fn set_gps_lateral_accel_raw(&mut self, value: i16) {
+    pub fn set_gps_lateral_accel_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -37075,7 +37091,7 @@ impl RtSbGpsMcycleLean {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_lateral_accel(&self) -> u8 {
-        self.accuracy_gps_lateral_accel_phys()
+        self.accuracy_gps_lateral_accel_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Lateral_Accel'
     ///
@@ -37083,7 +37099,7 @@ impl RtSbGpsMcycleLean {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_lateral_accel_phys(&self) -> u8 {
+    pub fn accuracy_gps_lateral_accel_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37095,12 +37111,12 @@ impl RtSbGpsMcycleLean {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_lateral_accel_raw(&self) -> u8 {
+    pub fn accuracy_gps_lateral_accel_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Lateral_Accel'
     #[inline(always)]
-    pub fn set_accuracy_gps_lateral_accel_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_lateral_accel_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Lateral_Accel'
@@ -37131,7 +37147,7 @@ impl RtSbGpsMcycleLean {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_mcycle_lean(&self) -> bool {
-        self.validity_gps_mcycle_lean_phys()
+        self.validity_gps_mcycle_lean_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Mcycle_Lean'
     ///
@@ -37139,7 +37155,7 @@ impl RtSbGpsMcycleLean {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_mcycle_lean_phys(&self) -> bool {
+    pub fn validity_gps_mcycle_lean_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -37150,12 +37166,12 @@ impl RtSbGpsMcycleLean {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_mcycle_lean_raw(&self) -> u8 {
+    pub fn validity_gps_mcycle_lean_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Mcycle_Lean'
     #[inline(always)]
-    pub fn set_validity_gps_mcycle_lean_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_mcycle_lean_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_GPS_Mcycle_Lean'
@@ -37175,7 +37191,7 @@ impl RtSbGpsMcycleLean {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_lateral_accel(&self) -> bool {
-        self.validity_gps_lateral_accel_phys()
+        self.validity_gps_lateral_accel_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Lateral_Accel'
     ///
@@ -37183,7 +37199,7 @@ impl RtSbGpsMcycleLean {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_lateral_accel_phys(&self) -> bool {
+    pub fn validity_gps_lateral_accel_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -37194,12 +37210,12 @@ impl RtSbGpsMcycleLean {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_lateral_accel_raw(&self) -> u8 {
+    pub fn validity_gps_lateral_accel_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Lateral_Accel'
     #[inline(always)]
-    pub fn set_validity_gps_lateral_accel_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_lateral_accel_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_GPS_Lateral_Accel'
@@ -37330,7 +37346,7 @@ impl RtSbGpsStatus {
             2 => RtSbGpsStatusRtkStatus::RtkSolutionFailed,
             1 => RtSbGpsStatusRtkStatus::NotEnoughCommonSatellites,
             0 => RtSbGpsStatusRtkStatus::NotAttemptingRtkSolution,
-            _ => RtSbGpsStatusRtkStatus::_Other(self.rtk_status_phys()),
+            _ => RtSbGpsStatusRtkStatus::_Other(self.rtk_status_phys_val()),
         }
     }
     /// Get physical value of 'RTK_Status'
@@ -37339,7 +37355,7 @@ impl RtSbGpsStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn rtk_status_phys(&self) -> u8 {
+    pub fn rtk_status_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37351,12 +37367,12 @@ impl RtSbGpsStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn rtk_status_raw(&self) -> u8 {
+    pub fn rtk_status_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>()
     }
     /// Set raw value of 'RTK_Status'
     #[inline(always)]
-    pub fn set_rtk_status_raw(&mut self, value: u8) {
+    pub fn set_rtk_status_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
     }
     /// Set value of 'RTK_Status'
@@ -37391,7 +37407,7 @@ impl RtSbGpsStatus {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_n_sv_rtk(&self) -> u8 {
-        self.gps_n_sv_rtk_phys()
+        self.gps_n_sv_rtk_phys_val()
     }
     /// Get physical value of 'GPS_nSv_RTK'
     ///
@@ -37399,7 +37415,7 @@ impl RtSbGpsStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn gps_n_sv_rtk_phys(&self) -> u8 {
+    pub fn gps_n_sv_rtk_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37411,12 +37427,12 @@ impl RtSbGpsStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_n_sv_rtk_raw(&self) -> u8 {
+    pub fn gps_n_sv_rtk_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>()
     }
     /// Set raw value of 'GPS_nSv_RTK'
     #[inline(always)]
-    pub fn set_gps_n_sv_rtk_raw(&mut self, value: u8) {
+    pub fn set_gps_n_sv_rtk_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
     }
     /// Set value of 'GPS_nSv_RTK'
@@ -37447,7 +37463,7 @@ impl RtSbGpsStatus {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_n_sv_2(&self) -> u8 {
-        self.gps_n_sv_2_phys()
+        self.gps_n_sv_2_phys_val()
     }
     /// Get physical value of 'GPS_nSv_2'
     ///
@@ -37455,7 +37471,7 @@ impl RtSbGpsStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn gps_n_sv_2_phys(&self) -> u8 {
+    pub fn gps_n_sv_2_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37467,12 +37483,12 @@ impl RtSbGpsStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_n_sv_2_raw(&self) -> u8 {
+    pub fn gps_n_sv_2_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>()
     }
     /// Set raw value of 'GPS_nSv_2'
     #[inline(always)]
-    pub fn set_gps_n_sv_2_raw(&mut self, value: u8) {
+    pub fn set_gps_n_sv_2_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
     }
     /// Set value of 'GPS_nSv_2'
@@ -37503,7 +37519,7 @@ impl RtSbGpsStatus {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_n_sv(&self) -> u8 {
-        self.gps_n_sv_phys()
+        self.gps_n_sv_phys_val()
     }
     /// Get physical value of 'GPS_nSv'
     ///
@@ -37511,7 +37527,7 @@ impl RtSbGpsStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn gps_n_sv_phys(&self) -> u8 {
+    pub fn gps_n_sv_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37523,12 +37539,12 @@ impl RtSbGpsStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_n_sv_raw(&self) -> u8 {
+    pub fn gps_n_sv_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>()
     }
     /// Set raw value of 'GPS_nSv'
     #[inline(always)]
-    pub fn set_gps_n_sv_raw(&mut self, value: u8) {
+    pub fn set_gps_n_sv_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
     /// Set value of 'GPS_nSv'
@@ -37557,7 +37573,7 @@ impl RtSbGpsStatus {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn firmware_version_minor(&self) -> u8 {
-        self.firmware_version_minor_phys()
+        self.firmware_version_minor_phys_val()
     }
     /// Get physical value of 'Firmware_Version_Minor'
     ///
@@ -37565,7 +37581,7 @@ impl RtSbGpsStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn firmware_version_minor_phys(&self) -> u8 {
+    pub fn firmware_version_minor_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37577,12 +37593,12 @@ impl RtSbGpsStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn firmware_version_minor_raw(&self) -> u8 {
+    pub fn firmware_version_minor_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'Firmware_Version_Minor'
     #[inline(always)]
-    pub fn set_firmware_version_minor_raw(&mut self, value: u8) {
+    pub fn set_firmware_version_minor_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'Firmware_Version_Minor'
@@ -37611,7 +37627,7 @@ impl RtSbGpsStatus {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn firmware_version_intermediate(&self) -> u8 {
-        self.firmware_version_intermediate_phys()
+        self.firmware_version_intermediate_phys_val()
     }
     /// Get physical value of 'Firmware_Version_Intermediate'
     ///
@@ -37619,7 +37635,7 @@ impl RtSbGpsStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn firmware_version_intermediate_phys(&self) -> u8 {
+    pub fn firmware_version_intermediate_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37631,12 +37647,12 @@ impl RtSbGpsStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn firmware_version_intermediate_raw(&self) -> u8 {
+    pub fn firmware_version_intermediate_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
     }
     /// Set raw value of 'Firmware_Version_Intermediate'
     #[inline(always)]
-    pub fn set_firmware_version_intermediate_raw(&mut self, value: u8) {
+    pub fn set_firmware_version_intermediate_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'Firmware_Version_Intermediate'
@@ -37668,7 +37684,7 @@ impl RtSbGpsStatus {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn firmware_version_major(&self) -> u8 {
-        self.firmware_version_major_phys()
+        self.firmware_version_major_phys_val()
     }
     /// Get physical value of 'Firmware_Version_Major'
     ///
@@ -37676,7 +37692,7 @@ impl RtSbGpsStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn firmware_version_major_phys(&self) -> u8 {
+    pub fn firmware_version_major_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37688,12 +37704,12 @@ impl RtSbGpsStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn firmware_version_major_raw(&self) -> u8 {
+    pub fn firmware_version_major_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Firmware_Version_Major'
     #[inline(always)]
-    pub fn set_firmware_version_major_raw(&mut self, value: u8) {
+    pub fn set_firmware_version_major_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Firmware_Version_Major'
@@ -37737,7 +37753,7 @@ impl RtSbGpsStatus {
             2 => RtSbGpsStatusGpsStatus::InsufficientSatellites,
             1 => RtSbGpsStatusGpsStatus::SearchingForSatellites,
             0 => RtSbGpsStatusGpsStatus::GpsModuleNotDetected,
-            _ => RtSbGpsStatusGpsStatus::_Other(self.gps_status_phys()),
+            _ => RtSbGpsStatusGpsStatus::_Other(self.gps_status_phys_val()),
         }
     }
     /// Get physical value of 'GPS_Status'
@@ -37746,7 +37762,7 @@ impl RtSbGpsStatus {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn gps_status_phys(&self) -> u8 {
+    pub fn gps_status_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37758,12 +37774,12 @@ impl RtSbGpsStatus {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_status_raw(&self) -> u8 {
+    pub fn gps_status_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
     }
     /// Set raw value of 'GPS_Status'
     #[inline(always)]
-    pub fn set_gps_status_raw(&mut self, value: u8) {
+    pub fn set_gps_status_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'GPS_Status'
@@ -37946,7 +37962,7 @@ impl RtSbGpsPosEcef2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_pos_ecef_z(&self) -> f32 {
-        self.gps_pos_ecef_z_phys()
+        self.gps_pos_ecef_z_phys_val()
     }
     /// Get physical value of 'GPS_Pos_ECEF_Z'
     ///
@@ -37954,7 +37970,7 @@ impl RtSbGpsPosEcef2 {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn gps_pos_ecef_z_phys(&self) -> f32 {
+    pub fn gps_pos_ecef_z_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -37967,12 +37983,12 @@ impl RtSbGpsPosEcef2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_pos_ecef_z_raw(&self) -> i32 {
+    pub fn gps_pos_ecef_z_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Pos_ECEF_Z'
     #[inline(always)]
-    pub fn set_gps_pos_ecef_z_raw(&mut self, value: i32) {
+    pub fn set_gps_pos_ecef_z_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
@@ -38001,7 +38017,7 @@ impl RtSbGpsPosEcef2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_pos_ecef_y(&self) -> f32 {
-        self.gps_pos_ecef_y_phys()
+        self.gps_pos_ecef_y_phys_val()
     }
     /// Get physical value of 'GPS_Pos_ECEF_Y'
     ///
@@ -38009,7 +38025,7 @@ impl RtSbGpsPosEcef2 {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn gps_pos_ecef_y_phys(&self) -> f32 {
+    pub fn gps_pos_ecef_y_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -38022,12 +38038,12 @@ impl RtSbGpsPosEcef2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_pos_ecef_y_raw(&self) -> i32 {
+    pub fn gps_pos_ecef_y_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Pos_ECEF_Y'
     #[inline(always)]
-    pub fn set_gps_pos_ecef_y_raw(&mut self, value: i32) {
+    pub fn set_gps_pos_ecef_y_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
     }
@@ -38149,7 +38165,7 @@ impl RtSbGpsPosEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_pos_ecef_x(&self) -> f32 {
-        self.gps_pos_ecef_x_phys()
+        self.gps_pos_ecef_x_phys_val()
     }
     /// Get physical value of 'GPS_Pos_ECEF_X'
     ///
@@ -38157,7 +38173,7 @@ impl RtSbGpsPosEcef1 {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn gps_pos_ecef_x_phys(&self) -> f32 {
+    pub fn gps_pos_ecef_x_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -38170,12 +38186,12 @@ impl RtSbGpsPosEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_pos_ecef_x_raw(&self) -> i32 {
+    pub fn gps_pos_ecef_x_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Pos_ECEF_X'
     #[inline(always)]
-    pub fn set_gps_pos_ecef_x_raw(&mut self, value: i32) {
+    pub fn set_gps_pos_ecef_x_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
@@ -38204,7 +38220,7 @@ impl RtSbGpsPosEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_pos_ecef_z(&self) -> u8 {
-        self.accuracy_gps_pos_ecef_z_phys()
+        self.accuracy_gps_pos_ecef_z_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Pos_ECEF_Z'
     ///
@@ -38212,7 +38228,7 @@ impl RtSbGpsPosEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_pos_ecef_z_phys(&self) -> u8 {
+    pub fn accuracy_gps_pos_ecef_z_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -38224,12 +38240,12 @@ impl RtSbGpsPosEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_pos_ecef_z_raw(&self) -> u8 {
+    pub fn accuracy_gps_pos_ecef_z_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Pos_ECEF_Z'
     #[inline(always)]
-    pub fn set_accuracy_gps_pos_ecef_z_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_pos_ecef_z_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Pos_ECEF_Z'
@@ -38260,7 +38276,7 @@ impl RtSbGpsPosEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_pos_ecef_y(&self) -> u8 {
-        self.accuracy_gps_pos_ecef_y_phys()
+        self.accuracy_gps_pos_ecef_y_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Pos_ECEF_Y'
     ///
@@ -38268,7 +38284,7 @@ impl RtSbGpsPosEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_pos_ecef_y_phys(&self) -> u8 {
+    pub fn accuracy_gps_pos_ecef_y_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -38280,12 +38296,12 @@ impl RtSbGpsPosEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_pos_ecef_y_raw(&self) -> u8 {
+    pub fn accuracy_gps_pos_ecef_y_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Pos_ECEF_Y'
     #[inline(always)]
-    pub fn set_accuracy_gps_pos_ecef_y_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_pos_ecef_y_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Pos_ECEF_Y'
@@ -38316,7 +38332,7 @@ impl RtSbGpsPosEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_pos_ecef_x(&self) -> u8 {
-        self.accuracy_gps_pos_ecef_x_phys()
+        self.accuracy_gps_pos_ecef_x_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Pos_ECEF_X'
     ///
@@ -38324,7 +38340,7 @@ impl RtSbGpsPosEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_pos_ecef_x_phys(&self) -> u8 {
+    pub fn accuracy_gps_pos_ecef_x_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -38336,12 +38352,12 @@ impl RtSbGpsPosEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_pos_ecef_x_raw(&self) -> u8 {
+    pub fn accuracy_gps_pos_ecef_x_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Pos_ECEF_X'
     #[inline(always)]
-    pub fn set_accuracy_gps_pos_ecef_x_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_pos_ecef_x_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Pos_ECEF_X'
@@ -38372,7 +38388,7 @@ impl RtSbGpsPosEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_pos_ecef_z(&self) -> bool {
-        self.validity_gps_pos_ecef_z_phys()
+        self.validity_gps_pos_ecef_z_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Pos_ECEF_Z'
     ///
@@ -38380,7 +38396,7 @@ impl RtSbGpsPosEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_pos_ecef_z_phys(&self) -> bool {
+    pub fn validity_gps_pos_ecef_z_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -38391,12 +38407,12 @@ impl RtSbGpsPosEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_pos_ecef_z_raw(&self) -> u8 {
+    pub fn validity_gps_pos_ecef_z_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Pos_ECEF_Z'
     #[inline(always)]
-    pub fn set_validity_gps_pos_ecef_z_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_pos_ecef_z_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'Validity_GPS_Pos_ECEF_Z'
@@ -38416,7 +38432,7 @@ impl RtSbGpsPosEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_pos_ecef_y(&self) -> bool {
-        self.validity_gps_pos_ecef_y_phys()
+        self.validity_gps_pos_ecef_y_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Pos_ECEF_Y'
     ///
@@ -38424,7 +38440,7 @@ impl RtSbGpsPosEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_pos_ecef_y_phys(&self) -> bool {
+    pub fn validity_gps_pos_ecef_y_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -38435,12 +38451,12 @@ impl RtSbGpsPosEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_pos_ecef_y_raw(&self) -> u8 {
+    pub fn validity_gps_pos_ecef_y_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Pos_ECEF_Y'
     #[inline(always)]
-    pub fn set_validity_gps_pos_ecef_y_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_pos_ecef_y_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_GPS_Pos_ECEF_Y'
@@ -38460,7 +38476,7 @@ impl RtSbGpsPosEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_pos_ecef_x(&self) -> bool {
-        self.validity_gps_pos_ecef_x_phys()
+        self.validity_gps_pos_ecef_x_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Pos_ECEF_X'
     ///
@@ -38468,7 +38484,7 @@ impl RtSbGpsPosEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_pos_ecef_x_phys(&self) -> bool {
+    pub fn validity_gps_pos_ecef_x_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -38479,12 +38495,12 @@ impl RtSbGpsPosEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_pos_ecef_x_raw(&self) -> u8 {
+    pub fn validity_gps_pos_ecef_x_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Pos_ECEF_X'
     #[inline(always)]
-    pub fn set_validity_gps_pos_ecef_x_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_pos_ecef_x_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_GPS_Pos_ECEF_X'
@@ -38581,7 +38597,7 @@ impl RtSbGpsPosLlh2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_pos_llh_altitude(&self) -> f32 {
-        self.gps_pos_llh_altitude_phys()
+        self.gps_pos_llh_altitude_phys_val()
     }
     /// Get physical value of 'GPS_Pos_LLH_Altitude'
     ///
@@ -38589,7 +38605,7 @@ impl RtSbGpsPosLlh2 {
     /// - Offset: 0
     /// - Unit: "m"
     #[inline(always)]
-    pub fn gps_pos_llh_altitude_phys(&self) -> f32 {
+    pub fn gps_pos_llh_altitude_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -38602,12 +38618,12 @@ impl RtSbGpsPosLlh2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_pos_llh_altitude_raw(&self) -> i32 {
+    pub fn gps_pos_llh_altitude_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Pos_LLH_Altitude'
     #[inline(always)]
-    pub fn set_gps_pos_llh_altitude_raw(&mut self, value: i32) {
+    pub fn set_gps_pos_llh_altitude_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
@@ -38634,7 +38650,7 @@ impl RtSbGpsPosLlh2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_pos_llh_longitude(&self) -> f32 {
-        self.gps_pos_llh_longitude_phys()
+        self.gps_pos_llh_longitude_phys_val()
     }
     /// Get physical value of 'GPS_Pos_LLH_Longitude'
     ///
@@ -38642,7 +38658,7 @@ impl RtSbGpsPosLlh2 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_pos_llh_longitude_phys(&self) -> f32 {
+    pub fn gps_pos_llh_longitude_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 0.0000001_f32;
         let offset = 0_f32;
@@ -38655,12 +38671,12 @@ impl RtSbGpsPosLlh2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_pos_llh_longitude_raw(&self) -> i32 {
+    pub fn gps_pos_llh_longitude_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Pos_LLH_Longitude'
     #[inline(always)]
-    pub fn set_gps_pos_llh_longitude_raw(&mut self, value: i32) {
+    pub fn set_gps_pos_llh_longitude_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
     }
@@ -38780,7 +38796,7 @@ impl RtSbGpsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_pos_llh_latitude(&self) -> f32 {
-        self.gps_pos_llh_latitude_phys()
+        self.gps_pos_llh_latitude_phys_val()
     }
     /// Get physical value of 'GPS_Pos_LLH_Latitude'
     ///
@@ -38788,7 +38804,7 @@ impl RtSbGpsPosLlh1 {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_pos_llh_latitude_phys(&self) -> f32 {
+    pub fn gps_pos_llh_latitude_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.0000001_f32;
         let offset = 0_f32;
@@ -38801,12 +38817,12 @@ impl RtSbGpsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_pos_llh_latitude_raw(&self) -> i32 {
+    pub fn gps_pos_llh_latitude_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Pos_LLH_Latitude'
     #[inline(always)]
-    pub fn set_gps_pos_llh_latitude_raw(&mut self, value: i32) {
+    pub fn set_gps_pos_llh_latitude_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
     }
@@ -38835,7 +38851,7 @@ impl RtSbGpsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_pos_llh_altitude(&self) -> u8 {
-        self.accuracy_gps_pos_llh_altitude_phys()
+        self.accuracy_gps_pos_llh_altitude_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Pos_LLH_Altitude'
     ///
@@ -38843,7 +38859,7 @@ impl RtSbGpsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_altitude_phys(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_altitude_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -38855,12 +38871,12 @@ impl RtSbGpsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_altitude_raw(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_altitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Pos_LLH_Altitude'
     #[inline(always)]
-    pub fn set_accuracy_gps_pos_llh_altitude_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_pos_llh_altitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Pos_LLH_Altitude'
@@ -38894,7 +38910,7 @@ impl RtSbGpsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_pos_llh_longitude(&self) -> u8 {
-        self.accuracy_gps_pos_llh_longitude_phys()
+        self.accuracy_gps_pos_llh_longitude_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Pos_LLH_Longitude'
     ///
@@ -38902,7 +38918,7 @@ impl RtSbGpsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_longitude_phys(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_longitude_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -38914,12 +38930,12 @@ impl RtSbGpsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_longitude_raw(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_longitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Pos_LLH_Longitude'
     #[inline(always)]
-    pub fn set_accuracy_gps_pos_llh_longitude_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_pos_llh_longitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Pos_LLH_Longitude'
@@ -38953,7 +38969,7 @@ impl RtSbGpsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_pos_llh_latitude(&self) -> u8 {
-        self.accuracy_gps_pos_llh_latitude_phys()
+        self.accuracy_gps_pos_llh_latitude_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Pos_LLH_Latitude'
     ///
@@ -38961,7 +38977,7 @@ impl RtSbGpsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_latitude_phys(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_latitude_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -38973,12 +38989,12 @@ impl RtSbGpsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_latitude_raw(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_latitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Pos_LLH_Latitude'
     #[inline(always)]
-    pub fn set_accuracy_gps_pos_llh_latitude_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_pos_llh_latitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Pos_LLH_Latitude'
@@ -39012,7 +39028,7 @@ impl RtSbGpsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_pos_llh_altitude(&self) -> bool {
-        self.validity_gps_pos_llh_altitude_phys()
+        self.validity_gps_pos_llh_altitude_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Pos_LLH_Altitude'
     ///
@@ -39020,7 +39036,7 @@ impl RtSbGpsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_pos_llh_altitude_phys(&self) -> bool {
+    pub fn validity_gps_pos_llh_altitude_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -39031,12 +39047,12 @@ impl RtSbGpsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_pos_llh_altitude_raw(&self) -> u8 {
+    pub fn validity_gps_pos_llh_altitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Pos_LLH_Altitude'
     #[inline(always)]
-    pub fn set_validity_gps_pos_llh_altitude_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_pos_llh_altitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'Validity_GPS_Pos_LLH_Altitude'
@@ -39059,7 +39075,7 @@ impl RtSbGpsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_pos_llh_longitude(&self) -> bool {
-        self.validity_gps_pos_llh_longitude_phys()
+        self.validity_gps_pos_llh_longitude_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Pos_LLH_Longitude'
     ///
@@ -39067,7 +39083,7 @@ impl RtSbGpsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_pos_llh_longitude_phys(&self) -> bool {
+    pub fn validity_gps_pos_llh_longitude_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -39078,12 +39094,12 @@ impl RtSbGpsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_pos_llh_longitude_raw(&self) -> u8 {
+    pub fn validity_gps_pos_llh_longitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Pos_LLH_Longitude'
     #[inline(always)]
-    pub fn set_validity_gps_pos_llh_longitude_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_pos_llh_longitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_GPS_Pos_LLH_Longitude'
@@ -39106,7 +39122,7 @@ impl RtSbGpsPosLlh1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_pos_llh_latitude(&self) -> bool {
-        self.validity_gps_pos_llh_latitude_phys()
+        self.validity_gps_pos_llh_latitude_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Pos_LLH_Latitude'
     ///
@@ -39114,7 +39130,7 @@ impl RtSbGpsPosLlh1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_pos_llh_latitude_phys(&self) -> bool {
+    pub fn validity_gps_pos_llh_latitude_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -39125,12 +39141,12 @@ impl RtSbGpsPosLlh1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_pos_llh_latitude_raw(&self) -> u8 {
+    pub fn validity_gps_pos_llh_latitude_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Pos_LLH_Latitude'
     #[inline(always)]
-    pub fn set_validity_gps_pos_llh_latitude_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_pos_llh_latitude_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_GPS_Pos_LLH_Latitude'
@@ -39244,7 +39260,7 @@ impl RtSbGpsHeadingGradient {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_gradient(&self) -> f32 {
-        self.gps_gradient_phys()
+        self.gps_gradient_phys_val()
     }
     /// Get physical value of 'GPS_Gradient'
     ///
@@ -39252,7 +39268,7 @@ impl RtSbGpsHeadingGradient {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_gradient_phys(&self) -> f32 {
+    pub fn gps_gradient_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -39265,12 +39281,12 @@ impl RtSbGpsHeadingGradient {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_gradient_raw(&self) -> i16 {
+    pub fn gps_gradient_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>()
     }
     /// Set raw value of 'GPS_Gradient'
     #[inline(always)]
-    pub fn set_gps_gradient_raw(&mut self, value: i16) {
+    pub fn set_gps_gradient_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[40..56].store_le(value);
     }
@@ -39299,7 +39315,7 @@ impl RtSbGpsHeadingGradient {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_gradient(&self) -> u8 {
-        self.accuracy_gps_gradient_phys()
+        self.accuracy_gps_gradient_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Gradient'
     ///
@@ -39307,7 +39323,7 @@ impl RtSbGpsHeadingGradient {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_gradient_phys(&self) -> u8 {
+    pub fn accuracy_gps_gradient_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -39319,12 +39335,12 @@ impl RtSbGpsHeadingGradient {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_gradient_raw(&self) -> u8 {
+    pub fn accuracy_gps_gradient_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Gradient'
     #[inline(always)]
-    pub fn set_accuracy_gps_gradient_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_gradient_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Gradient'
@@ -39355,7 +39371,7 @@ impl RtSbGpsHeadingGradient {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_heading(&self) -> f32 {
-        self.gps_heading_phys()
+        self.gps_heading_phys_val()
     }
     /// Get physical value of 'GPS_Heading'
     ///
@@ -39363,7 +39379,7 @@ impl RtSbGpsHeadingGradient {
     /// - Offset: 0
     /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_heading_phys(&self) -> f32 {
+    pub fn gps_heading_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -39376,12 +39392,12 @@ impl RtSbGpsHeadingGradient {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_heading_raw(&self) -> i16 {
+    pub fn gps_heading_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'GPS_Heading'
     #[inline(always)]
-    pub fn set_gps_heading_raw(&mut self, value: i16) {
+    pub fn set_gps_heading_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -39410,7 +39426,7 @@ impl RtSbGpsHeadingGradient {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_heading(&self) -> u8 {
-        self.accuracy_gps_heading_phys()
+        self.accuracy_gps_heading_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Heading'
     ///
@@ -39418,7 +39434,7 @@ impl RtSbGpsHeadingGradient {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_heading_phys(&self) -> u8 {
+    pub fn accuracy_gps_heading_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -39430,12 +39446,12 @@ impl RtSbGpsHeadingGradient {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_heading_raw(&self) -> u8 {
+    pub fn accuracy_gps_heading_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Heading'
     #[inline(always)]
-    pub fn set_accuracy_gps_heading_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_heading_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Heading'
@@ -39466,7 +39482,7 @@ impl RtSbGpsHeadingGradient {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_gradient(&self) -> bool {
-        self.validity_gps_gradient_phys()
+        self.validity_gps_gradient_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Gradient'
     ///
@@ -39474,7 +39490,7 @@ impl RtSbGpsHeadingGradient {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_gradient_phys(&self) -> bool {
+    pub fn validity_gps_gradient_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -39485,12 +39501,12 @@ impl RtSbGpsHeadingGradient {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_gradient_raw(&self) -> u8 {
+    pub fn validity_gps_gradient_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Gradient'
     #[inline(always)]
-    pub fn set_validity_gps_gradient_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_gradient_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_GPS_Gradient'
@@ -39510,7 +39526,7 @@ impl RtSbGpsHeadingGradient {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_heading(&self) -> bool {
-        self.validity_gps_heading_phys()
+        self.validity_gps_heading_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Heading'
     ///
@@ -39518,7 +39534,7 @@ impl RtSbGpsHeadingGradient {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_heading_phys(&self) -> bool {
+    pub fn validity_gps_heading_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -39529,12 +39545,12 @@ impl RtSbGpsHeadingGradient {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_heading_raw(&self) -> u8 {
+    pub fn validity_gps_heading_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Heading'
     #[inline(always)]
-    pub fn set_validity_gps_heading_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_heading_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_GPS_Heading'
@@ -39637,7 +39653,7 @@ impl RtSbGpsVelEcef2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_vel_ecef_z(&self) -> f32 {
-        self.gps_vel_ecef_z_phys()
+        self.gps_vel_ecef_z_phys_val()
     }
     /// Get physical value of 'GPS_Vel_ECEF_Z'
     ///
@@ -39645,7 +39661,7 @@ impl RtSbGpsVelEcef2 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_vel_ecef_z_phys(&self) -> f32 {
+    pub fn gps_vel_ecef_z_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -39658,12 +39674,12 @@ impl RtSbGpsVelEcef2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_vel_ecef_z_raw(&self) -> i32 {
+    pub fn gps_vel_ecef_z_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Vel_ECEF_Z'
     #[inline(always)]
-    pub fn set_gps_vel_ecef_z_raw(&mut self, value: i32) {
+    pub fn set_gps_vel_ecef_z_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..56].store_le(value);
     }
@@ -39692,7 +39708,7 @@ impl RtSbGpsVelEcef2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_vel_ecef_y(&self) -> f32 {
-        self.gps_vel_ecef_y_phys()
+        self.gps_vel_ecef_y_phys_val()
     }
     /// Get physical value of 'GPS_Vel_ECEF_Y'
     ///
@@ -39700,7 +39716,7 @@ impl RtSbGpsVelEcef2 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_vel_ecef_y_phys(&self) -> f32 {
+    pub fn gps_vel_ecef_y_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..32].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -39713,12 +39729,12 @@ impl RtSbGpsVelEcef2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_vel_ecef_y_raw(&self) -> i32 {
+    pub fn gps_vel_ecef_y_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[8..32].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Vel_ECEF_Y'
     #[inline(always)]
-    pub fn set_gps_vel_ecef_y_raw(&mut self, value: i32) {
+    pub fn set_gps_vel_ecef_y_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..32].store_le(value);
     }
@@ -39747,7 +39763,7 @@ impl RtSbGpsVelEcef2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_vel_ecef_z(&self) -> bool {
-        self.validity_gps_vel_ecef_z_phys()
+        self.validity_gps_vel_ecef_z_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Vel_ECEF_Z'
     ///
@@ -39755,7 +39771,7 @@ impl RtSbGpsVelEcef2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_vel_ecef_z_phys(&self) -> bool {
+    pub fn validity_gps_vel_ecef_z_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -39766,12 +39782,12 @@ impl RtSbGpsVelEcef2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_vel_ecef_z_raw(&self) -> u8 {
+    pub fn validity_gps_vel_ecef_z_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Vel_ECEF_Z'
     #[inline(always)]
-    pub fn set_validity_gps_vel_ecef_z_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_vel_ecef_z_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_GPS_Vel_ECEF_Z'
@@ -39791,7 +39807,7 @@ impl RtSbGpsVelEcef2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_vel_ecef_y(&self) -> bool {
-        self.validity_gps_vel_ecef_y_phys()
+        self.validity_gps_vel_ecef_y_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Vel_ECEF_Y'
     ///
@@ -39799,7 +39815,7 @@ impl RtSbGpsVelEcef2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_vel_ecef_y_phys(&self) -> bool {
+    pub fn validity_gps_vel_ecef_y_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -39810,12 +39826,12 @@ impl RtSbGpsVelEcef2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_vel_ecef_y_raw(&self) -> u8 {
+    pub fn validity_gps_vel_ecef_y_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Vel_ECEF_Y'
     #[inline(always)]
-    pub fn set_validity_gps_vel_ecef_y_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_vel_ecef_y_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_GPS_Vel_ECEF_Y'
@@ -39924,7 +39940,7 @@ impl RtSbGpsVelEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_vel_ecef_x(&self) -> f32 {
-        self.gps_vel_ecef_x_phys()
+        self.gps_vel_ecef_x_phys_val()
     }
     /// Get physical value of 'GPS_Vel_ECEF_X'
     ///
@@ -39932,7 +39948,7 @@ impl RtSbGpsVelEcef1 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_vel_ecef_x_phys(&self) -> f32 {
+    pub fn gps_vel_ecef_x_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -39945,12 +39961,12 @@ impl RtSbGpsVelEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_vel_ecef_x_raw(&self) -> i32 {
+    pub fn gps_vel_ecef_x_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Vel_ECEF_X'
     #[inline(always)]
-    pub fn set_gps_vel_ecef_x_raw(&mut self, value: i32) {
+    pub fn set_gps_vel_ecef_x_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..56].store_le(value);
     }
@@ -39977,7 +39993,7 @@ impl RtSbGpsVelEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_vel_ecef_z(&self) -> u8 {
-        self.accuracy_gps_vel_ecef_z_phys()
+        self.accuracy_gps_vel_ecef_z_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Vel_ECEF_Z'
     ///
@@ -39985,7 +40001,7 @@ impl RtSbGpsVelEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_vel_ecef_z_phys(&self) -> u8 {
+    pub fn accuracy_gps_vel_ecef_z_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -39997,12 +40013,12 @@ impl RtSbGpsVelEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_vel_ecef_z_raw(&self) -> u8 {
+    pub fn accuracy_gps_vel_ecef_z_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Vel_ECEF_Z'
     #[inline(always)]
-    pub fn set_accuracy_gps_vel_ecef_z_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_vel_ecef_z_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Vel_ECEF_Z'
@@ -40031,7 +40047,7 @@ impl RtSbGpsVelEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_vel_ecef_y(&self) -> u8 {
-        self.accuracy_gps_vel_ecef_y_phys()
+        self.accuracy_gps_vel_ecef_y_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Vel_ECEF_Y'
     ///
@@ -40039,7 +40055,7 @@ impl RtSbGpsVelEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_vel_ecef_y_phys(&self) -> u8 {
+    pub fn accuracy_gps_vel_ecef_y_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -40051,12 +40067,12 @@ impl RtSbGpsVelEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_vel_ecef_y_raw(&self) -> u8 {
+    pub fn accuracy_gps_vel_ecef_y_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Vel_ECEF_Y'
     #[inline(always)]
-    pub fn set_accuracy_gps_vel_ecef_y_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_vel_ecef_y_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Vel_ECEF_Y'
@@ -40085,7 +40101,7 @@ impl RtSbGpsVelEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_vel_ecef_x(&self) -> u8 {
-        self.accuracy_gps_vel_ecef_x_phys()
+        self.accuracy_gps_vel_ecef_x_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Vel_ECEF_X'
     ///
@@ -40093,7 +40109,7 @@ impl RtSbGpsVelEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_vel_ecef_x_phys(&self) -> u8 {
+    pub fn accuracy_gps_vel_ecef_x_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -40105,12 +40121,12 @@ impl RtSbGpsVelEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_vel_ecef_x_raw(&self) -> u8 {
+    pub fn accuracy_gps_vel_ecef_x_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Vel_ECEF_X'
     #[inline(always)]
-    pub fn set_accuracy_gps_vel_ecef_x_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_vel_ecef_x_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Vel_ECEF_X'
@@ -40141,7 +40157,7 @@ impl RtSbGpsVelEcef1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_vel_ecef_x(&self) -> bool {
-        self.validity_gps_vel_ecef_x_phys()
+        self.validity_gps_vel_ecef_x_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Vel_ECEF_X'
     ///
@@ -40149,7 +40165,7 @@ impl RtSbGpsVelEcef1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_vel_ecef_x_phys(&self) -> bool {
+    pub fn validity_gps_vel_ecef_x_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -40160,12 +40176,12 @@ impl RtSbGpsVelEcef1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_vel_ecef_x_raw(&self) -> u8 {
+    pub fn validity_gps_vel_ecef_x_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Vel_ECEF_X'
     #[inline(always)]
-    pub fn set_validity_gps_vel_ecef_x_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_vel_ecef_x_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_GPS_Vel_ECEF_X'
@@ -40266,7 +40282,7 @@ impl RtSbGpsVelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_vel_ned_d(&self) -> f32 {
-        self.gps_vel_ned_d_phys()
+        self.gps_vel_ned_d_phys_val()
     }
     /// Get physical value of 'GPS_Vel_NED_D'
     ///
@@ -40274,7 +40290,7 @@ impl RtSbGpsVelNed2 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_vel_ned_d_phys(&self) -> f32 {
+    pub fn gps_vel_ned_d_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -40287,12 +40303,12 @@ impl RtSbGpsVelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_vel_ned_d_raw(&self) -> i32 {
+    pub fn gps_vel_ned_d_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Vel_NED_D'
     #[inline(always)]
-    pub fn set_gps_vel_ned_d_raw(&mut self, value: i32) {
+    pub fn set_gps_vel_ned_d_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..40].store_le(value);
     }
@@ -40319,7 +40335,7 @@ impl RtSbGpsVelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_vel_d(&self) -> u8 {
-        self.accuracy_gps_vel_d_phys()
+        self.accuracy_gps_vel_d_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Vel_D'
     ///
@@ -40327,7 +40343,7 @@ impl RtSbGpsVelNed2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_vel_d_phys(&self) -> u8 {
+    pub fn accuracy_gps_vel_d_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -40339,12 +40355,12 @@ impl RtSbGpsVelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_vel_d_raw(&self) -> u8 {
+    pub fn accuracy_gps_vel_d_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Vel_D'
     #[inline(always)]
-    pub fn set_accuracy_gps_vel_d_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_vel_d_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Vel_D'
@@ -40375,7 +40391,7 @@ impl RtSbGpsVelNed2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_vel_ned_d(&self) -> bool {
-        self.validity_gps_vel_ned_d_phys()
+        self.validity_gps_vel_ned_d_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Vel_NED_D'
     ///
@@ -40383,7 +40399,7 @@ impl RtSbGpsVelNed2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_vel_ned_d_phys(&self) -> bool {
+    pub fn validity_gps_vel_ned_d_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -40394,12 +40410,12 @@ impl RtSbGpsVelNed2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_vel_ned_d_raw(&self) -> u8 {
+    pub fn validity_gps_vel_ned_d_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Vel_NED_D'
     #[inline(always)]
-    pub fn set_validity_gps_vel_ned_d_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_vel_ned_d_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_GPS_Vel_NED_D'
@@ -40506,7 +40522,7 @@ impl RtSbGpsVelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_vel_ned_e(&self) -> f32 {
-        self.gps_vel_ned_e_phys()
+        self.gps_vel_ned_e_phys_val()
     }
     /// Get physical value of 'GPS_Vel_NED_E'
     ///
@@ -40514,7 +40530,7 @@ impl RtSbGpsVelNed1 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_vel_ned_e_phys(&self) -> f32 {
+    pub fn gps_vel_ned_e_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..64].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -40527,12 +40543,12 @@ impl RtSbGpsVelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_vel_ned_e_raw(&self) -> i32 {
+    pub fn gps_vel_ned_e_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[40..64].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Vel_NED_E'
     #[inline(always)]
-    pub fn set_gps_vel_ned_e_raw(&mut self, value: i32) {
+    pub fn set_gps_vel_ned_e_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[40..64].store_le(value);
     }
@@ -40561,7 +40577,7 @@ impl RtSbGpsVelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_vel_ned_n(&self) -> f32 {
-        self.gps_vel_ned_n_phys()
+        self.gps_vel_ned_n_phys_val()
     }
     /// Get physical value of 'GPS_Vel_NED_N'
     ///
@@ -40569,7 +40585,7 @@ impl RtSbGpsVelNed1 {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_vel_ned_n_phys(&self) -> f32 {
+    pub fn gps_vel_ned_n_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -40582,12 +40598,12 @@ impl RtSbGpsVelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gps_vel_ned_n_raw(&self) -> i32 {
+    pub fn gps_vel_ned_n_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>()
     }
     /// Set raw value of 'GPS_Vel_NED_N'
     #[inline(always)]
-    pub fn set_gps_vel_ned_n_raw(&mut self, value: i32) {
+    pub fn set_gps_vel_ned_n_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..40].store_le(value);
     }
@@ -40614,7 +40630,7 @@ impl RtSbGpsVelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_vel_ne(&self) -> u8 {
-        self.accuracy_gps_vel_ne_phys()
+        self.accuracy_gps_vel_ne_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Vel_NE'
     ///
@@ -40622,7 +40638,7 @@ impl RtSbGpsVelNed1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_vel_ne_phys(&self) -> u8 {
+    pub fn accuracy_gps_vel_ne_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -40634,12 +40650,12 @@ impl RtSbGpsVelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_vel_ne_raw(&self) -> u8 {
+    pub fn accuracy_gps_vel_ne_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Vel_NE'
     #[inline(always)]
-    pub fn set_accuracy_gps_vel_ne_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_vel_ne_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Vel_NE'
@@ -40670,7 +40686,7 @@ impl RtSbGpsVelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_vel_ned_e(&self) -> bool {
-        self.validity_gps_vel_ned_e_phys()
+        self.validity_gps_vel_ned_e_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Vel_NED_E'
     ///
@@ -40678,7 +40694,7 @@ impl RtSbGpsVelNed1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_vel_ned_e_phys(&self) -> bool {
+    pub fn validity_gps_vel_ned_e_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -40689,12 +40705,12 @@ impl RtSbGpsVelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_vel_ned_e_raw(&self) -> u8 {
+    pub fn validity_gps_vel_ned_e_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Vel_NED_E'
     #[inline(always)]
-    pub fn set_validity_gps_vel_ned_e_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_vel_ned_e_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_GPS_Vel_NED_E'
@@ -40714,7 +40730,7 @@ impl RtSbGpsVelNed1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_vel_ned_n(&self) -> bool {
-        self.validity_gps_vel_ned_n_phys()
+        self.validity_gps_vel_ned_n_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Vel_NED_N'
     ///
@@ -40722,7 +40738,7 @@ impl RtSbGpsVelNed1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_vel_ned_n_phys(&self) -> bool {
+    pub fn validity_gps_vel_ned_n_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -40733,12 +40749,12 @@ impl RtSbGpsVelNed1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_vel_ned_n_raw(&self) -> u8 {
+    pub fn validity_gps_vel_ned_n_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Vel_NED_N'
     #[inline(always)]
-    pub fn set_validity_gps_vel_ned_n_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_vel_ned_n_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_GPS_Vel_NED_N'
@@ -40845,7 +40861,7 @@ impl RtSbGpsSpeed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_speed_3d(&self) -> f32 {
-        self.gps_speed_3d_phys()
+        self.gps_speed_3d_phys_val()
     }
     /// Get physical value of 'GPS_Speed_3D'
     ///
@@ -40853,7 +40869,7 @@ impl RtSbGpsSpeed {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_speed_3d_phys(&self) -> f32 {
+    pub fn gps_speed_3d_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..64].load_le::<u32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -40866,12 +40882,12 @@ impl RtSbGpsSpeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_speed_3d_raw(&self) -> u32 {
+    pub fn gps_speed_3d_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[40..64].load_le::<u32>()
     }
     /// Set raw value of 'GPS_Speed_3D'
     #[inline(always)]
-    pub fn set_gps_speed_3d_raw(&mut self, value: u32) {
+    pub fn set_gps_speed_3d_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[40..64].store_le(value);
     }
     /// Set value of 'GPS_Speed_3D'
@@ -40898,7 +40914,7 @@ impl RtSbGpsSpeed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_speed_2d(&self) -> f32 {
-        self.gps_speed_2d_phys()
+        self.gps_speed_2d_phys_val()
     }
     /// Get physical value of 'GPS_Speed_2D'
     ///
@@ -40906,7 +40922,7 @@ impl RtSbGpsSpeed {
     /// - Offset: 0
     /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_speed_2d_phys(&self) -> f32 {
+    pub fn gps_speed_2d_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..40].load_le::<u32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -40919,12 +40935,12 @@ impl RtSbGpsSpeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_speed_2d_raw(&self) -> u32 {
+    pub fn gps_speed_2d_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[16..40].load_le::<u32>()
     }
     /// Set raw value of 'GPS_Speed_2D'
     #[inline(always)]
-    pub fn set_gps_speed_2d_raw(&mut self, value: u32) {
+    pub fn set_gps_speed_2d_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[16..40].store_le(value);
     }
     /// Set value of 'GPS_Speed_2D'
@@ -40951,7 +40967,7 @@ impl RtSbGpsSpeed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_speed(&self) -> u8 {
-        self.accuracy_gps_speed_phys()
+        self.accuracy_gps_speed_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Speed'
     ///
@@ -40959,7 +40975,7 @@ impl RtSbGpsSpeed {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_speed_phys(&self) -> u8 {
+    pub fn accuracy_gps_speed_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -40971,12 +40987,12 @@ impl RtSbGpsSpeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_speed_raw(&self) -> u8 {
+    pub fn accuracy_gps_speed_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Speed'
     #[inline(always)]
-    pub fn set_accuracy_gps_speed_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_speed_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Speed'
@@ -41007,7 +41023,7 @@ impl RtSbGpsSpeed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_speed_3d(&self) -> bool {
-        self.validity_gps_speed_3d_phys()
+        self.validity_gps_speed_3d_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Speed_3D'
     ///
@@ -41015,7 +41031,7 @@ impl RtSbGpsSpeed {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_speed_3d_phys(&self) -> bool {
+    pub fn validity_gps_speed_3d_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -41026,12 +41042,12 @@ impl RtSbGpsSpeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_speed_3d_raw(&self) -> u8 {
+    pub fn validity_gps_speed_3d_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Speed_3D'
     #[inline(always)]
-    pub fn set_validity_gps_speed_3d_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_speed_3d_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_GPS_Speed_3D'
@@ -41051,7 +41067,7 @@ impl RtSbGpsSpeed {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_speed_2d(&self) -> bool {
-        self.validity_gps_speed_2d_phys()
+        self.validity_gps_speed_2d_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Speed_2D'
     ///
@@ -41059,7 +41075,7 @@ impl RtSbGpsSpeed {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_speed_2d_phys(&self) -> bool {
+    pub fn validity_gps_speed_2d_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -41070,12 +41086,12 @@ impl RtSbGpsSpeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_speed_2d_raw(&self) -> u8 {
+    pub fn validity_gps_speed_2d_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Speed_2D'
     #[inline(always)]
-    pub fn set_validity_gps_speed_2d_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_speed_2d_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_GPS_Speed_2D'
@@ -41180,7 +41196,7 @@ impl RtSbGpsTime {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_week(&self) -> u16 {
-        self.gps_week_phys()
+        self.gps_week_phys_val()
     }
     /// Get physical value of 'GPS_Week'
     ///
@@ -41188,7 +41204,7 @@ impl RtSbGpsTime {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn gps_week_phys(&self) -> u16 {
+    pub fn gps_week_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -41200,12 +41216,12 @@ impl RtSbGpsTime {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_week_raw(&self) -> u16 {
+    pub fn gps_week_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>()
     }
     /// Set raw value of 'GPS_Week'
     #[inline(always)]
-    pub fn set_gps_week_raw(&mut self, value: u16) {
+    pub fn set_gps_week_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
     /// Set value of 'GPS_Week'
@@ -41236,7 +41252,7 @@ impl RtSbGpsTime {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gps_time(&self) -> f32 {
-        self.gps_time_phys()
+        self.gps_time_phys_val()
     }
     /// Get physical value of 'GPS_Time'
     ///
@@ -41244,7 +41260,7 @@ impl RtSbGpsTime {
     /// - Offset: 0
     /// - Unit: "s"
     #[inline(always)]
-    pub fn gps_time_phys(&self) -> f32 {
+    pub fn gps_time_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..48].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -41257,12 +41273,12 @@ impl RtSbGpsTime {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gps_time_raw(&self) -> u32 {
+    pub fn gps_time_raw_val(&self) -> u32 {
         self.raw.view_bits::<Lsb0>()[16..48].load_le::<u32>()
     }
     /// Set raw value of 'GPS_Time'
     #[inline(always)]
-    pub fn set_gps_time_raw(&mut self, value: u32) {
+    pub fn set_gps_time_raw_val(&mut self, value: u32) {
         self.raw.view_bits_mut::<Lsb0>()[16..48].store_le(value);
     }
     /// Set value of 'GPS_Time'
@@ -41287,7 +41303,7 @@ impl RtSbGpsTime {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gps_time(&self) -> u8 {
-        self.accuracy_gps_time_phys()
+        self.accuracy_gps_time_phys_val()
     }
     /// Get physical value of 'Accuracy_GPS_Time'
     ///
@@ -41295,7 +41311,7 @@ impl RtSbGpsTime {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gps_time_phys(&self) -> u8 {
+    pub fn accuracy_gps_time_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -41307,12 +41323,12 @@ impl RtSbGpsTime {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gps_time_raw(&self) -> u8 {
+    pub fn accuracy_gps_time_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_GPS_Time'
     #[inline(always)]
-    pub fn set_accuracy_gps_time_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gps_time_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_GPS_Time'
@@ -41343,7 +41359,7 @@ impl RtSbGpsTime {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_week(&self) -> bool {
-        self.validity_gps_week_phys()
+        self.validity_gps_week_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Week'
     ///
@@ -41351,7 +41367,7 @@ impl RtSbGpsTime {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_week_phys(&self) -> bool {
+    pub fn validity_gps_week_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -41362,12 +41378,12 @@ impl RtSbGpsTime {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_week_raw(&self) -> u8 {
+    pub fn validity_gps_week_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Week'
     #[inline(always)]
-    pub fn set_validity_gps_week_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_week_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_GPS_Week'
@@ -41387,7 +41403,7 @@ impl RtSbGpsTime {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gps_time(&self) -> bool {
-        self.validity_gps_time_phys()
+        self.validity_gps_time_phys_val()
     }
     /// Get physical value of 'Validity_GPS_Time'
     ///
@@ -41395,7 +41411,7 @@ impl RtSbGpsTime {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gps_time_phys(&self) -> bool {
+    pub fn validity_gps_time_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -41406,12 +41422,12 @@ impl RtSbGpsTime {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gps_time_raw(&self) -> u8 {
+    pub fn validity_gps_time_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_GPS_Time'
     #[inline(always)]
-    pub fn set_validity_gps_time_raw(&mut self, value: u8) {
+    pub fn set_validity_gps_time_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_GPS_Time'
@@ -41524,7 +41540,7 @@ impl RtSbAccel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accel_vertical(&self) -> f32 {
-        self.accel_vertical_phys()
+        self.accel_vertical_phys_val()
     }
     /// Get physical value of 'Accel_Vertical'
     ///
@@ -41532,7 +41548,7 @@ impl RtSbAccel {
     /// - Offset: 0
     /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_vertical_phys(&self) -> f32 {
+    pub fn accel_vertical_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -41545,12 +41561,12 @@ impl RtSbAccel {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn accel_vertical_raw(&self) -> i16 {
+    pub fn accel_vertical_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'Accel_Vertical'
     #[inline(always)]
-    pub fn set_accel_vertical_raw(&mut self, value: i16) {
+    pub fn set_accel_vertical_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -41579,7 +41595,7 @@ impl RtSbAccel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accel_lateral(&self) -> f32 {
-        self.accel_lateral_phys()
+        self.accel_lateral_phys_val()
     }
     /// Get physical value of 'Accel_Lateral'
     ///
@@ -41587,7 +41603,7 @@ impl RtSbAccel {
     /// - Offset: 0
     /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_lateral_phys(&self) -> f32 {
+    pub fn accel_lateral_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -41600,12 +41616,12 @@ impl RtSbAccel {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn accel_lateral_raw(&self) -> i16 {
+    pub fn accel_lateral_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Accel_Lateral'
     #[inline(always)]
-    pub fn set_accel_lateral_raw(&mut self, value: i16) {
+    pub fn set_accel_lateral_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -41634,7 +41650,7 @@ impl RtSbAccel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accel_longitudinal(&self) -> f32 {
-        self.accel_longitudinal_phys()
+        self.accel_longitudinal_phys_val()
     }
     /// Get physical value of 'Accel_Longitudinal'
     ///
@@ -41642,7 +41658,7 @@ impl RtSbAccel {
     /// - Offset: 0
     /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_longitudinal_phys(&self) -> f32 {
+    pub fn accel_longitudinal_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -41655,12 +41671,12 @@ impl RtSbAccel {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn accel_longitudinal_raw(&self) -> i16 {
+    pub fn accel_longitudinal_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'Accel_Longitudinal'
     #[inline(always)]
-    pub fn set_accel_longitudinal_raw(&mut self, value: i16) {
+    pub fn set_accel_longitudinal_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -41689,7 +41705,7 @@ impl RtSbAccel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_accel(&self) -> u8 {
-        self.accuracy_accel_phys()
+        self.accuracy_accel_phys_val()
     }
     /// Get physical value of 'Accuracy_Accel'
     ///
@@ -41697,7 +41713,7 @@ impl RtSbAccel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_accel_phys(&self) -> u8 {
+    pub fn accuracy_accel_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -41709,12 +41725,12 @@ impl RtSbAccel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_accel_raw(&self) -> u8 {
+    pub fn accuracy_accel_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_Accel'
     #[inline(always)]
-    pub fn set_accuracy_accel_raw(&mut self, value: u8) {
+    pub fn set_accuracy_accel_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_Accel'
@@ -41745,7 +41761,7 @@ impl RtSbAccel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_accel_vertical(&self) -> bool {
-        self.validity_accel_vertical_phys()
+        self.validity_accel_vertical_phys_val()
     }
     /// Get physical value of 'Validity_Accel_Vertical'
     ///
@@ -41753,7 +41769,7 @@ impl RtSbAccel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_accel_vertical_phys(&self) -> bool {
+    pub fn validity_accel_vertical_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -41764,12 +41780,12 @@ impl RtSbAccel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_accel_vertical_raw(&self) -> u8 {
+    pub fn validity_accel_vertical_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Accel_Vertical'
     #[inline(always)]
-    pub fn set_validity_accel_vertical_raw(&mut self, value: u8) {
+    pub fn set_validity_accel_vertical_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'Validity_Accel_Vertical'
@@ -41789,7 +41805,7 @@ impl RtSbAccel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_accel_lateral(&self) -> bool {
-        self.validity_accel_lateral_phys()
+        self.validity_accel_lateral_phys_val()
     }
     /// Get physical value of 'Validity_Accel_Lateral'
     ///
@@ -41797,7 +41813,7 @@ impl RtSbAccel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_accel_lateral_phys(&self) -> bool {
+    pub fn validity_accel_lateral_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -41808,12 +41824,12 @@ impl RtSbAccel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_accel_lateral_raw(&self) -> u8 {
+    pub fn validity_accel_lateral_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Accel_Lateral'
     #[inline(always)]
-    pub fn set_validity_accel_lateral_raw(&mut self, value: u8) {
+    pub fn set_validity_accel_lateral_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_Accel_Lateral'
@@ -41833,7 +41849,7 @@ impl RtSbAccel {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_accel_longitudinal(&self) -> bool {
-        self.validity_accel_longitudinal_phys()
+        self.validity_accel_longitudinal_phys_val()
     }
     /// Get physical value of 'Validity_Accel_Longitudinal'
     ///
@@ -41841,7 +41857,7 @@ impl RtSbAccel {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_accel_longitudinal_phys(&self) -> bool {
+    pub fn validity_accel_longitudinal_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -41852,12 +41868,12 @@ impl RtSbAccel {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_accel_longitudinal_raw(&self) -> u8 {
+    pub fn validity_accel_longitudinal_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Accel_Longitudinal'
     #[inline(always)]
-    pub fn set_validity_accel_longitudinal_raw(&mut self, value: u8) {
+    pub fn set_validity_accel_longitudinal_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_Accel_Longitudinal'
@@ -41973,7 +41989,7 @@ impl RtSbGyroRates {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gyro_rate_roll(&self) -> f32 {
-        self.gyro_rate_roll_phys()
+        self.gyro_rate_roll_phys_val()
     }
     /// Get physical value of 'Gyro_Rate_Roll'
     ///
@@ -41981,7 +41997,7 @@ impl RtSbGyroRates {
     /// - Offset: 0
     /// - Unit: "degrees/s"
     #[inline(always)]
-    pub fn gyro_rate_roll_phys(&self) -> f32 {
+    pub fn gyro_rate_roll_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -41994,12 +42010,12 @@ impl RtSbGyroRates {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gyro_rate_roll_raw(&self) -> i16 {
+    pub fn gyro_rate_roll_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>()
     }
     /// Set raw value of 'Gyro_Rate_Roll'
     #[inline(always)]
-    pub fn set_gyro_rate_roll_raw(&mut self, value: i16) {
+    pub fn set_gyro_rate_roll_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
     }
@@ -42028,7 +42044,7 @@ impl RtSbGyroRates {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gyro_rate_pitch(&self) -> f32 {
-        self.gyro_rate_pitch_phys()
+        self.gyro_rate_pitch_phys_val()
     }
     /// Get physical value of 'Gyro_Rate_Pitch'
     ///
@@ -42036,7 +42052,7 @@ impl RtSbGyroRates {
     /// - Offset: 0
     /// - Unit: "degrees/s"
     #[inline(always)]
-    pub fn gyro_rate_pitch_phys(&self) -> f32 {
+    pub fn gyro_rate_pitch_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -42049,12 +42065,12 @@ impl RtSbGyroRates {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gyro_rate_pitch_raw(&self) -> i16 {
+    pub fn gyro_rate_pitch_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>()
     }
     /// Set raw value of 'Gyro_Rate_Pitch'
     #[inline(always)]
-    pub fn set_gyro_rate_pitch_raw(&mut self, value: i16) {
+    pub fn set_gyro_rate_pitch_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
@@ -42083,7 +42099,7 @@ impl RtSbGyroRates {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn gyro_rate_yaw(&self) -> f32 {
-        self.gyro_rate_yaw_phys()
+        self.gyro_rate_yaw_phys_val()
     }
     /// Get physical value of 'Gyro_Rate_Yaw'
     ///
@@ -42091,7 +42107,7 @@ impl RtSbGyroRates {
     /// - Offset: 0
     /// - Unit: "degrees/s"
     #[inline(always)]
-    pub fn gyro_rate_yaw_phys(&self) -> f32 {
+    pub fn gyro_rate_yaw_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -42104,12 +42120,12 @@ impl RtSbGyroRates {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn gyro_rate_yaw_raw(&self) -> i16 {
+    pub fn gyro_rate_yaw_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
     /// Set raw value of 'Gyro_Rate_Yaw'
     #[inline(always)]
-    pub fn set_gyro_rate_yaw_raw(&mut self, value: i16) {
+    pub fn set_gyro_rate_yaw_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
@@ -42138,7 +42154,7 @@ impl RtSbGyroRates {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn accuracy_gyro_rates(&self) -> u8 {
-        self.accuracy_gyro_rates_phys()
+        self.accuracy_gyro_rates_phys_val()
     }
     /// Get physical value of 'Accuracy_Gyro_Rates'
     ///
@@ -42146,7 +42162,7 @@ impl RtSbGyroRates {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn accuracy_gyro_rates_phys(&self) -> u8 {
+    pub fn accuracy_gyro_rates_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -42158,12 +42174,12 @@ impl RtSbGyroRates {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn accuracy_gyro_rates_raw(&self) -> u8 {
+    pub fn accuracy_gyro_rates_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
     /// Set raw value of 'Accuracy_Gyro_Rates'
     #[inline(always)]
-    pub fn set_accuracy_gyro_rates_raw(&mut self, value: u8) {
+    pub fn set_accuracy_gyro_rates_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
     /// Set value of 'Accuracy_Gyro_Rates'
@@ -42194,7 +42210,7 @@ impl RtSbGyroRates {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gyro_rate_roll(&self) -> bool {
-        self.validity_gyro_rate_roll_phys()
+        self.validity_gyro_rate_roll_phys_val()
     }
     /// Get physical value of 'Validity_Gyro_Rate_Roll'
     ///
@@ -42202,7 +42218,7 @@ impl RtSbGyroRates {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gyro_rate_roll_phys(&self) -> bool {
+    pub fn validity_gyro_rate_roll_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -42213,12 +42229,12 @@ impl RtSbGyroRates {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gyro_rate_roll_raw(&self) -> u8 {
+    pub fn validity_gyro_rate_roll_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Gyro_Rate_Roll'
     #[inline(always)]
-    pub fn set_validity_gyro_rate_roll_raw(&mut self, value: u8) {
+    pub fn set_validity_gyro_rate_roll_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
     }
     /// Set value of 'Validity_Gyro_Rate_Roll'
@@ -42238,7 +42254,7 @@ impl RtSbGyroRates {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gyro_rate_pitch(&self) -> bool {
-        self.validity_gyro_rate_pitch_phys()
+        self.validity_gyro_rate_pitch_phys_val()
     }
     /// Get physical value of 'Validity_Gyro_Rate_Pitch'
     ///
@@ -42246,7 +42262,7 @@ impl RtSbGyroRates {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gyro_rate_pitch_phys(&self) -> bool {
+    pub fn validity_gyro_rate_pitch_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -42257,12 +42273,12 @@ impl RtSbGyroRates {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gyro_rate_pitch_raw(&self) -> u8 {
+    pub fn validity_gyro_rate_pitch_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Gyro_Rate_Pitch'
     #[inline(always)]
-    pub fn set_validity_gyro_rate_pitch_raw(&mut self, value: u8) {
+    pub fn set_validity_gyro_rate_pitch_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
     }
     /// Set value of 'Validity_Gyro_Rate_Pitch'
@@ -42282,7 +42298,7 @@ impl RtSbGyroRates {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn validity_gyro_rate_yaw(&self) -> bool {
-        self.validity_gyro_rate_yaw_phys()
+        self.validity_gyro_rate_yaw_phys_val()
     }
     /// Get physical value of 'Validity_Gyro_Rate_Yaw'
     ///
@@ -42290,7 +42306,7 @@ impl RtSbGyroRates {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn validity_gyro_rate_yaw_phys(&self) -> bool {
+    pub fn validity_gyro_rate_yaw_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -42301,12 +42317,12 @@ impl RtSbGyroRates {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn validity_gyro_rate_yaw_raw(&self) -> u8 {
+    pub fn validity_gyro_rate_yaw_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
     /// Set raw value of 'Validity_Gyro_Rate_Yaw'
     #[inline(always)]
-    pub fn set_validity_gyro_rate_yaw_raw(&mut self, value: u8) {
+    pub fn set_validity_gyro_rate_yaw_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
     /// Set value of 'Validity_Gyro_Rate_Yaw'

@@ -102,7 +102,7 @@ impl TestMsgEx {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn test_sig_copy_1(&self) -> i8 {
-        self.test_sig_copy_1_phys()
+        self.test_sig_copy_1_phys_val()
     }
     /// Get physical value of 'TestSig_Copy_1'
     ///
@@ -110,7 +110,7 @@ impl TestMsgEx {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn test_sig_copy_1_phys(&self) -> i8 {
+    pub fn test_sig_copy_1_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -123,12 +123,12 @@ impl TestMsgEx {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn test_sig_copy_1_raw(&self) -> i8 {
+    pub fn test_sig_copy_1_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
     /// Set raw value of 'TestSig_Copy_1'
     #[inline(always)]
-    pub fn set_test_sig_copy_1_raw(&mut self, value: i8) {
+    pub fn set_test_sig_copy_1_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
@@ -232,7 +232,7 @@ impl TestMsgStd {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn test_sig_copy_3(&self) -> i8 {
-        self.test_sig_copy_3_phys()
+        self.test_sig_copy_3_phys_val()
     }
     /// Get physical value of 'TestSig_Copy_3'
     ///
@@ -240,7 +240,7 @@ impl TestMsgStd {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn test_sig_copy_3_phys(&self) -> i8 {
+    pub fn test_sig_copy_3_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -253,12 +253,12 @@ impl TestMsgStd {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn test_sig_copy_3_raw(&self) -> i8 {
+    pub fn test_sig_copy_3_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
     /// Set raw value of 'TestSig_Copy_3'
     #[inline(always)]
-    pub fn set_test_sig_copy_3_raw(&mut self, value: i8) {
+    pub fn set_test_sig_copy_3_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
@@ -362,7 +362,7 @@ impl TestMsgFdStd {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn test_sig_copy_2(&self) -> i8 {
-        self.test_sig_copy_2_phys()
+        self.test_sig_copy_2_phys_val()
     }
     /// Get physical value of 'TestSig_Copy_2'
     ///
@@ -370,7 +370,7 @@ impl TestMsgFdStd {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn test_sig_copy_2_phys(&self) -> i8 {
+    pub fn test_sig_copy_2_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -383,12 +383,12 @@ impl TestMsgFdStd {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn test_sig_copy_2_raw(&self) -> i8 {
+    pub fn test_sig_copy_2_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
     /// Set raw value of 'TestSig_Copy_2'
     #[inline(always)]
-    pub fn set_test_sig_copy_2_raw(&mut self, value: i8) {
+    pub fn set_test_sig_copy_2_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
@@ -492,7 +492,7 @@ impl TestMsgFdEx {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn test_sig(&self) -> i8 {
-        self.test_sig_phys()
+        self.test_sig_phys_val()
     }
     /// Get physical value of 'TestSig'
     ///
@@ -500,7 +500,7 @@ impl TestMsgFdEx {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn test_sig_phys(&self) -> i8 {
+    pub fn test_sig_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -513,12 +513,12 @@ impl TestMsgFdEx {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn test_sig_raw(&self) -> i8 {
+    pub fn test_sig_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
     /// Set raw value of 'TestSig'
     #[inline(always)]
-    pub fn set_test_sig_raw(&mut self, value: i8) {
+    pub fn set_test_sig_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }

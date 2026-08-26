@@ -875,7 +875,7 @@ impl Config<'_> {
                             }
                         }
                     }
-                    writeln!(w, "_ => {type_name}::_Other(self.{fn_name}_phys()),")?;
+                    writeln!(w, "_ => {type_name}::_Other(self.{fn_name}_phys_val()),")?;
                 }
                 writeln!(w, "}}")?;
             }
@@ -886,7 +886,7 @@ impl Config<'_> {
             writeln!(w, "pub fn {fn_name}(&self) -> {typ} {{")?;
             {
                 let mut w = PadAdapter::wrap(w);
-                writeln!(w, "self.{fn_name}_phys()")?;
+                writeln!(w, "self.{fn_name}_phys_val()")?;
             }
             writeln!(w, "}}")?;
             writeln!(w)?;
@@ -899,7 +899,7 @@ impl Config<'_> {
         writeln!(w, "/// - Unit: {:?}", signal.unit)?;
         writeln!(w, "#[inline(always)]")?;
         let typ = ValType::from_signal(signal);
-        writeln!(w, "pub fn {fn_name}_phys(&self) -> {typ} {{")?;
+        writeln!(w, "pub fn {fn_name}_phys_val(&self) -> {typ} {{")?;
         {
             let mut w = PadAdapter::wrap(w);
             signal_from_payload(&mut w, signal, msg).context("signal from payload")?;
@@ -1004,7 +1004,7 @@ impl Config<'_> {
         writeln!(w, "#[inline(always)]")?;
         let field = signal.field_name();
         let signal_typ = ValType::from_signal(signal);
-        writeln!(w, "pub fn {field}_phys(&self) -> {signal_typ} {{")?;
+        writeln!(w, "pub fn {field}_phys_val(&self) -> {signal_typ} {{")?;
         {
             let mut w = PadAdapter::wrap(w);
             signal_from_payload(&mut w, signal, msg).context("signal from payload")?;
@@ -1033,7 +1033,7 @@ impl Config<'_> {
 
         {
             let mut w = PadAdapter::wrap(w);
-            writeln!(w, "match self.{}_phys() {{", signal.field_name())?;
+            writeln!(w, "match self.{}_phys_val() {{", signal.field_name())?;
 
             {
                 let mut w = PadAdapter::wrap(&mut w);
@@ -1377,7 +1377,7 @@ fn render_raw_accessors(w: &mut impl Write, signal: &Signal, msg: &Message) -> R
     writeln!(w, "/// - Byte order: {:?}", signal.byte_order)?;
     writeln!(w, "/// - Value type: {:?}", signal.value_type)?;
     writeln!(w, "#[inline(always)]")?;
-    writeln!(w, "pub fn {field}_raw(&self) -> {typ} {{")?;
+    writeln!(w, "pub fn {field}_raw_val(&self) -> {typ} {{")?;
     {
         let mut w = PadAdapter::wrap(&mut *w);
         writeln!(w, "{}", read_fn(signal, msg)?)?;
@@ -1401,7 +1401,7 @@ fn render_raw_accessors(w: &mut impl Write, signal: &Signal, msg: &Message) -> R
     writeln!(w, "#[inline(always)]")?;
     writeln!(
         w,
-        "{visibility}fn set_{field}_raw(&mut self, value: {typ}) {{",
+        "{visibility}fn set_{field}_raw_val(&mut self, value: {typ}) {{",
     )?;
     {
         let mut w = PadAdapter::wrap(&mut *w);

@@ -230,7 +230,7 @@ impl BatteryVt {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn battery_vt_index_phys(&self) -> u16 {
+    pub fn battery_vt_index_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -242,19 +242,19 @@ impl BatteryVt {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn battery_vt_index_raw(&self) -> u16 {
+    pub fn battery_vt_index_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>()
     }
     /// Set raw value of 'BATTERY_VT_INDEX'
     #[allow(dead_code)]
     #[inline(always)]
-    fn set_battery_vt_index_raw(&mut self, value: u16) {
+    fn set_battery_vt_index_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
     }
     pub fn battery_vt_index(
         &mut self,
     ) -> Result<BatteryVtBatteryVtIndexIndex, CanError> {
-        match self.battery_vt_index_phys() {
+        match self.battery_vt_index_phys_val() {
             0 => {
                 Ok(
                     BatteryVtBatteryVtIndexIndex::M0(BatteryVtBatteryVtIndexM0 {
@@ -1056,7 +1056,7 @@ impl BatteryVtBatteryVtIndexM0 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_00(&self) -> u16 {
-        self.module_temp_00_phys()
+        self.module_temp_00_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_00'
     ///
@@ -1064,7 +1064,7 @@ impl BatteryVtBatteryVtIndexM0 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_00_phys(&self) -> u16 {
+    pub fn module_temp_00_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1076,12 +1076,12 @@ impl BatteryVtBatteryVtIndexM0 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_00_raw(&self) -> u16 {
+    pub fn module_temp_00_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_00'
     #[inline(always)]
-    pub fn set_module_temp_00_raw(&mut self, value: u16) {
+    pub fn set_module_temp_00_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_00'
@@ -1110,7 +1110,7 @@ impl BatteryVtBatteryVtIndexM0 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_00(&self) -> u16 {
-        self.module_voltage_00_phys()
+        self.module_voltage_00_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_00'
     ///
@@ -1118,7 +1118,7 @@ impl BatteryVtBatteryVtIndexM0 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_00_phys(&self) -> u16 {
+    pub fn module_voltage_00_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1130,12 +1130,12 @@ impl BatteryVtBatteryVtIndexM0 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_00_raw(&self) -> u16 {
+    pub fn module_voltage_00_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_00'
     #[inline(always)]
-    pub fn set_module_voltage_00_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_00_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_00'
@@ -1191,7 +1191,7 @@ impl BatteryVtBatteryVtIndexM1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_01(&self) -> u16 {
-        self.module_temp_01_phys()
+        self.module_temp_01_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_01'
     ///
@@ -1199,7 +1199,7 @@ impl BatteryVtBatteryVtIndexM1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_01_phys(&self) -> u16 {
+    pub fn module_temp_01_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1211,12 +1211,12 @@ impl BatteryVtBatteryVtIndexM1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_01_raw(&self) -> u16 {
+    pub fn module_temp_01_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_01'
     #[inline(always)]
-    pub fn set_module_temp_01_raw(&mut self, value: u16) {
+    pub fn set_module_temp_01_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_01'
@@ -1245,7 +1245,7 @@ impl BatteryVtBatteryVtIndexM1 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_01(&self) -> u16 {
-        self.module_voltage_01_phys()
+        self.module_voltage_01_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_01'
     ///
@@ -1253,7 +1253,7 @@ impl BatteryVtBatteryVtIndexM1 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_01_phys(&self) -> u16 {
+    pub fn module_voltage_01_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1265,12 +1265,12 @@ impl BatteryVtBatteryVtIndexM1 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_01_raw(&self) -> u16 {
+    pub fn module_voltage_01_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_01'
     #[inline(always)]
-    pub fn set_module_voltage_01_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_01_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_01'
@@ -1326,7 +1326,7 @@ impl BatteryVtBatteryVtIndexM2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_02(&self) -> u16 {
-        self.module_temp_02_phys()
+        self.module_temp_02_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_02'
     ///
@@ -1334,7 +1334,7 @@ impl BatteryVtBatteryVtIndexM2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_02_phys(&self) -> u16 {
+    pub fn module_temp_02_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1346,12 +1346,12 @@ impl BatteryVtBatteryVtIndexM2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_02_raw(&self) -> u16 {
+    pub fn module_temp_02_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_02'
     #[inline(always)]
-    pub fn set_module_temp_02_raw(&mut self, value: u16) {
+    pub fn set_module_temp_02_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_02'
@@ -1380,7 +1380,7 @@ impl BatteryVtBatteryVtIndexM2 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_02(&self) -> u16 {
-        self.module_voltage_02_phys()
+        self.module_voltage_02_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_02'
     ///
@@ -1388,7 +1388,7 @@ impl BatteryVtBatteryVtIndexM2 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_02_phys(&self) -> u16 {
+    pub fn module_voltage_02_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1400,12 +1400,12 @@ impl BatteryVtBatteryVtIndexM2 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_02_raw(&self) -> u16 {
+    pub fn module_voltage_02_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_02'
     #[inline(always)]
-    pub fn set_module_voltage_02_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_02_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_02'
@@ -1461,7 +1461,7 @@ impl BatteryVtBatteryVtIndexM3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_03(&self) -> u16 {
-        self.module_temp_03_phys()
+        self.module_temp_03_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_03'
     ///
@@ -1469,7 +1469,7 @@ impl BatteryVtBatteryVtIndexM3 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_03_phys(&self) -> u16 {
+    pub fn module_temp_03_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1481,12 +1481,12 @@ impl BatteryVtBatteryVtIndexM3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_03_raw(&self) -> u16 {
+    pub fn module_temp_03_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_03'
     #[inline(always)]
-    pub fn set_module_temp_03_raw(&mut self, value: u16) {
+    pub fn set_module_temp_03_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_03'
@@ -1515,7 +1515,7 @@ impl BatteryVtBatteryVtIndexM3 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_03(&self) -> u16 {
-        self.module_voltage_03_phys()
+        self.module_voltage_03_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_03'
     ///
@@ -1523,7 +1523,7 @@ impl BatteryVtBatteryVtIndexM3 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_03_phys(&self) -> u16 {
+    pub fn module_voltage_03_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1535,12 +1535,12 @@ impl BatteryVtBatteryVtIndexM3 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_03_raw(&self) -> u16 {
+    pub fn module_voltage_03_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_03'
     #[inline(always)]
-    pub fn set_module_voltage_03_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_03_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_03'
@@ -1596,7 +1596,7 @@ impl BatteryVtBatteryVtIndexM4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_04(&self) -> u16 {
-        self.module_temp_04_phys()
+        self.module_temp_04_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_04'
     ///
@@ -1604,7 +1604,7 @@ impl BatteryVtBatteryVtIndexM4 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_04_phys(&self) -> u16 {
+    pub fn module_temp_04_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1616,12 +1616,12 @@ impl BatteryVtBatteryVtIndexM4 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_04_raw(&self) -> u16 {
+    pub fn module_temp_04_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_04'
     #[inline(always)]
-    pub fn set_module_temp_04_raw(&mut self, value: u16) {
+    pub fn set_module_temp_04_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_04'
@@ -1650,7 +1650,7 @@ impl BatteryVtBatteryVtIndexM4 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_04(&self) -> u16 {
-        self.module_voltage_04_phys()
+        self.module_voltage_04_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_04'
     ///
@@ -1658,7 +1658,7 @@ impl BatteryVtBatteryVtIndexM4 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_04_phys(&self) -> u16 {
+    pub fn module_voltage_04_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1670,12 +1670,12 @@ impl BatteryVtBatteryVtIndexM4 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_04_raw(&self) -> u16 {
+    pub fn module_voltage_04_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_04'
     #[inline(always)]
-    pub fn set_module_voltage_04_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_04_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_04'
@@ -1731,7 +1731,7 @@ impl BatteryVtBatteryVtIndexM5 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_05(&self) -> u16 {
-        self.module_temp_05_phys()
+        self.module_temp_05_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_05'
     ///
@@ -1739,7 +1739,7 @@ impl BatteryVtBatteryVtIndexM5 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_05_phys(&self) -> u16 {
+    pub fn module_temp_05_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1751,12 +1751,12 @@ impl BatteryVtBatteryVtIndexM5 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_05_raw(&self) -> u16 {
+    pub fn module_temp_05_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_05'
     #[inline(always)]
-    pub fn set_module_temp_05_raw(&mut self, value: u16) {
+    pub fn set_module_temp_05_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_05'
@@ -1785,7 +1785,7 @@ impl BatteryVtBatteryVtIndexM5 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_05(&self) -> u16 {
-        self.module_voltage_05_phys()
+        self.module_voltage_05_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_05'
     ///
@@ -1793,7 +1793,7 @@ impl BatteryVtBatteryVtIndexM5 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_05_phys(&self) -> u16 {
+    pub fn module_voltage_05_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1805,12 +1805,12 @@ impl BatteryVtBatteryVtIndexM5 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_05_raw(&self) -> u16 {
+    pub fn module_voltage_05_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_05'
     #[inline(always)]
-    pub fn set_module_voltage_05_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_05_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_05'
@@ -1866,7 +1866,7 @@ impl BatteryVtBatteryVtIndexM6 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_06(&self) -> u16 {
-        self.module_temp_06_phys()
+        self.module_temp_06_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_06'
     ///
@@ -1874,7 +1874,7 @@ impl BatteryVtBatteryVtIndexM6 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_06_phys(&self) -> u16 {
+    pub fn module_temp_06_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1886,12 +1886,12 @@ impl BatteryVtBatteryVtIndexM6 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_06_raw(&self) -> u16 {
+    pub fn module_temp_06_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_06'
     #[inline(always)]
-    pub fn set_module_temp_06_raw(&mut self, value: u16) {
+    pub fn set_module_temp_06_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_06'
@@ -1920,7 +1920,7 @@ impl BatteryVtBatteryVtIndexM6 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_06(&self) -> u16 {
-        self.module_voltage_06_phys()
+        self.module_voltage_06_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_06'
     ///
@@ -1928,7 +1928,7 @@ impl BatteryVtBatteryVtIndexM6 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_06_phys(&self) -> u16 {
+    pub fn module_voltage_06_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1940,12 +1940,12 @@ impl BatteryVtBatteryVtIndexM6 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_06_raw(&self) -> u16 {
+    pub fn module_voltage_06_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_06'
     #[inline(always)]
-    pub fn set_module_voltage_06_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_06_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_06'
@@ -2001,7 +2001,7 @@ impl BatteryVtBatteryVtIndexM7 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_07(&self) -> u16 {
-        self.module_temp_07_phys()
+        self.module_temp_07_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_07'
     ///
@@ -2009,7 +2009,7 @@ impl BatteryVtBatteryVtIndexM7 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_07_phys(&self) -> u16 {
+    pub fn module_temp_07_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2021,12 +2021,12 @@ impl BatteryVtBatteryVtIndexM7 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_07_raw(&self) -> u16 {
+    pub fn module_temp_07_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_07'
     #[inline(always)]
-    pub fn set_module_temp_07_raw(&mut self, value: u16) {
+    pub fn set_module_temp_07_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_07'
@@ -2055,7 +2055,7 @@ impl BatteryVtBatteryVtIndexM7 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_07(&self) -> u16 {
-        self.module_voltage_07_phys()
+        self.module_voltage_07_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_07'
     ///
@@ -2063,7 +2063,7 @@ impl BatteryVtBatteryVtIndexM7 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_07_phys(&self) -> u16 {
+    pub fn module_voltage_07_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2075,12 +2075,12 @@ impl BatteryVtBatteryVtIndexM7 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_07_raw(&self) -> u16 {
+    pub fn module_voltage_07_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_07'
     #[inline(always)]
-    pub fn set_module_voltage_07_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_07_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_07'
@@ -2136,7 +2136,7 @@ impl BatteryVtBatteryVtIndexM8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_08(&self) -> u16 {
-        self.module_temp_08_phys()
+        self.module_temp_08_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_08'
     ///
@@ -2144,7 +2144,7 @@ impl BatteryVtBatteryVtIndexM8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_08_phys(&self) -> u16 {
+    pub fn module_temp_08_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2156,12 +2156,12 @@ impl BatteryVtBatteryVtIndexM8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_08_raw(&self) -> u16 {
+    pub fn module_temp_08_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_08'
     #[inline(always)]
-    pub fn set_module_temp_08_raw(&mut self, value: u16) {
+    pub fn set_module_temp_08_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_08'
@@ -2190,7 +2190,7 @@ impl BatteryVtBatteryVtIndexM8 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_08(&self) -> u16 {
-        self.module_voltage_08_phys()
+        self.module_voltage_08_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_08'
     ///
@@ -2198,7 +2198,7 @@ impl BatteryVtBatteryVtIndexM8 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_08_phys(&self) -> u16 {
+    pub fn module_voltage_08_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2210,12 +2210,12 @@ impl BatteryVtBatteryVtIndexM8 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_08_raw(&self) -> u16 {
+    pub fn module_voltage_08_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_08'
     #[inline(always)]
-    pub fn set_module_voltage_08_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_08_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_08'
@@ -2271,7 +2271,7 @@ impl BatteryVtBatteryVtIndexM9 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_09(&self) -> u16 {
-        self.module_temp_09_phys()
+        self.module_temp_09_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_09'
     ///
@@ -2279,7 +2279,7 @@ impl BatteryVtBatteryVtIndexM9 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_09_phys(&self) -> u16 {
+    pub fn module_temp_09_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2291,12 +2291,12 @@ impl BatteryVtBatteryVtIndexM9 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_09_raw(&self) -> u16 {
+    pub fn module_temp_09_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_09'
     #[inline(always)]
-    pub fn set_module_temp_09_raw(&mut self, value: u16) {
+    pub fn set_module_temp_09_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_09'
@@ -2325,7 +2325,7 @@ impl BatteryVtBatteryVtIndexM9 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_09(&self) -> u16 {
-        self.module_voltage_09_phys()
+        self.module_voltage_09_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_09'
     ///
@@ -2333,7 +2333,7 @@ impl BatteryVtBatteryVtIndexM9 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_09_phys(&self) -> u16 {
+    pub fn module_voltage_09_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2345,12 +2345,12 @@ impl BatteryVtBatteryVtIndexM9 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_09_raw(&self) -> u16 {
+    pub fn module_voltage_09_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_09'
     #[inline(always)]
-    pub fn set_module_voltage_09_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_09_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_09'
@@ -2406,7 +2406,7 @@ impl BatteryVtBatteryVtIndexM10 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_10(&self) -> u16 {
-        self.module_temp_10_phys()
+        self.module_temp_10_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_10'
     ///
@@ -2414,7 +2414,7 @@ impl BatteryVtBatteryVtIndexM10 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_10_phys(&self) -> u16 {
+    pub fn module_temp_10_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2426,12 +2426,12 @@ impl BatteryVtBatteryVtIndexM10 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_10_raw(&self) -> u16 {
+    pub fn module_temp_10_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_10'
     #[inline(always)]
-    pub fn set_module_temp_10_raw(&mut self, value: u16) {
+    pub fn set_module_temp_10_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_10'
@@ -2460,7 +2460,7 @@ impl BatteryVtBatteryVtIndexM10 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_10(&self) -> u16 {
-        self.module_voltage_10_phys()
+        self.module_voltage_10_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_10'
     ///
@@ -2468,7 +2468,7 @@ impl BatteryVtBatteryVtIndexM10 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_10_phys(&self) -> u16 {
+    pub fn module_voltage_10_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2480,12 +2480,12 @@ impl BatteryVtBatteryVtIndexM10 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_10_raw(&self) -> u16 {
+    pub fn module_voltage_10_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_10'
     #[inline(always)]
-    pub fn set_module_voltage_10_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_10_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_10'
@@ -2541,7 +2541,7 @@ impl BatteryVtBatteryVtIndexM11 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_11(&self) -> u16 {
-        self.module_temp_11_phys()
+        self.module_temp_11_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_11'
     ///
@@ -2549,7 +2549,7 @@ impl BatteryVtBatteryVtIndexM11 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_11_phys(&self) -> u16 {
+    pub fn module_temp_11_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2561,12 +2561,12 @@ impl BatteryVtBatteryVtIndexM11 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_11_raw(&self) -> u16 {
+    pub fn module_temp_11_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_11'
     #[inline(always)]
-    pub fn set_module_temp_11_raw(&mut self, value: u16) {
+    pub fn set_module_temp_11_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_11'
@@ -2595,7 +2595,7 @@ impl BatteryVtBatteryVtIndexM11 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_11(&self) -> u16 {
-        self.module_voltage_11_phys()
+        self.module_voltage_11_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_11'
     ///
@@ -2603,7 +2603,7 @@ impl BatteryVtBatteryVtIndexM11 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_11_phys(&self) -> u16 {
+    pub fn module_voltage_11_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2615,12 +2615,12 @@ impl BatteryVtBatteryVtIndexM11 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_11_raw(&self) -> u16 {
+    pub fn module_voltage_11_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_11'
     #[inline(always)]
-    pub fn set_module_voltage_11_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_11_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_11'
@@ -2676,7 +2676,7 @@ impl BatteryVtBatteryVtIndexM12 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_12(&self) -> u16 {
-        self.module_temp_12_phys()
+        self.module_temp_12_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_12'
     ///
@@ -2684,7 +2684,7 @@ impl BatteryVtBatteryVtIndexM12 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_12_phys(&self) -> u16 {
+    pub fn module_temp_12_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2696,12 +2696,12 @@ impl BatteryVtBatteryVtIndexM12 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_12_raw(&self) -> u16 {
+    pub fn module_temp_12_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_12'
     #[inline(always)]
-    pub fn set_module_temp_12_raw(&mut self, value: u16) {
+    pub fn set_module_temp_12_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_12'
@@ -2730,7 +2730,7 @@ impl BatteryVtBatteryVtIndexM12 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_12(&self) -> u16 {
-        self.module_voltage_12_phys()
+        self.module_voltage_12_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_12'
     ///
@@ -2738,7 +2738,7 @@ impl BatteryVtBatteryVtIndexM12 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_12_phys(&self) -> u16 {
+    pub fn module_voltage_12_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2750,12 +2750,12 @@ impl BatteryVtBatteryVtIndexM12 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_12_raw(&self) -> u16 {
+    pub fn module_voltage_12_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_12'
     #[inline(always)]
-    pub fn set_module_voltage_12_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_12_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_12'
@@ -2811,7 +2811,7 @@ impl BatteryVtBatteryVtIndexM13 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_13(&self) -> u16 {
-        self.module_temp_13_phys()
+        self.module_temp_13_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_13'
     ///
@@ -2819,7 +2819,7 @@ impl BatteryVtBatteryVtIndexM13 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_13_phys(&self) -> u16 {
+    pub fn module_temp_13_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2831,12 +2831,12 @@ impl BatteryVtBatteryVtIndexM13 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_13_raw(&self) -> u16 {
+    pub fn module_temp_13_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_13'
     #[inline(always)]
-    pub fn set_module_temp_13_raw(&mut self, value: u16) {
+    pub fn set_module_temp_13_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_13'
@@ -2865,7 +2865,7 @@ impl BatteryVtBatteryVtIndexM13 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_13(&self) -> u16 {
-        self.module_voltage_13_phys()
+        self.module_voltage_13_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_13'
     ///
@@ -2873,7 +2873,7 @@ impl BatteryVtBatteryVtIndexM13 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_13_phys(&self) -> u16 {
+    pub fn module_voltage_13_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2885,12 +2885,12 @@ impl BatteryVtBatteryVtIndexM13 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_13_raw(&self) -> u16 {
+    pub fn module_voltage_13_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_13'
     #[inline(always)]
-    pub fn set_module_voltage_13_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_13_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_13'
@@ -2946,7 +2946,7 @@ impl BatteryVtBatteryVtIndexM14 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_14(&self) -> u16 {
-        self.module_temp_14_phys()
+        self.module_temp_14_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_14'
     ///
@@ -2954,7 +2954,7 @@ impl BatteryVtBatteryVtIndexM14 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_14_phys(&self) -> u16 {
+    pub fn module_temp_14_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2966,12 +2966,12 @@ impl BatteryVtBatteryVtIndexM14 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_14_raw(&self) -> u16 {
+    pub fn module_temp_14_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_14'
     #[inline(always)]
-    pub fn set_module_temp_14_raw(&mut self, value: u16) {
+    pub fn set_module_temp_14_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_14'
@@ -3000,7 +3000,7 @@ impl BatteryVtBatteryVtIndexM14 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_14(&self) -> u16 {
-        self.module_voltage_14_phys()
+        self.module_voltage_14_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_14'
     ///
@@ -3008,7 +3008,7 @@ impl BatteryVtBatteryVtIndexM14 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_14_phys(&self) -> u16 {
+    pub fn module_voltage_14_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3020,12 +3020,12 @@ impl BatteryVtBatteryVtIndexM14 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_14_raw(&self) -> u16 {
+    pub fn module_voltage_14_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_14'
     #[inline(always)]
-    pub fn set_module_voltage_14_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_14_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_14'
@@ -3081,7 +3081,7 @@ impl BatteryVtBatteryVtIndexM15 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_15(&self) -> u16 {
-        self.module_temp_15_phys()
+        self.module_temp_15_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_15'
     ///
@@ -3089,7 +3089,7 @@ impl BatteryVtBatteryVtIndexM15 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_15_phys(&self) -> u16 {
+    pub fn module_temp_15_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3101,12 +3101,12 @@ impl BatteryVtBatteryVtIndexM15 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_15_raw(&self) -> u16 {
+    pub fn module_temp_15_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_15'
     #[inline(always)]
-    pub fn set_module_temp_15_raw(&mut self, value: u16) {
+    pub fn set_module_temp_15_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_15'
@@ -3135,7 +3135,7 @@ impl BatteryVtBatteryVtIndexM15 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_15(&self) -> u16 {
-        self.module_voltage_15_phys()
+        self.module_voltage_15_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_15'
     ///
@@ -3143,7 +3143,7 @@ impl BatteryVtBatteryVtIndexM15 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_15_phys(&self) -> u16 {
+    pub fn module_voltage_15_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3155,12 +3155,12 @@ impl BatteryVtBatteryVtIndexM15 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_15_raw(&self) -> u16 {
+    pub fn module_voltage_15_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_15'
     #[inline(always)]
-    pub fn set_module_voltage_15_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_15_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_15'
@@ -3216,7 +3216,7 @@ impl BatteryVtBatteryVtIndexM16 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_16(&self) -> u16 {
-        self.module_temp_16_phys()
+        self.module_temp_16_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_16'
     ///
@@ -3224,7 +3224,7 @@ impl BatteryVtBatteryVtIndexM16 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_16_phys(&self) -> u16 {
+    pub fn module_temp_16_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3236,12 +3236,12 @@ impl BatteryVtBatteryVtIndexM16 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_16_raw(&self) -> u16 {
+    pub fn module_temp_16_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_16'
     #[inline(always)]
-    pub fn set_module_temp_16_raw(&mut self, value: u16) {
+    pub fn set_module_temp_16_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_16'
@@ -3270,7 +3270,7 @@ impl BatteryVtBatteryVtIndexM16 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_16(&self) -> u16 {
-        self.module_voltage_16_phys()
+        self.module_voltage_16_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_16'
     ///
@@ -3278,7 +3278,7 @@ impl BatteryVtBatteryVtIndexM16 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_16_phys(&self) -> u16 {
+    pub fn module_voltage_16_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3290,12 +3290,12 @@ impl BatteryVtBatteryVtIndexM16 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_16_raw(&self) -> u16 {
+    pub fn module_voltage_16_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_16'
     #[inline(always)]
-    pub fn set_module_voltage_16_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_16_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_16'
@@ -3351,7 +3351,7 @@ impl BatteryVtBatteryVtIndexM17 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_17(&self) -> u16 {
-        self.module_temp_17_phys()
+        self.module_temp_17_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_17'
     ///
@@ -3359,7 +3359,7 @@ impl BatteryVtBatteryVtIndexM17 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_17_phys(&self) -> u16 {
+    pub fn module_temp_17_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3371,12 +3371,12 @@ impl BatteryVtBatteryVtIndexM17 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_17_raw(&self) -> u16 {
+    pub fn module_temp_17_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_17'
     #[inline(always)]
-    pub fn set_module_temp_17_raw(&mut self, value: u16) {
+    pub fn set_module_temp_17_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_17'
@@ -3405,7 +3405,7 @@ impl BatteryVtBatteryVtIndexM17 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_17(&self) -> u16 {
-        self.module_voltage_17_phys()
+        self.module_voltage_17_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_17'
     ///
@@ -3413,7 +3413,7 @@ impl BatteryVtBatteryVtIndexM17 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_17_phys(&self) -> u16 {
+    pub fn module_voltage_17_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3425,12 +3425,12 @@ impl BatteryVtBatteryVtIndexM17 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_17_raw(&self) -> u16 {
+    pub fn module_voltage_17_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_17'
     #[inline(always)]
-    pub fn set_module_voltage_17_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_17_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_17'
@@ -3486,7 +3486,7 @@ impl BatteryVtBatteryVtIndexM18 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_18(&self) -> u16 {
-        self.module_temp_18_phys()
+        self.module_temp_18_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_18'
     ///
@@ -3494,7 +3494,7 @@ impl BatteryVtBatteryVtIndexM18 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_18_phys(&self) -> u16 {
+    pub fn module_temp_18_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3506,12 +3506,12 @@ impl BatteryVtBatteryVtIndexM18 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_18_raw(&self) -> u16 {
+    pub fn module_temp_18_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_18'
     #[inline(always)]
-    pub fn set_module_temp_18_raw(&mut self, value: u16) {
+    pub fn set_module_temp_18_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_18'
@@ -3540,7 +3540,7 @@ impl BatteryVtBatteryVtIndexM18 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_18(&self) -> u16 {
-        self.module_voltage_18_phys()
+        self.module_voltage_18_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_18'
     ///
@@ -3548,7 +3548,7 @@ impl BatteryVtBatteryVtIndexM18 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_18_phys(&self) -> u16 {
+    pub fn module_voltage_18_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3560,12 +3560,12 @@ impl BatteryVtBatteryVtIndexM18 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_18_raw(&self) -> u16 {
+    pub fn module_voltage_18_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_18'
     #[inline(always)]
-    pub fn set_module_voltage_18_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_18_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_18'
@@ -3621,7 +3621,7 @@ impl BatteryVtBatteryVtIndexM19 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_19(&self) -> u16 {
-        self.module_temp_19_phys()
+        self.module_temp_19_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_19'
     ///
@@ -3629,7 +3629,7 @@ impl BatteryVtBatteryVtIndexM19 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_19_phys(&self) -> u16 {
+    pub fn module_temp_19_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3641,12 +3641,12 @@ impl BatteryVtBatteryVtIndexM19 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_19_raw(&self) -> u16 {
+    pub fn module_temp_19_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_19'
     #[inline(always)]
-    pub fn set_module_temp_19_raw(&mut self, value: u16) {
+    pub fn set_module_temp_19_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_19'
@@ -3675,7 +3675,7 @@ impl BatteryVtBatteryVtIndexM19 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_19(&self) -> u16 {
-        self.module_voltage_19_phys()
+        self.module_voltage_19_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_19'
     ///
@@ -3683,7 +3683,7 @@ impl BatteryVtBatteryVtIndexM19 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_19_phys(&self) -> u16 {
+    pub fn module_voltage_19_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3695,12 +3695,12 @@ impl BatteryVtBatteryVtIndexM19 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_19_raw(&self) -> u16 {
+    pub fn module_voltage_19_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_19'
     #[inline(always)]
-    pub fn set_module_voltage_19_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_19_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_19'
@@ -3756,7 +3756,7 @@ impl BatteryVtBatteryVtIndexM20 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_20(&self) -> u16 {
-        self.module_temp_20_phys()
+        self.module_temp_20_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_20'
     ///
@@ -3764,7 +3764,7 @@ impl BatteryVtBatteryVtIndexM20 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_20_phys(&self) -> u16 {
+    pub fn module_temp_20_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3776,12 +3776,12 @@ impl BatteryVtBatteryVtIndexM20 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_20_raw(&self) -> u16 {
+    pub fn module_temp_20_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_20'
     #[inline(always)]
-    pub fn set_module_temp_20_raw(&mut self, value: u16) {
+    pub fn set_module_temp_20_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_20'
@@ -3810,7 +3810,7 @@ impl BatteryVtBatteryVtIndexM20 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_20(&self) -> u16 {
-        self.module_voltage_20_phys()
+        self.module_voltage_20_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_20'
     ///
@@ -3818,7 +3818,7 @@ impl BatteryVtBatteryVtIndexM20 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_20_phys(&self) -> u16 {
+    pub fn module_voltage_20_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3830,12 +3830,12 @@ impl BatteryVtBatteryVtIndexM20 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_20_raw(&self) -> u16 {
+    pub fn module_voltage_20_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_20'
     #[inline(always)]
-    pub fn set_module_voltage_20_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_20_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_20'
@@ -3891,7 +3891,7 @@ impl BatteryVtBatteryVtIndexM21 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_21(&self) -> u16 {
-        self.module_temp_21_phys()
+        self.module_temp_21_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_21'
     ///
@@ -3899,7 +3899,7 @@ impl BatteryVtBatteryVtIndexM21 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_21_phys(&self) -> u16 {
+    pub fn module_temp_21_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3911,12 +3911,12 @@ impl BatteryVtBatteryVtIndexM21 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_21_raw(&self) -> u16 {
+    pub fn module_temp_21_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_21'
     #[inline(always)]
-    pub fn set_module_temp_21_raw(&mut self, value: u16) {
+    pub fn set_module_temp_21_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_21'
@@ -3945,7 +3945,7 @@ impl BatteryVtBatteryVtIndexM21 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_21(&self) -> u16 {
-        self.module_voltage_21_phys()
+        self.module_voltage_21_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_21'
     ///
@@ -3953,7 +3953,7 @@ impl BatteryVtBatteryVtIndexM21 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_21_phys(&self) -> u16 {
+    pub fn module_voltage_21_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3965,12 +3965,12 @@ impl BatteryVtBatteryVtIndexM21 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_21_raw(&self) -> u16 {
+    pub fn module_voltage_21_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_21'
     #[inline(always)]
-    pub fn set_module_voltage_21_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_21_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_21'
@@ -4026,7 +4026,7 @@ impl BatteryVtBatteryVtIndexM22 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_22(&self) -> u16 {
-        self.module_temp_22_phys()
+        self.module_temp_22_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_22'
     ///
@@ -4034,7 +4034,7 @@ impl BatteryVtBatteryVtIndexM22 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_22_phys(&self) -> u16 {
+    pub fn module_temp_22_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4046,12 +4046,12 @@ impl BatteryVtBatteryVtIndexM22 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_22_raw(&self) -> u16 {
+    pub fn module_temp_22_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_22'
     #[inline(always)]
-    pub fn set_module_temp_22_raw(&mut self, value: u16) {
+    pub fn set_module_temp_22_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_22'
@@ -4080,7 +4080,7 @@ impl BatteryVtBatteryVtIndexM22 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_22(&self) -> u16 {
-        self.module_voltage_22_phys()
+        self.module_voltage_22_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_22'
     ///
@@ -4088,7 +4088,7 @@ impl BatteryVtBatteryVtIndexM22 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_22_phys(&self) -> u16 {
+    pub fn module_voltage_22_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4100,12 +4100,12 @@ impl BatteryVtBatteryVtIndexM22 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_22_raw(&self) -> u16 {
+    pub fn module_voltage_22_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_22'
     #[inline(always)]
-    pub fn set_module_voltage_22_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_22_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_22'
@@ -4161,7 +4161,7 @@ impl BatteryVtBatteryVtIndexM23 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_23(&self) -> u16 {
-        self.module_temp_23_phys()
+        self.module_temp_23_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_23'
     ///
@@ -4169,7 +4169,7 @@ impl BatteryVtBatteryVtIndexM23 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_23_phys(&self) -> u16 {
+    pub fn module_temp_23_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4181,12 +4181,12 @@ impl BatteryVtBatteryVtIndexM23 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_23_raw(&self) -> u16 {
+    pub fn module_temp_23_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_23'
     #[inline(always)]
-    pub fn set_module_temp_23_raw(&mut self, value: u16) {
+    pub fn set_module_temp_23_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_23'
@@ -4215,7 +4215,7 @@ impl BatteryVtBatteryVtIndexM23 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_23(&self) -> u16 {
-        self.module_voltage_23_phys()
+        self.module_voltage_23_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_23'
     ///
@@ -4223,7 +4223,7 @@ impl BatteryVtBatteryVtIndexM23 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_23_phys(&self) -> u16 {
+    pub fn module_voltage_23_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4235,12 +4235,12 @@ impl BatteryVtBatteryVtIndexM23 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_23_raw(&self) -> u16 {
+    pub fn module_voltage_23_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_23'
     #[inline(always)]
-    pub fn set_module_voltage_23_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_23_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_23'
@@ -4296,7 +4296,7 @@ impl BatteryVtBatteryVtIndexM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_24(&self) -> u16 {
-        self.module_temp_24_phys()
+        self.module_temp_24_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_24'
     ///
@@ -4304,7 +4304,7 @@ impl BatteryVtBatteryVtIndexM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_24_phys(&self) -> u16 {
+    pub fn module_temp_24_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4316,12 +4316,12 @@ impl BatteryVtBatteryVtIndexM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_24_raw(&self) -> u16 {
+    pub fn module_temp_24_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_24'
     #[inline(always)]
-    pub fn set_module_temp_24_raw(&mut self, value: u16) {
+    pub fn set_module_temp_24_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_24'
@@ -4350,7 +4350,7 @@ impl BatteryVtBatteryVtIndexM24 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_24(&self) -> u16 {
-        self.module_voltage_24_phys()
+        self.module_voltage_24_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_24'
     ///
@@ -4358,7 +4358,7 @@ impl BatteryVtBatteryVtIndexM24 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_24_phys(&self) -> u16 {
+    pub fn module_voltage_24_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4370,12 +4370,12 @@ impl BatteryVtBatteryVtIndexM24 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_24_raw(&self) -> u16 {
+    pub fn module_voltage_24_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_24'
     #[inline(always)]
-    pub fn set_module_voltage_24_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_24_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_24'
@@ -4431,7 +4431,7 @@ impl BatteryVtBatteryVtIndexM25 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_25(&self) -> u16 {
-        self.module_temp_25_phys()
+        self.module_temp_25_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_25'
     ///
@@ -4439,7 +4439,7 @@ impl BatteryVtBatteryVtIndexM25 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_25_phys(&self) -> u16 {
+    pub fn module_temp_25_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4451,12 +4451,12 @@ impl BatteryVtBatteryVtIndexM25 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_25_raw(&self) -> u16 {
+    pub fn module_temp_25_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_25'
     #[inline(always)]
-    pub fn set_module_temp_25_raw(&mut self, value: u16) {
+    pub fn set_module_temp_25_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_25'
@@ -4485,7 +4485,7 @@ impl BatteryVtBatteryVtIndexM25 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_25(&self) -> u16 {
-        self.module_voltage_25_phys()
+        self.module_voltage_25_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_25'
     ///
@@ -4493,7 +4493,7 @@ impl BatteryVtBatteryVtIndexM25 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_25_phys(&self) -> u16 {
+    pub fn module_voltage_25_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4505,12 +4505,12 @@ impl BatteryVtBatteryVtIndexM25 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_25_raw(&self) -> u16 {
+    pub fn module_voltage_25_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_25'
     #[inline(always)]
-    pub fn set_module_voltage_25_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_25_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_25'
@@ -4566,7 +4566,7 @@ impl BatteryVtBatteryVtIndexM26 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_26(&self) -> u16 {
-        self.module_temp_26_phys()
+        self.module_temp_26_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_26'
     ///
@@ -4574,7 +4574,7 @@ impl BatteryVtBatteryVtIndexM26 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_26_phys(&self) -> u16 {
+    pub fn module_temp_26_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4586,12 +4586,12 @@ impl BatteryVtBatteryVtIndexM26 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_26_raw(&self) -> u16 {
+    pub fn module_temp_26_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_26'
     #[inline(always)]
-    pub fn set_module_temp_26_raw(&mut self, value: u16) {
+    pub fn set_module_temp_26_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_26'
@@ -4620,7 +4620,7 @@ impl BatteryVtBatteryVtIndexM26 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_26(&self) -> u16 {
-        self.module_voltage_26_phys()
+        self.module_voltage_26_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_26'
     ///
@@ -4628,7 +4628,7 @@ impl BatteryVtBatteryVtIndexM26 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_26_phys(&self) -> u16 {
+    pub fn module_voltage_26_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4640,12 +4640,12 @@ impl BatteryVtBatteryVtIndexM26 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_26_raw(&self) -> u16 {
+    pub fn module_voltage_26_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_26'
     #[inline(always)]
-    pub fn set_module_voltage_26_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_26_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_26'
@@ -4701,7 +4701,7 @@ impl BatteryVtBatteryVtIndexM27 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_27(&self) -> u16 {
-        self.module_temp_27_phys()
+        self.module_temp_27_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_27'
     ///
@@ -4709,7 +4709,7 @@ impl BatteryVtBatteryVtIndexM27 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_27_phys(&self) -> u16 {
+    pub fn module_temp_27_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4721,12 +4721,12 @@ impl BatteryVtBatteryVtIndexM27 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_27_raw(&self) -> u16 {
+    pub fn module_temp_27_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_27'
     #[inline(always)]
-    pub fn set_module_temp_27_raw(&mut self, value: u16) {
+    pub fn set_module_temp_27_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_27'
@@ -4755,7 +4755,7 @@ impl BatteryVtBatteryVtIndexM27 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_27(&self) -> u16 {
-        self.module_voltage_27_phys()
+        self.module_voltage_27_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_27'
     ///
@@ -4763,7 +4763,7 @@ impl BatteryVtBatteryVtIndexM27 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_27_phys(&self) -> u16 {
+    pub fn module_voltage_27_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4775,12 +4775,12 @@ impl BatteryVtBatteryVtIndexM27 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_27_raw(&self) -> u16 {
+    pub fn module_voltage_27_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_27'
     #[inline(always)]
-    pub fn set_module_voltage_27_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_27_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_27'
@@ -4836,7 +4836,7 @@ impl BatteryVtBatteryVtIndexM28 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_28(&self) -> u16 {
-        self.module_temp_28_phys()
+        self.module_temp_28_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_28'
     ///
@@ -4844,7 +4844,7 @@ impl BatteryVtBatteryVtIndexM28 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_28_phys(&self) -> u16 {
+    pub fn module_temp_28_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4856,12 +4856,12 @@ impl BatteryVtBatteryVtIndexM28 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_28_raw(&self) -> u16 {
+    pub fn module_temp_28_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_28'
     #[inline(always)]
-    pub fn set_module_temp_28_raw(&mut self, value: u16) {
+    pub fn set_module_temp_28_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_28'
@@ -4890,7 +4890,7 @@ impl BatteryVtBatteryVtIndexM28 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_28(&self) -> u16 {
-        self.module_voltage_28_phys()
+        self.module_voltage_28_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_28'
     ///
@@ -4898,7 +4898,7 @@ impl BatteryVtBatteryVtIndexM28 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_28_phys(&self) -> u16 {
+    pub fn module_voltage_28_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4910,12 +4910,12 @@ impl BatteryVtBatteryVtIndexM28 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_28_raw(&self) -> u16 {
+    pub fn module_voltage_28_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_28'
     #[inline(always)]
-    pub fn set_module_voltage_28_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_28_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_28'
@@ -4971,7 +4971,7 @@ impl BatteryVtBatteryVtIndexM29 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_29(&self) -> u16 {
-        self.module_temp_29_phys()
+        self.module_temp_29_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_29'
     ///
@@ -4979,7 +4979,7 @@ impl BatteryVtBatteryVtIndexM29 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_29_phys(&self) -> u16 {
+    pub fn module_temp_29_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4991,12 +4991,12 @@ impl BatteryVtBatteryVtIndexM29 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_29_raw(&self) -> u16 {
+    pub fn module_temp_29_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_29'
     #[inline(always)]
-    pub fn set_module_temp_29_raw(&mut self, value: u16) {
+    pub fn set_module_temp_29_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_29'
@@ -5025,7 +5025,7 @@ impl BatteryVtBatteryVtIndexM29 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_29(&self) -> u16 {
-        self.module_voltage_29_phys()
+        self.module_voltage_29_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_29'
     ///
@@ -5033,7 +5033,7 @@ impl BatteryVtBatteryVtIndexM29 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_29_phys(&self) -> u16 {
+    pub fn module_voltage_29_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5045,12 +5045,12 @@ impl BatteryVtBatteryVtIndexM29 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_29_raw(&self) -> u16 {
+    pub fn module_voltage_29_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_29'
     #[inline(always)]
-    pub fn set_module_voltage_29_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_29_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_29'
@@ -5106,7 +5106,7 @@ impl BatteryVtBatteryVtIndexM30 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_30(&self) -> u16 {
-        self.module_temp_30_phys()
+        self.module_temp_30_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_30'
     ///
@@ -5114,7 +5114,7 @@ impl BatteryVtBatteryVtIndexM30 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_30_phys(&self) -> u16 {
+    pub fn module_temp_30_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5126,12 +5126,12 @@ impl BatteryVtBatteryVtIndexM30 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_30_raw(&self) -> u16 {
+    pub fn module_temp_30_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_30'
     #[inline(always)]
-    pub fn set_module_temp_30_raw(&mut self, value: u16) {
+    pub fn set_module_temp_30_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_30'
@@ -5160,7 +5160,7 @@ impl BatteryVtBatteryVtIndexM30 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_30(&self) -> u16 {
-        self.module_voltage_30_phys()
+        self.module_voltage_30_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_30'
     ///
@@ -5168,7 +5168,7 @@ impl BatteryVtBatteryVtIndexM30 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_30_phys(&self) -> u16 {
+    pub fn module_voltage_30_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5180,12 +5180,12 @@ impl BatteryVtBatteryVtIndexM30 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_30_raw(&self) -> u16 {
+    pub fn module_voltage_30_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_30'
     #[inline(always)]
-    pub fn set_module_voltage_30_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_30_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_30'
@@ -5241,7 +5241,7 @@ impl BatteryVtBatteryVtIndexM31 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_31(&self) -> u16 {
-        self.module_temp_31_phys()
+        self.module_temp_31_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_31'
     ///
@@ -5249,7 +5249,7 @@ impl BatteryVtBatteryVtIndexM31 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_31_phys(&self) -> u16 {
+    pub fn module_temp_31_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5261,12 +5261,12 @@ impl BatteryVtBatteryVtIndexM31 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_31_raw(&self) -> u16 {
+    pub fn module_temp_31_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_31'
     #[inline(always)]
-    pub fn set_module_temp_31_raw(&mut self, value: u16) {
+    pub fn set_module_temp_31_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_31'
@@ -5295,7 +5295,7 @@ impl BatteryVtBatteryVtIndexM31 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_31(&self) -> u16 {
-        self.module_voltage_31_phys()
+        self.module_voltage_31_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_31'
     ///
@@ -5303,7 +5303,7 @@ impl BatteryVtBatteryVtIndexM31 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_31_phys(&self) -> u16 {
+    pub fn module_voltage_31_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5315,12 +5315,12 @@ impl BatteryVtBatteryVtIndexM31 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_31_raw(&self) -> u16 {
+    pub fn module_voltage_31_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_31'
     #[inline(always)]
-    pub fn set_module_voltage_31_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_31_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_31'
@@ -5376,7 +5376,7 @@ impl BatteryVtBatteryVtIndexM32 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_32(&self) -> u16 {
-        self.module_temp_32_phys()
+        self.module_temp_32_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_32'
     ///
@@ -5384,7 +5384,7 @@ impl BatteryVtBatteryVtIndexM32 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_32_phys(&self) -> u16 {
+    pub fn module_temp_32_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5396,12 +5396,12 @@ impl BatteryVtBatteryVtIndexM32 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_32_raw(&self) -> u16 {
+    pub fn module_temp_32_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_32'
     #[inline(always)]
-    pub fn set_module_temp_32_raw(&mut self, value: u16) {
+    pub fn set_module_temp_32_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_32'
@@ -5430,7 +5430,7 @@ impl BatteryVtBatteryVtIndexM32 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_32(&self) -> u16 {
-        self.module_voltage_32_phys()
+        self.module_voltage_32_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_32'
     ///
@@ -5438,7 +5438,7 @@ impl BatteryVtBatteryVtIndexM32 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_32_phys(&self) -> u16 {
+    pub fn module_voltage_32_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5450,12 +5450,12 @@ impl BatteryVtBatteryVtIndexM32 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_32_raw(&self) -> u16 {
+    pub fn module_voltage_32_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_32'
     #[inline(always)]
-    pub fn set_module_voltage_32_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_32_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_32'
@@ -5511,7 +5511,7 @@ impl BatteryVtBatteryVtIndexM33 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_33(&self) -> u16 {
-        self.module_temp_33_phys()
+        self.module_temp_33_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_33'
     ///
@@ -5519,7 +5519,7 @@ impl BatteryVtBatteryVtIndexM33 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_33_phys(&self) -> u16 {
+    pub fn module_temp_33_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5531,12 +5531,12 @@ impl BatteryVtBatteryVtIndexM33 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_33_raw(&self) -> u16 {
+    pub fn module_temp_33_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_33'
     #[inline(always)]
-    pub fn set_module_temp_33_raw(&mut self, value: u16) {
+    pub fn set_module_temp_33_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_33'
@@ -5565,7 +5565,7 @@ impl BatteryVtBatteryVtIndexM33 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_33(&self) -> u16 {
-        self.module_voltage_33_phys()
+        self.module_voltage_33_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_33'
     ///
@@ -5573,7 +5573,7 @@ impl BatteryVtBatteryVtIndexM33 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_33_phys(&self) -> u16 {
+    pub fn module_voltage_33_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5585,12 +5585,12 @@ impl BatteryVtBatteryVtIndexM33 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_33_raw(&self) -> u16 {
+    pub fn module_voltage_33_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_33'
     #[inline(always)]
-    pub fn set_module_voltage_33_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_33_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_33'
@@ -5646,7 +5646,7 @@ impl BatteryVtBatteryVtIndexM34 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_34(&self) -> u16 {
-        self.module_temp_34_phys()
+        self.module_temp_34_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_34'
     ///
@@ -5654,7 +5654,7 @@ impl BatteryVtBatteryVtIndexM34 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_34_phys(&self) -> u16 {
+    pub fn module_temp_34_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5666,12 +5666,12 @@ impl BatteryVtBatteryVtIndexM34 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_34_raw(&self) -> u16 {
+    pub fn module_temp_34_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_34'
     #[inline(always)]
-    pub fn set_module_temp_34_raw(&mut self, value: u16) {
+    pub fn set_module_temp_34_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_34'
@@ -5700,7 +5700,7 @@ impl BatteryVtBatteryVtIndexM34 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_34(&self) -> u16 {
-        self.module_voltage_34_phys()
+        self.module_voltage_34_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_34'
     ///
@@ -5708,7 +5708,7 @@ impl BatteryVtBatteryVtIndexM34 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_34_phys(&self) -> u16 {
+    pub fn module_voltage_34_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5720,12 +5720,12 @@ impl BatteryVtBatteryVtIndexM34 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_34_raw(&self) -> u16 {
+    pub fn module_voltage_34_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_34'
     #[inline(always)]
-    pub fn set_module_voltage_34_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_34_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_34'
@@ -5781,7 +5781,7 @@ impl BatteryVtBatteryVtIndexM35 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_temp_35(&self) -> u16 {
-        self.module_temp_35_phys()
+        self.module_temp_35_phys_val()
     }
     /// Get physical value of 'MODULE_TEMP_35'
     ///
@@ -5789,7 +5789,7 @@ impl BatteryVtBatteryVtIndexM35 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_temp_35_phys(&self) -> u16 {
+    pub fn module_temp_35_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5801,12 +5801,12 @@ impl BatteryVtBatteryVtIndexM35 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_temp_35_raw(&self) -> u16 {
+    pub fn module_temp_35_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_TEMP_35'
     #[inline(always)]
-    pub fn set_module_temp_35_raw(&mut self, value: u16) {
+    pub fn set_module_temp_35_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
     }
     /// Set value of 'MODULE_TEMP_35'
@@ -5835,7 +5835,7 @@ impl BatteryVtBatteryVtIndexM35 {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn module_voltage_35(&self) -> u16 {
-        self.module_voltage_35_phys()
+        self.module_voltage_35_phys_val()
     }
     /// Get physical value of 'MODULE_VOLTAGE_35'
     ///
@@ -5843,7 +5843,7 @@ impl BatteryVtBatteryVtIndexM35 {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn module_voltage_35_phys(&self) -> u16 {
+    pub fn module_voltage_35_phys_val(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5855,12 +5855,12 @@ impl BatteryVtBatteryVtIndexM35 {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn module_voltage_35_raw(&self) -> u16 {
+    pub fn module_voltage_35_raw_val(&self) -> u16 {
         self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>()
     }
     /// Set raw value of 'MODULE_VOLTAGE_35'
     #[inline(always)]
-    pub fn set_module_voltage_35_raw(&mut self, value: u16) {
+    pub fn set_module_voltage_35_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
     }
     /// Set value of 'MODULE_VOLTAGE_35'

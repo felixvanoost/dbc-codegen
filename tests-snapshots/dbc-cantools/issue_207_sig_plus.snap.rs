@@ -93,7 +93,7 @@ impl MyMsg {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn my_extra_sig_with_plus(&self) -> i16 {
-        self.my_extra_sig_with_plus_phys()
+        self.my_extra_sig_with_plus_phys_val()
     }
     /// Get physical value of 'myExtraSigWithPlus'
     ///
@@ -101,7 +101,7 @@ impl MyMsg {
     /// - Offset: -128
     /// - Unit: ""
     #[inline(always)]
-    pub fn my_extra_sig_with_plus_phys(&self) -> i16 {
+    pub fn my_extra_sig_with_plus_phys_val(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         i16::from(signal).saturating_mul(factor).saturating_sub(128)
@@ -113,12 +113,12 @@ impl MyMsg {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn my_extra_sig_with_plus_raw(&self) -> i8 {
+    pub fn my_extra_sig_with_plus_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
     /// Set raw value of 'myExtraSigWithPlus'
     #[inline(always)]
-    pub fn set_my_extra_sig_with_plus_raw(&mut self, value: i8) {
+    pub fn set_my_extra_sig_with_plus_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
@@ -149,7 +149,7 @@ impl MyMsg {
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn my_normal_sig(&self) -> i16 {
-        self.my_normal_sig_phys()
+        self.my_normal_sig_phys_val()
     }
     /// Get physical value of 'myNormalSig'
     ///
@@ -157,7 +157,7 @@ impl MyMsg {
     /// - Offset: -128
     /// - Unit: ""
     #[inline(always)]
-    pub fn my_normal_sig_phys(&self) -> i16 {
+    pub fn my_normal_sig_phys_val(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         i16::from(signal).saturating_mul(factor).saturating_sub(128)
@@ -169,12 +169,12 @@ impl MyMsg {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn my_normal_sig_raw(&self) -> i8 {
+    pub fn my_normal_sig_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
     /// Set raw value of 'myNormalSig'
     #[inline(always)]
-    pub fn set_my_normal_sig_raw(&mut self, value: i8) {
+    pub fn set_my_normal_sig_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }

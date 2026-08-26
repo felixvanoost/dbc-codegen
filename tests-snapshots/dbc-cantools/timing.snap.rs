@@ -92,7 +92,7 @@ impl Foo {
     /// - Receivers: Receiver
     #[inline(always)]
     pub fn foo(&self) -> f32 {
-        self.foo_phys()
+        self.foo_phys_val()
     }
     /// Get physical value of 'Foo'
     ///
@@ -100,7 +100,7 @@ impl Foo {
     /// - Offset: 250
     /// - Unit: "degK"
     #[inline(always)]
-    pub fn foo_phys(&self) -> f32 {
+    pub fn foo_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
         let factor = 0.01_f32;
         let offset = 250_f32;
@@ -113,12 +113,12 @@ impl Foo {
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn foo_raw(&self) -> i16 {
+    pub fn foo_raw_val(&self) -> i16 {
         self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>()
     }
     /// Set raw value of 'Foo'
     #[inline(always)]
-    pub fn set_foo_raw(&mut self, value: i16) {
+    pub fn set_foo_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[7..19].store_be(value);
     }
@@ -219,7 +219,7 @@ impl Bar {
     /// - Receivers: Receiver
     #[inline(always)]
     pub fn foo(&self) -> f32 {
-        self.foo_phys()
+        self.foo_phys_val()
     }
     /// Get physical value of 'Foo'
     ///
@@ -227,7 +227,7 @@ impl Bar {
     /// - Offset: 250
     /// - Unit: "degK"
     #[inline(always)]
-    pub fn foo_phys(&self) -> f32 {
+    pub fn foo_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
         let factor = 0.01_f32;
         let offset = 250_f32;
@@ -240,12 +240,12 @@ impl Bar {
     /// - Byte order: BigEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn foo_raw(&self) -> i16 {
+    pub fn foo_raw_val(&self) -> i16 {
         self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>()
     }
     /// Set raw value of 'Foo'
     #[inline(always)]
-    pub fn set_foo_raw(&mut self, value: i16) {
+    pub fn set_foo_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[7..19].store_be(value);
     }

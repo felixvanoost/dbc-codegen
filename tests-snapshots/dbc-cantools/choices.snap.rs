@@ -97,7 +97,7 @@ impl Foo {
             1 => FooFoo::XÄ,
             0 => FooFoo::WithSpace,
             -5 => FooFoo::ANegativeValue,
-            _ => FooFoo::_Other(self.foo_phys()),
+            _ => FooFoo::_Other(self.foo_phys_val()),
         }
     }
     /// Get physical value of 'Foo'
@@ -106,7 +106,7 @@ impl Foo {
     /// - Offset: 0
     /// - Unit: ""
     #[inline(always)]
-    pub fn foo_phys(&self) -> i8 {
+    pub fn foo_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -119,12 +119,12 @@ impl Foo {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn foo_raw(&self) -> i8 {
+    pub fn foo_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
     /// Set raw value of 'Foo'
     #[inline(always)]
-    pub fn set_foo_raw(&mut self, value: i8) {
+    pub fn set_foo_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }

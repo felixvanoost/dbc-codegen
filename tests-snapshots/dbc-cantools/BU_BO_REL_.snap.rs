@@ -91,7 +91,7 @@ impl Control {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         match signal {
             255 => ControlState::Invalid,
-            _ => ControlState::_Other(self.state_phys()),
+            _ => ControlState::_Other(self.state_phys_val()),
         }
     }
     /// Get physical value of 'state'
@@ -100,7 +100,7 @@ impl Control {
     /// - Offset: 0
     /// - Unit: "%"
     #[inline(always)]
-    pub fn state_phys(&self) -> u8 {
+    pub fn state_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -112,12 +112,12 @@ impl Control {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn state_raw(&self) -> u8 {
+    pub fn state_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
     }
     /// Set raw value of 'state'
     #[inline(always)]
-    pub fn set_state_raw(&mut self, value: u8) {
+    pub fn set_state_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
     /// Set value of 'state'
