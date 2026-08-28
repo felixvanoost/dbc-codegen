@@ -21,55 +21,91 @@ error[E0422]: cannot find struct, variant or union type `ExtendedS0M0` in this s
     --> tests-snapshots/dbc-cantools/multiplex_2.snap.rs:903:41
      |
  903 |             0 => Ok(ExtendedS0Index::M0(ExtendedS0M0 { raw: self.raw })),
-     |                                         ^^^^^^^^^^^^ help: a struct with a similar name exists: `ExtendedS6M0`
+     |                                         ^^^^^^^^^^^^
 ...
 1024 | pub struct ExtendedS6M0 {
      | ----------------------- similarly named struct `ExtendedS6M0` defined here
+     |
+help: a struct with a similar name exists
+     |
+ 903 -             0 => Ok(ExtendedS0Index::M0(ExtendedS0M0 { raw: self.raw })),
+ 903 +             0 => Ok(ExtendedS0Index::M0(ExtendedS6M0 { raw: self.raw })),
+     |
 
 error[E0422]: cannot find struct, variant or union type `ExtendedS0M1` in this scope
     --> tests-snapshots/dbc-cantools/multiplex_2.snap.rs:904:41
      |
  904 |             1 => Ok(ExtendedS0Index::M1(ExtendedS0M1 { raw: self.raw })),
-     |                                         ^^^^^^^^^^^^ help: a struct with a similar name exists: `ExtendedS6M1`
+     |                                         ^^^^^^^^^^^^
 ...
 1165 | pub struct ExtendedS6M1 {
      | ----------------------- similarly named struct `ExtendedS6M1` defined here
+     |
+help: a struct with a similar name exists
+     |
+ 904 -             1 => Ok(ExtendedS0Index::M1(ExtendedS0M1 { raw: self.raw })),
+ 904 +             1 => Ok(ExtendedS0Index::M1(ExtendedS6M1 { raw: self.raw })),
+     |
 
 error[E0422]: cannot find struct, variant or union type `ExtendedS0M2` in this scope
     --> tests-snapshots/dbc-cantools/multiplex_2.snap.rs:905:41
      |
  905 |             2 => Ok(ExtendedS0Index::M2(ExtendedS0M2 { raw: self.raw })),
-     |                                         ^^^^^^^^^^^^ help: a struct with a similar name exists: `ExtendedS6M2`
+     |                                         ^^^^^^^^^^^^
 ...
 1306 | pub struct ExtendedS6M2 {
      | ----------------------- similarly named struct `ExtendedS6M2` defined here
+     |
+help: a struct with a similar name exists
+     |
+ 905 -             2 => Ok(ExtendedS0Index::M2(ExtendedS0M2 { raw: self.raw })),
+ 905 +             2 => Ok(ExtendedS0Index::M2(ExtendedS6M2 { raw: self.raw })),
+     |
 
 error[E0425]: cannot find type `ExtendedS0M0` in this scope
     --> tests-snapshots/dbc-cantools/multiplex_2.snap.rs:935:37
      |
  935 |     pub fn set_m0(&mut self, value: ExtendedS0M0) -> Result<(), CanError> {
-     |                                     ^^^^^^^^^^^^ help: a struct with a similar name exists: `ExtendedS6M0`
+     |                                     ^^^^^^^^^^^^
 ...
 1024 | pub struct ExtendedS6M0 {
      | ----------------------- similarly named struct `ExtendedS6M0` defined here
+     |
+help: a struct with a similar name exists
+     |
+ 935 -     pub fn set_m0(&mut self, value: ExtendedS0M0) -> Result<(), CanError> {
+ 935 +     pub fn set_m0(&mut self, value: ExtendedS6M0) -> Result<(), CanError> {
+     |
 
 error[E0425]: cannot find type `ExtendedS0M1` in this scope
     --> tests-snapshots/dbc-cantools/multiplex_2.snap.rs:944:37
      |
  944 |     pub fn set_m1(&mut self, value: ExtendedS0M1) -> Result<(), CanError> {
-     |                                     ^^^^^^^^^^^^ help: a struct with a similar name exists: `ExtendedS6M1`
+     |                                     ^^^^^^^^^^^^
 ...
 1165 | pub struct ExtendedS6M1 {
      | ----------------------- similarly named struct `ExtendedS6M1` defined here
+     |
+help: a struct with a similar name exists
+     |
+ 944 -     pub fn set_m1(&mut self, value: ExtendedS0M1) -> Result<(), CanError> {
+ 944 +     pub fn set_m1(&mut self, value: ExtendedS6M1) -> Result<(), CanError> {
+     |
 
 error[E0425]: cannot find type `ExtendedS0M2` in this scope
     --> tests-snapshots/dbc-cantools/multiplex_2.snap.rs:953:37
      |
  953 |     pub fn set_m2(&mut self, value: ExtendedS0M2) -> Result<(), CanError> {
-     |                                     ^^^^^^^^^^^^ help: a struct with a similar name exists: `ExtendedS6M2`
+     |                                     ^^^^^^^^^^^^
 ...
 1306 | pub struct ExtendedS6M2 {
      | ----------------------- similarly named struct `ExtendedS6M2` defined here
+     |
+help: a struct with a similar name exists
+     |
+ 953 -     pub fn set_m2(&mut self, value: ExtendedS0M2) -> Result<(), CanError> {
+ 953 +     pub fn set_m2(&mut self, value: ExtendedS6M2) -> Result<(), CanError> {
+     |
 
 error: invalid suffix `i32` for float literal
     --> tests-snapshots/dbc-cantools/multiplex_2.snap.rs:1459:30
@@ -114,29 +150,38 @@ error[E0592]: duplicate definitions with name `set_m2`
 953 |     pub fn set_m2(&mut self, value: ExtendedS0M2) -> Result<(), CanError> {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `set_m2`
 
-error[E0433]: failed to resolve: use of undeclared type `ExtendedS0Index`
+error[E0433]: cannot find type `ExtendedS0Index` in this scope
    --> tests-snapshots/dbc-cantools/multiplex_2.snap.rs:903:21
     |
 903 |             0 => Ok(ExtendedS0Index::M0(ExtendedS0M0 { raw: self.raw })),
-    |                     ^^^^^^^^^^^^^^^
-    |                     |
-    |                     use of undeclared type `ExtendedS0Index`
-    |                     help: an enum with a similar name exists: `ExtendedS6Index`
+    |                     ^^^^^^^^^^^^^^^ use of undeclared type `ExtendedS0Index`
+    |
+help: an enum with a similar name exists
+    |
+903 -             0 => Ok(ExtendedS0Index::M0(ExtendedS0M0 { raw: self.raw })),
+903 +             0 => Ok(ExtendedS6Index::M0(ExtendedS0M0 { raw: self.raw })),
+    |
 
-error[E0433]: failed to resolve: use of undeclared type `ExtendedS0Index`
+error[E0433]: cannot find type `ExtendedS0Index` in this scope
    --> tests-snapshots/dbc-cantools/multiplex_2.snap.rs:904:21
     |
 904 |             1 => Ok(ExtendedS0Index::M1(ExtendedS0M1 { raw: self.raw })),
-    |                     ^^^^^^^^^^^^^^^
-    |                     |
-    |                     use of undeclared type `ExtendedS0Index`
-    |                     help: an enum with a similar name exists: `ExtendedS6Index`
+    |                     ^^^^^^^^^^^^^^^ use of undeclared type `ExtendedS0Index`
+    |
+help: an enum with a similar name exists
+    |
+904 -             1 => Ok(ExtendedS0Index::M1(ExtendedS0M1 { raw: self.raw })),
+904 +             1 => Ok(ExtendedS6Index::M1(ExtendedS0M1 { raw: self.raw })),
+    |
 
-error[E0433]: failed to resolve: use of undeclared type `ExtendedS0Index`
+error[E0433]: cannot find type `ExtendedS0Index` in this scope
    --> tests-snapshots/dbc-cantools/multiplex_2.snap.rs:905:21
     |
 905 |             2 => Ok(ExtendedS0Index::M2(ExtendedS0M2 { raw: self.raw })),
-    |                     ^^^^^^^^^^^^^^^
-    |                     |
-    |                     use of undeclared type `ExtendedS0Index`
-    |                     help: an enum with a similar name exists: `ExtendedS6Index`
+    |                     ^^^^^^^^^^^^^^^ use of undeclared type `ExtendedS0Index`
+    |
+help: an enum with a similar name exists
+    |
+905 -             2 => Ok(ExtendedS0Index::M2(ExtendedS0M2 { raw: self.raw })),
+905 +             2 => Ok(ExtendedS6Index::M2(ExtendedS0M2 { raw: self.raw })),
+    |

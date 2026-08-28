@@ -2,136 +2,199 @@ error[E0425]: cannot find type `GearShifterGearShifter` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:1123:30
      |
 1123 |     pub fn new(gear_shifter: GearShifterGearShifter) -> Result<Self, CanError> {
-     |                              ^^^^^^^^^^^^^^^^^^^^^^ help: an enum with a similar name exists: `GearShifterLeftBlinker`
+     |                              ^^^^^^^^^^^^^^^^^^^^^^
 ...
 1270 | pub enum GearShifterLeftBlinker {
      | ------------------------------- similarly named enum `GearShifterLeftBlinker` defined here
+     |
+help: an enum with a similar name exists
+     |
+1123 -     pub fn new(gear_shifter: GearShifterGearShifter) -> Result<Self, CanError> {
+1123 +     pub fn new(gear_shifter: GearShifterLeftBlinker) -> Result<Self, CanError> {
+     |
 
 error[E0425]: cannot find type `GearShifterGearShifter` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:1139:35
      |
 1139 |     pub fn gear_shifter(&self) -> GearShifterGearShifter {
-     |                                   ^^^^^^^^^^^^^^^^^^^^^^ help: an enum with a similar name exists: `GearShifterLeftBlinker`
+     |                                   ^^^^^^^^^^^^^^^^^^^^^^
 ...
 1270 | pub enum GearShifterLeftBlinker {
      | ------------------------------- similarly named enum `GearShifterLeftBlinker` defined here
+     |
+help: an enum with a similar name exists
+     |
+1139 -     pub fn gear_shifter(&self) -> GearShifterGearShifter {
+1139 +     pub fn gear_shifter(&self) -> GearShifterLeftBlinker {
+     |
 
 error[E0425]: cannot find type `GearShifterGearShifter` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:1177:16
      |
 1177 |         value: GearShifterGearShifter,
-     |                ^^^^^^^^^^^^^^^^^^^^^^ help: an enum with a similar name exists: `GearShifterLeftBlinker`
+     |                ^^^^^^^^^^^^^^^^^^^^^^
 ...
 1270 | pub enum GearShifterLeftBlinker {
      | ------------------------------- similarly named enum `GearShifterLeftBlinker` defined here
+     |
+help: an enum with a similar name exists
+     |
+1177 -         value: GearShifterGearShifter,
+1177 +         value: GearShifterLeftBlinker,
+     |
 
 error[E0425]: cannot find type `CruiseButtonsCruiseButtons` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:2355:32
      |
 2355 |     pub fn new(cruise_buttons: CruiseButtonsCruiseButtons) -> Result<Self, CanError> {
-     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^ help: an enum with a similar name exists: `CruiseButtons2LkaGapButton`
+     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^
 ...
 2618 | pub enum CruiseButtons2LkaGapButton {
      | ----------------------------------- similarly named enum `CruiseButtons2LkaGapButton` defined here
+     |
+help: an enum with a similar name exists
+     |
+2355 -     pub fn new(cruise_buttons: CruiseButtonsCruiseButtons) -> Result<Self, CanError> {
+2355 +     pub fn new(cruise_buttons: CruiseButtons2LkaGapButton) -> Result<Self, CanError> {
+     |
 
 error[E0425]: cannot find type `CruiseButtonsCruiseButtons` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:2371:37
      |
 2371 |     pub fn cruise_buttons(&self) -> CruiseButtonsCruiseButtons {
-     |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^ help: an enum with a similar name exists: `CruiseButtons2LkaGapButton`
+     |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
 ...
 2618 | pub enum CruiseButtons2LkaGapButton {
      | ----------------------------------- similarly named enum `CruiseButtons2LkaGapButton` defined here
+     |
+help: an enum with a similar name exists
+     |
+2371 -     pub fn cruise_buttons(&self) -> CruiseButtonsCruiseButtons {
+2371 +     pub fn cruise_buttons(&self) -> CruiseButtons2LkaGapButton {
+     |
 
 error[E0425]: cannot find type `CruiseButtonsCruiseButtons` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:2412:16
      |
 2412 |         value: CruiseButtonsCruiseButtons,
-     |                ^^^^^^^^^^^^^^^^^^^^^^^^^^ help: an enum with a similar name exists: `CruiseButtons2LkaGapButton`
+     |                ^^^^^^^^^^^^^^^^^^^^^^^^^^
 ...
 2618 | pub enum CruiseButtons2LkaGapButton {
      | ----------------------------------- similarly named enum `CruiseButtons2LkaGapButton` defined here
+     |
+help: an enum with a similar name exists
+     |
+2412 -         value: CruiseButtonsCruiseButtons,
+2412 +         value: CruiseButtons2LkaGapButton,
+     |
 
-error[E0433]: failed to resolve: use of undeclared type `GearShifterGearShifter`
+error[E0433]: cannot find type `GearShifterGearShifter` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:1142:18
      |
 1142 |             3 => GearShifterGearShifter::Park,
-     |                  ^^^^^^^^^^^^^^^^^^^^^^
-     |                  |
-     |                  use of undeclared type `GearShifterGearShifter`
-     |                  help: an enum with a similar name exists: `GearShifterLeftBlinker`
+     |                  ^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `GearShifterGearShifter`
+     |
+help: an enum with a similar name exists
+     |
+1142 -             3 => GearShifterGearShifter::Park,
+1142 +             3 => GearShifterLeftBlinker::Park,
+     |
 
-error[E0433]: failed to resolve: use of undeclared type `GearShifterGearShifter`
+error[E0433]: cannot find type `GearShifterGearShifter` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:1143:18
      |
 1143 |             0 => GearShifterGearShifter::DriveLow,
-     |                  ^^^^^^^^^^^^^^^^^^^^^^
-     |                  |
-     |                  use of undeclared type `GearShifterGearShifter`
-     |                  help: an enum with a similar name exists: `GearShifterLeftBlinker`
+     |                  ^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `GearShifterGearShifter`
+     |
+help: an enum with a similar name exists
+     |
+1143 -             0 => GearShifterGearShifter::DriveLow,
+1143 +             0 => GearShifterLeftBlinker::DriveLow,
+     |
 
-error[E0433]: failed to resolve: use of undeclared type `GearShifterGearShifter`
+error[E0433]: cannot find type `GearShifterGearShifter` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:1144:18
      |
 1144 |             _ => GearShifterGearShifter::_Other(self.gear_shifter_phys_val()),
-     |                  ^^^^^^^^^^^^^^^^^^^^^^
-     |                  |
-     |                  use of undeclared type `GearShifterGearShifter`
-     |                  help: an enum with a similar name exists: `GearShifterLeftBlinker`
+     |                  ^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `GearShifterGearShifter`
+     |
+help: an enum with a similar name exists
+     |
+1144 -             _ => GearShifterGearShifter::_Other(self.gear_shifter_phys_val()),
+1144 +             _ => GearShifterLeftBlinker::_Other(self.gear_shifter_phys_val()),
+     |
 
-error[E0433]: failed to resolve: use of undeclared type `CruiseButtonsCruiseButtons`
+error[E0433]: cannot find type `CruiseButtonsCruiseButtons` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:2374:18
      |
 2374 |             6 => CruiseButtonsCruiseButtons::Cancel,
-     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
-     |                  |
-     |                  use of undeclared type `CruiseButtonsCruiseButtons`
-     |                  help: an enum with a similar name exists: `CruiseButtons2LkaGapButton`
+     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `CruiseButtonsCruiseButtons`
+     |
+help: an enum with a similar name exists
+     |
+2374 -             6 => CruiseButtonsCruiseButtons::Cancel,
+2374 +             6 => CruiseButtons2LkaGapButton::Cancel,
+     |
 
-error[E0433]: failed to resolve: use of undeclared type `CruiseButtonsCruiseButtons`
+error[E0433]: cannot find type `CruiseButtonsCruiseButtons` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:2375:18
      |
 2375 |             5 => CruiseButtonsCruiseButtons::Main,
-     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
-     |                  |
-     |                  use of undeclared type `CruiseButtonsCruiseButtons`
-     |                  help: an enum with a similar name exists: `CruiseButtons2LkaGapButton`
+     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `CruiseButtonsCruiseButtons`
+     |
+help: an enum with a similar name exists
+     |
+2375 -             5 => CruiseButtonsCruiseButtons::Main,
+2375 +             5 => CruiseButtons2LkaGapButton::Main,
+     |
 
-error[E0433]: failed to resolve: use of undeclared type `CruiseButtonsCruiseButtons`
+error[E0433]: cannot find type `CruiseButtonsCruiseButtons` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:2376:18
      |
 2376 |             3 => CruiseButtonsCruiseButtons::Set,
-     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
-     |                  |
-     |                  use of undeclared type `CruiseButtonsCruiseButtons`
-     |                  help: an enum with a similar name exists: `CruiseButtons2LkaGapButton`
+     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `CruiseButtonsCruiseButtons`
+     |
+help: an enum with a similar name exists
+     |
+2376 -             3 => CruiseButtonsCruiseButtons::Set,
+2376 +             3 => CruiseButtons2LkaGapButton::Set,
+     |
 
-error[E0433]: failed to resolve: use of undeclared type `CruiseButtonsCruiseButtons`
+error[E0433]: cannot find type `CruiseButtonsCruiseButtons` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:2377:18
      |
 2377 |             2 => CruiseButtonsCruiseButtons::Resume,
-     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
-     |                  |
-     |                  use of undeclared type `CruiseButtonsCruiseButtons`
-     |                  help: an enum with a similar name exists: `CruiseButtons2LkaGapButton`
+     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `CruiseButtonsCruiseButtons`
+     |
+help: an enum with a similar name exists
+     |
+2377 -             2 => CruiseButtonsCruiseButtons::Resume,
+2377 +             2 => CruiseButtons2LkaGapButton::Resume,
+     |
 
-error[E0433]: failed to resolve: use of undeclared type `CruiseButtonsCruiseButtons`
+error[E0433]: cannot find type `CruiseButtonsCruiseButtons` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:2378:18
      |
 2378 |             1 => CruiseButtonsCruiseButtons::None,
-     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
-     |                  |
-     |                  use of undeclared type `CruiseButtonsCruiseButtons`
-     |                  help: an enum with a similar name exists: `CruiseButtons2LkaGapButton`
+     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `CruiseButtonsCruiseButtons`
+     |
+help: an enum with a similar name exists
+     |
+2378 -             1 => CruiseButtonsCruiseButtons::None,
+2378 +             1 => CruiseButtons2LkaGapButton::None,
+     |
 
-error[E0433]: failed to resolve: use of undeclared type `CruiseButtonsCruiseButtons`
+error[E0433]: cannot find type `CruiseButtonsCruiseButtons` in this scope
     --> tests-snapshots/dbc-cantools/issue_199.snap.rs:2379:18
      |
 2379 |             _ => CruiseButtonsCruiseButtons::_Other(self.cruise_buttons_phys_val()),
-     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
-     |                  |
-     |                  use of undeclared type `CruiseButtonsCruiseButtons`
-     |                  help: an enum with a similar name exists: `CruiseButtons2LkaGapButton`
+     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `CruiseButtonsCruiseButtons`
+     |
+help: an enum with a similar name exists
+     |
+2379 -             _ => CruiseButtonsCruiseButtons::_Other(self.cruise_buttons_phys_val()),
+2379 +             _ => CruiseButtons2LkaGapButton::_Other(self.cruise_buttons_phys_val()),
+     |
 
 error: unreachable pattern
   --> tests-snapshots/dbc-cantools/issue_199.snap.rs:65:13
