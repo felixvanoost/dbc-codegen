@@ -396,7 +396,11 @@ impl Config<'_> {
 
             self.render_attribute_structs(&mut w, msg, dbc)?;
 
-            writeln!(w, "/// Construct new '{}' from values", msg.name)?;
+            writeln!(
+                w,
+                "/// Constructs a new `{}` message from values.",
+                msg.name
+            )?;
             let args = msg
                 .signals
                 .iter()
@@ -435,7 +439,7 @@ impl Config<'_> {
             writeln!(w, "}}")?;
             writeln!(w)?;
 
-            writeln!(w, "/// Access message payload raw value")?;
+            writeln!(w, "/// Returns the raw `{}` message payload.", msg.name)?;
             writeln!(w, "pub fn raw(&self) -> &[u8; {}] {{", msg.size)?;
             {
                 let mut w = PadAdapter::wrap(&mut w);
@@ -821,7 +825,7 @@ impl Config<'_> {
         dbc: &Dbc,
         msg: &Message,
     ) -> Result<()> {
-        writeln!(w, "/// Get value of '{}'", signal.name)?;
+        writeln!(w, "/// Returns the value of `{}`.", signal.name)?;
         if let Some(comment) = dbc.signal_comment(msg.id, &signal.name) {
             writeln!(w, "///")?;
             for line in comment.trim().lines() {
@@ -831,16 +835,25 @@ impl Config<'_> {
         writeln!(w, "///")?;
         writeln!(w, "/// - Min: {}", signal.min)?;
         writeln!(w, "/// - Max: {}", signal.max)?;
-        writeln!(w, "/// - Unit: {:?}", signal.unit)?;
+        if signal.unit.is_empty() {
+            writeln!(w, "/// - Unit: Not specified")?;
+        } else {
+            writeln!(w, "/// - Unit: {:?}", signal.unit)?;
+        }
         if signal.receivers.is_empty() {
             writeln!(w, "/// - Receivers: Vector__XXX")?;
         } else {
             writeln!(w, "/// - Receivers: {}", signal.receivers.join(", "))?;
         }
 
-        writeln!(w, "#[inline(always)]")?;
         let fn_name = signal.field_name();
-        if let Some(variants) = dbc.value_descriptions_for_signal(msg.id, &signal.name) {
+        let variants = dbc.value_descriptions_for_signal(msg.id, &signal.name);
+        if variants.is_none() {
+            writeln!(w, "/// - Factor: {}", signal.factor)?;
+            writeln!(w, "/// - Offset: {}", signal.offset)?;
+        }
+        writeln!(w, "#[inline(always)]")?;
+        if let Some(variants) = variants {
             let type_name = enum_name(msg, signal);
             let signal_ty = ValType::from_signal(signal);
             let variant_infos = generate_variant_info(variants, signal_ty);
@@ -875,9 +888,20 @@ impl Config<'_> {
                             }
                         }
                     }
-                    writeln!(w, "_ => {type_name}::_Other(self.{fn_name}_raw()),")?;
+                    writeln!(w, "_ => {type_name}::_Other(self.{fn_name}_phys_val()),")?;
                 }
                 writeln!(w, "}}")?;
+            }
+            writeln!(w, "}}")?;
+            writeln!(w)?;
+
+            // Private helper for the `_Other()` fallback above.
+            writeln!(w, "#[inline(always)]")?;
+            let typ = ValType::from_signal(signal);
+            writeln!(w, "fn {fn_name}_phys_val(&self) -> {typ} {{")?;
+            {
+                let mut w = PadAdapter::wrap(w);
+                signal_from_payload(&mut w, signal, msg).context("signal from payload")?;
             }
             writeln!(w, "}}")?;
             writeln!(w)?;
@@ -886,29 +910,13 @@ impl Config<'_> {
             writeln!(w, "pub fn {fn_name}(&self) -> {typ} {{")?;
             {
                 let mut w = PadAdapter::wrap(w);
-                writeln!(w, "self.{fn_name}_raw()")?;
+                signal_from_payload(&mut w, signal, msg).context("signal from payload")?;
             }
             writeln!(w, "}}")?;
             writeln!(w)?;
         }
 
-        writeln!(w, "/// Get raw value of '{}'", signal.name)?;
-        writeln!(w, "///")?;
-        writeln!(w, "/// - Start bit: {}", signal.start_bit)?;
-        writeln!(w, "/// - Signal size: {} bits", signal.size)?;
-        writeln!(w, "/// - Factor: {}", signal.factor)?;
-        writeln!(w, "/// - Offset: {}", signal.offset)?;
-        writeln!(w, "/// - Byte order: {:?}", signal.byte_order)?;
-        writeln!(w, "/// - Value type: {:?}", signal.value_type)?;
-        writeln!(w, "#[inline(always)]")?;
-        let typ = ValType::from_signal(signal);
-        writeln!(w, "pub fn {fn_name}_raw(&self) -> {typ} {{")?;
-        {
-            let mut w = PadAdapter::wrap(w);
-            signal_from_payload(&mut w, signal, msg).context("signal from payload")?;
-        }
-        writeln!(w, "}}")?;
-        writeln!(w)?;
+        render_raw_accessors(w, signal, msg)?;
 
         self.render_set_signal(w, signal, dbc, msg)?;
 
@@ -935,7 +943,7 @@ impl Config<'_> {
         let param_type = signal_pub_type(dbc, msg, signal);
         let is_enum_backed = param_type != typ.to_string();
 
-        writeln!(w, "/// Set value of '{}'", signal.name)?;
+        writeln!(w, "/// Sets the value of `{}`.", signal.name)?;
         writeln!(w, "#[inline(always)]")?;
         writeln!(
             w,
@@ -997,28 +1005,21 @@ impl Config<'_> {
         dbc: &Dbc,
         msg: &Message,
     ) -> Result<()> {
-        writeln!(w, "/// Get raw value of '{}'", signal.name)?;
-        writeln!(w, "///")?;
-        writeln!(w, "/// - Start bit: {}", signal.start_bit)?;
-        writeln!(w, "/// - Signal size: {} bits", signal.size)?;
-        writeln!(w, "/// - Factor: {}", signal.factor)?;
-        writeln!(w, "/// - Offset: {}", signal.offset)?;
-        writeln!(w, "/// - Byte order: {:?}", signal.byte_order)?;
-        writeln!(w, "/// - Value type: {:?}", signal.value_type)?;
-        writeln!(w, "#[inline(always)]")?;
-        let field = signal.field_name();
         let signal_typ = ValType::from_signal(signal);
-        writeln!(w, "pub fn {field}_raw(&self) -> {signal_typ} {{")?;
-        {
-            let mut w = PadAdapter::wrap(w);
-            signal_from_payload(&mut w, signal, msg).context("signal from payload")?;
-        }
-        writeln!(w, "}}")?;
-        writeln!(w)?;
+
+        render_raw_accessors(w, signal, msg)?;
 
         let field = signal.field_name();
         let typ = multiplex_enum_name(msg, signal)?;
-        writeln!(w, "pub fn {field}(&mut self) -> Result<{typ}, CanError> {{")?;
+        writeln!(
+            w,
+            "/// Selects the active multiplexed sub-message for `{}`.",
+            signal.name
+        )?;
+        writeln!(
+            w,
+            "pub fn {field}_multiplexed(&mut self) -> Result<{typ}, CanError> {{"
+        )?;
 
         let multiplexer_indexes: BTreeSet<u64> = msg
             .signals
@@ -1035,7 +1036,7 @@ impl Config<'_> {
 
         {
             let mut w = PadAdapter::wrap(w);
-            writeln!(w, "match self.{}_raw() {{", signal.field_name())?;
+            writeln!(w, "match self.{}_raw_val() {{", signal.field_name())?;
 
             {
                 let mut w = PadAdapter::wrap(&mut w);
@@ -1157,7 +1158,7 @@ fn render_set_signal_multiplexer(
     msg: &Message,
     switch_index: u64,
 ) -> Result<()> {
-    writeln!(w, "/// Set value of '{}'", multiplexor.name)?;
+    writeln!(w, "/// Sets the value of `{}`.", multiplexor.name)?;
     writeln!(w, "#[inline(always)]")?;
     writeln!(
         w,
@@ -1243,7 +1244,24 @@ fn signal_pub_type(dbc: &Dbc, msg: &Message, signal: &Signal) -> String {
     }
 }
 
+/// Whether the signal has no scaling applied, i.e. its raw and physical values are identical.
+/// The float comparison to exact values is intentional.
+#[allow(clippy::float_cmp)]
+fn is_unscaled(signal: &Signal) -> bool {
+    signal.factor == 1.0 && signal.offset == 0.0
+}
+
 fn signal_from_payload(w: &mut impl Write, signal: &Signal, msg: &Message) -> Result<()> {
+    if is_unscaled(signal) {
+        let field = signal.field_name();
+        if signal.size == 1 {
+            writeln!(w, "self.{field}_raw_val() == 1")?;
+        } else {
+            writeln!(w, "self.{field}_raw_val()")?;
+        }
+        return Ok(());
+    }
+
     writeln!(w, r"let signal = {};", read_fn(signal, msg)?)?;
     writeln!(w)?;
 
@@ -1316,6 +1334,9 @@ fn signal_to_payload(w: &mut impl Write, signal: &Signal, msg: &Message) -> Resu
             writeln!(w, "let value = ((value - offset) / factor) as {typ};")?;
             writeln!(w)?;
         }
+        _ if is_unscaled(signal) => {
+            // `value` is already the raw type.
+        }
         _ => {
             writeln!(w, "let factor = {};", signal.factor)?;
             if signal.offset >= 0.0 {
@@ -1334,6 +1355,14 @@ fn signal_to_payload(w: &mut impl Write, signal: &Signal, msg: &Message) -> Resu
         }
     }
 
+    pack_bits(w, signal, msg)?;
+
+    writeln!(w, "Ok(())")?;
+    Ok(())
+}
+
+/// Pack `value` into the message payload.
+fn pack_bits(w: &mut impl Write, signal: &Signal, msg: &Message) -> Result<()> {
     if signal.value_type == Signed {
         let typ = ValType::from_signal_uint(signal);
         writeln!(w, "let value = {typ}::from_ne_bytes(value.to_ne_bytes());")?;
@@ -1356,7 +1385,54 @@ fn signal_to_payload(w: &mut impl Write, signal: &Signal, msg: &Message) -> Resu
         }
     }
 
-    writeln!(w, "Ok(())")?;
+    Ok(())
+}
+
+/// Generate the raw getter and setter for a signal.
+fn render_raw_accessors(w: &mut impl Write, signal: &Signal, msg: &Message) -> Result<()> {
+    let field = signal.field_name();
+    let typ = ValType::from_signal_int(signal);
+
+    writeln!(w, "/// Returns the raw value of `{}`.", signal.name)?;
+    writeln!(w, "///")?;
+    writeln!(w, "/// - Start bit: {}", signal.start_bit)?;
+    writeln!(w, "/// - Signal size: {} bits", signal.size)?;
+    writeln!(w, "/// - Byte order: {:?}", signal.byte_order)?;
+    writeln!(w, "/// - Value type: {:?}", signal.value_type)?;
+    writeln!(w, "#[inline(always)]")?;
+    writeln!(w, "pub fn {field}_raw_val(&self) -> {typ} {{")?;
+    {
+        let mut w = PadAdapter::wrap(&mut *w);
+        writeln!(w, "{}", read_fn(signal, msg)?)?;
+    }
+    writeln!(w, "}}")?;
+    writeln!(w)?;
+
+    // To avoid accidentally changing the multiplexor value without changing
+    // the signals accordingly this fn is kept private for multiplexors.
+    let visibility = if signal.multiplexer_indicator == Multiplexor {
+        ""
+    } else {
+        "pub "
+    };
+
+    writeln!(w, "/// Sets the raw value of `{}`.", signal.name)?;
+    if visibility.is_empty() {
+        // Private multiplexor raw setters have no internal caller.
+        writeln!(w, "#[allow(dead_code)]")?;
+    }
+    writeln!(w, "#[inline(always)]")?;
+    writeln!(
+        w,
+        "{visibility}fn set_{field}_raw_val(&mut self, value: {typ}) {{",
+    )?;
+    {
+        let mut w = PadAdapter::wrap(&mut *w);
+        pack_bits(&mut w, signal, msg)?;
+    }
+    writeln!(w, "}}")?;
+    writeln!(w)?;
+
     Ok(())
 }
 

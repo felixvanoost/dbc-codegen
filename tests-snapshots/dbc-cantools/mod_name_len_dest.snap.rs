@@ -72,41 +72,44 @@ impl MsgNowShort {
     pub const MESSAGE_SIZE: usize = 8;
     pub const SIG_NOW_SHORT_MIN: u8 = 0_u8;
     pub const SIG_NOW_SHORT_MAX: u8 = 0_u8;
-    /// Construct new 'msg_now_short' from values
+    /// Constructs a new `msg_now_short` message from values.
     pub fn new(sig_now_short: u8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_sig_now_short(sig_now_short)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `msg_now_short` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'sig_now_short'
+    /// Returns the value of `sig_now_short`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn sig_now_short(&self) -> u8 {
-        self.sig_now_short_raw()
+        self.sig_now_short_raw_val()
     }
-    /// Get raw value of 'sig_now_short'
+    /// Returns the raw value of `sig_now_short`.
     ///
     /// - Start bit: 1
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn sig_now_short_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[1..9].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn sig_now_short_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[1..9].load_le::<u8>()
     }
-    /// Set value of 'sig_now_short'
+    /// Sets the raw value of `sig_now_short`.
+    #[inline(always)]
+    pub fn set_sig_now_short_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[1..9].store_le(value);
+    }
+    /// Sets the value of `sig_now_short`.
     #[inline(always)]
     pub fn set_sig_now_short(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 0_u8 < value {
@@ -114,13 +117,6 @@ impl MsgNowShort {
                 message_id: MsgNowShort::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MsgNowShort::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[1..9].store_le(value);
         Ok(())
     }

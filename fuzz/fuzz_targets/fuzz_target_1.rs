@@ -19,18 +19,18 @@ fuzz_target!(|dbc_codegen_bar: can_messages::Bar| {
 
     println!(
         "{} {} {} {} {}",
-        dbc_codegen_bar.one_raw(),
-        dbc_codegen_bar.two_raw(),
-        dbc_codegen_bar.three_raw(),
-        dbc_codegen_bar.four_raw(),
-        dbc_codegen_bar.xtype_raw()
+        dbc_codegen_bar.one(),
+        dbc_codegen_bar.two(),
+        dbc_codegen_bar.three_raw_val(),
+        dbc_codegen_bar.four_raw_val(),
+        dbc_codegen_bar.xtype_raw_val()
     );
 
-    let one = unsafe { example_bar_one_encode(dbc_codegen_bar.one_raw() as f64) };
-    let two = unsafe { example_bar_two_encode(dbc_codegen_bar.two_raw() as f64) };
-    let three = unsafe { example_bar_three_encode(dbc_codegen_bar.three_raw() as f64) };
-    let four = unsafe { example_bar_four_encode(dbc_codegen_bar.four_raw() as f64) };
-    let type_ = unsafe { example_bar_type_encode(dbc_codegen_bar.xtype_raw() as u8 as f64) };
+    let one = unsafe { example_bar_one_encode(dbc_codegen_bar.one() as f64) };
+    let two = unsafe { example_bar_two_encode(dbc_codegen_bar.two() as f64) };
+    let three = unsafe { example_bar_three_encode(dbc_codegen_bar.three_raw_val() as f64) };
+    let four = unsafe { example_bar_four_encode(dbc_codegen_bar.four_raw_val() as f64) };
+    let type_ = unsafe { example_bar_type_encode(dbc_codegen_bar.xtype_raw_val() as f64) };
 
     let bar = example_bar_t {
         one,

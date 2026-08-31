@@ -70,45 +70,50 @@ impl Message1 {
     pub const MESSAGE_SIZE: usize = 7;
     pub const SIGNAL_1_MIN: u8 = 0_u8;
     pub const SIGNAL_1_MAX: u8 = 100_u8;
-    /// Construct new 'message_1' from values
+    /// Constructs a new `message_1` message from values.
     pub fn new(signal_1: Message1Signal1) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 7] };
         res.set_signal_1(signal_1)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `message_1` message payload.
     pub fn raw(&self) -> &[u8; 7] {
         &self.raw
     }
-    /// Get value of 'signal_1'
+    /// Returns the value of `signal_1`.
     ///
     /// - Min: 0
     /// - Max: 100
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: ECU2
     #[inline(always)]
     pub fn signal_1(&self) -> Message1Signal1 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         match signal {
             255 => Message1Signal1::Invalid,
-            _ => Message1Signal1::_Other(self.signal_1_raw()),
+            _ => Message1Signal1::_Other(self.signal_1_phys_val()),
         }
     }
-    /// Get raw value of 'signal_1'
+    #[inline(always)]
+    fn signal_1_phys_val(&self) -> u8 {
+        self.signal_1_raw_val()
+    }
+    /// Returns the raw value of `signal_1`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn signal_1_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn signal_1_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
     }
-    /// Set value of 'signal_1'
+    /// Sets the raw value of `signal_1`.
+    #[inline(always)]
+    pub fn set_signal_1_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `signal_1`.
     #[inline(always)]
     pub fn set_signal_1(&mut self, value: Message1Signal1) -> Result<(), CanError> {
         let value = u8::from(value);
@@ -117,13 +122,6 @@ impl Message1 {
                 message_id: Message1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Message1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }

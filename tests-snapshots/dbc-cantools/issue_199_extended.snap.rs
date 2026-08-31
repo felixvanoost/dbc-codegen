@@ -118,7 +118,7 @@ impl DriverDoorStatus {
         ExtendedId::new_unchecked(0x1fffffff)
     });
     pub const MESSAGE_SIZE: usize = 1;
-    /// Construct new 'DriverDoorStatus' from values
+    /// Constructs a new `DriverDoorStatus` message from values.
     pub fn new(
         driver_door_opened: DriverDoorStatusDriverDoorOpened,
     ) -> Result<Self, CanError> {
@@ -126,15 +126,15 @@ impl DriverDoorStatus {
         res.set_driver_door_opened(driver_door_opened)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `DriverDoorStatus` message payload.
     pub fn raw(&self) -> &[u8; 1] {
         &self.raw
     }
-    /// Get value of 'DriverDoorOpened'
+    /// Returns the value of `DriverDoorOpened`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: NEO
     #[inline(always)]
     pub fn driver_door_opened(&self) -> DriverDoorStatusDriverDoorOpened {
@@ -142,23 +142,33 @@ impl DriverDoorStatus {
         match signal {
             1 => DriverDoorStatusDriverDoorOpened::Opened,
             0 => DriverDoorStatusDriverDoorOpened::Closed,
-            _ => DriverDoorStatusDriverDoorOpened::_Other(self.driver_door_opened_raw()),
+            _ => {
+                DriverDoorStatusDriverDoorOpened::_Other(
+                    self.driver_door_opened_phys_val(),
+                )
+            }
         }
     }
-    /// Get raw value of 'DriverDoorOpened'
+    #[inline(always)]
+    fn driver_door_opened_phys_val(&self) -> bool {
+        self.driver_door_opened_raw_val() == 1
+    }
+    /// Returns the raw value of `DriverDoorOpened`.
     ///
     /// - Start bit: 0
     /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn driver_door_opened_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[7..8].load_be::<u8>();
-        signal == 1
+    pub fn driver_door_opened_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[7..8].load_be::<u8>()
     }
-    /// Set value of 'DriverDoorOpened'
+    /// Sets the raw value of `DriverDoorOpened`.
+    #[inline(always)]
+    pub fn set_driver_door_opened_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[7..8].store_be(value);
+    }
+    /// Sets the value of `DriverDoorOpened`.
     #[inline(always)]
     pub fn set_driver_door_opened(
         &mut self,
@@ -266,7 +276,7 @@ impl Chime {
     pub const CHIME_BYTE5_MAX: u8 = 0_u8;
     pub const CHIME_BYTE4_MIN: u8 = 0_u8;
     pub const CHIME_BYTE4_MAX: u8 = 0_u8;
-    /// Construct new 'Chime' from values
+    /// Constructs a new `Chime` message from values.
     pub fn new(
         chime_type: u8,
         chime_repeat: u8,
@@ -282,35 +292,38 @@ impl Chime {
         res.set_chime_byte4(chime_byte4)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Chime` message payload.
     pub fn raw(&self) -> &[u8; 5] {
         &self.raw
     }
-    /// Get value of 'ChimeType'
+    /// Returns the value of `ChimeType`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: GMLAN
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn chime_type(&self) -> u8 {
-        self.chime_type_raw()
+        self.chime_type_raw_val()
     }
-    /// Get raw value of 'ChimeType'
+    /// Returns the raw value of `ChimeType`.
     ///
     /// - Start bit: 7
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn chime_type_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[0..8].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn chime_type_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[0..8].load_be::<u8>()
     }
-    /// Set value of 'ChimeType'
+    /// Sets the raw value of `ChimeType`.
+    #[inline(always)]
+    pub fn set_chime_type_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[0..8].store_be(value);
+    }
+    /// Sets the value of `ChimeType`.
     #[inline(always)]
     pub fn set_chime_type(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 0_u8 < value {
@@ -318,41 +331,37 @@ impl Chime {
                 message_id: Chime::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Chime::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[0..8].store_be(value);
         Ok(())
     }
-    /// Get value of 'ChimeRepeat'
+    /// Returns the value of `ChimeRepeat`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: GMLAN
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn chime_repeat(&self) -> u8 {
-        self.chime_repeat_raw()
+        self.chime_repeat_raw_val()
     }
-    /// Get raw value of 'ChimeRepeat'
+    /// Returns the raw value of `ChimeRepeat`.
     ///
     /// - Start bit: 23
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn chime_repeat_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[16..24].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn chime_repeat_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[16..24].load_be::<u8>()
     }
-    /// Set value of 'ChimeRepeat'
+    /// Sets the raw value of `ChimeRepeat`.
+    #[inline(always)]
+    pub fn set_chime_repeat_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[16..24].store_be(value);
+    }
+    /// Sets the value of `ChimeRepeat`.
     #[inline(always)]
     pub fn set_chime_repeat(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 0_u8 < value {
@@ -360,41 +369,37 @@ impl Chime {
                 message_id: Chime::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Chime::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[16..24].store_be(value);
         Ok(())
     }
-    /// Get value of 'ChimeDuration'
+    /// Returns the value of `ChimeDuration`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: GMLAN
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn chime_duration(&self) -> u8 {
-        self.chime_duration_raw()
+        self.chime_duration_raw_val()
     }
-    /// Get raw value of 'ChimeDuration'
+    /// Returns the raw value of `ChimeDuration`.
     ///
     /// - Start bit: 15
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn chime_duration_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[8..16].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn chime_duration_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[8..16].load_be::<u8>()
     }
-    /// Set value of 'ChimeDuration'
+    /// Sets the raw value of `ChimeDuration`.
+    #[inline(always)]
+    pub fn set_chime_duration_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[8..16].store_be(value);
+    }
+    /// Sets the value of `ChimeDuration`.
     #[inline(always)]
     pub fn set_chime_duration(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 0_u8 < value {
@@ -402,41 +407,37 @@ impl Chime {
                 message_id: Chime::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Chime::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[8..16].store_be(value);
         Ok(())
     }
-    /// Get value of 'ChimeByte5'
+    /// Returns the value of `ChimeByte5`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: GMLAN
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn chime_byte5(&self) -> u8 {
-        self.chime_byte5_raw()
+        self.chime_byte5_raw_val()
     }
-    /// Get raw value of 'ChimeByte5'
+    /// Returns the raw value of `ChimeByte5`.
     ///
     /// - Start bit: 39
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn chime_byte5_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[32..40].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn chime_byte5_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[32..40].load_be::<u8>()
     }
-    /// Set value of 'ChimeByte5'
+    /// Sets the raw value of `ChimeByte5`.
+    #[inline(always)]
+    pub fn set_chime_byte5_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[32..40].store_be(value);
+    }
+    /// Sets the value of `ChimeByte5`.
     #[inline(always)]
     pub fn set_chime_byte5(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 0_u8 < value {
@@ -444,41 +445,37 @@ impl Chime {
                 message_id: Chime::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Chime::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[32..40].store_be(value);
         Ok(())
     }
-    /// Get value of 'ChimeByte4'
+    /// Returns the value of `ChimeByte4`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: GMLAN
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn chime_byte4(&self) -> u8 {
-        self.chime_byte4_raw()
+        self.chime_byte4_raw_val()
     }
-    /// Get raw value of 'ChimeByte4'
+    /// Returns the raw value of `ChimeByte4`.
     ///
     /// - Start bit: 31
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn chime_byte4_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[24..32].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn chime_byte4_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[24..32].load_be::<u8>()
     }
-    /// Set value of 'ChimeByte4'
+    /// Sets the raw value of `ChimeByte4`.
+    #[inline(always)]
+    pub fn set_chime_byte4_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[24..32].store_be(value);
+    }
+    /// Sets the value of `ChimeByte4`.
     #[inline(always)]
     pub fn set_chime_byte4(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 0_u8 < value {
@@ -486,13 +483,6 @@ impl Chime {
                 message_id: Chime::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Chime::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[24..32].store_be(value);
         Ok(())
     }
@@ -558,7 +548,7 @@ impl BlinkerStatus {
         StandardId::new_unchecked(0xc000)
     });
     pub const MESSAGE_SIZE: usize = 5;
-    /// Construct new 'BlinkerStatus' from values
+    /// Constructs a new `BlinkerStatus` message from values.
     pub fn new(
         right_blinker: BlinkerStatusRightBlinker,
         left_blinker: BlinkerStatusLeftBlinker,
@@ -570,15 +560,15 @@ impl BlinkerStatus {
         res.set_blinker_light(blinker_light)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `BlinkerStatus` message payload.
     pub fn raw(&self) -> &[u8; 5] {
         &self.raw
     }
-    /// Get value of 'RightBlinker'
+    /// Returns the value of `RightBlinker`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: NEO
     #[inline(always)]
     pub fn right_blinker(&self) -> BlinkerStatusRightBlinker {
@@ -586,23 +576,29 @@ impl BlinkerStatus {
         match signal {
             1 => BlinkerStatusRightBlinker::Active,
             0 => BlinkerStatusRightBlinker::Inactive,
-            _ => BlinkerStatusRightBlinker::_Other(self.right_blinker_raw()),
+            _ => BlinkerStatusRightBlinker::_Other(self.right_blinker_phys_val()),
         }
     }
-    /// Get raw value of 'RightBlinker'
+    #[inline(always)]
+    fn right_blinker_phys_val(&self) -> bool {
+        self.right_blinker_raw_val() == 1
+    }
+    /// Returns the raw value of `RightBlinker`.
     ///
     /// - Start bit: 6
     /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn right_blinker_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[1..2].load_be::<u8>();
-        signal == 1
+    pub fn right_blinker_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[1..2].load_be::<u8>()
     }
-    /// Set value of 'RightBlinker'
+    /// Sets the raw value of `RightBlinker`.
+    #[inline(always)]
+    pub fn set_right_blinker_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[1..2].store_be(value);
+    }
+    /// Sets the value of `RightBlinker`.
     #[inline(always)]
     pub fn set_right_blinker(
         &mut self,
@@ -613,11 +609,11 @@ impl BlinkerStatus {
         self.raw.view_bits_mut::<Msb0>()[1..2].store_be(value);
         Ok(())
     }
-    /// Get value of 'LeftBlinker'
+    /// Returns the value of `LeftBlinker`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: NEO
     #[inline(always)]
     pub fn left_blinker(&self) -> BlinkerStatusLeftBlinker {
@@ -625,23 +621,29 @@ impl BlinkerStatus {
         match signal {
             1 => BlinkerStatusLeftBlinker::Active,
             0 => BlinkerStatusLeftBlinker::Inactive,
-            _ => BlinkerStatusLeftBlinker::_Other(self.left_blinker_raw()),
+            _ => BlinkerStatusLeftBlinker::_Other(self.left_blinker_phys_val()),
         }
     }
-    /// Get raw value of 'LeftBlinker'
+    #[inline(always)]
+    fn left_blinker_phys_val(&self) -> bool {
+        self.left_blinker_raw_val() == 1
+    }
+    /// Returns the raw value of `LeftBlinker`.
     ///
     /// - Start bit: 7
     /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn left_blinker_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[0..1].load_be::<u8>();
-        signal == 1
+    pub fn left_blinker_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[0..1].load_be::<u8>()
     }
-    /// Set value of 'LeftBlinker'
+    /// Sets the raw value of `LeftBlinker`.
+    #[inline(always)]
+    pub fn set_left_blinker_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[0..1].store_be(value);
+    }
+    /// Sets the value of `LeftBlinker`.
     #[inline(always)]
     pub fn set_left_blinker(
         &mut self,
@@ -652,11 +654,11 @@ impl BlinkerStatus {
         self.raw.view_bits_mut::<Msb0>()[0..1].store_be(value);
         Ok(())
     }
-    /// Get value of 'BlinkerLight'
+    /// Returns the value of `BlinkerLight`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: NEO
     #[inline(always)]
     pub fn blinker_light(&self) -> BlinkerStatusBlinkerLight {
@@ -664,23 +666,29 @@ impl BlinkerStatus {
         match signal {
             1 => BlinkerStatusBlinkerLight::Active,
             0 => BlinkerStatusBlinkerLight::Inactive,
-            _ => BlinkerStatusBlinkerLight::_Other(self.blinker_light_raw()),
+            _ => BlinkerStatusBlinkerLight::_Other(self.blinker_light_phys_val()),
         }
     }
-    /// Get raw value of 'BlinkerLight'
+    #[inline(always)]
+    fn blinker_light_phys_val(&self) -> bool {
+        self.blinker_light_raw_val() == 1
+    }
+    /// Returns the raw value of `BlinkerLight`.
     ///
     /// - Start bit: 25
     /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn blinker_light_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[30..31].load_be::<u8>();
-        signal == 1
+    pub fn blinker_light_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[30..31].load_be::<u8>()
     }
-    /// Set value of 'BlinkerLight'
+    /// Sets the raw value of `BlinkerLight`.
+    #[inline(always)]
+    pub fn set_blinker_light_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[30..31].store_be(value);
+    }
+    /// Sets the value of `BlinkerLight`.
     #[inline(always)]
     pub fn set_blinker_light(
         &mut self,
@@ -830,42 +838,48 @@ impl SteeringWheelAngle {
     pub const MESSAGE_SIZE: usize = 8;
     pub const STEERING_WHEEL_ANGLE_MIN: f32 = -540_f32;
     pub const STEERING_WHEEL_ANGLE_MAX: f32 = 540_f32;
-    /// Construct new 'SteeringWheelAngle' from values
+    /// Constructs a new `SteeringWheelAngle` message from values.
     pub fn new(steering_wheel_angle: f32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_steering_wheel_angle(steering_wheel_angle)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `SteeringWheelAngle` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'SteeringWheelAngle'
+    /// Returns the value of `SteeringWheelAngle`.
     ///
     /// - Min: -540
     /// - Max: 540
     /// - Unit: "deg"
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn steering_wheel_angle(&self) -> f32 {
-        self.steering_wheel_angle_raw()
-    }
-    /// Get raw value of 'SteeringWheelAngle'
-    ///
-    /// - Start bit: 39
-    /// - Signal size: 16 bits
     /// - Factor: 0.0625
     /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Signed
     #[inline(always)]
-    pub fn steering_wheel_angle_raw(&self) -> f32 {
+    pub fn steering_wheel_angle(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[32..48].load_be::<i16>();
         let factor = 0.0625_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of 'SteeringWheelAngle'
+    /// Returns the raw value of `SteeringWheelAngle`.
+    ///
+    /// - Start bit: 39
+    /// - Signal size: 16 bits
+    /// - Byte order: BigEndian
+    /// - Value type: Signed
+    #[inline(always)]
+    pub fn steering_wheel_angle_raw_val(&self) -> i16 {
+        self.raw.view_bits::<Msb0>()[32..48].load_be::<i16>()
+    }
+    /// Sets the raw value of `SteeringWheelAngle`.
+    #[inline(always)]
+    pub fn set_steering_wheel_angle_raw_val(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[32..48].store_be(value);
+    }
+    /// Sets the value of `SteeringWheelAngle`.
     #[inline(always)]
     pub fn set_steering_wheel_angle(&mut self, value: f32) -> Result<(), CanError> {
         if value < -540_f32 || 540_f32 < value {
@@ -944,21 +958,21 @@ impl GearShifter {
     pub const MESSAGE_SIZE: usize = 8;
     pub const GEAR_SHIFTER_MIN: u8 = 0_u8;
     pub const GEAR_SHIFTER_MAX: u8 = 3_u8;
-    /// Construct new 'GearShifter' from values
+    /// Constructs a new `GearShifter` message from values.
     pub fn new(gear_shifter: GearShifterGearShifter) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_gear_shifter(gear_shifter)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `GearShifter` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'GearShifter'
+    /// Returns the value of `GearShifter`.
     ///
     /// - Min: 0
     /// - Max: 3
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: NEO
     #[inline(always)]
     pub fn gear_shifter(&self) -> GearShifterGearShifter {
@@ -966,24 +980,29 @@ impl GearShifter {
         match signal {
             3 => GearShifterGearShifter::Park,
             0 => GearShifterGearShifter::DriveLow,
-            _ => GearShifterGearShifter::_Other(self.gear_shifter_raw()),
+            _ => GearShifterGearShifter::_Other(self.gear_shifter_phys_val()),
         }
     }
-    /// Get raw value of 'GearShifter'
+    #[inline(always)]
+    fn gear_shifter_phys_val(&self) -> u8 {
+        self.gear_shifter_raw_val()
+    }
+    /// Returns the raw value of `GearShifter`.
     ///
     /// - Start bit: 17
     /// - Signal size: 2 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gear_shifter_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[22..24].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn gear_shifter_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[22..24].load_be::<u8>()
     }
-    /// Set value of 'GearShifter'
+    /// Sets the raw value of `GearShifter`.
+    #[inline(always)]
+    pub fn set_gear_shifter_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[22..24].store_be(value);
+    }
+    /// Sets the value of `GearShifter`.
     #[inline(always)]
     pub fn set_gear_shifter(
         &mut self,
@@ -995,13 +1014,6 @@ impl GearShifter {
                 message_id: GearShifter::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: GearShifter::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[22..24].store_be(value);
         Ok(())
     }
@@ -1146,7 +1158,7 @@ impl GasPedalRegenCruise {
     pub const GAS_PEDAL_MAX: u8 = 254_u8;
     pub const GEAR_SHIFTER2_NOT_USED_MIN: u8 = 0_u8;
     pub const GEAR_SHIFTER2_NOT_USED_MAX: u8 = 255_u8;
-    /// Construct new 'GasPedalRegenCruise' from values
+    /// Constructs a new `GasPedalRegenCruise` message from values.
     pub fn new(
         cruise_control_active: GasPedalRegenCruiseCruiseControlActive,
         max_regen: bool,
@@ -1160,15 +1172,15 @@ impl GasPedalRegenCruise {
         res.set_gear_shifter2_not_used(gear_shifter2_not_used)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `GasPedalRegenCruise` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'CruiseControlActive'
+    /// Returns the value of `CruiseControlActive`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: GMLAN
     #[inline(always)]
     pub fn cruise_control_active(&self) -> GasPedalRegenCruiseCruiseControlActive {
@@ -1178,25 +1190,31 @@ impl GasPedalRegenCruise {
             0 => GasPedalRegenCruiseCruiseControlActive::Inactive,
             _ => {
                 GasPedalRegenCruiseCruiseControlActive::_Other(
-                    self.cruise_control_active_raw(),
+                    self.cruise_control_active_phys_val(),
                 )
             }
         }
     }
-    /// Get raw value of 'CruiseControlActive'
+    #[inline(always)]
+    fn cruise_control_active_phys_val(&self) -> bool {
+        self.cruise_control_active_raw_val() == 1
+    }
+    /// Returns the raw value of `CruiseControlActive`.
     ///
     /// - Start bit: 56
     /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cruise_control_active_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[63..64].load_be::<u8>();
-        signal == 1
+    pub fn cruise_control_active_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[63..64].load_be::<u8>()
     }
-    /// Set value of 'CruiseControlActive'
+    /// Sets the raw value of `CruiseControlActive`.
+    #[inline(always)]
+    pub fn set_cruise_control_active_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[63..64].store_be(value);
+    }
+    /// Sets the value of `CruiseControlActive`.
     #[inline(always)]
     pub fn set_cruise_control_active(
         &mut self,
@@ -1207,61 +1225,68 @@ impl GasPedalRegenCruise {
         self.raw.view_bits_mut::<Msb0>()[63..64].store_be(value);
         Ok(())
     }
-    /// Get value of 'MaxRegen'
+    /// Returns the value of `MaxRegen`.
     ///
     /// - Min: 0
     /// - Max: 1
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: GMLAN, NEO
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn max_regen(&self) -> bool {
-        self.max_regen_raw()
+        self.max_regen_raw_val() == 1
     }
-    /// Get raw value of 'MaxRegen'
+    /// Returns the raw value of `MaxRegen`.
     ///
     /// - Start bit: 12
     /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn max_regen_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[11..12].load_be::<u8>();
-        signal == 1
+    pub fn max_regen_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[11..12].load_be::<u8>()
     }
-    /// Set value of 'MaxRegen'
+    /// Sets the raw value of `MaxRegen`.
+    #[inline(always)]
+    pub fn set_max_regen_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[11..12].store_be(value);
+    }
+    /// Sets the value of `MaxRegen`.
     #[inline(always)]
     pub fn set_max_regen(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Msb0>()[11..12].store_be(value);
         Ok(())
     }
-    /// Get value of 'GasPedal'
+    /// Returns the value of `GasPedal`.
     ///
     /// - Min: 0
     /// - Max: 254
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: GMLAN, NEO
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn gas_pedal(&self) -> u8 {
-        self.gas_pedal_raw()
+        self.gas_pedal_raw_val()
     }
-    /// Get raw value of 'GasPedal'
+    /// Returns the raw value of `GasPedal`.
     ///
     /// - Start bit: 47
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gas_pedal_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[40..48].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn gas_pedal_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[40..48].load_be::<u8>()
     }
-    /// Set value of 'GasPedal'
+    /// Sets the raw value of `GasPedal`.
+    #[inline(always)]
+    pub fn set_gas_pedal_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[40..48].store_be(value);
+    }
+    /// Sets the value of `GasPedal`.
     #[inline(always)]
     pub fn set_gas_pedal(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 254_u8 < value {
@@ -1269,41 +1294,37 @@ impl GasPedalRegenCruise {
                 message_id: GasPedalRegenCruise::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: GasPedalRegenCruise::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[40..48].store_be(value);
         Ok(())
     }
-    /// Get value of 'GearShifter2NotUsed'
+    /// Returns the value of `GearShifter2NotUsed`.
     ///
     /// - Min: 0
     /// - Max: 255
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: GMLAN, NEO
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn gear_shifter2_not_used(&self) -> u8 {
-        self.gear_shifter2_not_used_raw()
+        self.gear_shifter2_not_used_raw_val()
     }
-    /// Get raw value of 'GearShifter2NotUsed'
+    /// Returns the raw value of `GearShifter2NotUsed`.
     ///
     /// - Start bit: 55
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn gear_shifter2_not_used_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[48..56].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn gear_shifter2_not_used_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[48..56].load_be::<u8>()
     }
-    /// Set value of 'GearShifter2NotUsed'
+    /// Sets the raw value of `GearShifter2NotUsed`.
+    #[inline(always)]
+    pub fn set_gear_shifter2_not_used_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[48..56].store_be(value);
+    }
+    /// Sets the value of `GearShifter2NotUsed`.
     #[inline(always)]
     pub fn set_gear_shifter2_not_used(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 255_u8 < value {
@@ -1311,13 +1332,6 @@ impl GasPedalRegenCruise {
                 message_id: GasPedalRegenCruise::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: GasPedalRegenCruise::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[48..56].store_be(value);
         Ok(())
     }
@@ -1412,42 +1426,45 @@ impl BrakePedal {
     pub const BRAKE_LEVEL_MAX: u8 = 3_u8;
     pub const BRAKE_SENSOR_MIN: u8 = 0_u8;
     pub const BRAKE_SENSOR_MAX: u8 = 255_u8;
-    /// Construct new 'BrakePedal' from values
+    /// Constructs a new `BrakePedal` message from values.
     pub fn new(brake_level: u8, brake_sensor: u8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 2] };
         res.set_brake_level(brake_level)?;
         res.set_brake_sensor(brake_sensor)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `BrakePedal` message payload.
     pub fn raw(&self) -> &[u8; 2] {
         &self.raw
     }
-    /// Get value of 'BrakeLevel'
+    /// Returns the value of `BrakeLevel`.
     ///
     /// - Min: 0
     /// - Max: 3
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: NEO
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn brake_level(&self) -> u8 {
-        self.brake_level_raw()
+        self.brake_level_raw_val()
     }
-    /// Get raw value of 'BrakeLevel'
+    /// Returns the raw value of `BrakeLevel`.
     ///
     /// - Start bit: 2
     /// - Signal size: 2 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn brake_level_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[5..7].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn brake_level_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[5..7].load_be::<u8>()
     }
-    /// Set value of 'BrakeLevel'
+    /// Sets the raw value of `BrakeLevel`.
+    #[inline(always)]
+    pub fn set_brake_level_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[5..7].store_be(value);
+    }
+    /// Sets the value of `BrakeLevel`.
     #[inline(always)]
     pub fn set_brake_level(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 3_u8 < value {
@@ -1455,41 +1472,37 @@ impl BrakePedal {
                 message_id: BrakePedal::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BrakePedal::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[5..7].store_be(value);
         Ok(())
     }
-    /// Get value of 'BrakeSensor'
+    /// Returns the value of `BrakeSensor`.
     ///
     /// - Min: 0
     /// - Max: 255
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: NEO
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn brake_sensor(&self) -> u8 {
-        self.brake_sensor_raw()
+        self.brake_sensor_raw_val()
     }
-    /// Get raw value of 'BrakeSensor'
+    /// Returns the raw value of `BrakeSensor`.
     ///
     /// - Start bit: 15
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn brake_sensor_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[8..16].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn brake_sensor_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[8..16].load_be::<u8>()
     }
-    /// Set value of 'BrakeSensor'
+    /// Sets the raw value of `BrakeSensor`.
+    #[inline(always)]
+    pub fn set_brake_sensor_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[8..16].store_be(value);
+    }
+    /// Sets the value of `BrakeSensor`.
     #[inline(always)]
     pub fn set_brake_sensor(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 255_u8 < value {
@@ -1497,13 +1510,6 @@ impl BrakePedal {
                 message_id: BrakePedal::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BrakePedal::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[8..16].store_be(value);
         Ok(())
     }
@@ -1577,7 +1583,7 @@ impl WheelSpeed {
     pub const WHEEL_SPEED_RL_MAX: f32 = 70_f32;
     pub const WHEEL_SPEED_RR_MIN: f32 = 0_f32;
     pub const WHEEL_SPEED_RR_MAX: f32 = 70_f32;
-    /// Construct new 'WheelSpeed' from values
+    /// Constructs a new `WheelSpeed` message from values.
     pub fn new(
         wheel_speed_fl: f32,
         wheel_speed_fr: f32,
@@ -1591,36 +1597,41 @@ impl WheelSpeed {
         res.set_wheel_speed_rr(wheel_speed_rr)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `WheelSpeed` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'WheelSpeedFL'
+    /// Returns the value of `WheelSpeedFL`.
     ///
     /// - Min: 0
     /// - Max: 70
     /// - Unit: "yd/s"
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn wheel_speed_fl(&self) -> f32 {
-        self.wheel_speed_fl_raw()
-    }
-    /// Get raw value of 'WheelSpeedFL'
-    ///
-    /// - Start bit: 7
-    /// - Signal size: 16 bits
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
     #[inline(always)]
-    pub fn wheel_speed_fl_raw(&self) -> f32 {
+    pub fn wheel_speed_fl(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of 'WheelSpeedFL'
+    /// Returns the raw value of `WheelSpeedFL`.
+    ///
+    /// - Start bit: 7
+    /// - Signal size: 16 bits
+    /// - Byte order: BigEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn wheel_speed_fl_raw_val(&self) -> u16 {
+        self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
+    }
+    /// Sets the raw value of `WheelSpeedFL`.
+    #[inline(always)]
+    pub fn set_wheel_speed_fl_raw_val(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
+    }
+    /// Sets the value of `WheelSpeedFL`.
     #[inline(always)]
     pub fn set_wheel_speed_fl(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 70_f32 < value {
@@ -1634,32 +1645,37 @@ impl WheelSpeed {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
         Ok(())
     }
-    /// Get value of 'WheelSpeedFR'
+    /// Returns the value of `WheelSpeedFR`.
     ///
     /// - Min: 0
     /// - Max: 70
     /// - Unit: "yd/s"
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn wheel_speed_fr(&self) -> f32 {
-        self.wheel_speed_fr_raw()
-    }
-    /// Get raw value of 'WheelSpeedFR'
-    ///
-    /// - Start bit: 39
-    /// - Signal size: 16 bits
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
     #[inline(always)]
-    pub fn wheel_speed_fr_raw(&self) -> f32 {
+    pub fn wheel_speed_fr(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[32..48].load_be::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of 'WheelSpeedFR'
+    /// Returns the raw value of `WheelSpeedFR`.
+    ///
+    /// - Start bit: 39
+    /// - Signal size: 16 bits
+    /// - Byte order: BigEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn wheel_speed_fr_raw_val(&self) -> u16 {
+        self.raw.view_bits::<Msb0>()[32..48].load_be::<u16>()
+    }
+    /// Sets the raw value of `WheelSpeedFR`.
+    #[inline(always)]
+    pub fn set_wheel_speed_fr_raw_val(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Msb0>()[32..48].store_be(value);
+    }
+    /// Sets the value of `WheelSpeedFR`.
     #[inline(always)]
     pub fn set_wheel_speed_fr(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 70_f32 < value {
@@ -1673,32 +1689,37 @@ impl WheelSpeed {
         self.raw.view_bits_mut::<Msb0>()[32..48].store_be(value);
         Ok(())
     }
-    /// Get value of 'WheelSpeedRL'
+    /// Returns the value of `WheelSpeedRL`.
     ///
     /// - Min: 0
     /// - Max: 70
     /// - Unit: "yd/s"
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn wheel_speed_rl(&self) -> f32 {
-        self.wheel_speed_rl_raw()
-    }
-    /// Get raw value of 'WheelSpeedRL'
-    ///
-    /// - Start bit: 23
-    /// - Signal size: 16 bits
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
     #[inline(always)]
-    pub fn wheel_speed_rl_raw(&self) -> f32 {
+    pub fn wheel_speed_rl(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[16..32].load_be::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of 'WheelSpeedRL'
+    /// Returns the raw value of `WheelSpeedRL`.
+    ///
+    /// - Start bit: 23
+    /// - Signal size: 16 bits
+    /// - Byte order: BigEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn wheel_speed_rl_raw_val(&self) -> u16 {
+        self.raw.view_bits::<Msb0>()[16..32].load_be::<u16>()
+    }
+    /// Sets the raw value of `WheelSpeedRL`.
+    #[inline(always)]
+    pub fn set_wheel_speed_rl_raw_val(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Msb0>()[16..32].store_be(value);
+    }
+    /// Sets the value of `WheelSpeedRL`.
     #[inline(always)]
     pub fn set_wheel_speed_rl(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 70_f32 < value {
@@ -1712,32 +1733,37 @@ impl WheelSpeed {
         self.raw.view_bits_mut::<Msb0>()[16..32].store_be(value);
         Ok(())
     }
-    /// Get value of 'WheelSpeedRR'
+    /// Returns the value of `WheelSpeedRR`.
     ///
     /// - Min: 0
     /// - Max: 70
     /// - Unit: "yd/s"
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn wheel_speed_rr(&self) -> f32 {
-        self.wheel_speed_rr_raw()
-    }
-    /// Get raw value of 'WheelSpeedRR'
-    ///
-    /// - Start bit: 55
-    /// - Signal size: 16 bits
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
     #[inline(always)]
-    pub fn wheel_speed_rr_raw(&self) -> f32 {
+    pub fn wheel_speed_rr(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[48..64].load_be::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of 'WheelSpeedRR'
+    /// Returns the raw value of `WheelSpeedRR`.
+    ///
+    /// - Start bit: 55
+    /// - Signal size: 16 bits
+    /// - Byte order: BigEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn wheel_speed_rr_raw_val(&self) -> u16 {
+        self.raw.view_bits::<Msb0>()[48..64].load_be::<u16>()
+    }
+    /// Sets the raw value of `WheelSpeedRR`.
+    #[inline(always)]
+    pub fn set_wheel_speed_rr_raw_val(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Msb0>()[48..64].store_be(value);
+    }
+    /// Sets the value of `WheelSpeedRR`.
     #[inline(always)]
     pub fn set_wheel_speed_rr(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 70_f32 < value {
@@ -1817,43 +1843,48 @@ impl VehicleSpeed {
     pub const VEHICLE_SPEED1_MAX: f32 = 100_f32;
     pub const VEHICLE_SPEED2_MIN: f32 = 0_f32;
     pub const VEHICLE_SPEED2_MAX: f32 = 100_f32;
-    /// Construct new 'VehicleSpeed' from values
+    /// Constructs a new `VehicleSpeed` message from values.
     pub fn new(vehicle_speed1: f32, vehicle_speed2: f32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_vehicle_speed1(vehicle_speed1)?;
         res.set_vehicle_speed2(vehicle_speed2)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `VehicleSpeed` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'VehicleSpeed1'
+    /// Returns the value of `VehicleSpeed1`.
     ///
     /// - Min: 0
     /// - Max: 100
     /// - Unit: "mph"
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn vehicle_speed1(&self) -> f32 {
-        self.vehicle_speed1_raw()
-    }
-    /// Get raw value of 'VehicleSpeed1'
-    ///
-    /// - Start bit: 7
-    /// - Signal size: 16 bits
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
     #[inline(always)]
-    pub fn vehicle_speed1_raw(&self) -> f32 {
+    pub fn vehicle_speed1(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of 'VehicleSpeed1'
+    /// Returns the raw value of `VehicleSpeed1`.
+    ///
+    /// - Start bit: 7
+    /// - Signal size: 16 bits
+    /// - Byte order: BigEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn vehicle_speed1_raw_val(&self) -> u16 {
+        self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>()
+    }
+    /// Sets the raw value of `VehicleSpeed1`.
+    #[inline(always)]
+    pub fn set_vehicle_speed1_raw_val(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
+    }
+    /// Sets the value of `VehicleSpeed1`.
     #[inline(always)]
     pub fn set_vehicle_speed1(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 100_f32 < value {
@@ -1867,32 +1898,37 @@ impl VehicleSpeed {
         self.raw.view_bits_mut::<Msb0>()[0..16].store_be(value);
         Ok(())
     }
-    /// Get value of 'VehicleSpeed2'
+    /// Returns the value of `VehicleSpeed2`.
     ///
     /// - Min: 0
     /// - Max: 100
     /// - Unit: "mph"
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn vehicle_speed2(&self) -> f32 {
-        self.vehicle_speed2_raw()
-    }
-    /// Get raw value of 'VehicleSpeed2'
-    ///
-    /// - Start bit: 39
-    /// - Signal size: 16 bits
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
     #[inline(always)]
-    pub fn vehicle_speed2_raw(&self) -> f32 {
+    pub fn vehicle_speed2(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[32..48].load_be::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of 'VehicleSpeed2'
+    /// Returns the raw value of `VehicleSpeed2`.
+    ///
+    /// - Start bit: 39
+    /// - Signal size: 16 bits
+    /// - Byte order: BigEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn vehicle_speed2_raw_val(&self) -> u16 {
+        self.raw.view_bits::<Msb0>()[32..48].load_be::<u16>()
+    }
+    /// Sets the raw value of `VehicleSpeed2`.
+    #[inline(always)]
+    pub fn set_vehicle_speed2_raw_val(&mut self, value: u16) {
+        self.raw.view_bits_mut::<Msb0>()[32..48].store_be(value);
+    }
+    /// Sets the value of `VehicleSpeed2`.
     #[inline(always)]
     pub fn set_vehicle_speed2(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 100_f32 < value {
@@ -1970,21 +2006,21 @@ impl CruiseButtons {
     pub const MESSAGE_SIZE: usize = 3;
     pub const CRUISE_BUTTONS_MIN: u8 = 0_u8;
     pub const CRUISE_BUTTONS_MAX: u8 = 12_u8;
-    /// Construct new 'CruiseButtons' from values
+    /// Constructs a new `CruiseButtons` message from values.
     pub fn new(cruise_buttons: CruiseButtonsCruiseButtons) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 3] };
         res.set_cruise_buttons(cruise_buttons)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `CruiseButtons` message payload.
     pub fn raw(&self) -> &[u8; 3] {
         &self.raw
     }
-    /// Get value of 'CruiseButtons'
+    /// Returns the value of `CruiseButtons`.
     ///
     /// - Min: 0
     /// - Max: 12
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: NEO
     #[inline(always)]
     pub fn cruise_buttons(&self) -> CruiseButtonsCruiseButtons {
@@ -1995,24 +2031,29 @@ impl CruiseButtons {
             3 => CruiseButtonsCruiseButtons::Set,
             2 => CruiseButtonsCruiseButtons::Resume,
             1 => CruiseButtonsCruiseButtons::None,
-            _ => CruiseButtonsCruiseButtons::_Other(self.cruise_buttons_raw()),
+            _ => CruiseButtonsCruiseButtons::_Other(self.cruise_buttons_phys_val()),
         }
     }
-    /// Get raw value of 'CruiseButtons'
+    #[inline(always)]
+    fn cruise_buttons_phys_val(&self) -> u8 {
+        self.cruise_buttons_raw_val()
+    }
+    /// Returns the raw value of `CruiseButtons`.
     ///
     /// - Start bit: 3
     /// - Signal size: 3 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cruise_buttons_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[4..7].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn cruise_buttons_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[4..7].load_be::<u8>()
     }
-    /// Set value of 'CruiseButtons'
+    /// Sets the raw value of `CruiseButtons`.
+    #[inline(always)]
+    pub fn set_cruise_buttons_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[4..7].store_be(value);
+    }
+    /// Sets the value of `CruiseButtons`.
     #[inline(always)]
     pub fn set_cruise_buttons(
         &mut self,
@@ -2024,13 +2065,6 @@ impl CruiseButtons {
                 message_id: CruiseButtons::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CruiseButtons::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[4..7].store_be(value);
         Ok(())
     }
@@ -2098,21 +2132,21 @@ impl CruiseButtons2 {
     pub const MESSAGE_SIZE: usize = 1;
     pub const LKA_GAP_BUTTON_MIN: u8 = 0_u8;
     pub const LKA_GAP_BUTTON_MAX: u8 = 2_u8;
-    /// Construct new 'CruiseButtons2' from values
+    /// Constructs a new `CruiseButtons2` message from values.
     pub fn new(lka_gap_button: CruiseButtons2LkaGapButton) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 1] };
         res.set_lka_gap_button(lka_gap_button)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `CruiseButtons2` message payload.
     pub fn raw(&self) -> &[u8; 1] {
         &self.raw
     }
-    /// Get value of 'LKAGapButton'
+    /// Returns the value of `LKAGapButton`.
     ///
     /// - Min: 0
     /// - Max: 2
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: NEO
     #[inline(always)]
     pub fn lka_gap_button(&self) -> CruiseButtons2LkaGapButton {
@@ -2121,24 +2155,29 @@ impl CruiseButtons2 {
             2 => CruiseButtons2LkaGapButton::X(2),
             1 => CruiseButtons2LkaGapButton::X(1),
             0 => CruiseButtons2LkaGapButton::None,
-            _ => CruiseButtons2LkaGapButton::_Other(self.lka_gap_button_raw()),
+            _ => CruiseButtons2LkaGapButton::_Other(self.lka_gap_button_phys_val()),
         }
     }
-    /// Get raw value of 'LKAGapButton'
+    #[inline(always)]
+    fn lka_gap_button_phys_val(&self) -> u8 {
+        self.lka_gap_button_raw_val()
+    }
+    /// Returns the raw value of `LKAGapButton`.
     ///
     /// - Start bit: 1
     /// - Signal size: 2 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: BigEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn lka_gap_button_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[6..8].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn lka_gap_button_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Msb0>()[6..8].load_be::<u8>()
     }
-    /// Set value of 'LKAGapButton'
+    /// Sets the raw value of `LKAGapButton`.
+    #[inline(always)]
+    pub fn set_lka_gap_button_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Msb0>()[6..8].store_be(value);
+    }
+    /// Sets the value of `LKAGapButton`.
     #[inline(always)]
     pub fn set_lka_gap_button(
         &mut self,
@@ -2150,13 +2189,6 @@ impl CruiseButtons2 {
                 message_id: CruiseButtons2::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CruiseButtons2::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[6..8].store_be(value);
         Ok(())
     }

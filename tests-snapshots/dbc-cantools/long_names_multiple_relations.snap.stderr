@@ -10,86 +10,86 @@ error[E0428]: the name `MsgCaseTest` is defined multiple times
    = note: `MsgCaseTest` must be defined only once in the type namespace of this enum
 
 error[E0428]: the name `MsgCaseTest` is defined multiple times
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:677:1
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:653:1
     |
-607 | pub struct MsgCaseTest {
+583 | pub struct MsgCaseTest {
     | ---------------------- previous definition of the type `MsgCaseTest` here
 ...
-677 | pub struct MsgCaseTest {
+653 | pub struct MsgCaseTest {
     | ^^^^^^^^^^^^^^^^^^^^^^ `MsgCaseTest` redefined here
     |
     = note: `MsgCaseTest` must be defined only once in the type namespace of this module
 
 error[E0119]: conflicting implementations of trait `Clone` for type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:676:10
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:652:10
     |
-606 | #[derive(Clone, Copy)]
+582 | #[derive(Clone, Copy)]
     |          ----- first implementation here
 ...
-676 | #[derive(Clone, Copy)]
+652 | #[derive(Clone, Copy)]
     |          ^^^^^ conflicting implementation for `MsgCaseTest`
 
 error[E0119]: conflicting implementations of trait `Copy` for type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:676:17
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:652:17
     |
-606 | #[derive(Clone, Copy)]
+582 | #[derive(Clone, Copy)]
     |                 ---- first implementation here
 ...
-676 | #[derive(Clone, Copy)]
+652 | #[derive(Clone, Copy)]
     |                 ^^^^ conflicting implementation for `MsgCaseTest`
 
 error[E0119]: conflicting implementations of trait `TryFrom<&[u8]>` for type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:704:1
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:680:1
     |
-634 | impl core::convert::TryFrom<&[u8]> for MsgCaseTest {
+610 | impl core::convert::TryFrom<&[u8]> for MsgCaseTest {
     | -------------------------------------------------- first implementation here
 ...
-704 | impl core::convert::TryFrom<&[u8]> for MsgCaseTest {
+680 | impl core::convert::TryFrom<&[u8]> for MsgCaseTest {
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ conflicting implementation for `MsgCaseTest`
 
 error[E0119]: conflicting implementations of trait `Frame` for type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:716:1
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:692:1
     |
-646 | impl embedded_can::Frame for MsgCaseTest {
+622 | impl embedded_can::Frame for MsgCaseTest {
     | ---------------------------------------- first implementation here
 ...
-716 | impl embedded_can::Frame for MsgCaseTest {
+692 | impl embedded_can::Frame for MsgCaseTest {
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ conflicting implementation for `MsgCaseTest`
 
 error[E0592]: duplicate definitions with name `MESSAGE_ID`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:620:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:596:5
     |
-620 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+596 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `MESSAGE_ID`
 ...
-690 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+666 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
     |     -------------------------------------- other definition for `MESSAGE_ID`
 
 error[E0592]: duplicate definitions with name `MESSAGE_SIZE`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:623:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:599:5
     |
-623 |     pub const MESSAGE_SIZE: usize = 8;
+599 |     pub const MESSAGE_SIZE: usize = 8;
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `MESSAGE_SIZE`
 ...
-693 |     pub const MESSAGE_SIZE: usize = 8;
+669 |     pub const MESSAGE_SIZE: usize = 8;
     |     ----------------------------- other definition for `MESSAGE_SIZE`
 
 error[E0592]: duplicate definitions with name `new`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:625:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:601:5
     |
-625 |     pub fn new() -> Result<Self, CanError> {
+601 |     pub fn new() -> Result<Self, CanError> {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `new`
 ...
-695 |     pub fn new() -> Result<Self, CanError> {
+671 |     pub fn new() -> Result<Self, CanError> {
     |     -------------------------------------- other definition for `new`
 
 error[E0592]: duplicate definitions with name `raw`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:630:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:606:5
     |
-630 |     pub fn raw(&self) -> &[u8; 8] {
+606 |     pub fn raw(&self) -> &[u8; 8] {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `raw`
 ...
-700 |     pub fn raw(&self) -> &[u8; 8] {
+676 |     pub fn raw(&self) -> &[u8; 8] {
     |     ----------------------------- other definition for `raw`
 
 error[E0034]: multiple applicable items in scope
@@ -99,14 +99,14 @@ error[E0034]: multiple applicable items in scope
     |                          ^^^^^^^^^^ multiple `MESSAGE_ID` found
     |
 note: candidate #1 is defined in an impl for the type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:620:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:596:5
     |
-620 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+596 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 note: candidate #2 is defined in an impl for the type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:690:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:666:5
     |
-690 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+666 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 error[E0034]: multiple applicable items in scope
@@ -116,80 +116,80 @@ error[E0034]: multiple applicable items in scope
     |                          ^^^^^^^^^^ multiple `MESSAGE_ID` found
     |
 note: candidate #1 is defined in an impl for the type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:620:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:596:5
     |
-620 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+596 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 note: candidate #2 is defined in an impl for the type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:690:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:666:5
     |
-690 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+666 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 error[E0034]: multiple applicable items in scope
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:648:31
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:624:31
     |
-648 |         if id.into() != Self::MESSAGE_ID { None } else { data.try_into().ok() }
+624 |         if id.into() != Self::MESSAGE_ID { None } else { data.try_into().ok() }
     |                               ^^^^^^^^^^ multiple `MESSAGE_ID` found
     |
 note: candidate #1 is defined in an impl for the type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:620:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:596:5
     |
-620 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+596 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 note: candidate #2 is defined in an impl for the type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:690:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:666:5
     |
-690 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+666 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 error[E0034]: multiple applicable items in scope
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:663:15
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:639:15
     |
-663 |         Self::MESSAGE_ID
+639 |         Self::MESSAGE_ID
     |               ^^^^^^^^^^ multiple `MESSAGE_ID` found
     |
 note: candidate #1 is defined in an impl for the type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:620:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:596:5
     |
-620 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+596 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 note: candidate #2 is defined in an impl for the type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:690:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:666:5
     |
-690 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+666 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 error[E0034]: multiple applicable items in scope
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:718:31
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:694:31
     |
-718 |         if id.into() != Self::MESSAGE_ID { None } else { data.try_into().ok() }
+694 |         if id.into() != Self::MESSAGE_ID { None } else { data.try_into().ok() }
     |                               ^^^^^^^^^^ multiple `MESSAGE_ID` found
     |
 note: candidate #1 is defined in an impl for the type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:620:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:596:5
     |
-620 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+596 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 note: candidate #2 is defined in an impl for the type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:690:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:666:5
     |
-690 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+666 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 error[E0034]: multiple applicable items in scope
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:733:15
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:709:15
     |
-733 |         Self::MESSAGE_ID
+709 |         Self::MESSAGE_ID
     |               ^^^^^^^^^^ multiple `MESSAGE_ID` found
     |
 note: candidate #1 is defined in an impl for the type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:620:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:596:5
     |
-620 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+596 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 note: candidate #2 is defined in an impl for the type `MsgCaseTest`
-   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:690:5
+   --> tests-snapshots/dbc-cantools/long_names_multiple_relations.snap.rs:666:5
     |
-690 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+666 |     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -83,32 +83,37 @@ impl CanMultiplexed {
     pub const VALUE0_MAX: u8 = 0_u8;
     pub const MULTIPLEXER_MIN: u8 = 0_u8;
     pub const MULTIPLEXER_MAX: u8 = 0_u8;
-    /// Construct new 'CANMultiplexed' from values
+    /// Constructs a new `CANMultiplexed` message from values.
     pub fn new(multiplexer: u8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 2] };
         res.set_multiplexer(multiplexer)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `CANMultiplexed` message payload.
     pub fn raw(&self) -> &[u8; 2] {
         &self.raw
     }
-    /// Get raw value of 'Multiplexer'
+    /// Returns the raw value of `Multiplexer`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn multiplexer_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn multiplexer_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
     }
-    pub fn multiplexer(&mut self) -> Result<CanMultiplexedMultiplexerIndex, CanError> {
-        match self.multiplexer_raw() {
+    /// Sets the raw value of `Multiplexer`.
+    #[allow(dead_code)]
+    #[inline(always)]
+    fn set_multiplexer_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Selects the active multiplexed sub-message for `Multiplexer`.
+    pub fn multiplexer_multiplexed(
+        &mut self,
+    ) -> Result<CanMultiplexedMultiplexerIndex, CanError> {
+        match self.multiplexer_raw_val() {
             0 => {
                 Ok(
                     CanMultiplexedMultiplexerIndex::M0(CanMultiplexedMultiplexerM0 {
@@ -131,7 +136,7 @@ impl CanMultiplexed {
             }
         }
     }
-    /// Set value of 'Multiplexer'
+    /// Sets the value of `Multiplexer`.
     #[inline(always)]
     fn set_multiplexer(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 0_u8 < value {
@@ -139,17 +144,10 @@ impl CanMultiplexed {
                 message_id: CanMultiplexed::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CanMultiplexed::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
-    /// Set value of 'Multiplexer'
+    /// Sets the value of `Multiplexer`.
     #[inline(always)]
     pub fn set_m0(
         &mut self,
@@ -161,7 +159,7 @@ impl CanMultiplexed {
         self.set_multiplexer(0)?;
         Ok(())
     }
-    /// Set value of 'Multiplexer'
+    /// Sets the value of `Multiplexer`.
     #[inline(always)]
     pub fn set_m1(
         &mut self,
@@ -308,11 +306,11 @@ impl CanMultiplexedMultiplexerM0 {
     pub fn new() -> Self {
         Self { raw: [0u8; 2] }
     }
-    /// Get value of 'Value0'
+    /// Returns the value of `Value0`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Node0
     #[inline(always)]
     pub fn value0(&self) -> CanMultiplexedValue0 {
@@ -321,24 +319,29 @@ impl CanMultiplexedMultiplexerM0 {
             2 => CanMultiplexedValue0::Value2,
             1 => CanMultiplexedValue0::Value1,
             0 => CanMultiplexedValue0::Value0,
-            _ => CanMultiplexedValue0::_Other(self.value0_raw()),
+            _ => CanMultiplexedValue0::_Other(self.value0_phys_val()),
         }
     }
-    /// Get raw value of 'Value0'
+    #[inline(always)]
+    fn value0_phys_val(&self) -> u8 {
+        self.value0_raw_val()
+    }
+    /// Returns the raw value of `Value0`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn value0_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn value0_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
-    /// Set value of 'Value0'
+    /// Sets the raw value of `Value0`.
+    #[inline(always)]
+    pub fn set_value0_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
+    }
+    /// Sets the value of `Value0`.
     #[inline(always)]
     pub fn set_value0(&mut self, value: CanMultiplexedValue0) -> Result<(), CanError> {
         let value = u8::from(value);
@@ -347,13 +350,6 @@ impl CanMultiplexedMultiplexerM0 {
                 message_id: CanMultiplexed::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CanMultiplexed::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -384,11 +380,11 @@ impl CanMultiplexedMultiplexerM1 {
     pub fn new() -> Self {
         Self { raw: [0u8; 2] }
     }
-    /// Get value of 'Value1'
+    /// Returns the value of `Value1`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Node1
     #[inline(always)]
     pub fn value1(&self) -> CanMultiplexedValue1 {
@@ -398,24 +394,29 @@ impl CanMultiplexedMultiplexerM1 {
             2 => CanMultiplexedValue1::Two,
             1 => CanMultiplexedValue1::One,
             0 => CanMultiplexedValue1::Zero,
-            _ => CanMultiplexedValue1::_Other(self.value1_raw()),
+            _ => CanMultiplexedValue1::_Other(self.value1_phys_val()),
         }
     }
-    /// Get raw value of 'Value1'
+    #[inline(always)]
+    fn value1_phys_val(&self) -> u8 {
+        self.value1_raw_val()
+    }
+    /// Returns the raw value of `Value1`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn value1_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn value1_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>()
     }
-    /// Set value of 'Value1'
+    /// Sets the raw value of `Value1`.
+    #[inline(always)]
+    pub fn set_value1_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
+    }
+    /// Sets the value of `Value1`.
     #[inline(always)]
     pub fn set_value1(&mut self, value: CanMultiplexedValue1) -> Result<(), CanError> {
         let value = u8::from(value);
@@ -424,13 +425,6 @@ impl CanMultiplexedMultiplexerM1 {
                 message_id: CanMultiplexed::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CanMultiplexed::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -462,42 +456,47 @@ impl CanMessage {
     pub const SIGNAL1_MAX: u64 = 100_u64;
     pub const SIGNAL0_MIN: i32 = 0_i32;
     pub const SIGNAL0_MAX: i32 = 0_i32;
-    /// Construct new 'CANMessage' from values
+    /// Constructs a new `CANMessage` message from values.
     pub fn new(signal1: u64, signal0: i32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_signal1(signal1)?;
         res.set_signal0(signal0)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `CANMessage` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'Signal1'
+    /// Returns the value of `Signal1`.
     ///
     /// - Min: 0
     /// - Max: 100
     /// - Unit: "%"
     /// - Receivers: Node1, Node2
-    #[inline(always)]
-    pub fn signal1(&self) -> u64 {
-        self.signal1_raw()
-    }
-    /// Get raw value of 'Signal1'
-    ///
-    /// - Start bit: 32
-    /// - Signal size: 32 bits
     /// - Factor: 100
     /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
     #[inline(always)]
-    pub fn signal1_raw(&self) -> u64 {
+    pub fn signal1(&self) -> u64 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
         let factor = 100;
         u64::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of 'Signal1'
+    /// Returns the raw value of `Signal1`.
+    ///
+    /// - Start bit: 32
+    /// - Signal size: 32 bits
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn signal1_raw_val(&self) -> u32 {
+        self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>()
+    }
+    /// Sets the raw value of `Signal1`.
+    #[inline(always)]
+    pub fn set_signal1_raw_val(&mut self, value: u32) {
+        self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
+    }
+    /// Sets the value of `Signal1`.
     #[inline(always)]
     pub fn set_signal1(&mut self, value: u64) -> Result<(), CanError> {
         if value < 0_u64 || 100_u64 < value {
@@ -515,34 +514,37 @@ impl CanMessage {
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
         Ok(())
     }
-    /// Get value of 'Signal0'
+    /// Returns the value of `Signal0`.
     ///
     /// First signal in this message
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Node1, Node2
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn signal0(&self) -> i32 {
-        self.signal0_raw()
+        self.signal0_raw_val()
     }
-    /// Get raw value of 'Signal0'
+    /// Returns the raw value of `Signal0`.
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn signal0_raw(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn signal0_raw_val(&self) -> i32 {
+        self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
     }
-    /// Set value of 'Signal0'
+    /// Sets the raw value of `Signal0`.
+    #[inline(always)]
+    pub fn set_signal0_raw_val(&mut self, value: i32) {
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
+    }
+    /// Sets the value of `Signal0`.
     #[inline(always)]
     pub fn set_signal0(&mut self, value: i32) -> Result<(), CanError> {
         if value < 0_i32 || 0_i32 < value {
@@ -550,13 +552,6 @@ impl CanMessage {
                 message_id: CanMessage::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CanMessage::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i32;
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
         Ok(())

@@ -74,42 +74,48 @@ impl Foo {
     pub const MESSAGE_CYCLE_TIME_MS: u32 = 200;
     pub const FOO_MIN: f32 = 229.53_f32;
     pub const FOO_MAX: f32 = 270.47_f32;
-    /// Construct new 'Foo' from values
+    /// Constructs a new `Foo` message from values.
     pub fn new(foo: f32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_foo(foo)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Foo` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'Foo'
+    /// Returns the value of `Foo`.
     ///
     /// - Min: 229.53
     /// - Max: 270.47
     /// - Unit: "degK"
     /// - Receivers: Receiver
-    #[inline(always)]
-    pub fn foo(&self) -> f32 {
-        self.foo_raw()
-    }
-    /// Get raw value of 'Foo'
-    ///
-    /// - Start bit: 0
-    /// - Signal size: 12 bits
     /// - Factor: 0.01
     /// - Offset: 250
-    /// - Byte order: BigEndian
-    /// - Value type: Signed
     #[inline(always)]
-    pub fn foo_raw(&self) -> f32 {
+    pub fn foo(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
         let factor = 0.01_f32;
         let offset = 250_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of 'Foo'
+    /// Returns the raw value of `Foo`.
+    ///
+    /// - Start bit: 0
+    /// - Signal size: 12 bits
+    /// - Byte order: BigEndian
+    /// - Value type: Signed
+    #[inline(always)]
+    pub fn foo_raw_val(&self) -> i16 {
+        self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>()
+    }
+    /// Sets the raw value of `Foo`.
+    #[inline(always)]
+    pub fn set_foo_raw_val(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[7..19].store_be(value);
+    }
+    /// Sets the value of `Foo`.
     #[inline(always)]
     pub fn set_foo(&mut self, value: f32) -> Result<(), CanError> {
         if value < 229.53_f32 || 270.47_f32 < value {
@@ -188,42 +194,48 @@ impl Bar {
     pub const MESSAGE_SIZE: usize = 8;
     pub const FOO_MIN: f32 = 229.53_f32;
     pub const FOO_MAX: f32 = 270.47_f32;
-    /// Construct new 'Bar' from values
+    /// Constructs a new `Bar` message from values.
     pub fn new(foo: f32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_foo(foo)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Bar` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'Foo'
+    /// Returns the value of `Foo`.
     ///
     /// - Min: 229.53
     /// - Max: 270.47
     /// - Unit: "degK"
     /// - Receivers: Receiver
-    #[inline(always)]
-    pub fn foo(&self) -> f32 {
-        self.foo_raw()
-    }
-    /// Get raw value of 'Foo'
-    ///
-    /// - Start bit: 0
-    /// - Signal size: 12 bits
     /// - Factor: 0.01
     /// - Offset: 250
-    /// - Byte order: BigEndian
-    /// - Value type: Signed
     #[inline(always)]
-    pub fn foo_raw(&self) -> f32 {
+    pub fn foo(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
         let factor = 0.01_f32;
         let offset = 250_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of 'Foo'
+    /// Returns the raw value of `Foo`.
+    ///
+    /// - Start bit: 0
+    /// - Signal size: 12 bits
+    /// - Byte order: BigEndian
+    /// - Value type: Signed
+    #[inline(always)]
+    pub fn foo_raw_val(&self) -> i16 {
+        self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>()
+    }
+    /// Sets the raw value of `Foo`.
+    #[inline(always)]
+    pub fn set_foo_raw_val(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[7..19].store_be(value);
+    }
+    /// Sets the value of `Foo`.
     #[inline(always)]
     pub fn set_foo(&mut self, value: f32) -> Result<(), CanError> {
         if value < 229.53_f32 || 270.47_f32 < value {

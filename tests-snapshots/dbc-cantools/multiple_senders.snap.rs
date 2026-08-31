@@ -70,42 +70,45 @@ impl Bar {
     pub const MESSAGE_SIZE: usize = 4;
     pub const BINARY32_MIN: i32 = 0_i32;
     pub const BINARY32_MAX: i32 = 0_i32;
-    /// Construct new 'Bar' from values
+    /// Constructs a new `Bar` message from values.
     pub fn new(binary32: i32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 4] };
         res.set_binary32(binary32)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Bar` message payload.
     pub fn raw(&self) -> &[u8; 4] {
         &self.raw
     }
-    /// Get value of 'Binary32'
+    /// Returns the value of `Binary32`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: FUM
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn binary32(&self) -> i32 {
-        self.binary32_raw()
+        self.binary32_raw_val()
     }
-    /// Get raw value of 'Binary32'
+    /// Returns the raw value of `Binary32`.
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn binary32_raw(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn binary32_raw_val(&self) -> i32 {
+        self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
     }
-    /// Set value of 'Binary32'
+    /// Sets the raw value of `Binary32`.
+    #[inline(always)]
+    pub fn set_binary32_raw_val(&mut self, value: i32) {
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
+    }
+    /// Sets the value of `Binary32`.
     #[inline(always)]
     pub fn set_binary32(&mut self, value: i32) -> Result<(), CanError> {
         if value < 0_i32 || 0_i32 < value {
@@ -113,13 +116,6 @@ impl Bar {
                 message_id: Bar::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bar::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i32;
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
         Ok(())

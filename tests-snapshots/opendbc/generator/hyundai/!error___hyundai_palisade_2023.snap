@@ -7,10 +7,7 @@ Error {
         context: "write message `FRT_RADAR11`",
         source: Error {
             context: "write signal impl `BYTE2`",
-            source: Error {
-                context: "signal from payload",
-                source: "signal ends at 24, but message is only 16 bits",
-            },
+            source: "signal ends at 24, but message is only 16 bits",
         },
     },
 }

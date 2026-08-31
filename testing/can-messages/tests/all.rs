@@ -42,26 +42,51 @@ fn check_min_max_values() {
 
 #[test]
 fn pack_unpack_message() {
-    let result = Foo::new(63.9990234375, 10.0).unwrap();
-    assert_eq!(result.voltage_raw(), 63.99899);
-    assert_eq!(result.current_raw(), 10.0);
+    let mut result = Foo::new(63.9990234375, 10.0).unwrap();
+    assert_eq!(result.voltage(), 63.99899);
+    assert_eq!(result.current(), 10.0);
+    assert_eq!(result.current_raw_val(), 160);
+
+    result.set_current_raw_val(-32);
+    assert_eq!(result.current_raw_val(), -32);
+    assert_eq!(result.current(), -2.0);
+
+    result.set_current(10.0).unwrap();
+    assert_eq!(result.current_raw_val(), 160);
 }
 
 #[test]
 fn pack_unpack_message_negative() {
-    let result = Foo::new(0.000976562, -3.0 * 0.0625).unwrap();
-    assert_eq!(result.voltage_raw(), 0.000976562);
-    assert_eq!(result.current_raw(), -3.0 * 0.0625);
+    let mut result = Foo::new(0.000976562, -3.0 * 0.0625).unwrap();
+    assert_eq!(result.voltage(), 0.000976562);
+    assert_eq!(result.current(), -3.0 * 0.0625);
+
+    result.set_voltage_raw_val(12345);
+    assert_eq!(result.voltage_raw_val(), 12345);
+
+    result.set_voltage(63.9990234375).unwrap();
+    assert_eq!(result.voltage_raw_val(), 65535);
 }
 
 #[test]
 fn pack_unpack_message2() {
-    let result = Amet::new(1, 0.39, 3, 3, true).unwrap();
-    assert_eq!(result.one_raw(), 1);
-    assert_eq!(result.two_raw(), 0.39);
-    assert_eq!(result.three_raw(), 3);
-    assert_eq!(result.four_raw(), 3);
-    assert!(result.five_raw());
+    let mut result = Amet::new(1, 0.39, 3, 3, true).unwrap();
+    assert_eq!(result.one_raw_val(), 1);
+    assert_eq!(result.two(), 0.39);
+    assert_eq!(result.two_raw_val(), 1);
+    assert_eq!(result.three_raw_val(), 3);
+    assert_eq!(result.four_raw_val(), 3);
+    assert!(result.five());
+    assert_eq!(result.five_raw_val(), 1);
+
+    result.set_two_raw_val(200);
+    assert_eq!(result.two_raw_val(), 200);
+    assert_eq!(result.two(), 78.0);
+
+    result.set_five_raw_val(0);
+    assert!(!result.five());
+    result.set_five_raw_val(1);
+    assert!(result.five());
 }
 
 #[test]
@@ -73,8 +98,8 @@ fn pack_unpack_message_containing_multiplexed_signals() {
     result.set_m0(m0).unwrap();
 
     assert_eq!(result.unmultiplexed_signal(), 2);
-    assert_eq!(result.multiplexor_raw(), 0);
-    let multiplexor = result.multiplexor().unwrap();
+    assert_eq!(result.multiplexor_raw_val(), 0);
+    let multiplexor = result.multiplexor_multiplexed().unwrap();
     if let MultiplexTestMultiplexorIndex::M0(m0) = multiplexor {
         assert_eq!(m0.multiplexed_signal_zero_a(), 1.2);
         assert_eq!(m0.multiplexed_signal_zero_b(), 2.0);
@@ -86,19 +111,19 @@ fn pack_unpack_message_containing_multiplexed_signals() {
 #[test]
 fn pack_unpack_signed_truncated_signal() {
     let result = TruncatedBeSignal::new(42).unwrap();
-    assert_eq!(result.foo_raw(), 42);
+    assert_eq!(result.foo_raw_val(), 42);
 
     let result = TruncatedLeSignal::new(42).unwrap();
-    assert_eq!(result.foo_raw(), 42);
+    assert_eq!(result.foo_raw_val(), 42);
 }
 
 #[test]
 fn pack_unpack_signed_truncated_signal_negative() {
     let result = TruncatedBeSignal::new(-42).unwrap();
-    assert_eq!(result.foo_raw(), -42);
+    assert_eq!(result.foo_raw_val(), -42);
 
     let result = TruncatedLeSignal::new(-42).unwrap();
-    assert_eq!(result.foo_raw(), -42);
+    assert_eq!(result.foo_raw_val(), -42);
 }
 
 #[test]

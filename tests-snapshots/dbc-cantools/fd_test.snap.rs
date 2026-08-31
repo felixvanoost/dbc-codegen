@@ -84,42 +84,45 @@ impl TestMsgEx {
     pub const MESSAGE_SIZE: usize = 8;
     pub const TEST_SIG_COPY_1_MIN: i8 = 0_i8;
     pub const TEST_SIG_COPY_1_MAX: i8 = 0_i8;
-    /// Construct new 'TestMsg_Ex' from values
+    /// Constructs a new `TestMsg_Ex` message from values.
     pub fn new(test_sig_copy_1: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_test_sig_copy_1(test_sig_copy_1)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `TestMsg_Ex` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'TestSig_Copy_1'
+    /// Returns the value of `TestSig_Copy_1`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn test_sig_copy_1(&self) -> i8 {
-        self.test_sig_copy_1_raw()
+        self.test_sig_copy_1_raw_val()
     }
-    /// Get raw value of 'TestSig_Copy_1'
+    /// Returns the raw value of `TestSig_Copy_1`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn test_sig_copy_1_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn test_sig_copy_1_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set value of 'TestSig_Copy_1'
+    /// Sets the raw value of `TestSig_Copy_1`.
+    #[inline(always)]
+    pub fn set_test_sig_copy_1_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `TestSig_Copy_1`.
     #[inline(always)]
     pub fn set_test_sig_copy_1(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -127,13 +130,6 @@ impl TestMsgEx {
                 message_id: TestMsgEx::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestMsgEx::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -201,42 +197,45 @@ impl TestMsgStd {
     pub const MESSAGE_SIZE: usize = 8;
     pub const TEST_SIG_COPY_3_MIN: i8 = 0_i8;
     pub const TEST_SIG_COPY_3_MAX: i8 = 0_i8;
-    /// Construct new 'TestMsg_Std' from values
+    /// Constructs a new `TestMsg_Std` message from values.
     pub fn new(test_sig_copy_3: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_test_sig_copy_3(test_sig_copy_3)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `TestMsg_Std` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'TestSig_Copy_3'
+    /// Returns the value of `TestSig_Copy_3`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn test_sig_copy_3(&self) -> i8 {
-        self.test_sig_copy_3_raw()
+        self.test_sig_copy_3_raw_val()
     }
-    /// Get raw value of 'TestSig_Copy_3'
+    /// Returns the raw value of `TestSig_Copy_3`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn test_sig_copy_3_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn test_sig_copy_3_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set value of 'TestSig_Copy_3'
+    /// Sets the raw value of `TestSig_Copy_3`.
+    #[inline(always)]
+    pub fn set_test_sig_copy_3_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `TestSig_Copy_3`.
     #[inline(always)]
     pub fn set_test_sig_copy_3(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -244,13 +243,6 @@ impl TestMsgStd {
                 message_id: TestMsgStd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestMsgStd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -318,42 +310,45 @@ impl TestMsgFdStd {
     pub const MESSAGE_SIZE: usize = 8;
     pub const TEST_SIG_COPY_2_MIN: i8 = 0_i8;
     pub const TEST_SIG_COPY_2_MAX: i8 = 0_i8;
-    /// Construct new 'TestMsg_FDStd' from values
+    /// Constructs a new `TestMsg_FDStd` message from values.
     pub fn new(test_sig_copy_2: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_test_sig_copy_2(test_sig_copy_2)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `TestMsg_FDStd` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'TestSig_Copy_2'
+    /// Returns the value of `TestSig_Copy_2`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn test_sig_copy_2(&self) -> i8 {
-        self.test_sig_copy_2_raw()
+        self.test_sig_copy_2_raw_val()
     }
-    /// Get raw value of 'TestSig_Copy_2'
+    /// Returns the raw value of `TestSig_Copy_2`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn test_sig_copy_2_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn test_sig_copy_2_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set value of 'TestSig_Copy_2'
+    /// Sets the raw value of `TestSig_Copy_2`.
+    #[inline(always)]
+    pub fn set_test_sig_copy_2_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `TestSig_Copy_2`.
     #[inline(always)]
     pub fn set_test_sig_copy_2(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -361,13 +356,6 @@ impl TestMsgFdStd {
                 message_id: TestMsgFdStd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestMsgFdStd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -435,42 +423,45 @@ impl TestMsgFdEx {
     pub const MESSAGE_SIZE: usize = 8;
     pub const TEST_SIG_MIN: i8 = 0_i8;
     pub const TEST_SIG_MAX: i8 = 0_i8;
-    /// Construct new 'TestMsg_FDEx' from values
+    /// Constructs a new `TestMsg_FDEx` message from values.
     pub fn new(test_sig: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_test_sig(test_sig)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `TestMsg_FDEx` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'TestSig'
+    /// Returns the value of `TestSig`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn test_sig(&self) -> i8 {
-        self.test_sig_raw()
+        self.test_sig_raw_val()
     }
-    /// Get raw value of 'TestSig'
+    /// Returns the raw value of `TestSig`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn test_sig_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn test_sig_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set value of 'TestSig'
+    /// Sets the raw value of `TestSig`.
+    #[inline(always)]
+    pub fn set_test_sig_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `TestSig`.
     #[inline(always)]
     pub fn set_test_sig(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -478,13 +469,6 @@ impl TestMsgFdEx {
                 message_id: TestMsgFdEx::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestMsgFdEx::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())

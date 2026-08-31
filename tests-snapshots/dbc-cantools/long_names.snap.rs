@@ -134,12 +134,12 @@ impl Ss123456789012345678901234587890 {
         StandardId::new_unchecked(0x9)
     });
     pub const MESSAGE_SIZE: usize = 8;
-    /// Construct new 'SS123456789012345678901234587890' from values
+    /// Constructs a new `SS123456789012345678901234587890` message from values.
     pub fn new() -> Result<Self, CanError> {
         let res = Self { raw: [0x00; 8] };
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `SS123456789012345678901234587890` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
@@ -204,12 +204,12 @@ impl Ss12345678901234567890123450000 {
         StandardId::new_unchecked(0x8)
     });
     pub const MESSAGE_SIZE: usize = 8;
-    /// Construct new 'SS1234567890123456789012345_0000' from values
+    /// Constructs a new `SS1234567890123456789012345_0000` message from values.
     pub fn new() -> Result<Self, CanError> {
         let res = Self { raw: [0x00; 8] };
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `SS1234567890123456789012345_0000` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
@@ -274,12 +274,12 @@ impl Ss12345678901234567890123450001 {
         StandardId::new_unchecked(0x7)
     });
     pub const MESSAGE_SIZE: usize = 8;
-    /// Construct new 'SS1234567890123456789012345_0001' from values
+    /// Constructs a new `SS1234567890123456789012345_0001` message from values.
     pub fn new() -> Result<Self, CanError> {
         let res = Self { raw: [0x00; 8] };
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `SS1234567890123456789012345_0001` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
@@ -344,12 +344,12 @@ impl Ss123456789012345678901234577890 {
         StandardId::new_unchecked(0x6)
     });
     pub const MESSAGE_SIZE: usize = 8;
-    /// Construct new 'SS123456789012345678901234577890' from values
+    /// Constructs a new `SS123456789012345678901234577890` message from values.
     pub fn new() -> Result<Self, CanError> {
         let res = Self { raw: [0x00; 8] };
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `SS123456789012345678901234577890` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
@@ -414,12 +414,12 @@ impl Ss123456789012345678901234567890 {
         StandardId::new_unchecked(0x5)
     });
     pub const MESSAGE_SIZE: usize = 8;
-    /// Construct new 'SS123456789012345678901234567890' from values
+    /// Constructs a new `SS123456789012345678901234567890` message from values.
     pub fn new() -> Result<Self, CanError> {
         let res = Self { raw: [0x00; 8] };
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `SS123456789012345678901234567890` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
@@ -486,42 +486,45 @@ impl S1234567890123456789012345678901 {
     pub const MESSAGE_SIZE: usize = 8;
     pub const SS123456789012345678901234567890_MIN: i8 = 0_i8;
     pub const SS123456789012345678901234567890_MAX: i8 = 0_i8;
-    /// Construct new 'S1234567890123456789012345678901' from values
+    /// Constructs a new `S1234567890123456789012345678901` message from values.
     pub fn new(ss123456789012345678901234567890: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_ss123456789012345678901234567890(ss123456789012345678901234567890)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `S1234567890123456789012345678901` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'SS123456789012345678901234567890'
+    /// Returns the value of `SS123456789012345678901234567890`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn ss123456789012345678901234567890(&self) -> i8 {
-        self.ss123456789012345678901234567890_raw()
+        self.ss123456789012345678901234567890_raw_val()
     }
-    /// Get raw value of 'SS123456789012345678901234567890'
+    /// Returns the raw value of `SS123456789012345678901234567890`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ss123456789012345678901234567890_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn ss123456789012345678901234567890_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set value of 'SS123456789012345678901234567890'
+    /// Sets the raw value of `SS123456789012345678901234567890`.
+    #[inline(always)]
+    pub fn set_ss123456789012345678901234567890_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `SS123456789012345678901234567890`.
     #[inline(always)]
     pub fn set_ss123456789012345678901234567890(
         &mut self,
@@ -532,13 +535,6 @@ impl S1234567890123456789012345678901 {
                 message_id: S1234567890123456789012345678901::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: S1234567890123456789012345678901::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -606,42 +602,45 @@ impl M123456789012345678901234560000 {
     pub const MESSAGE_SIZE: usize = 8;
     pub const SSS12345678901234567890123456789_MIN: i8 = 0_i8;
     pub const SSS12345678901234567890123456789_MAX: i8 = 0_i8;
-    /// Construct new 'M12345678901234567890123456_0000' from values
+    /// Constructs a new `M12345678901234567890123456_0000` message from values.
     pub fn new(sss12345678901234567890123456789: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_sss12345678901234567890123456789(sss12345678901234567890123456789)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `M12345678901234567890123456_0000` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'SSS12345678901234567890123456789'
+    /// Returns the value of `SSS12345678901234567890123456789`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn sss12345678901234567890123456789(&self) -> i8 {
-        self.sss12345678901234567890123456789_raw()
+        self.sss12345678901234567890123456789_raw_val()
     }
-    /// Get raw value of 'SSS12345678901234567890123456789'
+    /// Returns the raw value of `SSS12345678901234567890123456789`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sss12345678901234567890123456789_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn sss12345678901234567890123456789_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set value of 'SSS12345678901234567890123456789'
+    /// Sets the raw value of `SSS12345678901234567890123456789`.
+    #[inline(always)]
+    pub fn set_sss12345678901234567890123456789_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `SSS12345678901234567890123456789`.
     #[inline(always)]
     pub fn set_sss12345678901234567890123456789(
         &mut self,
@@ -652,13 +651,6 @@ impl M123456789012345678901234560000 {
                 message_id: M123456789012345678901234560000::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: M123456789012345678901234560000::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -735,7 +727,7 @@ impl M1234567890123456789012345678901 {
     pub const S12345678901234567890123456_0000_MAX: i8 = 0_i8;
     pub const S1234567890123456789012345678901_MIN: i8 = 0_i8;
     pub const S1234567890123456789012345678901_MAX: i8 = 0_i8;
-    /// Construct new 'M1234567890123456789012345678901' from values
+    /// Constructs a new `M1234567890123456789012345678901` message from values.
     pub fn new(
         ss1234567890123456789012345_0000: i8,
         ss1234567890123456789012345_0001: i8,
@@ -751,36 +743,39 @@ impl M1234567890123456789012345678901 {
         res.set_s1234567890123456789012345678901(s1234567890123456789012345678901)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `M1234567890123456789012345678901` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'SS1234567890123456789012345_0000'
+    /// Returns the value of `SS1234567890123456789012345_0000`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn ss1234567890123456789012345_0000(&self) -> i8 {
-        self.ss1234567890123456789012345_0000_raw()
+        self.ss1234567890123456789012345_0000_raw_val()
     }
-    /// Get raw value of 'SS1234567890123456789012345_0000'
+    /// Returns the raw value of `SS1234567890123456789012345_0000`.
     ///
     /// - Start bit: 32
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ss1234567890123456789012345_0000_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn ss1234567890123456789012345_0000_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[32..40].load_le::<i8>()
     }
-    /// Set value of 'SS1234567890123456789012345_0000'
+    /// Sets the raw value of `SS1234567890123456789012345_0000`.
+    #[inline(always)]
+    pub fn set_ss1234567890123456789012345_0000_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
+    }
+    /// Sets the value of `SS1234567890123456789012345_0000`.
     #[inline(always)]
     pub fn set_ss1234567890123456789012345_0000(
         &mut self,
@@ -791,43 +786,39 @@ impl M1234567890123456789012345678901 {
                 message_id: M1234567890123456789012345678901::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: M1234567890123456789012345678901::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
-    /// Get value of 'SS1234567890123456789012345_0001'
+    /// Returns the value of `SS1234567890123456789012345_0001`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn ss1234567890123456789012345_0001(&self) -> i8 {
-        self.ss1234567890123456789012345_0001_raw()
+        self.ss1234567890123456789012345_0001_raw_val()
     }
-    /// Get raw value of 'SS1234567890123456789012345_0001'
+    /// Returns the raw value of `SS1234567890123456789012345_0001`.
     ///
     /// - Start bit: 24
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ss1234567890123456789012345_0001_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn ss1234567890123456789012345_0001_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>()
     }
-    /// Set value of 'SS1234567890123456789012345_0001'
+    /// Sets the raw value of `SS1234567890123456789012345_0001`.
+    #[inline(always)]
+    pub fn set_ss1234567890123456789012345_0001_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
+    }
+    /// Sets the value of `SS1234567890123456789012345_0001`.
     #[inline(always)]
     pub fn set_ss1234567890123456789012345_0001(
         &mut self,
@@ -838,43 +829,39 @@ impl M1234567890123456789012345678901 {
                 message_id: M1234567890123456789012345678901::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: M1234567890123456789012345678901::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
-    /// Get value of 'SS1234567890123456789012345_0002'
+    /// Returns the value of `SS1234567890123456789012345_0002`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: N12345678901234567890123456_0000
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn ss1234567890123456789012345_0002(&self) -> i8 {
-        self.ss1234567890123456789012345_0002_raw()
+        self.ss1234567890123456789012345_0002_raw_val()
     }
-    /// Get raw value of 'SS1234567890123456789012345_0002'
+    /// Returns the raw value of `SS1234567890123456789012345_0002`.
     ///
     /// - Start bit: 16
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ss1234567890123456789012345_0002_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn ss1234567890123456789012345_0002_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>()
     }
-    /// Set value of 'SS1234567890123456789012345_0002'
+    /// Sets the raw value of `SS1234567890123456789012345_0002`.
+    #[inline(always)]
+    pub fn set_ss1234567890123456789012345_0002_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
+    }
+    /// Sets the value of `SS1234567890123456789012345_0002`.
     #[inline(always)]
     pub fn set_ss1234567890123456789012345_0002(
         &mut self,
@@ -885,43 +872,39 @@ impl M1234567890123456789012345678901 {
                 message_id: M1234567890123456789012345678901::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: M1234567890123456789012345678901::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
-    /// Get value of 'S12345678901234567890123456_0000'
+    /// Returns the value of `S12345678901234567890123456_0000`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s12345678901234567890123456_0000(&self) -> i8 {
-        self.s12345678901234567890123456_0000_raw()
+        self.s12345678901234567890123456_0000_raw_val()
     }
-    /// Get raw value of 'S12345678901234567890123456_0000'
+    /// Returns the raw value of `S12345678901234567890123456_0000`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s12345678901234567890123456_0000_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s12345678901234567890123456_0000_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
-    /// Set value of 'S12345678901234567890123456_0000'
+    /// Sets the raw value of `S12345678901234567890123456_0000`.
+    #[inline(always)]
+    pub fn set_s12345678901234567890123456_0000_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
+    }
+    /// Sets the value of `S12345678901234567890123456_0000`.
     #[inline(always)]
     pub fn set_s12345678901234567890123456_0000(
         &mut self,
@@ -932,43 +915,39 @@ impl M1234567890123456789012345678901 {
                 message_id: M1234567890123456789012345678901::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: M1234567890123456789012345678901::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// Get value of 'S1234567890123456789012345678901'
+    /// Returns the value of `S1234567890123456789012345678901`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s1234567890123456789012345678901(&self) -> i8 {
-        self.s1234567890123456789012345678901_raw()
+        self.s1234567890123456789012345678901_raw_val()
     }
-    /// Get raw value of 'S1234567890123456789012345678901'
+    /// Returns the raw value of `S1234567890123456789012345678901`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s1234567890123456789012345678901_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s1234567890123456789012345678901_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set value of 'S1234567890123456789012345678901'
+    /// Sets the raw value of `S1234567890123456789012345678901`.
+    #[inline(always)]
+    pub fn set_s1234567890123456789012345678901_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `S1234567890123456789012345678901`.
     #[inline(always)]
     pub fn set_s1234567890123456789012345678901(
         &mut self,
@@ -979,13 +958,6 @@ impl M1234567890123456789012345678901 {
                 message_id: M1234567890123456789012345678901::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: M1234567890123456789012345678901::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -1060,7 +1032,7 @@ impl M123456789012345678901234560001 {
     pub const S12345678901234567890123456_0001_MAX: i8 = 0_i8;
     pub const S12345678901234567890123456_0002_MIN: i8 = 0_i8;
     pub const S12345678901234567890123456_0002_MAX: i8 = 0_i8;
-    /// Construct new 'M12345678901234567890123456_0001' from values
+    /// Constructs a new `M12345678901234567890123456_0001` message from values.
     pub fn new(
         ss1234567890123456789012345_0003: i8,
         ss1234567890123456789012345_0004: i8,
@@ -1074,36 +1046,39 @@ impl M123456789012345678901234560001 {
         res.set_s12345678901234567890123456_0002(s12345678901234567890123456_0002)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `M12345678901234567890123456_0001` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'SS1234567890123456789012345_0003'
+    /// Returns the value of `SS1234567890123456789012345_0003`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn ss1234567890123456789012345_0003(&self) -> i8 {
-        self.ss1234567890123456789012345_0003_raw()
+        self.ss1234567890123456789012345_0003_raw_val()
     }
-    /// Get raw value of 'SS1234567890123456789012345_0003'
+    /// Returns the raw value of `SS1234567890123456789012345_0003`.
     ///
     /// - Start bit: 24
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ss1234567890123456789012345_0003_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn ss1234567890123456789012345_0003_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>()
     }
-    /// Set value of 'SS1234567890123456789012345_0003'
+    /// Sets the raw value of `SS1234567890123456789012345_0003`.
+    #[inline(always)]
+    pub fn set_ss1234567890123456789012345_0003_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
+    }
+    /// Sets the value of `SS1234567890123456789012345_0003`.
     #[inline(always)]
     pub fn set_ss1234567890123456789012345_0003(
         &mut self,
@@ -1114,43 +1089,39 @@ impl M123456789012345678901234560001 {
                 message_id: M123456789012345678901234560001::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: M123456789012345678901234560001::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
-    /// Get value of 'SS1234567890123456789012345_0004'
+    /// Returns the value of `SS1234567890123456789012345_0004`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn ss1234567890123456789012345_0004(&self) -> i8 {
-        self.ss1234567890123456789012345_0004_raw()
+        self.ss1234567890123456789012345_0004_raw_val()
     }
-    /// Get raw value of 'SS1234567890123456789012345_0004'
+    /// Returns the raw value of `SS1234567890123456789012345_0004`.
     ///
     /// - Start bit: 16
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ss1234567890123456789012345_0004_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn ss1234567890123456789012345_0004_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>()
     }
-    /// Set value of 'SS1234567890123456789012345_0004'
+    /// Sets the raw value of `SS1234567890123456789012345_0004`.
+    #[inline(always)]
+    pub fn set_ss1234567890123456789012345_0004_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
+    }
+    /// Sets the value of `SS1234567890123456789012345_0004`.
     #[inline(always)]
     pub fn set_ss1234567890123456789012345_0004(
         &mut self,
@@ -1161,43 +1132,39 @@ impl M123456789012345678901234560001 {
                 message_id: M123456789012345678901234560001::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: M123456789012345678901234560001::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
-    /// Get value of 'S12345678901234567890123456_0001'
+    /// Returns the value of `S12345678901234567890123456_0001`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s12345678901234567890123456_0001(&self) -> i8 {
-        self.s12345678901234567890123456_0001_raw()
+        self.s12345678901234567890123456_0001_raw_val()
     }
-    /// Get raw value of 'S12345678901234567890123456_0001'
+    /// Returns the raw value of `S12345678901234567890123456_0001`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s12345678901234567890123456_0001_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s12345678901234567890123456_0001_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
-    /// Set value of 'S12345678901234567890123456_0001'
+    /// Sets the raw value of `S12345678901234567890123456_0001`.
+    #[inline(always)]
+    pub fn set_s12345678901234567890123456_0001_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
+    }
+    /// Sets the value of `S12345678901234567890123456_0001`.
     #[inline(always)]
     pub fn set_s12345678901234567890123456_0001(
         &mut self,
@@ -1208,43 +1175,39 @@ impl M123456789012345678901234560001 {
                 message_id: M123456789012345678901234560001::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: M123456789012345678901234560001::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// Get value of 'S12345678901234567890123456_0002'
+    /// Returns the value of `S12345678901234567890123456_0002`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s12345678901234567890123456_0002(&self) -> i8 {
-        self.s12345678901234567890123456_0002_raw()
+        self.s12345678901234567890123456_0002_raw_val()
     }
-    /// Get raw value of 'S12345678901234567890123456_0002'
+    /// Returns the raw value of `S12345678901234567890123456_0002`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s12345678901234567890123456_0002_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s12345678901234567890123456_0002_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set value of 'S12345678901234567890123456_0002'
+    /// Sets the raw value of `S12345678901234567890123456_0002`.
+    #[inline(always)]
+    pub fn set_s12345678901234567890123456_0002_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `S12345678901234567890123456_0002`.
     #[inline(always)]
     pub fn set_s12345678901234567890123456_0002(
         &mut self,
@@ -1255,13 +1218,6 @@ impl M123456789012345678901234560001 {
                 message_id: M123456789012345678901234560001::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: M123456789012345678901234560001::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -1331,7 +1287,7 @@ impl Mm123456789012345678901234567890 {
     pub const SSS123456789012345678901234_0000_MAX: i8 = 0_i8;
     pub const SS1234567890123456789012345_0005_MIN: i8 = 0_i8;
     pub const SS1234567890123456789012345_0005_MAX: i8 = 0_i8;
-    /// Construct new 'MM123456789012345678901234567890' from values
+    /// Constructs a new `MM123456789012345678901234567890` message from values.
     pub fn new(
         sss123456789012345678901234_0000: i8,
         ss1234567890123456789012345_0005: i8,
@@ -1341,36 +1297,39 @@ impl Mm123456789012345678901234567890 {
         res.set_ss1234567890123456789012345_0005(ss1234567890123456789012345_0005)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `MM123456789012345678901234567890` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'SSS123456789012345678901234_0000'
+    /// Returns the value of `SSS123456789012345678901234_0000`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn sss123456789012345678901234_0000(&self) -> i8 {
-        self.sss123456789012345678901234_0000_raw()
+        self.sss123456789012345678901234_0000_raw_val()
     }
-    /// Get raw value of 'SSS123456789012345678901234_0000'
+    /// Returns the raw value of `SSS123456789012345678901234_0000`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sss123456789012345678901234_0000_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn sss123456789012345678901234_0000_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
-    /// Set value of 'SSS123456789012345678901234_0000'
+    /// Sets the raw value of `SSS123456789012345678901234_0000`.
+    #[inline(always)]
+    pub fn set_sss123456789012345678901234_0000_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
+    }
+    /// Sets the value of `SSS123456789012345678901234_0000`.
     #[inline(always)]
     pub fn set_sss123456789012345678901234_0000(
         &mut self,
@@ -1381,43 +1340,39 @@ impl Mm123456789012345678901234567890 {
                 message_id: Mm123456789012345678901234567890::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Mm123456789012345678901234567890::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// Get value of 'SS1234567890123456789012345_0005'
+    /// Returns the value of `SS1234567890123456789012345_0005`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn ss1234567890123456789012345_0005(&self) -> i8 {
-        self.ss1234567890123456789012345_0005_raw()
+        self.ss1234567890123456789012345_0005_raw_val()
     }
-    /// Get raw value of 'SS1234567890123456789012345_0005'
+    /// Returns the raw value of `SS1234567890123456789012345_0005`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn ss1234567890123456789012345_0005_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn ss1234567890123456789012345_0005_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set value of 'SS1234567890123456789012345_0005'
+    /// Sets the raw value of `SS1234567890123456789012345_0005`.
+    #[inline(always)]
+    pub fn set_ss1234567890123456789012345_0005_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `SS1234567890123456789012345_0005`.
     #[inline(always)]
     pub fn set_ss1234567890123456789012345_0005(
         &mut self,
@@ -1428,13 +1383,6 @@ impl Mm123456789012345678901234567890 {
                 message_id: Mm123456789012345678901234567890::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Mm123456789012345678901234567890::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())

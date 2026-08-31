@@ -84,33 +84,36 @@ impl Shared {
     pub const S1_MAX: i8 = 0_i8;
     pub const S0_MIN: i8 = 0_i8;
     pub const S0_MAX: i8 = 0_i8;
-    /// Construct new 'Shared' from values
+    /// Constructs a new `Shared` message from values.
     pub fn new(s0: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_s0(s0)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Shared` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get raw value of 'S0'
+    /// Returns the raw value of `S0`.
     ///
     /// - Start bit: 0
     /// - Signal size: 4 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s0_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..4].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s0_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..4].load_le::<i8>()
     }
-    pub fn s0(&mut self) -> Result<SharedS0Index, CanError> {
-        match self.s0_raw() {
+    /// Sets the raw value of `S0`.
+    #[allow(dead_code)]
+    #[inline(always)]
+    fn set_s0_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
+    }
+    /// Selects the active multiplexed sub-message for `S0`.
+    pub fn s0_multiplexed(&mut self) -> Result<SharedS0Index, CanError> {
+        match self.s0_raw_val() {
             1 => Ok(SharedS0Index::M1(SharedS0M1 { raw: self.raw })),
             2 => Ok(SharedS0Index::M2(SharedS0M2 { raw: self.raw })),
             multiplexor => {
@@ -121,7 +124,7 @@ impl Shared {
             }
         }
     }
-    /// Set value of 'S0'
+    /// Sets the value of `S0`.
     #[inline(always)]
     fn set_s0(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -129,18 +132,11 @@ impl Shared {
                 message_id: Shared::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Shared::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
         Ok(())
     }
-    /// Set value of 'S0'
+    /// Sets the value of `S0`.
     #[inline(always)]
     pub fn set_m1(&mut self, value: SharedS0M1) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -149,7 +145,7 @@ impl Shared {
         self.set_s0(1)?;
         Ok(())
     }
-    /// Set value of 'S0'
+    /// Sets the value of `S0`.
     #[inline(always)]
     pub fn set_m2(&mut self, value: SharedS0M2) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -237,32 +233,35 @@ impl SharedS0M1 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// Get value of 'S1'
+    /// Returns the value of `S1`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s1(&self) -> i8 {
-        self.s1_raw()
+        self.s1_raw_val()
     }
-    /// Get raw value of 'S1'
+    /// Returns the raw value of `S1`.
     ///
     /// - Start bit: 4
     /// - Signal size: 4 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s1_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[4..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s1_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[4..8].load_le::<i8>()
     }
-    /// Set value of 'S1'
+    /// Sets the raw value of `S1`.
+    #[inline(always)]
+    pub fn set_s1_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[4..8].store_le(value);
+    }
+    /// Sets the value of `S1`.
     #[inline(always)]
     pub fn set_s1(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -270,13 +269,6 @@ impl SharedS0M1 {
                 message_id: Shared::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Shared::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[4..8].store_le(value);
         Ok(())
@@ -308,32 +300,35 @@ impl SharedS0M2 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// Get value of 'S2'
+    /// Returns the value of `S2`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s2(&self) -> i8 {
-        self.s2_raw()
+        self.s2_raw_val()
     }
-    /// Get raw value of 'S2'
+    /// Returns the raw value of `S2`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s2_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s2_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
-    /// Set value of 'S2'
+    /// Sets the raw value of `S2`.
+    #[inline(always)]
+    pub fn set_s2_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
+    }
+    /// Sets the value of `S2`.
     #[inline(always)]
     pub fn set_s2(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -341,13 +336,6 @@ impl SharedS0M2 {
                 message_id: Shared::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Shared::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
@@ -381,33 +369,36 @@ impl Normal {
     pub const S1_MAX: i8 = 0_i8;
     pub const S0_MIN: i8 = 0_i8;
     pub const S0_MAX: i8 = 0_i8;
-    /// Construct new 'Normal' from values
+    /// Constructs a new `Normal` message from values.
     pub fn new(s0: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_s0(s0)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Normal` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get raw value of 'S0'
+    /// Returns the raw value of `S0`.
     ///
     /// - Start bit: 0
     /// - Signal size: 4 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s0_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..4].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s0_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..4].load_le::<i8>()
     }
-    pub fn s0(&mut self) -> Result<NormalS0Index, CanError> {
-        match self.s0_raw() {
+    /// Sets the raw value of `S0`.
+    #[allow(dead_code)]
+    #[inline(always)]
+    fn set_s0_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
+    }
+    /// Selects the active multiplexed sub-message for `S0`.
+    pub fn s0_multiplexed(&mut self) -> Result<NormalS0Index, CanError> {
+        match self.s0_raw_val() {
             0 => Ok(NormalS0Index::M0(NormalS0M0 { raw: self.raw })),
             1 => Ok(NormalS0Index::M1(NormalS0M1 { raw: self.raw })),
             multiplexor => {
@@ -418,7 +409,7 @@ impl Normal {
             }
         }
     }
-    /// Set value of 'S0'
+    /// Sets the value of `S0`.
     #[inline(always)]
     fn set_s0(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -426,18 +417,11 @@ impl Normal {
                 message_id: Normal::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Normal::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
         Ok(())
     }
-    /// Set value of 'S0'
+    /// Sets the value of `S0`.
     #[inline(always)]
     pub fn set_m0(&mut self, value: NormalS0M0) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -446,7 +430,7 @@ impl Normal {
         self.set_s0(0)?;
         Ok(())
     }
-    /// Set value of 'S0'
+    /// Sets the value of `S0`.
     #[inline(always)]
     pub fn set_m1(&mut self, value: NormalS0M1) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -534,32 +518,35 @@ impl NormalS0M0 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// Get value of 'S1'
+    /// Returns the value of `S1`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s1(&self) -> i8 {
-        self.s1_raw()
+        self.s1_raw_val()
     }
-    /// Get raw value of 'S1'
+    /// Returns the raw value of `S1`.
     ///
     /// - Start bit: 4
     /// - Signal size: 4 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s1_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[4..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s1_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[4..8].load_le::<i8>()
     }
-    /// Set value of 'S1'
+    /// Sets the raw value of `S1`.
+    #[inline(always)]
+    pub fn set_s1_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[4..8].store_le(value);
+    }
+    /// Sets the value of `S1`.
     #[inline(always)]
     pub fn set_s1(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -567,13 +554,6 @@ impl NormalS0M0 {
                 message_id: Normal::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Normal::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[4..8].store_le(value);
         Ok(())
@@ -605,32 +585,35 @@ impl NormalS0M1 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// Get value of 'S2'
+    /// Returns the value of `S2`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s2(&self) -> i8 {
-        self.s2_raw()
+        self.s2_raw_val()
     }
-    /// Get raw value of 'S2'
+    /// Returns the raw value of `S2`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s2_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s2_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
-    /// Set value of 'S2'
+    /// Sets the raw value of `S2`.
+    #[inline(always)]
+    pub fn set_s2_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
+    }
+    /// Sets the value of `S2`.
     #[inline(always)]
     pub fn set_s2(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -638,13 +621,6 @@ impl NormalS0M1 {
                 message_id: Normal::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Normal::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
@@ -690,34 +666,37 @@ impl Extended {
     pub const S1_MAX: i8 = 0_i8;
     pub const S0_MIN: i8 = 0_i8;
     pub const S0_MAX: i8 = 0_i8;
-    /// Construct new 'Extended' from values
+    /// Constructs a new `Extended` message from values.
     pub fn new(s6: i8, s0: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_s6(s6)?;
         res.set_s0(s0)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Extended` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get raw value of 'S6'
+    /// Returns the raw value of `S6`.
     ///
     /// - Start bit: 32
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s6_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s6_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[32..40].load_le::<i8>()
     }
-    pub fn s6(&mut self) -> Result<ExtendedS6Index, CanError> {
-        match self.s6_raw() {
+    /// Sets the raw value of `S6`.
+    #[allow(dead_code)]
+    #[inline(always)]
+    fn set_s6_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
+    }
+    /// Selects the active multiplexed sub-message for `S6`.
+    pub fn s6_multiplexed(&mut self) -> Result<ExtendedS6Index, CanError> {
+        match self.s6_raw_val() {
             0 => Ok(ExtendedS6Index::M0(ExtendedS6M0 { raw: self.raw })),
             1 => Ok(ExtendedS6Index::M1(ExtendedS6M1 { raw: self.raw })),
             2 => Ok(ExtendedS6Index::M2(ExtendedS6M2 { raw: self.raw })),
@@ -729,7 +708,7 @@ impl Extended {
             }
         }
     }
-    /// Set value of 'S6'
+    /// Sets the value of `S6`.
     #[inline(always)]
     fn set_s6(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -737,18 +716,11 @@ impl Extended {
                 message_id: Extended::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Extended::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
-    /// Set value of 'S6'
+    /// Sets the value of `S6`.
     #[inline(always)]
     pub fn set_m0(&mut self, value: ExtendedS6M0) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -757,7 +729,7 @@ impl Extended {
         self.set_s6(0)?;
         Ok(())
     }
-    /// Set value of 'S6'
+    /// Sets the value of `S6`.
     #[inline(always)]
     pub fn set_m1(&mut self, value: ExtendedS6M1) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -766,7 +738,7 @@ impl Extended {
         self.set_s6(1)?;
         Ok(())
     }
-    /// Set value of 'S6'
+    /// Sets the value of `S6`.
     #[inline(always)]
     pub fn set_m2(&mut self, value: ExtendedS6M2) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -775,23 +747,26 @@ impl Extended {
         self.set_s6(2)?;
         Ok(())
     }
-    /// Get raw value of 'S0'
+    /// Returns the raw value of `S0`.
     ///
     /// - Start bit: 0
     /// - Signal size: 4 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s0_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..4].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s0_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..4].load_le::<i8>()
     }
-    pub fn s0(&mut self) -> Result<ExtendedS0Index, CanError> {
-        match self.s0_raw() {
+    /// Sets the raw value of `S0`.
+    #[allow(dead_code)]
+    #[inline(always)]
+    fn set_s0_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
+    }
+    /// Selects the active multiplexed sub-message for `S0`.
+    pub fn s0_multiplexed(&mut self) -> Result<ExtendedS0Index, CanError> {
+        match self.s0_raw_val() {
             0 => Ok(ExtendedS0Index::M0(ExtendedS0M0 { raw: self.raw })),
             1 => Ok(ExtendedS0Index::M1(ExtendedS0M1 { raw: self.raw })),
             2 => Ok(ExtendedS0Index::M2(ExtendedS0M2 { raw: self.raw })),
@@ -803,7 +778,7 @@ impl Extended {
             }
         }
     }
-    /// Set value of 'S0'
+    /// Sets the value of `S0`.
     #[inline(always)]
     fn set_s0(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -811,18 +786,11 @@ impl Extended {
                 message_id: Extended::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Extended::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
         Ok(())
     }
-    /// Set value of 'S0'
+    /// Sets the value of `S0`.
     #[inline(always)]
     pub fn set_m0(&mut self, value: ExtendedS0M0) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -831,7 +799,7 @@ impl Extended {
         self.set_s0(0)?;
         Ok(())
     }
-    /// Set value of 'S0'
+    /// Sets the value of `S0`.
     #[inline(always)]
     pub fn set_m1(&mut self, value: ExtendedS0M1) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -840,7 +808,7 @@ impl Extended {
         self.set_s0(1)?;
         Ok(())
     }
-    /// Set value of 'S0'
+    /// Sets the value of `S0`.
     #[inline(always)]
     pub fn set_m2(&mut self, value: ExtendedS0M2) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -929,32 +897,35 @@ impl ExtendedS6M0 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// Get value of 'S3'
+    /// Returns the value of `S3`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s3(&self) -> i16 {
-        self.s3_raw()
+        self.s3_raw_val()
     }
-    /// Get raw value of 'S3'
+    /// Returns the raw value of `S3`.
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s3_raw(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
-        let factor = 1;
-        let signal = signal as i16;
-        i16::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s3_raw_val(&self) -> i16 {
+        self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>()
     }
-    /// Set value of 'S3'
+    /// Sets the raw value of `S3`.
+    #[inline(always)]
+    pub fn set_s3_raw_val(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
+    }
+    /// Sets the value of `S3`.
     #[inline(always)]
     pub fn set_s3(&mut self, value: i16) -> Result<(), CanError> {
         if value < 0_i16 || 0_i16 < value {
@@ -962,43 +933,39 @@ impl ExtendedS6M0 {
                 message_id: Extended::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Extended::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i16;
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// Get value of 'S2'
+    /// Returns the value of `S2`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s2(&self) -> i8 {
-        self.s2_raw()
+        self.s2_raw_val()
     }
-    /// Get raw value of 'S2'
+    /// Returns the raw value of `S2`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s2_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s2_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
-    /// Set value of 'S2'
+    /// Sets the raw value of `S2`.
+    #[inline(always)]
+    pub fn set_s2_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
+    }
+    /// Sets the value of `S2`.
     #[inline(always)]
     pub fn set_s2(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -1006,13 +973,6 @@ impl ExtendedS6M0 {
                 message_id: Extended::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Extended::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
@@ -1044,32 +1004,35 @@ impl ExtendedS6M1 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// Get value of 'S7'
+    /// Returns the value of `S7`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s7(&self) -> i32 {
-        self.s7_raw()
+        self.s7_raw_val()
     }
-    /// Get raw value of 'S7'
+    /// Returns the raw value of `S7`.
     ///
     /// - Start bit: 40
     /// - Signal size: 24 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s7_raw(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[40..64].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s7_raw_val(&self) -> i32 {
+        self.raw.view_bits::<Lsb0>()[40..64].load_le::<i32>()
     }
-    /// Set value of 'S7'
+    /// Sets the raw value of `S7`.
+    #[inline(always)]
+    pub fn set_s7_raw_val(&mut self, value: i32) {
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[40..64].store_le(value);
+    }
+    /// Sets the value of `S7`.
     #[inline(always)]
     pub fn set_s7(&mut self, value: i32) -> Result<(), CanError> {
         if value < 0_i32 || 0_i32 < value {
@@ -1077,43 +1040,39 @@ impl ExtendedS6M1 {
                 message_id: Extended::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Extended::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i32;
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[40..64].store_le(value);
         Ok(())
     }
-    /// Get value of 'S5'
+    /// Returns the value of `S5`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s5(&self) -> i32 {
-        self.s5_raw()
+        self.s5_raw_val()
     }
-    /// Get raw value of 'S5'
+    /// Returns the raw value of `S5`.
     ///
     /// - Start bit: 4
     /// - Signal size: 28 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s5_raw(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[4..32].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s5_raw_val(&self) -> i32 {
+        self.raw.view_bits::<Lsb0>()[4..32].load_le::<i32>()
     }
-    /// Set value of 'S5'
+    /// Sets the raw value of `S5`.
+    #[inline(always)]
+    pub fn set_s5_raw_val(&mut self, value: i32) {
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[4..32].store_le(value);
+    }
+    /// Sets the value of `S5`.
     #[inline(always)]
     pub fn set_s5(&mut self, value: i32) -> Result<(), CanError> {
         if value < 0_i32 || 0_i32 < value {
@@ -1121,13 +1080,6 @@ impl ExtendedS6M1 {
                 message_id: Extended::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Extended::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i32;
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[4..32].store_le(value);
         Ok(())
@@ -1159,32 +1111,35 @@ impl ExtendedS6M2 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// Get value of 'S8'
+    /// Returns the value of `S8`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s8(&self) -> i8 {
-        self.s8_raw()
+        self.s8_raw_val()
     }
-    /// Get raw value of 'S8'
+    /// Returns the raw value of `S8`.
     ///
     /// - Start bit: 40
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s8_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s8_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[40..48].load_le::<i8>()
     }
-    /// Set value of 'S8'
+    /// Sets the raw value of `S8`.
+    #[inline(always)]
+    pub fn set_s8_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
+    }
+    /// Sets the value of `S8`.
     #[inline(always)]
     pub fn set_s8(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -1192,43 +1147,39 @@ impl ExtendedS6M2 {
                 message_id: Extended::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Extended::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
-    /// Get value of 'S4'
+    /// Returns the value of `S4`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s4(&self) -> i32 {
-        self.s4_raw()
+        self.s4_raw_val()
     }
-    /// Get raw value of 'S4'
+    /// Returns the raw value of `S4`.
     ///
     /// - Start bit: 8
     /// - Signal size: 24 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s4_raw(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..32].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s4_raw_val(&self) -> i32 {
+        self.raw.view_bits::<Lsb0>()[8..32].load_le::<i32>()
     }
-    /// Set value of 'S4'
+    /// Sets the raw value of `S4`.
+    #[inline(always)]
+    pub fn set_s4_raw_val(&mut self, value: i32) {
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..32].store_le(value);
+    }
+    /// Sets the value of `S4`.
     #[inline(always)]
     pub fn set_s4(&mut self, value: i32) -> Result<(), CanError> {
         if value < 0_i32 || 0_i32 < value {
@@ -1236,13 +1187,6 @@ impl ExtendedS6M2 {
                 message_id: Extended::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Extended::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i32;
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..32].store_le(value);
         Ok(())
@@ -1278,32 +1222,35 @@ impl ExtendedTypes {
     pub const S0_MAX: i8 = 0_i8;
     pub const S11_MIN: u8 = 2_u8;
     pub const S11_MAX: u8 = 6_u8;
-    /// Construct new 'ExtendedTypes' from values
+    /// Constructs a new `ExtendedTypes` message from values.
     pub fn new(s11: u8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_s11(s11)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `ExtendedTypes` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get raw value of 'S11'
+    /// Returns the raw value of `S11`.
     ///
     /// - Start bit: 0
     /// - Signal size: 5 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn s11_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..5].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s11_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[0..5].load_le::<u8>()
     }
-    pub fn s11(&mut self) -> Result<ExtendedTypesS11Index, CanError> {
-        match self.s11_raw() {
+    /// Sets the raw value of `S11`.
+    #[allow(dead_code)]
+    #[inline(always)]
+    fn set_s11_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[0..5].store_le(value);
+    }
+    /// Selects the active multiplexed sub-message for `S11`.
+    pub fn s11_multiplexed(&mut self) -> Result<ExtendedTypesS11Index, CanError> {
+        match self.s11_raw_val() {
             0 => {
                 Ok(
                     ExtendedTypesS11Index::M0(ExtendedTypesS11M0 {
@@ -1326,7 +1273,7 @@ impl ExtendedTypes {
             }
         }
     }
-    /// Set value of 'S11'
+    /// Sets the value of `S11`.
     #[inline(always)]
     fn set_s11(&mut self, value: u8) -> Result<(), CanError> {
         if value < 2_u8 || 6_u8 < value {
@@ -1334,17 +1281,10 @@ impl ExtendedTypes {
                 message_id: ExtendedTypes::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ExtendedTypes::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..5].store_le(value);
         Ok(())
     }
-    /// Set value of 'S11'
+    /// Sets the value of `S11`.
     #[inline(always)]
     pub fn set_m0(&mut self, value: ExtendedTypesS11M0) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -1353,7 +1293,7 @@ impl ExtendedTypes {
         self.set_s11(0)?;
         Ok(())
     }
-    /// Set value of 'S11'
+    /// Sets the value of `S11`.
     #[inline(always)]
     pub fn set_m5(&mut self, value: ExtendedTypesS11M5) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -1441,32 +1381,35 @@ impl ExtendedTypesS11M0 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// Get value of 'S10'
+    /// Returns the value of `S10`.
     ///
     /// - Min: -340000000000000000000000000000000000000
     /// - Max: 340000000000000000000000000000000000000
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s10(&self) -> i32 {
-        self.s10_raw()
+        self.s10_raw_val()
     }
-    /// Get raw value of 'S10'
+    /// Returns the raw value of `S10`.
     ///
     /// - Start bit: 16
     /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s10_raw(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..48].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s10_raw_val(&self) -> i32 {
+        self.raw.view_bits::<Lsb0>()[16..48].load_le::<i32>()
     }
-    /// Set value of 'S10'
+    /// Sets the raw value of `S10`.
+    #[inline(always)]
+    pub fn set_s10_raw_val(&mut self, value: i32) {
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[16..48].store_le(value);
+    }
+    /// Sets the value of `S10`.
     #[inline(always)]
     pub fn set_s10(&mut self, value: i32) -> Result<(), CanError> {
         if value < -340000000000000000000000000000000000000_i32
@@ -1476,13 +1419,6 @@ impl ExtendedTypesS11M0 {
                 message_id: ExtendedTypes::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ExtendedTypes::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i32;
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..48].store_le(value);
         Ok(())
@@ -1514,32 +1450,35 @@ impl ExtendedTypesS11M5 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// Get value of 'S9'
+    /// Returns the value of `S9`.
     ///
     /// - Min: -1.34
     /// - Max: 1235
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn s9(&self) -> i32 {
-        self.s9_raw()
+        self.s9_raw_val()
     }
-    /// Get raw value of 'S9'
+    /// Returns the raw value of `S9`.
     ///
     /// - Start bit: 24
     /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn s9_raw(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..56].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn s9_raw_val(&self) -> i32 {
+        self.raw.view_bits::<Lsb0>()[24..56].load_le::<i32>()
     }
-    /// Set value of 'S9'
+    /// Sets the raw value of `S9`.
+    #[inline(always)]
+    pub fn set_s9_raw_val(&mut self, value: i32) {
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[24..56].store_le(value);
+    }
+    /// Sets the value of `S9`.
     #[inline(always)]
     pub fn set_s9(&mut self, value: i32) -> Result<(), CanError> {
         if value < -1.34_i32 || 1235_i32 < value {
@@ -1547,13 +1486,6 @@ impl ExtendedTypesS11M5 {
                 message_id: ExtendedTypes::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ExtendedTypes::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i32;
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[24..56].store_le(value);
         Ok(())

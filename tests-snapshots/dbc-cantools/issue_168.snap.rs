@@ -86,43 +86,49 @@ impl Foo {
     pub const FOO_MAX: f32 = 270.47_f32;
     pub const BAR_MIN: f32 = 0_f32;
     pub const BAR_MAX: f32 = 5_f32;
-    /// Construct new 'Foo' from values
+    /// Constructs a new `Foo` message from values.
     pub fn new(foo: f32, bar: f32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_foo(foo)?;
         res.set_bar(bar)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Foo` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'Foo'
+    /// Returns the value of `Foo`.
     ///
     /// - Min: 229.53
     /// - Max: 270.47
     /// - Unit: "degK"
     /// - Receivers: BAR
-    #[inline(always)]
-    pub fn foo(&self) -> f32 {
-        self.foo_raw()
-    }
-    /// Get raw value of 'Foo'
-    ///
-    /// - Start bit: 0
-    /// - Signal size: 12 bits
     /// - Factor: 0.01
     /// - Offset: 250
-    /// - Byte order: BigEndian
-    /// - Value type: Signed
     #[inline(always)]
-    pub fn foo_raw(&self) -> f32 {
+    pub fn foo(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
         let factor = 0.01_f32;
         let offset = 250_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of 'Foo'
+    /// Returns the raw value of `Foo`.
+    ///
+    /// - Start bit: 0
+    /// - Signal size: 12 bits
+    /// - Byte order: BigEndian
+    /// - Value type: Signed
+    #[inline(always)]
+    pub fn foo_raw_val(&self) -> i16 {
+        self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>()
+    }
+    /// Sets the raw value of `Foo`.
+    #[inline(always)]
+    pub fn set_foo_raw_val(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[7..19].store_be(value);
+    }
+    /// Sets the value of `Foo`.
     #[inline(always)]
     pub fn set_foo(&mut self, value: f32) -> Result<(), CanError> {
         if value < 229.53_f32 || 270.47_f32 < value {
@@ -137,7 +143,7 @@ impl Foo {
         self.raw.view_bits_mut::<Msb0>()[7..19].store_be(value);
         Ok(())
     }
-    /// Get value of 'Bar'
+    /// Returns the value of `Bar`.
     ///
     /// Bar.
     ///
@@ -145,26 +151,32 @@ impl Foo {
     /// - Max: 5
     /// - Unit: "m"
     /// - Receivers: FOO
-    #[inline(always)]
-    pub fn bar(&self) -> f32 {
-        self.bar_raw()
-    }
-    /// Get raw value of 'Bar'
-    ///
-    /// - Start bit: 24
-    /// - Signal size: 32 bits
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Signed
     #[inline(always)]
-    pub fn bar_raw(&self) -> f32 {
+    pub fn bar(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[31..63].load_be::<i32>();
         let factor = 0.1_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of 'Bar'
+    /// Returns the raw value of `Bar`.
+    ///
+    /// - Start bit: 24
+    /// - Signal size: 32 bits
+    /// - Byte order: BigEndian
+    /// - Value type: Signed
+    #[inline(always)]
+    pub fn bar_raw_val(&self) -> i32 {
+        self.raw.view_bits::<Msb0>()[31..63].load_be::<i32>()
+    }
+    /// Sets the raw value of `Bar`.
+    #[inline(always)]
+    pub fn set_bar_raw_val(&mut self, value: i32) {
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Msb0>()[31..63].store_be(value);
+    }
+    /// Sets the value of `Bar`.
     #[inline(always)]
     pub fn set_bar(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 5_f32 < value {
@@ -246,43 +258,46 @@ impl Fum {
     pub const FUM_MAX: i16 = 10_i16;
     pub const FAM_MIN: i16 = 0_i16;
     pub const FAM_MAX: i16 = 8_i16;
-    /// Construct new 'Fum' from values
+    /// Constructs a new `Fum` message from values.
     pub fn new(fum: i16, fam: FumFam) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 5] };
         res.set_fum(fum)?;
         res.set_fam(fam)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Fum` message payload.
     pub fn raw(&self) -> &[u8; 5] {
         &self.raw
     }
-    /// Get value of 'Fum'
+    /// Returns the value of `Fum`.
     ///
     /// - Min: 0
     /// - Max: 10
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: BAR
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn fum(&self) -> i16 {
-        self.fum_raw()
+        self.fum_raw_val()
     }
-    /// Get raw value of 'Fum'
+    /// Returns the raw value of `Fum`.
     ///
     /// - Start bit: 0
     /// - Signal size: 12 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn fum_raw(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..12].load_le::<i16>();
-        let factor = 1;
-        let signal = signal as i16;
-        i16::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn fum_raw_val(&self) -> i16 {
+        self.raw.view_bits::<Lsb0>()[0..12].load_le::<i16>()
     }
-    /// Set value of 'Fum'
+    /// Sets the raw value of `Fum`.
+    #[inline(always)]
+    pub fn set_fum_raw_val(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..12].store_le(value);
+    }
+    /// Sets the value of `Fum`.
     #[inline(always)]
     pub fn set_fum(&mut self, value: i16) -> Result<(), CanError> {
         if value < 0_i16 || 10_i16 < value {
@@ -290,22 +305,15 @@ impl Fum {
                 message_id: Fum::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Fum::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i16;
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..12].store_le(value);
         Ok(())
     }
-    /// Get value of 'Fam'
+    /// Returns the value of `Fam`.
     ///
     /// - Min: 0
     /// - Max: 8
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: BAR
     #[inline(always)]
     pub fn fam(&self) -> FumFam {
@@ -313,25 +321,30 @@ impl Fum {
         match signal {
             1 => FumFam::Enabled,
             0 => FumFam::Disabled,
-            _ => FumFam::_Other(self.fam_raw()),
+            _ => FumFam::_Other(self.fam_phys_val()),
         }
     }
-    /// Get raw value of 'Fam'
+    #[inline(always)]
+    fn fam_phys_val(&self) -> i16 {
+        self.fam_raw_val()
+    }
+    /// Returns the raw value of `Fam`.
     ///
     /// - Start bit: 12
     /// - Signal size: 12 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn fam_raw(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[12..24].load_le::<i16>();
-        let factor = 1;
-        let signal = signal as i16;
-        i16::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn fam_raw_val(&self) -> i16 {
+        self.raw.view_bits::<Lsb0>()[12..24].load_le::<i16>()
     }
-    /// Set value of 'Fam'
+    /// Sets the raw value of `Fam`.
+    #[inline(always)]
+    pub fn set_fam_raw_val(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[12..24].store_le(value);
+    }
+    /// Sets the value of `Fam`.
     #[inline(always)]
     pub fn set_fam(&mut self, value: FumFam) -> Result<(), CanError> {
         let value = i16::from(value);
@@ -340,13 +353,6 @@ impl Fum {
                 message_id: Fum::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Fum::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i16;
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[12..24].store_le(value);
         Ok(())
@@ -440,42 +446,45 @@ impl Bar {
     pub const MESSAGE_SIZE: usize = 4;
     pub const BINARY32_MIN: i32 = 0_i32;
     pub const BINARY32_MAX: i32 = 0_i32;
-    /// Construct new 'Bar' from values
+    /// Constructs a new `Bar` message from values.
     pub fn new(binary32: i32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 4] };
         res.set_binary32(binary32)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Bar` message payload.
     pub fn raw(&self) -> &[u8; 4] {
         &self.raw
     }
-    /// Get value of 'Binary32'
+    /// Returns the value of `Binary32`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: FUM
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn binary32(&self) -> i32 {
-        self.binary32_raw()
+        self.binary32_raw_val()
     }
-    /// Get raw value of 'Binary32'
+    /// Returns the raw value of `Binary32`.
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn binary32_raw(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn binary32_raw_val(&self) -> i32 {
+        self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
     }
-    /// Set value of 'Binary32'
+    /// Sets the raw value of `Binary32`.
+    #[inline(always)]
+    pub fn set_binary32_raw_val(&mut self, value: i32) {
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
+    }
+    /// Sets the value of `Binary32`.
     #[inline(always)]
     pub fn set_binary32(&mut self, value: i32) -> Result<(), CanError> {
         if value < 0_i32 || 0_i32 < value {
@@ -483,13 +492,6 @@ impl Bar {
                 message_id: Bar::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bar::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i32;
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
         Ok(())
@@ -560,42 +562,45 @@ impl CanFd {
     pub const FIE_MAX: u64 = 0_u64;
     pub const FAS_MIN: u64 = 0_u64;
     pub const FAS_MAX: u64 = 0_u64;
-    /// Construct new 'CanFd' from values
+    /// Constructs a new `CanFd` message from values.
     pub fn new(fie: u64, fas: u64) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 64] };
         res.set_fie(fie)?;
         res.set_fas(fas)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `CanFd` message payload.
     pub fn raw(&self) -> &[u8; 64] {
         &self.raw
     }
-    /// Get value of 'Fie'
+    /// Returns the value of `Fie`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: FUM
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn fie(&self) -> u64 {
-        self.fie_raw()
+        self.fie_raw_val()
     }
-    /// Get raw value of 'Fie'
+    /// Returns the raw value of `Fie`.
     ///
     /// - Start bit: 0
     /// - Signal size: 64 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn fie_raw(&self) -> u64 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>();
-        let factor = 1;
-        u64::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn fie_raw_val(&self) -> u64 {
+        self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>()
     }
-    /// Set value of 'Fie'
+    /// Sets the raw value of `Fie`.
+    #[inline(always)]
+    pub fn set_fie_raw_val(&mut self, value: u64) {
+        self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
+    }
+    /// Sets the value of `Fie`.
     #[inline(always)]
     pub fn set_fie(&mut self, value: u64) -> Result<(), CanError> {
         if value < 0_u64 || 0_u64 < value {
@@ -603,41 +608,37 @@ impl CanFd {
                 message_id: CanFd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CanFd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u64;
         self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
         Ok(())
     }
-    /// Get value of 'Fas'
+    /// Returns the value of `Fas`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn fas(&self) -> u64 {
-        self.fas_raw()
+        self.fas_raw_val()
     }
-    /// Get raw value of 'Fas'
+    /// Returns the raw value of `Fas`.
     ///
     /// - Start bit: 64
     /// - Signal size: 64 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn fas_raw(&self) -> u64 {
-        let signal = self.raw.view_bits::<Lsb0>()[64..128].load_le::<u64>();
-        let factor = 1;
-        u64::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn fas_raw_val(&self) -> u64 {
+        self.raw.view_bits::<Lsb0>()[64..128].load_le::<u64>()
     }
-    /// Set value of 'Fas'
+    /// Sets the raw value of `Fas`.
+    #[inline(always)]
+    pub fn set_fas_raw_val(&mut self, value: u64) {
+        self.raw.view_bits_mut::<Lsb0>()[64..128].store_le(value);
+    }
+    /// Sets the value of `Fas`.
     #[inline(always)]
     pub fn set_fas(&mut self, value: u64) -> Result<(), CanError> {
         if value < 0_u64 || 0_u64 < value {
@@ -645,13 +646,6 @@ impl CanFd {
                 message_id: CanFd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CanFd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u64;
         self.raw.view_bits_mut::<Lsb0>()[64..128].store_le(value);
         Ok(())
     }
@@ -719,42 +713,45 @@ impl Foobar {
     pub const MESSAGE_SIZE: usize = 8;
     pub const ACC_02_CRC_MIN: i16 = 0_i16;
     pub const ACC_02_CRC_MAX: i16 = 1_i16;
-    /// Construct new 'FOOBAR' from values
+    /// Constructs a new `FOOBAR` message from values.
     pub fn new(acc_02_crc: i16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_acc_02_crc(acc_02_crc)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `FOOBAR` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'ACC_02_CRC'
+    /// Returns the value of `ACC_02_CRC`.
     ///
     /// - Min: 0
     /// - Max: 1
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: BAR
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn acc_02_crc(&self) -> i16 {
-        self.acc_02_crc_raw()
+        self.acc_02_crc_raw_val()
     }
-    /// Get raw value of 'ACC_02_CRC'
+    /// Returns the raw value of `ACC_02_CRC`.
     ///
     /// - Start bit: 0
     /// - Signal size: 12 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn acc_02_crc_raw(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..12].load_le::<i16>();
-        let factor = 1;
-        let signal = signal as i16;
-        i16::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn acc_02_crc_raw_val(&self) -> i16 {
+        self.raw.view_bits::<Lsb0>()[0..12].load_le::<i16>()
     }
-    /// Set value of 'ACC_02_CRC'
+    /// Sets the raw value of `ACC_02_CRC`.
+    #[inline(always)]
+    pub fn set_acc_02_crc_raw_val(&mut self, value: i16) {
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..12].store_le(value);
+    }
+    /// Sets the value of `ACC_02_CRC`.
     #[inline(always)]
     pub fn set_acc_02_crc(&mut self, value: i16) -> Result<(), CanError> {
         if value < 0_i16 || 1_i16 < value {
@@ -762,13 +759,6 @@ impl Foobar {
                 message_id: Foobar::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Foobar::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i16;
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..12].store_le(value);
         Ok(())

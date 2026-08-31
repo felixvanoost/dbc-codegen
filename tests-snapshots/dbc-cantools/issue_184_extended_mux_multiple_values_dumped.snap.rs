@@ -77,33 +77,36 @@ impl ExtMuxMultipleValues {
     pub const MUXED_2_MAX: i8 = 0_i8;
     pub const MUX_MIN: i8 = 0_i8;
     pub const MUX_MAX: i8 = 0_i8;
-    /// Construct new 'ext_MUX_multiple_values' from values
+    /// Constructs a new `ext_MUX_multiple_values` message from values.
     pub fn new(mux: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_mux(mux)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `ext_MUX_multiple_values` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get raw value of 'MUX'
+    /// Returns the raw value of `MUX`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn mux_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn mux_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    pub fn mux(&mut self) -> Result<ExtMuxMultipleValuesMuxIndex, CanError> {
-        match self.mux_raw() {
+    /// Sets the raw value of `MUX`.
+    #[allow(dead_code)]
+    #[inline(always)]
+    fn set_mux_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Selects the active multiplexed sub-message for `MUX`.
+    pub fn mux_multiplexed(&mut self) -> Result<ExtMuxMultipleValuesMuxIndex, CanError> {
+        match self.mux_raw_val() {
             0 => {
                 Ok(
                     ExtMuxMultipleValuesMuxIndex::M0(ExtMuxMultipleValuesMuxM0 {
@@ -133,7 +136,7 @@ impl ExtMuxMultipleValues {
             }
         }
     }
-    /// Set value of 'MUX'
+    /// Sets the value of `MUX`.
     #[inline(always)]
     fn set_mux(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -141,18 +144,11 @@ impl ExtMuxMultipleValues {
                 message_id: ExtMuxMultipleValues::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ExtMuxMultipleValues::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
-    /// Set value of 'MUX'
+    /// Sets the value of `MUX`.
     #[inline(always)]
     pub fn set_m0(&mut self, value: ExtMuxMultipleValuesMuxM0) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -161,7 +157,7 @@ impl ExtMuxMultipleValues {
         self.set_mux(0)?;
         Ok(())
     }
-    /// Set value of 'MUX'
+    /// Sets the value of `MUX`.
     #[inline(always)]
     pub fn set_m1(&mut self, value: ExtMuxMultipleValuesMuxM1) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -170,7 +166,7 @@ impl ExtMuxMultipleValues {
         self.set_mux(1)?;
         Ok(())
     }
-    /// Set value of 'MUX'
+    /// Sets the value of `MUX`.
     #[inline(always)]
     pub fn set_m2(&mut self, value: ExtMuxMultipleValuesMuxM2) -> Result<(), CanError> {
         let b0 = BitArray::<_, LocalBits>::new(self.raw);
@@ -259,32 +255,35 @@ impl ExtMuxMultipleValuesMuxM0 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// Get value of 'muxed_0_3_4_5'
+    /// Returns the value of `muxed_0_3_4_5`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn muxed_0_3_4_5(&self) -> i8 {
-        self.muxed_0_3_4_5_raw()
+        self.muxed_0_3_4_5_raw_val()
     }
-    /// Get raw value of 'muxed_0_3_4_5'
+    /// Returns the raw value of `muxed_0_3_4_5`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn muxed_0_3_4_5_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn muxed_0_3_4_5_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
-    /// Set value of 'muxed_0_3_4_5'
+    /// Sets the raw value of `muxed_0_3_4_5`.
+    #[inline(always)]
+    pub fn set_muxed_0_3_4_5_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
+    }
+    /// Sets the value of `muxed_0_3_4_5`.
     #[inline(always)]
     pub fn set_muxed_0_3_4_5(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -292,13 +291,6 @@ impl ExtMuxMultipleValuesMuxM0 {
                 message_id: ExtMuxMultipleValues::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ExtMuxMultipleValues::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
@@ -330,32 +322,35 @@ impl ExtMuxMultipleValuesMuxM1 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// Get value of 'muxed_1'
+    /// Returns the value of `muxed_1`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn muxed_1(&self) -> i8 {
-        self.muxed_1_raw()
+        self.muxed_1_raw_val()
     }
-    /// Get raw value of 'muxed_1'
+    /// Returns the raw value of `muxed_1`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn muxed_1_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn muxed_1_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
-    /// Set value of 'muxed_1'
+    /// Sets the raw value of `muxed_1`.
+    #[inline(always)]
+    pub fn set_muxed_1_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
+    }
+    /// Sets the value of `muxed_1`.
     #[inline(always)]
     pub fn set_muxed_1(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -363,13 +358,6 @@ impl ExtMuxMultipleValuesMuxM1 {
                 message_id: ExtMuxMultipleValues::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ExtMuxMultipleValues::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
@@ -401,32 +389,35 @@ impl ExtMuxMultipleValuesMuxM2 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// Get value of 'muxed_2'
+    /// Returns the value of `muxed_2`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn muxed_2(&self) -> i8 {
-        self.muxed_2_raw()
+        self.muxed_2_raw_val()
     }
-    /// Get raw value of 'muxed_2'
+    /// Returns the raw value of `muxed_2`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn muxed_2_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn muxed_2_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
-    /// Set value of 'muxed_2'
+    /// Sets the raw value of `muxed_2`.
+    #[inline(always)]
+    pub fn set_muxed_2_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
+    }
+    /// Sets the value of `muxed_2`.
     #[inline(always)]
     pub fn set_muxed_2(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -434,13 +425,6 @@ impl ExtMuxMultipleValuesMuxM2 {
                 message_id: ExtMuxMultipleValues::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ExtMuxMultipleValues::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())

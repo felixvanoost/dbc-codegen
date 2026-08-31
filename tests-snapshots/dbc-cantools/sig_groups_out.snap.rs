@@ -79,42 +79,45 @@ impl Test {
     pub const MESSAGE_SIZE: usize = 8;
     pub const TEST_SIG_MIN: i8 = 0_i8;
     pub const TEST_SIG_MAX: i8 = 0_i8;
-    /// Construct new 'Test' from values
+    /// Constructs a new `Test` message from values.
     pub fn new(test_sig: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_test_sig(test_sig)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Test` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'TestSig'
+    /// Returns the value of `TestSig`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Tester
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn test_sig(&self) -> i8 {
-        self.test_sig_raw()
+        self.test_sig_raw_val()
     }
-    /// Get raw value of 'TestSig'
+    /// Returns the raw value of `TestSig`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn test_sig_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn test_sig_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set value of 'TestSig'
+    /// Sets the raw value of `TestSig`.
+    #[inline(always)]
+    pub fn set_test_sig_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `TestSig`.
     #[inline(always)]
     pub fn set_test_sig(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -122,13 +125,6 @@ impl Test {
                 message_id: Test::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Test::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -202,7 +198,7 @@ impl SgMsgM {
     pub const SUB_SIG1_2_MAX: i8 = 0_i8;
     pub const SUB_SIG1_1_MIN: i8 = 0_i8;
     pub const SUB_SIG1_1_MAX: i8 = 0_i8;
-    /// Construct new 'SGMsg_m' from values
+    /// Constructs a new `SGMsg_m` message from values.
     pub fn new(
         dupsig: i8,
         sub_sig2_1: i8,
@@ -216,36 +212,39 @@ impl SgMsgM {
         res.set_sub_sig1_1(sub_sig1_1)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `SGMsg_m` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'dupsig'
+    /// Returns the value of `dupsig`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn dupsig(&self) -> i8 {
-        self.dupsig_raw()
+        self.dupsig_raw_val()
     }
-    /// Get raw value of 'dupsig'
+    /// Returns the raw value of `dupsig`.
     ///
     /// - Start bit: 24
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn dupsig_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn dupsig_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>()
     }
-    /// Set value of 'dupsig'
+    /// Sets the raw value of `dupsig`.
+    #[inline(always)]
+    pub fn set_dupsig_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
+    }
+    /// Sets the value of `dupsig`.
     #[inline(always)]
     pub fn set_dupsig(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -253,43 +252,39 @@ impl SgMsgM {
                 message_id: SgMsgM::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SgMsgM::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
-    /// Get value of 'subSig2_1'
+    /// Returns the value of `subSig2_1`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn sub_sig2_1(&self) -> i8 {
-        self.sub_sig2_1_raw()
+        self.sub_sig2_1_raw_val()
     }
-    /// Get raw value of 'subSig2_1'
+    /// Returns the raw value of `subSig2_1`.
     ///
     /// - Start bit: 16
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sub_sig2_1_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn sub_sig2_1_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>()
     }
-    /// Set value of 'subSig2_1'
+    /// Sets the raw value of `subSig2_1`.
+    #[inline(always)]
+    pub fn set_sub_sig2_1_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
+    }
+    /// Sets the value of `subSig2_1`.
     #[inline(always)]
     pub fn set_sub_sig2_1(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -297,43 +292,39 @@ impl SgMsgM {
                 message_id: SgMsgM::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SgMsgM::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
-    /// Get value of 'subSig1_2'
+    /// Returns the value of `subSig1_2`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn sub_sig1_2(&self) -> i8 {
-        self.sub_sig1_2_raw()
+        self.sub_sig1_2_raw_val()
     }
-    /// Get raw value of 'subSig1_2'
+    /// Returns the raw value of `subSig1_2`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sub_sig1_2_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn sub_sig1_2_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
-    /// Set value of 'subSig1_2'
+    /// Sets the raw value of `subSig1_2`.
+    #[inline(always)]
+    pub fn set_sub_sig1_2_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
+    }
+    /// Sets the value of `subSig1_2`.
     #[inline(always)]
     pub fn set_sub_sig1_2(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -341,43 +332,39 @@ impl SgMsgM {
                 message_id: SgMsgM::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SgMsgM::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// Get value of 'subSig1_1'
+    /// Returns the value of `subSig1_1`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn sub_sig1_1(&self) -> i8 {
-        self.sub_sig1_1_raw()
+        self.sub_sig1_1_raw_val()
     }
-    /// Get raw value of 'subSig1_1'
+    /// Returns the raw value of `subSig1_1`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sub_sig1_1_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn sub_sig1_1_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set value of 'subSig1_1'
+    /// Sets the raw value of `subSig1_1`.
+    #[inline(always)]
+    pub fn set_sub_sig1_1_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `subSig1_1`.
     #[inline(always)]
     pub fn set_sub_sig1_1(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -385,13 +372,6 @@ impl SgMsgM {
                 message_id: SgMsgM::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SgMsgM::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -463,7 +443,7 @@ impl SgMsg {
     pub const SG2_MAX: i8 = 0_i8;
     pub const SG1_MIN: i8 = 0_i8;
     pub const SG1_MAX: i8 = 0_i8;
-    /// Construct new 'SGMsg' from values
+    /// Constructs a new `SGMsg` message from values.
     pub fn new(dupsig: i8, sg2: i8, sg1: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_dupsig(dupsig)?;
@@ -471,36 +451,39 @@ impl SgMsg {
         res.set_sg1(sg1)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `SGMsg` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'dupsig'
+    /// Returns the value of `dupsig`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn dupsig(&self) -> i8 {
-        self.dupsig_raw()
+        self.dupsig_raw_val()
     }
-    /// Get raw value of 'dupsig'
+    /// Returns the raw value of `dupsig`.
     ///
     /// - Start bit: 16
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn dupsig_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn dupsig_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>()
     }
-    /// Set value of 'dupsig'
+    /// Sets the raw value of `dupsig`.
+    #[inline(always)]
+    pub fn set_dupsig_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
+    }
+    /// Sets the value of `dupsig`.
     #[inline(always)]
     pub fn set_dupsig(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -508,43 +491,39 @@ impl SgMsg {
                 message_id: SgMsg::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SgMsg::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
-    /// Get value of 'SG2'
+    /// Returns the value of `SG2`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn sg2(&self) -> i8 {
-        self.sg2_raw()
+        self.sg2_raw_val()
     }
-    /// Get raw value of 'SG2'
+    /// Returns the raw value of `SG2`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sg2_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn sg2_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
-    /// Set value of 'SG2'
+    /// Sets the raw value of `SG2`.
+    #[inline(always)]
+    pub fn set_sg2_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
+    }
+    /// Sets the value of `SG2`.
     #[inline(always)]
     pub fn set_sg2(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -552,43 +531,39 @@ impl SgMsg {
                 message_id: SgMsg::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SgMsg::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// Get value of 'SG1'
+    /// Returns the value of `SG1`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn sg1(&self) -> i8 {
-        self.sg1_raw()
+        self.sg1_raw_val()
     }
-    /// Get raw value of 'SG1'
+    /// Returns the raw value of `SG1`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sg1_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn sg1_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set value of 'SG1'
+    /// Sets the raw value of `SG1`.
+    #[inline(always)]
+    pub fn set_sg1_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `SG1`.
     #[inline(always)]
     pub fn set_sg1(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -596,13 +571,6 @@ impl SgMsg {
                 message_id: SgMsg::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SgMsg::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -672,43 +640,46 @@ impl NormalMsg {
     pub const SIG_2_MAX: i8 = 0_i8;
     pub const SIG_1_MIN: i8 = 0_i8;
     pub const SIG_1_MAX: i8 = 0_i8;
-    /// Construct new 'NormalMsg' from values
+    /// Constructs a new `NormalMsg` message from values.
     pub fn new(sig_2: i8, sig_1: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_sig_2(sig_2)?;
         res.set_sig_1(sig_1)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `NormalMsg` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'Sig_2'
+    /// Returns the value of `Sig_2`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn sig_2(&self) -> i8 {
-        self.sig_2_raw()
+        self.sig_2_raw_val()
     }
-    /// Get raw value of 'Sig_2'
+    /// Returns the raw value of `Sig_2`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sig_2_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn sig_2_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
-    /// Set value of 'Sig_2'
+    /// Sets the raw value of `Sig_2`.
+    #[inline(always)]
+    pub fn set_sig_2_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
+    }
+    /// Sets the value of `Sig_2`.
     #[inline(always)]
     pub fn set_sig_2(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -716,43 +687,39 @@ impl NormalMsg {
                 message_id: NormalMsg::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: NormalMsg::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// Get value of 'Sig_1'
+    /// Returns the value of `Sig_1`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
+    /// - Factor: 1
+    /// - Offset: 0
     #[inline(always)]
     pub fn sig_1(&self) -> i8 {
-        self.sig_1_raw()
+        self.sig_1_raw_val()
     }
-    /// Get raw value of 'Sig_1'
+    /// Returns the raw value of `Sig_1`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn sig_1_raw(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn sig_1_raw_val(&self) -> i8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set value of 'Sig_1'
+    /// Sets the raw value of `Sig_1`.
+    #[inline(always)]
+    pub fn set_sig_1_raw_val(&mut self, value: i8) {
+        let value = u8::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `Sig_1`.
     #[inline(always)]
     pub fn set_sig_1(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -760,13 +727,6 @@ impl NormalMsg {
                 message_id: NormalMsg::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: NormalMsg::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())

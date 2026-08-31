@@ -70,17 +70,17 @@ impl Control {
     pub const MESSAGE_SIZE: usize = 7;
     pub const STATE_MIN: u8 = 0_u8;
     pub const STATE_MAX: u8 = 100_u8;
-    /// Construct new 'CONTROL' from values
+    /// Constructs a new `CONTROL` message from values.
     pub fn new(state: ControlState) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 7] };
         res.set_state(state)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `CONTROL` message payload.
     pub fn raw(&self) -> &[u8; 7] {
         &self.raw
     }
-    /// Get value of 'state'
+    /// Returns the value of `state`.
     ///
     /// - Min: 0
     /// - Max: 100
@@ -91,24 +91,29 @@ impl Control {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         match signal {
             255 => ControlState::Invalid,
-            _ => ControlState::_Other(self.state_raw()),
+            _ => ControlState::_Other(self.state_phys_val()),
         }
     }
-    /// Get raw value of 'state'
+    #[inline(always)]
+    fn state_phys_val(&self) -> u8 {
+        self.state_raw_val()
+    }
+    /// Returns the raw value of `state`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
-    /// - Factor: 1
-    /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn state_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    pub fn state_raw_val(&self) -> u8 {
+        self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>()
     }
-    /// Set value of 'state'
+    /// Sets the raw value of `state`.
+    #[inline(always)]
+    pub fn set_state_raw_val(&mut self, value: u8) {
+        self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
+    }
+    /// Sets the value of `state`.
     #[inline(always)]
     pub fn set_state(&mut self, value: ControlState) -> Result<(), CanError> {
         let value = u8::from(value);
@@ -117,13 +122,6 @@ impl Control {
                 message_id: Control::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Control::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }

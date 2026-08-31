@@ -261,7 +261,7 @@ SG_ Type : 30|1@0+ (1,0) [0|1] "boolean" Dolor
 
 ```rust,ignore
 pub fn xtype(&self) -> BarType {
-    match self.xtype_raw() {
+    match self.xtype_phys_val() {
         false => BarType::X0off,
         true => BarType::X1on,
         x => BarType::_Other(x),

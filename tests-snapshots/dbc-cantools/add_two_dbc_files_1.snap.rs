@@ -71,12 +71,12 @@ impl M1 {
         StandardId::new_unchecked(0x1)
     });
     pub const MESSAGE_SIZE: usize = 8;
-    /// Construct new 'M1' from values
+    /// Constructs a new `M1` message from values.
     pub fn new() -> Result<Self, CanError> {
         let res = Self { raw: [0x00; 8] };
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `M1` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
@@ -142,12 +142,12 @@ impl M2 {
         StandardId::new_unchecked(0x2)
     });
     pub const MESSAGE_SIZE: usize = 8;
-    /// Construct new 'M2' from values
+    /// Constructs a new `M2` message from values.
     pub fn new() -> Result<Self, CanError> {
         let res = Self { raw: [0x00; 8] };
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `M2` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
