@@ -396,7 +396,11 @@ impl Config<'_> {
 
             self.render_attribute_structs(&mut w, msg, dbc)?;
 
-            writeln!(w, "/// Constructs a new `{}` message from values.", msg.name)?;
+            writeln!(
+                w,
+                "/// Constructs a new `{}` message from values.",
+                msg.name
+            )?;
             let args = msg
                 .signals
                 .iter()
