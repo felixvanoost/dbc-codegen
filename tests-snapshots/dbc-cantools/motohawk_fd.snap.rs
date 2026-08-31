@@ -199,8 +199,7 @@ impl ExampleMessage {
     }
     #[inline(always)]
     fn enable_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[0..1].load_be::<u8>();
-        signal == 1
+        self.enable_raw_val() == 1
     }
     /// Returns the raw value of `Enable`.
     ///

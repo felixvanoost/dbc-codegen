@@ -105,9 +105,7 @@ impl Message0 {
     }
     #[inline(always)]
     fn foo_signal_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..2].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.foo_signal_raw_val()
     }
     /// Returns the raw value of `FooSignal`.
     ///
@@ -133,13 +131,6 @@ impl Message0 {
                 message_id: Message0::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Message0::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..2].store_le(value);
         Ok(())
     }
@@ -166,9 +157,7 @@ impl Message0 {
     }
     #[inline(always)]
     fn bar_signal_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[2..5].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.bar_signal_raw_val()
     }
     /// Returns the raw value of `BarSignal`.
     ///
@@ -194,13 +183,6 @@ impl Message0 {
                 message_id: Message0::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Message0::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[2..5].store_le(value);
         Ok(())
     }

@@ -94,9 +94,7 @@ impl MsgWillBeShortened345678912 {
     /// - Offset: 0
     #[inline(always)]
     pub fn sig_will_be_shortened_3456789_12(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[1..9].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sig_will_be_shortened_3456789_12_raw_val()
     }
     /// Returns the raw value of `Sig_will_be_shortened_3456789_12`.
     ///
@@ -124,13 +122,6 @@ impl MsgWillBeShortened345678912 {
                 message_id: MsgWillBeShortened345678912::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MsgWillBeShortened345678912::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[1..9].store_le(value);
         Ok(())
     }

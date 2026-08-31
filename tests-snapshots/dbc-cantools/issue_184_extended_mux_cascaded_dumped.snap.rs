@@ -142,13 +142,6 @@ impl ExtMuxCascaded {
                 message_id: ExtMuxCascaded::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ExtMuxCascaded::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
@@ -227,13 +220,6 @@ impl ExtMuxCascaded {
                 message_id: ExtMuxCascaded::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ExtMuxCascaded::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -345,10 +331,7 @@ impl ExtMuxCascadedMuxedA2MuxBM0 {
     /// - Offset: 0
     #[inline(always)]
     pub fn muxed_b_0(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.muxed_b_0_raw_val()
     }
     /// Returns the raw value of `muxed_B_0`.
     ///
@@ -374,13 +357,6 @@ impl ExtMuxCascadedMuxedA2MuxBM0 {
                 message_id: ExtMuxCascaded::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ExtMuxCascaded::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
@@ -422,10 +398,7 @@ impl ExtMuxCascadedMuxedA2MuxBM1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn muxed_b_1(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.muxed_b_1_raw_val()
     }
     /// Returns the raw value of `muxed_B_1`.
     ///
@@ -451,13 +424,6 @@ impl ExtMuxCascadedMuxedA2MuxBM1 {
                 message_id: ExtMuxCascaded::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ExtMuxCascaded::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
@@ -472,10 +438,7 @@ impl ExtMuxCascadedMuxedA2MuxBM1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn muxed_a_1(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.muxed_a_1_raw_val()
     }
     /// Returns the raw value of `muxed_A_1`.
     ///
@@ -501,13 +464,6 @@ impl ExtMuxCascadedMuxedA2MuxBM1 {
                 message_id: ExtMuxCascaded::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ExtMuxCascaded::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())

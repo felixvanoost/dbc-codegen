@@ -98,8 +98,7 @@ impl EmvStati {
     /// - Offset: 0
     #[inline(always)]
     pub fn emv_aktion_status_5(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[4..5].load_le::<u8>();
-        signal == 1
+        self.emv_aktion_status_5_raw_val() == 1
     }
     /// Returns the raw value of `EMV_Aktion_Status_5`.
     ///
@@ -133,8 +132,7 @@ impl EmvStati {
     /// - Offset: 0
     #[inline(always)]
     pub fn emv_aktion_status_4(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[3..4].load_le::<u8>();
-        signal == 1
+        self.emv_aktion_status_4_raw_val() == 1
     }
     /// Returns the raw value of `EMV_Aktion_Status_4`.
     ///
@@ -168,8 +166,7 @@ impl EmvStati {
     /// - Offset: 0
     #[inline(always)]
     pub fn emv_aktion_status_3(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.emv_aktion_status_3_raw_val() == 1
     }
     /// Returns the raw value of `EMV_Aktion_Status_3`.
     ///
@@ -203,8 +200,7 @@ impl EmvStati {
     /// - Offset: 0
     #[inline(always)]
     pub fn emv_aktion_status_2(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[6..7].load_le::<u8>();
-        signal == 1
+        self.emv_aktion_status_2_raw_val() == 1
     }
     /// Returns the raw value of `EMV_Aktion_Status_2`.
     ///
@@ -238,8 +234,7 @@ impl EmvStati {
     /// - Offset: 0
     #[inline(always)]
     pub fn emv_aktion_status_1(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[5..6].load_le::<u8>();
-        signal == 1
+        self.emv_aktion_status_1_raw_val() == 1
     }
     /// Returns the raw value of `EMV_Aktion_Status_1`.
     ///

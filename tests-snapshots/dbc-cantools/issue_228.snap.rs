@@ -98,10 +98,7 @@ impl SgMsg {
     /// - Offset: 0
     #[inline(always)]
     pub fn dupsig(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.dupsig_raw_val()
     }
     /// Returns the raw value of `dupsig`.
     ///
@@ -127,13 +124,6 @@ impl SgMsg {
                 message_id: SgMsg::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SgMsg::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
@@ -148,10 +138,7 @@ impl SgMsg {
     /// - Offset: 0
     #[inline(always)]
     pub fn sg2(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sg2_raw_val()
     }
     /// Returns the raw value of `SG2`.
     ///
@@ -177,13 +164,6 @@ impl SgMsg {
                 message_id: SgMsg::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SgMsg::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
@@ -198,10 +178,7 @@ impl SgMsg {
     /// - Offset: 0
     #[inline(always)]
     pub fn sg1(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sg1_raw_val()
     }
     /// Returns the raw value of `SG1`.
     ///
@@ -227,13 +204,6 @@ impl SgMsg {
                 message_id: SgMsg::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SgMsg::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -324,10 +294,7 @@ impl NormalMsg {
     /// - Offset: 0
     #[inline(always)]
     pub fn sig_2(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sig_2_raw_val()
     }
     /// Returns the raw value of `Sig_2`.
     ///
@@ -353,13 +320,6 @@ impl NormalMsg {
                 message_id: NormalMsg::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: NormalMsg::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
@@ -374,10 +334,7 @@ impl NormalMsg {
     /// - Offset: 0
     #[inline(always)]
     pub fn sig_1(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sig_1_raw_val()
     }
     /// Returns the raw value of `Sig_1`.
     ///
@@ -403,13 +360,6 @@ impl NormalMsg {
                 message_id: NormalMsg::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: NormalMsg::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())

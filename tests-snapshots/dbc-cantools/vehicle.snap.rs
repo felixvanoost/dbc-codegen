@@ -1301,9 +1301,7 @@ impl RtSbInsVelBodyAxes {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_vel_body(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_vel_body_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Vel_Body`.
     ///
@@ -1328,13 +1326,6 @@ impl RtSbInsVelBodyAxes {
                 message_id: RtSbInsVelBodyAxes::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsVelBodyAxes::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -1350,8 +1341,7 @@ impl RtSbInsVelBodyAxes {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_vel_sideways(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_ins_vel_sideways_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Vel_Sideways`.
     ///
@@ -1390,8 +1380,7 @@ impl RtSbInsVelBodyAxes {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_vel_forwards(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_ins_vel_forwards_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Vel_Forwards`.
     ///
@@ -1557,9 +1546,7 @@ impl RtDl1mk3Speed {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_speed(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_speed_raw_val()
     }
     /// Returns the raw value of `Accuracy_Speed`.
     ///
@@ -1584,13 +1571,6 @@ impl RtDl1mk3Speed {
                 message_id: RtDl1mk3Speed::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3Speed::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -1606,8 +1586,7 @@ impl RtDl1mk3Speed {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_speed(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_speed_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Speed`.
     ///
@@ -1728,9 +1707,7 @@ impl RtDl1mk3GpsTime {
     /// - Offset: 0
     #[inline(always)]
     pub fn gps_week(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.gps_week_raw_val()
     }
     /// Returns the raw value of `GPS_Week`.
     ///
@@ -1755,13 +1732,6 @@ impl RtDl1mk3GpsTime {
                 message_id: RtDl1mk3GpsTime::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3GpsTime::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
@@ -1821,9 +1791,7 @@ impl RtDl1mk3GpsTime {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_time(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_time_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Time`.
     ///
@@ -1848,13 +1816,6 @@ impl RtDl1mk3GpsTime {
                 message_id: RtDl1mk3GpsTime::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3GpsTime::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -1870,8 +1831,7 @@ impl RtDl1mk3GpsTime {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_week(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_gps_week_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Week`.
     ///
@@ -1907,8 +1867,7 @@ impl RtDl1mk3GpsTime {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_time(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gps_time_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Time`.
     ///
@@ -2254,9 +2213,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_pos_llh_altitude(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_pos_llh_altitude_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Pos_LLH_Altitude`.
     ///
@@ -2284,13 +2241,6 @@ impl RtDl1mk3GpsPosLlh1 {
                 message_id: RtDl1mk3GpsPosLlh1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3GpsPosLlh1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
@@ -2306,9 +2256,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_pos_llh_longitude(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_pos_llh_longitude_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Pos_LLH_Longitude`.
     ///
@@ -2336,13 +2284,6 @@ impl RtDl1mk3GpsPosLlh1 {
                 message_id: RtDl1mk3GpsPosLlh1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3GpsPosLlh1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
@@ -2358,9 +2299,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_pos_llh_latitude(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_pos_llh_latitude_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Pos_LLH_Latitude`.
     ///
@@ -2388,13 +2327,6 @@ impl RtDl1mk3GpsPosLlh1 {
                 message_id: RtDl1mk3GpsPosLlh1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3GpsPosLlh1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -2410,8 +2342,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_pos_llh_altitude(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.validity_gps_pos_llh_altitude_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Pos_LLH_Altitude`.
     ///
@@ -2450,8 +2381,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_pos_llh_longitude(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_gps_pos_llh_longitude_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Pos_LLH_Longitude`.
     ///
@@ -2490,8 +2420,7 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_pos_llh_latitude(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gps_pos_llh_latitude_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Pos_LLH_Latitude`.
     ///
@@ -2709,9 +2638,7 @@ impl RtDl1mk3GpsSpeed {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_speed(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_speed_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Speed`.
     ///
@@ -2736,13 +2663,6 @@ impl RtDl1mk3GpsSpeed {
                 message_id: RtDl1mk3GpsSpeed::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3GpsSpeed::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -2758,8 +2678,7 @@ impl RtDl1mk3GpsSpeed {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_speed_3d(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_gps_speed_3d_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Speed_3D`.
     ///
@@ -2795,8 +2714,7 @@ impl RtDl1mk3GpsSpeed {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_speed_2d(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gps_speed_2d_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Speed_2D`.
     ///
@@ -8928,8 +8846,7 @@ impl RtSbTrigFinalCondition {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_final_speed(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_final_speed_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Final_Speed`.
     ///
@@ -9054,9 +8971,7 @@ impl RtSbTrigInitialCondition {
     /// - Offset: 0
     #[inline(always)]
     pub fn mfdd_end_threshold(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.mfdd_end_threshold_raw_val()
     }
     /// Returns the raw value of `MFDD_End_Threshold`.
     ///
@@ -9081,13 +8996,6 @@ impl RtSbTrigInitialCondition {
                 message_id: RtSbTrigInitialCondition::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbTrigInitialCondition::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
         Ok(())
     }
@@ -9101,9 +9009,7 @@ impl RtSbTrigInitialCondition {
     /// - Offset: 0
     #[inline(always)]
     pub fn mfdd_start_threshold(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.mfdd_start_threshold_raw_val()
     }
     /// Returns the raw value of `MFDD_Start_Threshold`.
     ///
@@ -9128,13 +9034,6 @@ impl RtSbTrigInitialCondition {
                 message_id: RtSbTrigInitialCondition::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbTrigInitialCondition::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
         Ok(())
     }
@@ -9244,8 +9143,7 @@ impl RtSbTrigInitialCondition {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_initial_heading(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_initial_heading_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Initial_Heading`.
     ///
@@ -9281,8 +9179,7 @@ impl RtSbTrigInitialCondition {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_initial_speed(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_initial_speed_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Initial_Speed`.
     ///
@@ -10011,8 +9908,7 @@ impl RtSbTrigAccel {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_triggered_time(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.validity_triggered_time_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Triggered_Time`.
     ///
@@ -10048,8 +9944,7 @@ impl RtSbTrigAccel {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_average_accel(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_average_accel_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Average_Accel`.
     ///
@@ -10085,8 +9980,7 @@ impl RtSbTrigAccel {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_mfdd(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_mfdd_raw_val() == 1
     }
     /// Returns the raw value of `Validity_MFDD`.
     ///
@@ -10193,9 +10087,7 @@ impl RtDl1mk3MeasureTime12 {
     /// - Offset: 0
     #[inline(always)]
     pub fn measured_time_12(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
-        let factor = 1;
-        u32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.measured_time_12_raw_val()
     }
     /// Returns the raw value of `Measured_Time_12`.
     ///
@@ -10220,13 +10112,6 @@ impl RtDl1mk3MeasureTime12 {
                 message_id: RtDl1mk3MeasureTime12::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3MeasureTime12::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u32;
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
         Ok(())
     }
@@ -10313,9 +10198,7 @@ impl RtDl1mk3MeasureTime11 {
     /// - Offset: 0
     #[inline(always)]
     pub fn measured_time_11(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
-        let factor = 1;
-        u32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.measured_time_11_raw_val()
     }
     /// Returns the raw value of `Measured_Time_11`.
     ///
@@ -10340,13 +10223,6 @@ impl RtDl1mk3MeasureTime11 {
                 message_id: RtDl1mk3MeasureTime11::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3MeasureTime11::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u32;
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
         Ok(())
     }
@@ -10433,9 +10309,7 @@ impl RtDl1mk3MeasureTime10 {
     /// - Offset: 0
     #[inline(always)]
     pub fn measured_time_10(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
-        let factor = 1;
-        u32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.measured_time_10_raw_val()
     }
     /// Returns the raw value of `Measured_Time_10`.
     ///
@@ -10460,13 +10334,6 @@ impl RtDl1mk3MeasureTime10 {
                 message_id: RtDl1mk3MeasureTime10::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3MeasureTime10::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u32;
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
         Ok(())
     }
@@ -10553,9 +10420,7 @@ impl RtDl1mk3MeasureTime9 {
     /// - Offset: 0
     #[inline(always)]
     pub fn measured_time_9(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
-        let factor = 1;
-        u32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.measured_time_9_raw_val()
     }
     /// Returns the raw value of `Measured_Time_9`.
     ///
@@ -10580,13 +10445,6 @@ impl RtDl1mk3MeasureTime9 {
                 message_id: RtDl1mk3MeasureTime9::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3MeasureTime9::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u32;
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
         Ok(())
     }
@@ -10673,9 +10531,7 @@ impl RtDl1mk3MeasureTime8 {
     /// - Offset: 0
     #[inline(always)]
     pub fn measured_time_8(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
-        let factor = 1;
-        u32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.measured_time_8_raw_val()
     }
     /// Returns the raw value of `Measured_Time_8`.
     ///
@@ -10700,13 +10556,6 @@ impl RtDl1mk3MeasureTime8 {
                 message_id: RtDl1mk3MeasureTime8::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3MeasureTime8::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u32;
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
         Ok(())
     }
@@ -10793,9 +10642,7 @@ impl RtDl1mk3MeasureTime7 {
     /// - Offset: 0
     #[inline(always)]
     pub fn measured_time_7(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
-        let factor = 1;
-        u32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.measured_time_7_raw_val()
     }
     /// Returns the raw value of `Measured_Time_7`.
     ///
@@ -10820,13 +10667,6 @@ impl RtDl1mk3MeasureTime7 {
                 message_id: RtDl1mk3MeasureTime7::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3MeasureTime7::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u32;
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
         Ok(())
     }
@@ -10913,9 +10753,7 @@ impl RtDl1mk3MeasureTime6 {
     /// - Offset: 0
     #[inline(always)]
     pub fn measured_time_6(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
-        let factor = 1;
-        u32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.measured_time_6_raw_val()
     }
     /// Returns the raw value of `Measured_Time_6`.
     ///
@@ -10940,13 +10778,6 @@ impl RtDl1mk3MeasureTime6 {
                 message_id: RtDl1mk3MeasureTime6::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3MeasureTime6::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u32;
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
         Ok(())
     }
@@ -11033,9 +10864,7 @@ impl RtDl1mk3MeasureTime5 {
     /// - Offset: 0
     #[inline(always)]
     pub fn measured_time_5(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
-        let factor = 1;
-        u32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.measured_time_5_raw_val()
     }
     /// Returns the raw value of `Measured_Time_5`.
     ///
@@ -11060,13 +10889,6 @@ impl RtDl1mk3MeasureTime5 {
                 message_id: RtDl1mk3MeasureTime5::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3MeasureTime5::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u32;
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
         Ok(())
     }
@@ -11153,9 +10975,7 @@ impl RtDl1mk3MeasureTime4 {
     /// - Offset: 0
     #[inline(always)]
     pub fn measured_time_4(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
-        let factor = 1;
-        u32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.measured_time_4_raw_val()
     }
     /// Returns the raw value of `Measured_Time_4`.
     ///
@@ -11180,13 +11000,6 @@ impl RtDl1mk3MeasureTime4 {
                 message_id: RtDl1mk3MeasureTime4::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3MeasureTime4::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u32;
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
         Ok(())
     }
@@ -11273,9 +11086,7 @@ impl RtDl1mk3MeasureTime3 {
     /// - Offset: 0
     #[inline(always)]
     pub fn measured_time_3(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
-        let factor = 1;
-        u32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.measured_time_3_raw_val()
     }
     /// Returns the raw value of `Measured_Time_3`.
     ///
@@ -11300,13 +11111,6 @@ impl RtDl1mk3MeasureTime3 {
                 message_id: RtDl1mk3MeasureTime3::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3MeasureTime3::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u32;
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
         Ok(())
     }
@@ -11393,9 +11197,7 @@ impl RtDl1mk3MeasureTime2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn measured_time_2(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
-        let factor = 1;
-        u32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.measured_time_2_raw_val()
     }
     /// Returns the raw value of `Measured_Time_2`.
     ///
@@ -11420,13 +11222,6 @@ impl RtDl1mk3MeasureTime2 {
                 message_id: RtDl1mk3MeasureTime2::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3MeasureTime2::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u32;
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
         Ok(())
     }
@@ -11513,9 +11308,7 @@ impl RtDl1mk3MeasureTime1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn measured_time_1(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
-        let factor = 1;
-        u32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.measured_time_1_raw_val()
     }
     /// Returns the raw value of `Measured_Time_1`.
     ///
@@ -11540,13 +11333,6 @@ impl RtDl1mk3MeasureTime1 {
                 message_id: RtDl1mk3MeasureTime1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3MeasureTime1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u32;
         self.raw.view_bits_mut::<Lsb0>()[0..24].store_le(value);
         Ok(())
     }
@@ -11633,9 +11419,7 @@ impl RtDl1mk3Rpm {
     /// - Offset: 0
     #[inline(always)]
     pub fn rpm(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.rpm_raw_val()
     }
     /// Returns the raw value of `RPM`.
     ///
@@ -11660,13 +11444,6 @@ impl RtDl1mk3Rpm {
                 message_id: RtDl1mk3Rpm::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3Rpm::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
@@ -23795,9 +23572,7 @@ impl RtDl1mk3Accel {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_accel(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_accel_raw_val()
     }
     /// Returns the raw value of `Accuracy_Accel`.
     ///
@@ -23822,13 +23597,6 @@ impl RtDl1mk3Accel {
                 message_id: RtDl1mk3Accel::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtDl1mk3Accel::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -23844,8 +23612,7 @@ impl RtDl1mk3Accel {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_accel_vertical(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.validity_accel_vertical_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Accel_Vertical`.
     ///
@@ -23881,8 +23648,7 @@ impl RtDl1mk3Accel {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_accel_lateral(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_accel_lateral_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Accel_Lateral`.
     ///
@@ -23918,8 +23684,7 @@ impl RtDl1mk3Accel {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_accel_longitudinal(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_accel_longitudinal_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Accel_Longitudinal`.
     ///
@@ -26613,9 +26378,7 @@ impl RtSbInsSlip {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_squat(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_squat_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Squat`.
     ///
@@ -26640,13 +26403,6 @@ impl RtSbInsSlip {
                 message_id: RtSbInsSlip::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsSlip::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
@@ -26710,9 +26466,7 @@ impl RtSbInsSlip {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_slip(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_slip_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Slip`.
     ///
@@ -26737,13 +26491,6 @@ impl RtSbInsSlip {
                 message_id: RtSbInsSlip::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsSlip::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -26757,8 +26504,7 @@ impl RtSbInsSlip {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_squat(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_ins_squat_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Squat`.
     ///
@@ -26792,8 +26538,7 @@ impl RtSbInsSlip {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_slip(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_ins_slip_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Slip`.
     ///
@@ -27008,8 +26753,7 @@ impl RtSbInsVelEcef2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_vel_ecef_z(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_ins_vel_ecef_z_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Vel_ECEF_Z`.
     ///
@@ -27045,8 +26789,7 @@ impl RtSbInsVelEcef2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_vel_ecef_y(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_ins_vel_ecef_y_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Vel_ECEF_Y`.
     ///
@@ -27217,9 +26960,7 @@ impl RtSbInsVelEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_vel_ecef_z(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_vel_ecef_z_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Vel_ECEF_Z`.
     ///
@@ -27244,13 +26985,6 @@ impl RtSbInsVelEcef1 {
                 message_id: RtSbInsVelEcef1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsVelEcef1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
@@ -27264,9 +26998,7 @@ impl RtSbInsVelEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_vel_ecef_y(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_vel_ecef_y_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Vel_ECEF_Y`.
     ///
@@ -27291,13 +27023,6 @@ impl RtSbInsVelEcef1 {
                 message_id: RtSbInsVelEcef1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsVelEcef1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
@@ -27311,9 +27036,7 @@ impl RtSbInsVelEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_vel_ecef_x(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_vel_ecef_x_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Vel_ECEF_X`.
     ///
@@ -27338,13 +27061,6 @@ impl RtSbInsVelEcef1 {
                 message_id: RtSbInsVelEcef1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsVelEcef1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -27360,8 +27076,7 @@ impl RtSbInsVelEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_vel_ecef_x(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_ins_vel_ecef_x_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Vel_ECEF_X`.
     ///
@@ -27524,9 +27239,7 @@ impl RtSbInsVelNed2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_vel_d(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_vel_d_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Vel_D`.
     ///
@@ -27551,13 +27264,6 @@ impl RtSbInsVelNed2 {
                 message_id: RtSbInsVelNed2::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsVelNed2::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -27573,8 +27279,7 @@ impl RtSbInsVelNed2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_vel_ned_d(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_ins_vel_ned_d_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Vel_NED_D`.
     ///
@@ -27791,9 +27496,7 @@ impl RtSbInsVelNed1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_vel_ne(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_vel_ne_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Vel_NE`.
     ///
@@ -27818,13 +27521,6 @@ impl RtSbInsVelNed1 {
                 message_id: RtSbInsVelNed1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsVelNed1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -27840,8 +27536,7 @@ impl RtSbInsVelNed1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_vel_ned_e(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_ins_vel_ned_e_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Vel_NED_E`.
     ///
@@ -27877,8 +27572,7 @@ impl RtSbInsVelNed1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_vel_ned_n(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_ins_vel_ned_n_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Vel_NED_N`.
     ///
@@ -28227,9 +27921,7 @@ impl RtSbInsPosEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_pos_ecef_z(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_pos_ecef_z_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Pos_ECEF_Z`.
     ///
@@ -28254,13 +27946,6 @@ impl RtSbInsPosEcef1 {
                 message_id: RtSbInsPosEcef1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsPosEcef1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
@@ -28276,9 +27961,7 @@ impl RtSbInsPosEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_pos_ecef_y(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_pos_ecef_y_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Pos_ECEF_Y`.
     ///
@@ -28303,13 +27986,6 @@ impl RtSbInsPosEcef1 {
                 message_id: RtSbInsPosEcef1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsPosEcef1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
@@ -28325,9 +28001,7 @@ impl RtSbInsPosEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_pos_ecef_x(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_pos_ecef_x_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Pos_ECEF_X`.
     ///
@@ -28352,13 +28026,6 @@ impl RtSbInsPosEcef1 {
                 message_id: RtSbInsPosEcef1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsPosEcef1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -28374,8 +28041,7 @@ impl RtSbInsPosEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_pos_ecef_z(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.validity_ins_pos_ecef_z_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Pos_ECEF_Z`.
     ///
@@ -28411,8 +28077,7 @@ impl RtSbInsPosEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_pos_ecef_y(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_ins_pos_ecef_y_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Pos_ECEF_Y`.
     ///
@@ -28448,8 +28113,7 @@ impl RtSbInsPosEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_pos_ecef_x(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_ins_pos_ecef_x_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Pos_ECEF_X`.
     ///
@@ -28795,9 +28459,7 @@ impl RtSbInsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_pos_llh_altitude(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_pos_llh_altitude_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Pos_LLH_Altitude`.
     ///
@@ -28825,13 +28487,6 @@ impl RtSbInsPosLlh1 {
                 message_id: RtSbInsPosLlh1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsPosLlh1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
@@ -28847,9 +28502,7 @@ impl RtSbInsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_pos_llh_longitude(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_pos_llh_longitude_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Pos_LLH_Longitude`.
     ///
@@ -28877,13 +28530,6 @@ impl RtSbInsPosLlh1 {
                 message_id: RtSbInsPosLlh1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsPosLlh1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
@@ -28899,9 +28545,7 @@ impl RtSbInsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_pos_llh_latitude(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_pos_llh_latitude_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Pos_LLH_Latitude`.
     ///
@@ -28929,13 +28573,6 @@ impl RtSbInsPosLlh1 {
                 message_id: RtSbInsPosLlh1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsPosLlh1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -28951,8 +28588,7 @@ impl RtSbInsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_pos_llh_altitude(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.validity_ins_pos_llh_altitude_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Pos_LLH_Altitude`.
     ///
@@ -28991,8 +28627,7 @@ impl RtSbInsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_pos_llh_longitude(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_ins_pos_llh_longitude_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Pos_LLH_Longitude`.
     ///
@@ -29031,8 +28666,7 @@ impl RtSbInsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_pos_llh_latitude(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_ins_pos_llh_latitude_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Pos_LLH_Latitude`.
     ///
@@ -29210,9 +28844,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_gradient(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_gradient_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Gradient`.
     ///
@@ -29237,13 +28869,6 @@ impl RtSbInsHeadingGradient2 {
                 message_id: RtSbInsHeadingGradient2::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsHeadingGradient2::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
@@ -29305,9 +28930,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_heading(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_heading_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Heading`.
     ///
@@ -29332,13 +28955,6 @@ impl RtSbInsHeadingGradient2 {
                 message_id: RtSbInsHeadingGradient2::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsHeadingGradient2::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -29354,8 +28970,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_gradient(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_ins_gradient_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Gradient`.
     ///
@@ -29391,8 +29006,7 @@ impl RtSbInsHeadingGradient2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_heading(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_ins_heading_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Heading`.
     ///
@@ -29567,9 +29181,7 @@ impl RtSbInsHeadingGradient {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_gradient(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_gradient_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Gradient`.
     ///
@@ -29594,13 +29206,6 @@ impl RtSbInsHeadingGradient {
                 message_id: RtSbInsHeadingGradient::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsHeadingGradient::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
@@ -29664,9 +29269,7 @@ impl RtSbInsHeadingGradient {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_ins_heading(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_ins_heading_raw_val()
     }
     /// Returns the raw value of `Accuracy_INS_Heading`.
     ///
@@ -29691,13 +29294,6 @@ impl RtSbInsHeadingGradient {
                 message_id: RtSbInsHeadingGradient::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsHeadingGradient::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -29713,8 +29309,7 @@ impl RtSbInsHeadingGradient {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_gradient(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_ins_gradient_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Gradient`.
     ///
@@ -29750,8 +29345,7 @@ impl RtSbInsHeadingGradient {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_ins_heading(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_ins_heading_raw_val() == 1
     }
     /// Returns the raw value of `Validity_INS_Heading`.
     ///
@@ -29866,9 +29460,7 @@ impl RtSbInsStatus {
     }
     #[inline(always)]
     fn ins_status_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.ins_status_raw_val()
     }
     /// Returns the raw value of `INS_Status`.
     ///
@@ -29897,13 +29489,6 @@ impl RtSbInsStatus {
                 message_id: RtSbInsStatus::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsStatus::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
@@ -30175,9 +29760,7 @@ impl RtSbInsAttitude {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_attitude(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_attitude_raw_val()
     }
     /// Returns the raw value of `Accuracy_Attitude`.
     ///
@@ -30202,13 +29785,6 @@ impl RtSbInsAttitude {
                 message_id: RtSbInsAttitude::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbInsAttitude::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -30229,8 +29805,7 @@ impl RtSbInsAttitude {
     }
     #[inline(always)]
     fn validity_roll_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.validity_roll_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Roll`.
     ///
@@ -30275,8 +29850,7 @@ impl RtSbInsAttitude {
     }
     #[inline(always)]
     fn validity_pitch_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_pitch_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Pitch`.
     ///
@@ -30321,8 +29895,7 @@ impl RtSbInsAttitude {
     }
     #[inline(always)]
     fn validity_yaw_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_yaw_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Yaw`.
     ///
@@ -30583,8 +30156,7 @@ impl RtSbOutputStatus {
     }
     #[inline(always)]
     fn status_trigger_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[15..16].load_le::<u8>();
-        signal == 1
+        self.status_trigger_raw_val() == 1
     }
     /// Returns the raw value of `Status_Trigger`.
     ///
@@ -30635,8 +30207,7 @@ impl RtSbOutputStatus {
     }
     #[inline(always)]
     fn status_serial_output_2_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[14..15].load_le::<u8>();
-        signal == 1
+        self.status_serial_output_2_raw_val() == 1
     }
     /// Returns the raw value of `Status_Serial_Output_2`.
     ///
@@ -30687,8 +30258,7 @@ impl RtSbOutputStatus {
     }
     #[inline(always)]
     fn status_serial_output_1_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[13..14].load_le::<u8>();
-        signal == 1
+        self.status_serial_output_1_raw_val() == 1
     }
     /// Returns the raw value of `Status_Serial_Output_1`.
     ///
@@ -30739,8 +30309,7 @@ impl RtSbOutputStatus {
     }
     #[inline(always)]
     fn status_pulse_output_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[12..13].load_le::<u8>();
-        signal == 1
+        self.status_pulse_output_raw_val() == 1
     }
     /// Returns the raw value of `Status_Pulse_Output`.
     ///
@@ -30791,8 +30360,7 @@ impl RtSbOutputStatus {
     }
     #[inline(always)]
     fn status_analogue_4_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[11..12].load_le::<u8>();
-        signal == 1
+        self.status_analogue_4_raw_val() == 1
     }
     /// Returns the raw value of `Status_Analogue_4`.
     ///
@@ -30843,8 +30411,7 @@ impl RtSbOutputStatus {
     }
     #[inline(always)]
     fn status_analogue_3_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[10..11].load_le::<u8>();
-        signal == 1
+        self.status_analogue_3_raw_val() == 1
     }
     /// Returns the raw value of `Status_Analogue_3`.
     ///
@@ -30895,8 +30462,7 @@ impl RtSbOutputStatus {
     }
     #[inline(always)]
     fn status_analogue_2_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[9..10].load_le::<u8>();
-        signal == 1
+        self.status_analogue_2_raw_val() == 1
     }
     /// Returns the raw value of `Status_Analogue_2`.
     ///
@@ -30947,8 +30513,7 @@ impl RtSbOutputStatus {
     }
     #[inline(always)]
     fn status_analogue_1_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[8..9].load_le::<u8>();
-        signal == 1
+        self.status_analogue_1_raw_val() == 1
     }
     /// Returns the raw value of `Status_Analogue_1`.
     ///
@@ -30988,8 +30553,7 @@ impl RtSbOutputStatus {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_status_timestamp(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_status_timestamp_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Status_Timestamp`.
     ///
@@ -31367,9 +30931,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_gradient(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_gradient_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Gradient`.
     ///
@@ -31394,13 +30956,6 @@ impl RtSbGpsHeadingGradient2 {
                 message_id: RtSbGpsHeadingGradient2::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsHeadingGradient2::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
@@ -31462,9 +31017,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_heading(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_heading_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Heading`.
     ///
@@ -31489,13 +31042,6 @@ impl RtSbGpsHeadingGradient2 {
                 message_id: RtSbGpsHeadingGradient2::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsHeadingGradient2::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -31511,8 +31057,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_gradient(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_gps_gradient_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Gradient`.
     ///
@@ -31548,8 +31093,7 @@ impl RtSbGpsHeadingGradient2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_heading(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gps_heading_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Heading`.
     ///
@@ -31758,8 +31302,7 @@ impl RtSbCumulativeDistance2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_cumulative_distance(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_cumulative_distance_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Cumulative_Distance`.
     ///
@@ -31798,8 +31341,7 @@ impl RtSbCumulativeDistance2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_cumulative_time(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_cumulative_time_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Cumulative_Time`.
     ///
@@ -32008,8 +31550,7 @@ impl RtSbCumulativeDistance1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_cumulative_distance(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_cumulative_distance_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Cumulative_Distance`.
     ///
@@ -32048,8 +31589,7 @@ impl RtSbCumulativeDistance1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_cumulative_time(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_cumulative_time_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Cumulative_Time`.
     ///
@@ -32227,8 +31767,7 @@ impl RtSbTriggerTimestamp {
     }
     #[inline(always)]
     fn trigger_timestamp_type_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[23..24].load_le::<u8>();
-        signal == 1
+        self.trigger_timestamp_type_raw_val() == 1
     }
     /// Returns the raw value of `Trigger_Timestamp_Type`.
     ///
@@ -32317,9 +31856,7 @@ impl RtSbTriggerTimestamp {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_trigger_timestamp(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_trigger_timestamp_raw_val()
     }
     /// Returns the raw value of `Accuracy_Trigger_Timestamp`.
     ///
@@ -32344,13 +31881,6 @@ impl RtSbTriggerTimestamp {
                 message_id: RtSbTriggerTimestamp::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbTriggerTimestamp::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -32366,8 +31896,7 @@ impl RtSbTriggerTimestamp {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_trigger_timestamp(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_trigger_timestamp_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Trigger_Timestamp`.
     ///
@@ -32668,9 +32197,7 @@ impl RtImu06GyroRates {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gyro_rates(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gyro_rates_raw_val()
     }
     /// Returns the raw value of `Accuracy_Gyro_Rates`.
     ///
@@ -32695,13 +32222,6 @@ impl RtImu06GyroRates {
                 message_id: RtImu06GyroRates::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtImu06GyroRates::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -32717,8 +32237,7 @@ impl RtImu06GyroRates {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gyro_rate_roll(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.validity_gyro_rate_roll_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Gyro_Rate_Roll`.
     ///
@@ -32754,8 +32273,7 @@ impl RtImu06GyroRates {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gyro_rate_pitch(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_gyro_rate_pitch_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Gyro_Rate_Pitch`.
     ///
@@ -32791,8 +32309,7 @@ impl RtImu06GyroRates {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gyro_rate_yaw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gyro_rate_yaw_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Gyro_Rate_Yaw`.
     ///
@@ -33065,9 +32582,7 @@ impl RtImu06Accel {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_accel(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_accel_raw_val()
     }
     /// Returns the raw value of `Accuracy_Accel`.
     ///
@@ -33092,13 +32607,6 @@ impl RtImu06Accel {
                 message_id: RtImu06Accel::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtImu06Accel::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -33114,8 +32622,7 @@ impl RtImu06Accel {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_accel_vertical(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.validity_accel_vertical_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Accel_Vertical`.
     ///
@@ -33151,8 +32658,7 @@ impl RtImu06Accel {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_accel_lateral(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_accel_lateral_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Accel_Lateral`.
     ///
@@ -33188,8 +32694,7 @@ impl RtImu06Accel {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_accel_longitudinal(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_accel_longitudinal_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Accel_Longitudinal`.
     ///
@@ -33355,9 +32860,7 @@ impl RtSbSpeed {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_speed(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_speed_raw_val()
     }
     /// Returns the raw value of `Accuracy_Speed`.
     ///
@@ -33382,13 +32885,6 @@ impl RtSbSpeed {
                 message_id: RtSbSpeed::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbSpeed::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -33404,8 +32900,7 @@ impl RtSbSpeed {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_speed(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_speed_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Speed`.
     ///
@@ -33534,9 +33029,7 @@ impl RtSbRtkSlip {
     /// - Offset: 0
     #[inline(always)]
     pub fn rtk_baseline(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.rtk_baseline_raw_val()
     }
     /// Returns the raw value of `RTK_Baseline`.
     ///
@@ -33561,13 +33054,6 @@ impl RtSbRtkSlip {
                 message_id: RtSbRtkSlip::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbRtkSlip::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
@@ -33677,9 +33163,7 @@ impl RtSbRtkSlip {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_rtk_baseline(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_rtk_baseline_raw_val()
     }
     /// Returns the raw value of `Accuracy_RTK_Baseline`.
     ///
@@ -33704,13 +33188,6 @@ impl RtSbRtkSlip {
                 message_id: RtSbRtkSlip::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbRtkSlip::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -33726,8 +33203,7 @@ impl RtSbRtkSlip {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_rtk_baseline(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.validity_rtk_baseline_raw_val() == 1
     }
     /// Returns the raw value of `Validity_RTK_Baseline`.
     ///
@@ -33763,8 +33239,7 @@ impl RtSbRtkSlip {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_rtk_squat(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_rtk_squat_raw_val() == 1
     }
     /// Returns the raw value of `Validity_RTK_Squat`.
     ///
@@ -33800,8 +33275,7 @@ impl RtSbRtkSlip {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_rtk_slip(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_rtk_slip_raw_val() == 1
     }
     /// Returns the raw value of `Validity_RTK_Slip`.
     ///
@@ -34074,9 +33548,7 @@ impl RtSbRtkAttitude {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_rtk_attitude(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_rtk_attitude_raw_val()
     }
     /// Returns the raw value of `Accuracy_RTK_Attitude`.
     ///
@@ -34101,13 +33573,6 @@ impl RtSbRtkAttitude {
                 message_id: RtSbRtkAttitude::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbRtkAttitude::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -34123,8 +33588,7 @@ impl RtSbRtkAttitude {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_rtk_roll(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.validity_rtk_roll_raw_val() == 1
     }
     /// Returns the raw value of `Validity_RTK_Roll`.
     ///
@@ -34160,8 +33624,7 @@ impl RtSbRtkAttitude {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_rtk_pitch(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_rtk_pitch_raw_val() == 1
     }
     /// Returns the raw value of `Validity_RTK_Pitch`.
     ///
@@ -34197,8 +33660,7 @@ impl RtSbRtkAttitude {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_rtk_yaw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_rtk_yaw_raw_val() == 1
     }
     /// Returns the raw value of `Validity_RTK_Yaw`.
     ///
@@ -34417,9 +33879,7 @@ impl RtSbGpsMcycleLean {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_lateral_accel(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_lateral_accel_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Lateral_Accel`.
     ///
@@ -34444,13 +33904,6 @@ impl RtSbGpsMcycleLean {
                 message_id: RtSbGpsMcycleLean::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsMcycleLean::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -34466,8 +33919,7 @@ impl RtSbGpsMcycleLean {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_mcycle_lean(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_gps_mcycle_lean_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Mcycle_Lean`.
     ///
@@ -34503,8 +33955,7 @@ impl RtSbGpsMcycleLean {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_lateral_accel(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gps_lateral_accel_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Lateral_Accel`.
     ///
@@ -34654,9 +34105,7 @@ impl RtSbGpsStatus {
     }
     #[inline(always)]
     fn rtk_status_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.rtk_status_raw_val()
     }
     /// Returns the raw value of `RTK_Status`.
     ///
@@ -34685,13 +34134,6 @@ impl RtSbGpsStatus {
                 message_id: RtSbGpsStatus::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsStatus::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
         Ok(())
     }
@@ -34707,9 +34149,7 @@ impl RtSbGpsStatus {
     /// - Offset: 0
     #[inline(always)]
     pub fn gps_n_sv_rtk(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.gps_n_sv_rtk_raw_val()
     }
     /// Returns the raw value of `GPS_nSv_RTK`.
     ///
@@ -34734,13 +34174,6 @@ impl RtSbGpsStatus {
                 message_id: RtSbGpsStatus::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsStatus::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
         Ok(())
     }
@@ -34756,9 +34189,7 @@ impl RtSbGpsStatus {
     /// - Offset: 0
     #[inline(always)]
     pub fn gps_n_sv_2(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.gps_n_sv_2_raw_val()
     }
     /// Returns the raw value of `GPS_nSv_2`.
     ///
@@ -34783,13 +34214,6 @@ impl RtSbGpsStatus {
                 message_id: RtSbGpsStatus::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsStatus::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
@@ -34805,9 +34229,7 @@ impl RtSbGpsStatus {
     /// - Offset: 0
     #[inline(always)]
     pub fn gps_n_sv(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.gps_n_sv_raw_val()
     }
     /// Returns the raw value of `GPS_nSv`.
     ///
@@ -34832,13 +34254,6 @@ impl RtSbGpsStatus {
                 message_id: RtSbGpsStatus::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsStatus::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
@@ -34852,9 +34267,7 @@ impl RtSbGpsStatus {
     /// - Offset: 0
     #[inline(always)]
     pub fn firmware_version_minor(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.firmware_version_minor_raw_val()
     }
     /// Returns the raw value of `Firmware_Version_Minor`.
     ///
@@ -34879,13 +34292,6 @@ impl RtSbGpsStatus {
                 message_id: RtSbGpsStatus::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsStatus::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
@@ -34899,9 +34305,7 @@ impl RtSbGpsStatus {
     /// - Offset: 0
     #[inline(always)]
     pub fn firmware_version_intermediate(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.firmware_version_intermediate_raw_val()
     }
     /// Returns the raw value of `Firmware_Version_Intermediate`.
     ///
@@ -34929,13 +34333,6 @@ impl RtSbGpsStatus {
                 message_id: RtSbGpsStatus::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsStatus::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
@@ -34949,9 +34346,7 @@ impl RtSbGpsStatus {
     /// - Offset: 0
     #[inline(always)]
     pub fn firmware_version_major(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.firmware_version_major_raw_val()
     }
     /// Returns the raw value of `Firmware_Version_Major`.
     ///
@@ -34976,13 +34371,6 @@ impl RtSbGpsStatus {
                 message_id: RtSbGpsStatus::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsStatus::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -35014,9 +34402,7 @@ impl RtSbGpsStatus {
     }
     #[inline(always)]
     fn gps_status_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.gps_status_raw_val()
     }
     /// Returns the raw value of `GPS_Status`.
     ///
@@ -35045,13 +34431,6 @@ impl RtSbGpsStatus {
                 message_id: RtSbGpsStatus::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsStatus::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
@@ -35452,9 +34831,7 @@ impl RtSbGpsPosEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_pos_ecef_z(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_pos_ecef_z_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Pos_ECEF_Z`.
     ///
@@ -35479,13 +34856,6 @@ impl RtSbGpsPosEcef1 {
                 message_id: RtSbGpsPosEcef1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsPosEcef1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
@@ -35501,9 +34871,7 @@ impl RtSbGpsPosEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_pos_ecef_y(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_pos_ecef_y_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Pos_ECEF_Y`.
     ///
@@ -35528,13 +34896,6 @@ impl RtSbGpsPosEcef1 {
                 message_id: RtSbGpsPosEcef1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsPosEcef1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
@@ -35550,9 +34911,7 @@ impl RtSbGpsPosEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_pos_ecef_x(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_pos_ecef_x_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Pos_ECEF_X`.
     ///
@@ -35577,13 +34936,6 @@ impl RtSbGpsPosEcef1 {
                 message_id: RtSbGpsPosEcef1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsPosEcef1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -35599,8 +34951,7 @@ impl RtSbGpsPosEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_pos_ecef_z(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.validity_gps_pos_ecef_z_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Pos_ECEF_Z`.
     ///
@@ -35636,8 +34987,7 @@ impl RtSbGpsPosEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_pos_ecef_y(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_gps_pos_ecef_y_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Pos_ECEF_Y`.
     ///
@@ -35673,8 +35023,7 @@ impl RtSbGpsPosEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_pos_ecef_x(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gps_pos_ecef_x_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Pos_ECEF_X`.
     ///
@@ -36020,9 +35369,7 @@ impl RtSbGpsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_pos_llh_altitude(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_pos_llh_altitude_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Pos_LLH_Altitude`.
     ///
@@ -36050,13 +35397,6 @@ impl RtSbGpsPosLlh1 {
                 message_id: RtSbGpsPosLlh1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsPosLlh1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
@@ -36072,9 +35412,7 @@ impl RtSbGpsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_pos_llh_longitude(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_pos_llh_longitude_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Pos_LLH_Longitude`.
     ///
@@ -36102,13 +35440,6 @@ impl RtSbGpsPosLlh1 {
                 message_id: RtSbGpsPosLlh1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsPosLlh1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
@@ -36124,9 +35455,7 @@ impl RtSbGpsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_pos_llh_latitude(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_pos_llh_latitude_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Pos_LLH_Latitude`.
     ///
@@ -36154,13 +35483,6 @@ impl RtSbGpsPosLlh1 {
                 message_id: RtSbGpsPosLlh1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsPosLlh1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -36176,8 +35498,7 @@ impl RtSbGpsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_pos_llh_altitude(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.validity_gps_pos_llh_altitude_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Pos_LLH_Altitude`.
     ///
@@ -36216,8 +35537,7 @@ impl RtSbGpsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_pos_llh_longitude(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_gps_pos_llh_longitude_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Pos_LLH_Longitude`.
     ///
@@ -36256,8 +35576,7 @@ impl RtSbGpsPosLlh1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_pos_llh_latitude(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gps_pos_llh_latitude_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Pos_LLH_Latitude`.
     ///
@@ -36435,9 +35754,7 @@ impl RtSbGpsHeadingGradient {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_gradient(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_gradient_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Gradient`.
     ///
@@ -36462,13 +35779,6 @@ impl RtSbGpsHeadingGradient {
                 message_id: RtSbGpsHeadingGradient::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsHeadingGradient::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
@@ -36532,9 +35842,7 @@ impl RtSbGpsHeadingGradient {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_heading(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_heading_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Heading`.
     ///
@@ -36559,13 +35867,6 @@ impl RtSbGpsHeadingGradient {
                 message_id: RtSbGpsHeadingGradient::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsHeadingGradient::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -36581,8 +35882,7 @@ impl RtSbGpsHeadingGradient {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_gradient(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_gps_gradient_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Gradient`.
     ///
@@ -36618,8 +35918,7 @@ impl RtSbGpsHeadingGradient {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_heading(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gps_heading_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Heading`.
     ///
@@ -36834,8 +36133,7 @@ impl RtSbGpsVelEcef2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_vel_ecef_z(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_gps_vel_ecef_z_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Vel_ECEF_Z`.
     ///
@@ -36871,8 +36169,7 @@ impl RtSbGpsVelEcef2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_vel_ecef_y(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gps_vel_ecef_y_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Vel_ECEF_Y`.
     ///
@@ -37043,9 +36340,7 @@ impl RtSbGpsVelEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_vel_ecef_z(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_vel_ecef_z_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Vel_ECEF_Z`.
     ///
@@ -37070,13 +36365,6 @@ impl RtSbGpsVelEcef1 {
                 message_id: RtSbGpsVelEcef1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsVelEcef1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
@@ -37090,9 +36378,7 @@ impl RtSbGpsVelEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_vel_ecef_y(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_vel_ecef_y_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Vel_ECEF_Y`.
     ///
@@ -37117,13 +36403,6 @@ impl RtSbGpsVelEcef1 {
                 message_id: RtSbGpsVelEcef1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsVelEcef1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
@@ -37137,9 +36416,7 @@ impl RtSbGpsVelEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_vel_ecef_x(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_vel_ecef_x_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Vel_ECEF_X`.
     ///
@@ -37164,13 +36441,6 @@ impl RtSbGpsVelEcef1 {
                 message_id: RtSbGpsVelEcef1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsVelEcef1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -37186,8 +36456,7 @@ impl RtSbGpsVelEcef1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_vel_ecef_x(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gps_vel_ecef_x_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Vel_ECEF_X`.
     ///
@@ -37350,9 +36619,7 @@ impl RtSbGpsVelNed2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_vel_d(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_vel_d_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Vel_D`.
     ///
@@ -37377,13 +36644,6 @@ impl RtSbGpsVelNed2 {
                 message_id: RtSbGpsVelNed2::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsVelNed2::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -37399,8 +36659,7 @@ impl RtSbGpsVelNed2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_vel_ned_d(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gps_vel_ned_d_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Vel_NED_D`.
     ///
@@ -37617,9 +36876,7 @@ impl RtSbGpsVelNed1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_vel_ne(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_vel_ne_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Vel_NE`.
     ///
@@ -37644,13 +36901,6 @@ impl RtSbGpsVelNed1 {
                 message_id: RtSbGpsVelNed1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsVelNed1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -37666,8 +36916,7 @@ impl RtSbGpsVelNed1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_vel_ned_e(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_gps_vel_ned_e_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Vel_NED_E`.
     ///
@@ -37703,8 +36952,7 @@ impl RtSbGpsVelNed1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_vel_ned_n(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gps_vel_ned_n_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Vel_NED_N`.
     ///
@@ -37919,9 +37167,7 @@ impl RtSbGpsSpeed {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_speed(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_speed_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Speed`.
     ///
@@ -37946,13 +37192,6 @@ impl RtSbGpsSpeed {
                 message_id: RtSbGpsSpeed::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsSpeed::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -37968,8 +37207,7 @@ impl RtSbGpsSpeed {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_speed_3d(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_gps_speed_3d_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Speed_3D`.
     ///
@@ -38005,8 +37243,7 @@ impl RtSbGpsSpeed {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_speed_2d(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gps_speed_2d_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Speed_2D`.
     ///
@@ -38127,9 +37364,7 @@ impl RtSbGpsTime {
     /// - Offset: 0
     #[inline(always)]
     pub fn gps_week(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.gps_week_raw_val()
     }
     /// Returns the raw value of `GPS_Week`.
     ///
@@ -38154,13 +37389,6 @@ impl RtSbGpsTime {
                 message_id: RtSbGpsTime::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsTime::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
@@ -38220,9 +37448,7 @@ impl RtSbGpsTime {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gps_time(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gps_time_raw_val()
     }
     /// Returns the raw value of `Accuracy_GPS_Time`.
     ///
@@ -38247,13 +37473,6 @@ impl RtSbGpsTime {
                 message_id: RtSbGpsTime::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGpsTime::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -38269,8 +37488,7 @@ impl RtSbGpsTime {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_week(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_gps_week_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Week`.
     ///
@@ -38306,8 +37524,7 @@ impl RtSbGpsTime {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gps_time(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gps_time_raw_val() == 1
     }
     /// Returns the raw value of `Validity_GPS_Time`.
     ///
@@ -38580,9 +37797,7 @@ impl RtSbAccel {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_accel(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_accel_raw_val()
     }
     /// Returns the raw value of `Accuracy_Accel`.
     ///
@@ -38607,13 +37822,6 @@ impl RtSbAccel {
                 message_id: RtSbAccel::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbAccel::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -38629,8 +37837,7 @@ impl RtSbAccel {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_accel_vertical(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.validity_accel_vertical_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Accel_Vertical`.
     ///
@@ -38666,8 +37873,7 @@ impl RtSbAccel {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_accel_lateral(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_accel_lateral_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Accel_Lateral`.
     ///
@@ -38703,8 +37909,7 @@ impl RtSbAccel {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_accel_longitudinal(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_accel_longitudinal_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Accel_Longitudinal`.
     ///
@@ -38980,9 +38185,7 @@ impl RtSbGyroRates {
     /// - Offset: 0
     #[inline(always)]
     pub fn accuracy_gyro_rates(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accuracy_gyro_rates_raw_val()
     }
     /// Returns the raw value of `Accuracy_Gyro_Rates`.
     ///
@@ -39007,13 +38210,6 @@ impl RtSbGyroRates {
                 message_id: RtSbGyroRates::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RtSbGyroRates::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -39029,8 +38225,7 @@ impl RtSbGyroRates {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gyro_rate_roll(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
-        signal == 1
+        self.validity_gyro_rate_roll_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Gyro_Rate_Roll`.
     ///
@@ -39066,8 +38261,7 @@ impl RtSbGyroRates {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gyro_rate_pitch(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
-        signal == 1
+        self.validity_gyro_rate_pitch_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Gyro_Rate_Pitch`.
     ///
@@ -39103,8 +38297,7 @@ impl RtSbGyroRates {
     /// - Offset: 0
     #[inline(always)]
     pub fn validity_gyro_rate_yaw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.validity_gyro_rate_yaw_raw_val() == 1
     }
     /// Returns the raw value of `Validity_Gyro_Rate_Yaw`.
     ///

@@ -1244,7 +1244,22 @@ fn signal_pub_type(dbc: &Dbc, msg: &Message, signal: &Signal) -> String {
     }
 }
 
+/// Whether the signal has no scaling applied (its raw and physical value are identical).
+fn is_unscaled(signal: &Signal) -> bool {
+    signal.factor == 1.0 && signal.offset == 0.0
+}
+
 fn signal_from_payload(w: &mut impl Write, signal: &Signal, msg: &Message) -> Result<()> {
+    if is_unscaled(signal) {
+        let field = signal.field_name();
+        if signal.size == 1 {
+            writeln!(w, "self.{field}_raw_val() == 1")?;
+        } else {
+            writeln!(w, "self.{field}_raw_val()")?;
+        }
+        return Ok(());
+    }
+
     writeln!(w, r"let signal = {};", read_fn(signal, msg)?)?;
     writeln!(w)?;
 
@@ -1316,6 +1331,9 @@ fn signal_to_payload(w: &mut impl Write, signal: &Signal, msg: &Message) -> Resu
             let typ = ValType::from_signal_int(signal);
             writeln!(w, "let value = ((value - offset) / factor) as {typ};")?;
             writeln!(w)?;
+        }
+        _ if is_unscaled(signal) => {
+            // `value` is already the raw type.
         }
         _ => {
             writeln!(w, "let factor = {};", signal.factor)?;

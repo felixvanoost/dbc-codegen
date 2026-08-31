@@ -104,10 +104,7 @@ impl TestMsgEx {
     /// - Offset: 0
     #[inline(always)]
     pub fn test_sig_copy_1(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.test_sig_copy_1_raw_val()
     }
     /// Returns the raw value of `TestSig_Copy_1`.
     ///
@@ -133,13 +130,6 @@ impl TestMsgEx {
                 message_id: TestMsgEx::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestMsgEx::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -227,10 +217,7 @@ impl TestMsgStd {
     /// - Offset: 0
     #[inline(always)]
     pub fn test_sig_copy_3(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.test_sig_copy_3_raw_val()
     }
     /// Returns the raw value of `TestSig_Copy_3`.
     ///
@@ -256,13 +243,6 @@ impl TestMsgStd {
                 message_id: TestMsgStd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestMsgStd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -350,10 +330,7 @@ impl TestMsgFdStd {
     /// - Offset: 0
     #[inline(always)]
     pub fn test_sig_copy_2(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.test_sig_copy_2_raw_val()
     }
     /// Returns the raw value of `TestSig_Copy_2`.
     ///
@@ -379,13 +356,6 @@ impl TestMsgFdStd {
                 message_id: TestMsgFdStd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestMsgFdStd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -473,10 +443,7 @@ impl TestMsgFdEx {
     /// - Offset: 0
     #[inline(always)]
     pub fn test_sig(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.test_sig_raw_val()
     }
     /// Returns the raw value of `TestSig`.
     ///
@@ -502,13 +469,6 @@ impl TestMsgFdEx {
                 message_id: TestMsgFdEx::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestMsgFdEx::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())

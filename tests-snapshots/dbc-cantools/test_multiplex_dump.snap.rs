@@ -96,10 +96,7 @@ impl MuxedFrame {
     /// - Offset: 0
     #[inline(always)]
     pub fn unmultiplexed_sig(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.unmultiplexed_sig_raw_val()
     }
     /// Returns the raw value of `UnmultiplexedSig`.
     ///
@@ -125,13 +122,6 @@ impl MuxedFrame {
                 message_id: MuxedFrame::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MuxedFrame::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
@@ -180,13 +170,6 @@ impl MuxedFrame {
                 message_id: MuxedFrame::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MuxedFrame::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
@@ -290,10 +273,7 @@ impl MuxedFrameMultiplexorSigM42 {
     /// - Offset: 0
     #[inline(always)]
     pub fn multiplexed_sig(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.multiplexed_sig_raw_val()
     }
     /// Returns the raw value of `MultiplexedSig`.
     ///
@@ -319,13 +299,6 @@ impl MuxedFrameMultiplexorSigM42 {
                 message_id: MuxedFrame::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MuxedFrame::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())

@@ -246,9 +246,7 @@ impl Aft1psi2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn regen_failed_count(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.regen_failed_count_raw_val()
     }
     /// Returns the raw value of `RegenFailedCount`.
     ///
@@ -273,13 +271,6 @@ impl Aft1psi2 {
                 message_id: Aft1psi2::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Aft1psi2::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -293,9 +284,7 @@ impl Aft1psi2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn pwr_supply(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[4..6].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.pwr_supply_raw_val()
     }
     /// Returns the raw value of `PwrSupply`.
     ///
@@ -320,13 +309,6 @@ impl Aft1psi2 {
                 message_id: Aft1psi2::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Aft1psi2::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[4..6].store_le(value);
         Ok(())
     }
@@ -340,9 +322,7 @@ impl Aft1psi2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn detection_status(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..4].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.detection_status_raw_val()
     }
     /// Returns the raw value of `DetectionStatus`.
     ///
@@ -367,13 +347,6 @@ impl Aft1psi2 {
                 message_id: Aft1psi2::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Aft1psi2::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
         Ok(())
     }

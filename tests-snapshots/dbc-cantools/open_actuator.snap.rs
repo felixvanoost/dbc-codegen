@@ -136,9 +136,7 @@ impl ControlCmd {
     /// - Offset: 0
     #[inline(always)]
     pub fn crc8_cmd1(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.crc8_cmd1_raw_val()
     }
     /// Returns the raw value of `CRC8_CMD1`.
     ///
@@ -163,13 +161,6 @@ impl ControlCmd {
                 message_id: ControlCmd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ControlCmd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
@@ -183,9 +174,7 @@ impl ControlCmd {
     /// - Offset: 0
     #[inline(always)]
     pub fn counter_cmd1(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[48..52].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.counter_cmd1_raw_val()
     }
     /// Returns the raw value of `Counter_CMD1`.
     ///
@@ -210,13 +199,6 @@ impl ControlCmd {
                 message_id: ControlCmd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ControlCmd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..52].store_le(value);
         Ok(())
     }
@@ -230,9 +212,7 @@ impl ControlCmd {
     /// - Offset: 0
     #[inline(always)]
     pub fn target_motor_id_cmd1(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[12..14].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.target_motor_id_cmd1_raw_val()
     }
     /// Returns the raw value of `TargetMotorID_CMD1`.
     ///
@@ -257,13 +237,6 @@ impl ControlCmd {
                 message_id: ControlCmd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ControlCmd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[12..14].store_le(value);
         Ok(())
     }
@@ -287,9 +260,7 @@ impl ControlCmd {
     }
     #[inline(always)]
     fn target_mode_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..11].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.target_mode_raw_val()
     }
     /// Returns the raw value of `TargetMode`.
     ///
@@ -318,13 +289,6 @@ impl ControlCmd {
                 message_id: ControlCmd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ControlCmd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..11].store_le(value);
         Ok(())
     }
@@ -607,9 +571,7 @@ impl LimitsCmd {
     /// - Offset: 0
     #[inline(always)]
     pub fn crc8_cmd2(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.crc8_cmd2_raw_val()
     }
     /// Returns the raw value of `CRC8_CMD2`.
     ///
@@ -634,13 +596,6 @@ impl LimitsCmd {
                 message_id: LimitsCmd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: LimitsCmd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
@@ -654,9 +609,7 @@ impl LimitsCmd {
     /// - Offset: 0
     #[inline(always)]
     pub fn counter_cmd2(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.counter_cmd2_raw_val()
     }
     /// Returns the raw value of `Counter_CMD2`.
     ///
@@ -681,13 +634,6 @@ impl LimitsCmd {
                 message_id: LimitsCmd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: LimitsCmd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[12..16].store_le(value);
         Ok(())
     }
@@ -701,9 +647,7 @@ impl LimitsCmd {
     /// - Offset: 0
     #[inline(always)]
     pub fn velocity_limit(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.velocity_limit_raw_val()
     }
     /// Returns the raw value of `VelocityLimit`.
     ///
@@ -728,13 +672,6 @@ impl LimitsCmd {
                 message_id: LimitsCmd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: LimitsCmd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -748,9 +685,7 @@ impl LimitsCmd {
     /// - Offset: 0
     #[inline(always)]
     pub fn accel_limit(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.accel_limit_raw_val()
     }
     /// Returns the raw value of `AccelLimit`.
     ///
@@ -775,13 +710,6 @@ impl LimitsCmd {
                 message_id: LimitsCmd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: LimitsCmd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -883,9 +811,7 @@ impl ControlStatus {
     /// - Offset: 0
     #[inline(always)]
     pub fn crc8_stat1(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.crc8_stat1_raw_val()
     }
     /// Returns the raw value of `CRC8_STAT1`.
     ///
@@ -910,13 +836,6 @@ impl ControlStatus {
                 message_id: ControlStatus::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ControlStatus::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
@@ -930,9 +849,7 @@ impl ControlStatus {
     /// - Offset: 0
     #[inline(always)]
     pub fn counter_stat1(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.counter_stat1_raw_val()
     }
     /// Returns the raw value of `Counter_STAT1`.
     ///
@@ -957,13 +874,6 @@ impl ControlStatus {
                 message_id: ControlStatus::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: ControlStatus::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[12..16].store_le(value);
         Ok(())
     }
@@ -1151,9 +1061,7 @@ impl SystemStatus {
     /// - Offset: 0
     #[inline(always)]
     pub fn crc8_stat2(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.crc8_stat2_raw_val()
     }
     /// Returns the raw value of `CRC8_STAT2`.
     ///
@@ -1178,13 +1086,6 @@ impl SystemStatus {
                 message_id: SystemStatus::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SystemStatus::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
@@ -1198,9 +1099,7 @@ impl SystemStatus {
     /// - Offset: 0
     #[inline(always)]
     pub fn counter_stat2(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.counter_stat2_raw_val()
     }
     /// Returns the raw value of `Counter_STAT2`.
     ///
@@ -1225,13 +1124,6 @@ impl SystemStatus {
                 message_id: SystemStatus::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SystemStatus::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[12..16].store_le(value);
         Ok(())
     }
@@ -1376,9 +1268,7 @@ impl TorqueSensorData {
     /// - Offset: 0
     #[inline(always)]
     pub fn crc8_data1(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.crc8_data1_raw_val()
     }
     /// Returns the raw value of `CRC8_DATA1`.
     ///
@@ -1403,13 +1293,6 @@ impl TorqueSensorData {
                 message_id: TorqueSensorData::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TorqueSensorData::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
@@ -1423,9 +1306,7 @@ impl TorqueSensorData {
     /// - Offset: 0
     #[inline(always)]
     pub fn counter_data1(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..12].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.counter_data1_raw_val()
     }
     /// Returns the raw value of `Counter_DATA1`.
     ///
@@ -1450,13 +1331,6 @@ impl TorqueSensorData {
                 message_id: TorqueSensorData::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TorqueSensorData::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..12].store_le(value);
         Ok(())
     }

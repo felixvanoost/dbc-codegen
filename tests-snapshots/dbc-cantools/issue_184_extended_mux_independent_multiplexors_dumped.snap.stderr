@@ -1,16 +1,16 @@
 error[E0425]: cannot find type `ExtMuxIndepMultiplexorsMuxAIndex` in this scope
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:223:17
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:216:17
     |
-223 |     ) -> Result<ExtMuxIndepMultiplexorsMuxAIndex, CanError> {
+216 |     ) -> Result<ExtMuxIndepMultiplexorsMuxAIndex, CanError> {
     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ...
-358 | pub enum ExtMuxIndepMultiplexorsMuxBIndex {
+344 | pub enum ExtMuxIndepMultiplexorsMuxBIndex {
     | ----------------------------------------- similarly named enum `ExtMuxIndepMultiplexorsMuxBIndex` defined here
     |
 help: an enum with a similar name exists
     |
-223 -     ) -> Result<ExtMuxIndepMultiplexorsMuxAIndex, CanError> {
-223 +     ) -> Result<ExtMuxIndepMultiplexorsMuxBIndex, CanError> {
+216 -     ) -> Result<ExtMuxIndepMultiplexorsMuxAIndex, CanError> {
+216 +     ) -> Result<ExtMuxIndepMultiplexorsMuxBIndex, CanError> {
     |
 help: you might be missing a type parameter
     |
@@ -18,172 +18,172 @@ help: you might be missing a type parameter
     |     ++++++++++++++++++++++++++++++++++
 
 error[E0422]: cannot find struct, variant or union type `ExtMuxIndepMultiplexorsMuxAM0` in this scope
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:227:58
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:220:58
     |
-227 |                     ExtMuxIndepMultiplexorsMuxAIndex::M0(ExtMuxIndepMultiplexorsMuxAM0 {
+220 |                     ExtMuxIndepMultiplexorsMuxAIndex::M0(ExtMuxIndepMultiplexorsMuxAM0 {
     |                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ...
-373 | pub struct ExtMuxIndepMultiplexorsMuxBM0 {
+359 | pub struct ExtMuxIndepMultiplexorsMuxBM0 {
     | ---------------------------------------- similarly named struct `ExtMuxIndepMultiplexorsMuxBM0` defined here
     |
 help: a struct with a similar name exists
     |
-227 -                     ExtMuxIndepMultiplexorsMuxAIndex::M0(ExtMuxIndepMultiplexorsMuxAM0 {
-227 +                     ExtMuxIndepMultiplexorsMuxAIndex::M0(ExtMuxIndepMultiplexorsMuxBM0 {
+220 -                     ExtMuxIndepMultiplexorsMuxAIndex::M0(ExtMuxIndepMultiplexorsMuxAM0 {
+220 +                     ExtMuxIndepMultiplexorsMuxAIndex::M0(ExtMuxIndepMultiplexorsMuxBM0 {
     |
 
 error[E0422]: cannot find struct, variant or union type `ExtMuxIndepMultiplexorsMuxAM1` in this scope
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:234:58
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:227:58
     |
-234 |                     ExtMuxIndepMultiplexorsMuxAIndex::M1(ExtMuxIndepMultiplexorsMuxAM1 {
+227 |                     ExtMuxIndepMultiplexorsMuxAIndex::M1(ExtMuxIndepMultiplexorsMuxAM1 {
     |                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ...
-450 | pub struct ExtMuxIndepMultiplexorsMuxBM1 {
+426 | pub struct ExtMuxIndepMultiplexorsMuxBM1 {
     | ---------------------------------------- similarly named struct `ExtMuxIndepMultiplexorsMuxBM1` defined here
     |
 help: a struct with a similar name exists
     |
-234 -                     ExtMuxIndepMultiplexorsMuxAIndex::M1(ExtMuxIndepMultiplexorsMuxAM1 {
-234 +                     ExtMuxIndepMultiplexorsMuxAIndex::M1(ExtMuxIndepMultiplexorsMuxBM1 {
+227 -                     ExtMuxIndepMultiplexorsMuxAIndex::M1(ExtMuxIndepMultiplexorsMuxAM1 {
+227 +                     ExtMuxIndepMultiplexorsMuxAIndex::M1(ExtMuxIndepMultiplexorsMuxBM1 {
     |
 
 error[E0422]: cannot find struct, variant or union type `ExtMuxIndepMultiplexorsMuxAM2` in this scope
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:241:58
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:234:58
     |
-241 |                     ExtMuxIndepMultiplexorsMuxAIndex::M2(ExtMuxIndepMultiplexorsMuxAM2 {
+234 |                     ExtMuxIndepMultiplexorsMuxAIndex::M2(ExtMuxIndepMultiplexorsMuxAM2 {
     |                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ...
-577 | pub struct ExtMuxIndepMultiplexorsMuxBM2 {
+533 | pub struct ExtMuxIndepMultiplexorsMuxBM2 {
     | ---------------------------------------- similarly named struct `ExtMuxIndepMultiplexorsMuxBM2` defined here
     |
 help: a struct with a similar name exists
     |
-241 -                     ExtMuxIndepMultiplexorsMuxAIndex::M2(ExtMuxIndepMultiplexorsMuxAM2 {
-241 +                     ExtMuxIndepMultiplexorsMuxAIndex::M2(ExtMuxIndepMultiplexorsMuxBM2 {
+234 -                     ExtMuxIndepMultiplexorsMuxAIndex::M2(ExtMuxIndepMultiplexorsMuxAM2 {
+234 +                     ExtMuxIndepMultiplexorsMuxAIndex::M2(ExtMuxIndepMultiplexorsMuxBM2 {
     |
 
 error[E0425]: cannot find type `ExtMuxIndepMultiplexorsMuxAM0` in this scope
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:277:16
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:263:16
     |
-277 |         value: ExtMuxIndepMultiplexorsMuxAM0,
+263 |         value: ExtMuxIndepMultiplexorsMuxAM0,
     |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ...
-373 | pub struct ExtMuxIndepMultiplexorsMuxBM0 {
+359 | pub struct ExtMuxIndepMultiplexorsMuxBM0 {
     | ---------------------------------------- similarly named struct `ExtMuxIndepMultiplexorsMuxBM0` defined here
     |
 help: a struct with a similar name exists
     |
-277 -         value: ExtMuxIndepMultiplexorsMuxAM0,
-277 +         value: ExtMuxIndepMultiplexorsMuxBM0,
+263 -         value: ExtMuxIndepMultiplexorsMuxAM0,
+263 +         value: ExtMuxIndepMultiplexorsMuxBM0,
     |
 
 error[E0425]: cannot find type `ExtMuxIndepMultiplexorsMuxAM1` in this scope
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:289:16
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:275:16
     |
-289 |         value: ExtMuxIndepMultiplexorsMuxAM1,
+275 |         value: ExtMuxIndepMultiplexorsMuxAM1,
     |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ...
-450 | pub struct ExtMuxIndepMultiplexorsMuxBM1 {
+426 | pub struct ExtMuxIndepMultiplexorsMuxBM1 {
     | ---------------------------------------- similarly named struct `ExtMuxIndepMultiplexorsMuxBM1` defined here
     |
 help: a struct with a similar name exists
     |
-289 -         value: ExtMuxIndepMultiplexorsMuxAM1,
-289 +         value: ExtMuxIndepMultiplexorsMuxBM1,
+275 -         value: ExtMuxIndepMultiplexorsMuxAM1,
+275 +         value: ExtMuxIndepMultiplexorsMuxBM1,
     |
 
 error[E0425]: cannot find type `ExtMuxIndepMultiplexorsMuxAM2` in this scope
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:301:16
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:287:16
     |
-301 |         value: ExtMuxIndepMultiplexorsMuxAM2,
+287 |         value: ExtMuxIndepMultiplexorsMuxAM2,
     |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ...
-577 | pub struct ExtMuxIndepMultiplexorsMuxBM2 {
+533 | pub struct ExtMuxIndepMultiplexorsMuxBM2 {
     | ---------------------------------------- similarly named struct `ExtMuxIndepMultiplexorsMuxBM2` defined here
     |
 help: a struct with a similar name exists
     |
-301 -         value: ExtMuxIndepMultiplexorsMuxAM2,
-301 +         value: ExtMuxIndepMultiplexorsMuxBM2,
+287 -         value: ExtMuxIndepMultiplexorsMuxAM2,
+287 +         value: ExtMuxIndepMultiplexorsMuxBM2,
     |
 
 error[E0592]: duplicate definitions with name `set_m0`
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:275:5
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:261:5
     |
-169 | /     pub fn set_m0(
-170 | |         &mut self,
-171 | |         value: ExtMuxIndepMultiplexorsMuxBM0,
-172 | |     ) -> Result<(), CanError> {
+162 | /     pub fn set_m0(
+163 | |         &mut self,
+164 | |         value: ExtMuxIndepMultiplexorsMuxBM0,
+165 | |     ) -> Result<(), CanError> {
     | |_____________________________- other definition for `set_m0`
 ...
-275 | /     pub fn set_m0(
-276 | |         &mut self,
-277 | |         value: ExtMuxIndepMultiplexorsMuxAM0,
-278 | |     ) -> Result<(), CanError> {
+261 | /     pub fn set_m0(
+262 | |         &mut self,
+263 | |         value: ExtMuxIndepMultiplexorsMuxAM0,
+264 | |     ) -> Result<(), CanError> {
     | |_____________________________^ duplicate definitions for `set_m0`
 
 error[E0592]: duplicate definitions with name `set_m1`
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:287:5
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:273:5
     |
-181 | /     pub fn set_m1(
-182 | |         &mut self,
-183 | |         value: ExtMuxIndepMultiplexorsMuxBM1,
-184 | |     ) -> Result<(), CanError> {
+174 | /     pub fn set_m1(
+175 | |         &mut self,
+176 | |         value: ExtMuxIndepMultiplexorsMuxBM1,
+177 | |     ) -> Result<(), CanError> {
     | |_____________________________- other definition for `set_m1`
 ...
-287 | /     pub fn set_m1(
-288 | |         &mut self,
-289 | |         value: ExtMuxIndepMultiplexorsMuxAM1,
-290 | |     ) -> Result<(), CanError> {
+273 | /     pub fn set_m1(
+274 | |         &mut self,
+275 | |         value: ExtMuxIndepMultiplexorsMuxAM1,
+276 | |     ) -> Result<(), CanError> {
     | |_____________________________^ duplicate definitions for `set_m1`
 
 error[E0592]: duplicate definitions with name `set_m2`
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:299:5
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:285:5
     |
-193 | /     pub fn set_m2(
-194 | |         &mut self,
-195 | |         value: ExtMuxIndepMultiplexorsMuxBM2,
-196 | |     ) -> Result<(), CanError> {
+186 | /     pub fn set_m2(
+187 | |         &mut self,
+188 | |         value: ExtMuxIndepMultiplexorsMuxBM2,
+189 | |     ) -> Result<(), CanError> {
     | |_____________________________- other definition for `set_m2`
 ...
-299 | /     pub fn set_m2(
-300 | |         &mut self,
-301 | |         value: ExtMuxIndepMultiplexorsMuxAM2,
-302 | |     ) -> Result<(), CanError> {
+285 | /     pub fn set_m2(
+286 | |         &mut self,
+287 | |         value: ExtMuxIndepMultiplexorsMuxAM2,
+288 | |     ) -> Result<(), CanError> {
     | |_____________________________^ duplicate definitions for `set_m2`
 
 error[E0433]: cannot find type `ExtMuxIndepMultiplexorsMuxAIndex` in this scope
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:227:21
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:220:21
     |
-227 |                     ExtMuxIndepMultiplexorsMuxAIndex::M0(ExtMuxIndepMultiplexorsMuxAM0 {
+220 |                     ExtMuxIndepMultiplexorsMuxAIndex::M0(ExtMuxIndepMultiplexorsMuxAM0 {
     |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `ExtMuxIndepMultiplexorsMuxAIndex`
     |
 help: an enum with a similar name exists
     |
-227 -                     ExtMuxIndepMultiplexorsMuxAIndex::M0(ExtMuxIndepMultiplexorsMuxAM0 {
-227 +                     ExtMuxIndepMultiplexorsMuxBIndex::M0(ExtMuxIndepMultiplexorsMuxAM0 {
+220 -                     ExtMuxIndepMultiplexorsMuxAIndex::M0(ExtMuxIndepMultiplexorsMuxAM0 {
+220 +                     ExtMuxIndepMultiplexorsMuxBIndex::M0(ExtMuxIndepMultiplexorsMuxAM0 {
+    |
+
+error[E0433]: cannot find type `ExtMuxIndepMultiplexorsMuxAIndex` in this scope
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:227:21
+    |
+227 |                     ExtMuxIndepMultiplexorsMuxAIndex::M1(ExtMuxIndepMultiplexorsMuxAM1 {
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `ExtMuxIndepMultiplexorsMuxAIndex`
+    |
+help: an enum with a similar name exists
+    |
+227 -                     ExtMuxIndepMultiplexorsMuxAIndex::M1(ExtMuxIndepMultiplexorsMuxAM1 {
+227 +                     ExtMuxIndepMultiplexorsMuxBIndex::M1(ExtMuxIndepMultiplexorsMuxAM1 {
     |
 
 error[E0433]: cannot find type `ExtMuxIndepMultiplexorsMuxAIndex` in this scope
    --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:234:21
     |
-234 |                     ExtMuxIndepMultiplexorsMuxAIndex::M1(ExtMuxIndepMultiplexorsMuxAM1 {
+234 |                     ExtMuxIndepMultiplexorsMuxAIndex::M2(ExtMuxIndepMultiplexorsMuxAM2 {
     |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `ExtMuxIndepMultiplexorsMuxAIndex`
     |
 help: an enum with a similar name exists
     |
-234 -                     ExtMuxIndepMultiplexorsMuxAIndex::M1(ExtMuxIndepMultiplexorsMuxAM1 {
-234 +                     ExtMuxIndepMultiplexorsMuxBIndex::M1(ExtMuxIndepMultiplexorsMuxAM1 {
-    |
-
-error[E0433]: cannot find type `ExtMuxIndepMultiplexorsMuxAIndex` in this scope
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_independent_multiplexors_dumped.snap.rs:241:21
-    |
-241 |                     ExtMuxIndepMultiplexorsMuxAIndex::M2(ExtMuxIndepMultiplexorsMuxAM2 {
-    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `ExtMuxIndepMultiplexorsMuxAIndex`
-    |
-help: an enum with a similar name exists
-    |
-241 -                     ExtMuxIndepMultiplexorsMuxAIndex::M2(ExtMuxIndepMultiplexorsMuxAM2 {
-241 +                     ExtMuxIndepMultiplexorsMuxBIndex::M2(ExtMuxIndepMultiplexorsMuxAM2 {
+234 -                     ExtMuxIndepMultiplexorsMuxAIndex::M2(ExtMuxIndepMultiplexorsMuxAM2 {
+234 +                     ExtMuxIndepMultiplexorsMuxBIndex::M2(ExtMuxIndepMultiplexorsMuxAM2 {
     |

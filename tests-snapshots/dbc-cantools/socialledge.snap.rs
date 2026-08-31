@@ -125,9 +125,7 @@ impl DriverHeartbeat {
     }
     #[inline(always)]
     fn driver_heartbeat_cmd_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.driver_heartbeat_cmd_raw_val()
     }
     /// Returns the raw value of `DRIVER_HEARTBEAT_cmd`.
     ///
@@ -156,13 +154,6 @@ impl DriverHeartbeat {
                 message_id: DriverHeartbeat::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: DriverHeartbeat::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
@@ -292,9 +283,7 @@ impl IoDebug {
     /// - Offset: 0
     #[inline(always)]
     pub fn io_debug_test_unsigned(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.io_debug_test_unsigned_raw_val()
     }
     /// Returns the raw value of `IO_DEBUG_test_unsigned`.
     ///
@@ -319,13 +308,6 @@ impl IoDebug {
                 message_id: IoDebug::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: IoDebug::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
@@ -346,9 +328,7 @@ impl IoDebug {
     }
     #[inline(always)]
     fn io_debug_test_enum_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.io_debug_test_enum_raw_val()
     }
     /// Returns the raw value of `IO_DEBUG_test_enum`.
     ///
@@ -377,13 +357,6 @@ impl IoDebug {
                 message_id: IoDebug::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: IoDebug::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -397,10 +370,7 @@ impl IoDebug {
     /// - Offset: 0
     #[inline(always)]
     pub fn io_debug_test_signed(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.io_debug_test_signed_raw_val()
     }
     /// Returns the raw value of `IO_DEBUG_test_signed`.
     ///
@@ -426,13 +396,6 @@ impl IoDebug {
                 message_id: IoDebug::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: IoDebug::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
@@ -644,9 +607,7 @@ impl MotorCmd {
     /// - Offset: 0
     #[inline(always)]
     pub fn motor_cmd_drive(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[4..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.motor_cmd_drive_raw_val()
     }
     /// Returns the raw value of `MOTOR_CMD_drive`.
     ///
@@ -671,13 +632,6 @@ impl MotorCmd {
                 message_id: MotorCmd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MotorCmd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[4..8].store_le(value);
         Ok(())
     }
@@ -770,8 +724,7 @@ impl MotorStatus {
     /// - Offset: 0
     #[inline(always)]
     pub fn motor_status_wheel_error(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.motor_status_wheel_error_raw_val() == 1
     }
     /// Returns the raw value of `MOTOR_STATUS_wheel_error`.
     ///
@@ -987,13 +940,6 @@ impl SensorSonars {
                 message_id: SensorSonars::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SensorSonars::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
         Ok(())
     }
@@ -1031,9 +977,7 @@ impl SensorSonars {
     /// - Offset: 0
     #[inline(always)]
     pub fn sensor_sonars_err_count(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[4..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sensor_sonars_err_count_raw_val()
     }
     /// Returns the raw value of `SENSOR_SONARS_err_count`.
     ///
@@ -1058,13 +1002,6 @@ impl SensorSonars {
                 message_id: SensorSonars::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SensorSonars::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[4..16].store_le(value);
         Ok(())
     }

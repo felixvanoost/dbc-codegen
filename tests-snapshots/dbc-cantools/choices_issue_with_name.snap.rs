@@ -100,8 +100,7 @@ impl TestMessage {
     }
     #[inline(always)]
     fn signal_with_choices_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        signal == 1
+        self.signal_with_choices_raw_val() == 1
     }
     /// Returns the raw value of `SignalWithChoices`.
     ///

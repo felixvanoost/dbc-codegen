@@ -140,10 +140,7 @@ impl MsgLongName5678912345678912 {
     /// - Offset: 0
     #[inline(always)]
     pub fn rx_twice_11111111111111111111111(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.rx_twice_11111111111111111111111_raw_val()
     }
     /// Returns the raw value of `rx_twice_11111111111111111111111`.
     ///
@@ -172,13 +169,6 @@ impl MsgLongName5678912345678912 {
                 message_id: MsgLongName5678912345678912::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MsgLongName5678912345678912::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
@@ -193,10 +183,7 @@ impl MsgLongName5678912345678912 {
     /// - Offset: 0
     #[inline(always)]
     pub fn rx_twice_short(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..34].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.rx_twice_short_raw_val()
     }
     /// Returns the raw value of `rx_twice_short`.
     ///
@@ -222,13 +209,6 @@ impl MsgLongName5678912345678912 {
                 message_id: MsgLongName5678912345678912::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MsgLongName5678912345678912::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i32;
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..34].store_le(value);
         Ok(())
@@ -243,10 +223,7 @@ impl MsgLongName5678912345678912 {
     /// - Offset: 0
     #[inline(always)]
     pub fn sig_used_twice_efgh_abcdefghi_ab(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..6].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sig_used_twice_efgh_abcdefghi_ab_raw_val()
     }
     /// Returns the raw value of `Sig_used_twice_efgh_abcdefghi_ab`.
     ///
@@ -275,13 +252,6 @@ impl MsgLongName5678912345678912 {
                 message_id: MsgLongName5678912345678912::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MsgLongName5678912345678912::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..6].store_le(value);
         Ok(())
@@ -376,10 +346,7 @@ impl TxTwice {
     /// - Offset: 0
     #[inline(always)]
     pub fn rx_twice_long_yyyyyyyyyyyyyyyyyy(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.rx_twice_long_yyyyyyyyyyyyyyyyyy_raw_val()
     }
     /// Returns the raw value of `rx_twice_long_yyyyyyyyyyyyyyyyyy`.
     ///
@@ -408,13 +375,6 @@ impl TxTwice {
                 message_id: TxTwice::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TxTwice::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
@@ -429,10 +389,7 @@ impl TxTwice {
     /// - Offset: 0
     #[inline(always)]
     pub fn rx_twice_short(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.rx_twice_short_raw_val()
     }
     /// Returns the raw value of `rx_twice_short`.
     ///
@@ -458,13 +415,6 @@ impl TxTwice {
                 message_id: TxTwice::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TxTwice::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -553,10 +503,7 @@ impl RxTx1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn sig_used_twice_efgh_abcdefg_0000(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..9].load_le::<i16>();
-        let factor = 1;
-        let signal = signal as i16;
-        i16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sig_used_twice_efgh_abcdefg_0000_raw_val()
     }
     /// Returns the raw value of `Sig_used_twice_efgh_abcdefg_0000`.
     ///
@@ -585,13 +532,6 @@ impl RxTx1 {
                 message_id: RxTx1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: RxTx1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i16;
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..9].store_le(value);
         Ok(())
@@ -844,10 +784,7 @@ impl MsgWithValueTableSigs {
     }
     #[inline(always)]
     fn sig_with_short_val_table_phys_val(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sig_with_short_val_table_raw_val()
     }
     /// Returns the raw value of `Sig_with_short_val_table`.
     ///
@@ -877,13 +814,6 @@ impl MsgWithValueTableSigs {
                 message_id: MsgWithValueTableSigs::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MsgWithValueTableSigs::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
@@ -923,10 +853,7 @@ impl MsgWithValueTableSigs {
     }
     #[inline(always)]
     fn sig_with_long_val_table_2_phys_val(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sig_with_long_val_table_2_raw_val()
     }
     /// Returns the raw value of `Sig_with_long_val_table_2`.
     ///
@@ -956,13 +883,6 @@ impl MsgWithValueTableSigs {
                 message_id: MsgWithValueTableSigs::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MsgWithValueTableSigs::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
@@ -992,10 +912,7 @@ impl MsgWithValueTableSigs {
     }
     #[inline(always)]
     fn sig_with_long_val_table_1_phys_val(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sig_with_long_val_table_1_raw_val()
     }
     /// Returns the raw value of `Sig_with_long_val_table_1`.
     ///
@@ -1025,13 +942,6 @@ impl MsgWithValueTableSigs {
                 message_id: MsgWithValueTableSigs::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MsgWithValueTableSigs::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -1232,10 +1142,7 @@ impl MsgLongName5678912345670000 {
     /// - Offset: 0
     #[inline(always)]
     pub fn rx_twice_11111111111111111111111(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..10].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.rx_twice_11111111111111111111111_raw_val()
     }
     /// Returns the raw value of `rx_twice_11111111111111111111111`.
     ///
@@ -1264,13 +1171,6 @@ impl MsgLongName5678912345670000 {
                 message_id: MsgLongName5678912345670000::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MsgLongName5678912345670000::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..10].store_le(value);
         Ok(())
@@ -1285,10 +1185,7 @@ impl MsgLongName5678912345670000 {
     /// - Offset: 0
     #[inline(always)]
     pub fn sig_used_twice_efgh_abcdefg_0001(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sig_used_twice_efgh_abcdefg_0001_raw_val()
     }
     /// Returns the raw value of `Sig_used_twice_efgh_abcdefg_0001`.
     ///
@@ -1317,13 +1214,6 @@ impl MsgLongName5678912345670000 {
                 message_id: MsgLongName5678912345670000::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MsgLongName5678912345670000::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -1417,10 +1307,7 @@ impl MsgLongName5678912345670001 {
     /// - Offset: 0
     #[inline(always)]
     pub fn rx_twice_short(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.rx_twice_short_raw_val()
     }
     /// Returns the raw value of `rx_twice_short`.
     ///
@@ -1446,13 +1333,6 @@ impl MsgLongName5678912345670001 {
                 message_id: MsgLongName5678912345670001::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MsgLongName5678912345670001::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
@@ -1467,10 +1347,7 @@ impl MsgLongName5678912345670001 {
     /// - Offset: 0
     #[inline(always)]
     pub fn sig_used_twice_efgh_abcdefg_0002(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..6].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sig_used_twice_efgh_abcdefg_0002_raw_val()
     }
     /// Returns the raw value of `Sig_used_twice_efgh_abcdefg_0002`.
     ///
@@ -1499,13 +1376,6 @@ impl MsgLongName5678912345670001 {
                 message_id: MsgLongName5678912345670001::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: MsgLongName5678912345670001::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..6].store_le(value);
         Ok(())

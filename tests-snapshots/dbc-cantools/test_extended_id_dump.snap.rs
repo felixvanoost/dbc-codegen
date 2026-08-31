@@ -94,10 +94,7 @@ impl SomeFrame {
     /// - Offset: 0
     #[inline(always)]
     pub fn some_different_sig(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.some_different_sig_raw_val()
     }
     /// Returns the raw value of `SomeDifferentSig`.
     ///
@@ -123,13 +120,6 @@ impl SomeFrame {
                 message_id: SomeFrame::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SomeFrame::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
@@ -217,10 +207,7 @@ impl SomeExtFrame {
     /// - Offset: 0
     #[inline(always)]
     pub fn some_sig(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.some_sig_raw_val()
     }
     /// Returns the raw value of `SomeSig`.
     ///
@@ -246,13 +233,6 @@ impl SomeExtFrame {
                 message_id: SomeExtFrame::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: SomeExtFrame::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i8;
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())

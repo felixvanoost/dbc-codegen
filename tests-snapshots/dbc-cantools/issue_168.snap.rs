@@ -279,10 +279,7 @@ impl Fum {
     /// - Offset: 0
     #[inline(always)]
     pub fn fum(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..12].load_le::<i16>();
-        let factor = 1;
-        let signal = signal as i16;
-        i16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.fum_raw_val()
     }
     /// Returns the raw value of `Fum`.
     ///
@@ -308,13 +305,6 @@ impl Fum {
                 message_id: Fum::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Fum::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i16;
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..12].store_le(value);
         Ok(())
@@ -336,10 +326,7 @@ impl Fum {
     }
     #[inline(always)]
     fn fam_phys_val(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[12..24].load_le::<i16>();
-        let factor = 1;
-        let signal = signal as i16;
-        i16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.fam_raw_val()
     }
     /// Returns the raw value of `Fam`.
     ///
@@ -366,13 +353,6 @@ impl Fum {
                 message_id: Fum::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Fum::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i16;
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[12..24].store_le(value);
         Ok(())
@@ -486,10 +466,7 @@ impl Bar {
     /// - Offset: 0
     #[inline(always)]
     pub fn binary32(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.binary32_raw_val()
     }
     /// Returns the raw value of `Binary32`.
     ///
@@ -515,13 +492,6 @@ impl Bar {
                 message_id: Bar::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bar::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i32;
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
         Ok(())
@@ -613,9 +583,7 @@ impl CanFd {
     /// - Offset: 0
     #[inline(always)]
     pub fn fie(&self) -> u64 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>();
-        let factor = 1;
-        u64::from(signal).saturating_mul(factor).saturating_add(0)
+        self.fie_raw_val()
     }
     /// Returns the raw value of `Fie`.
     ///
@@ -640,13 +608,6 @@ impl CanFd {
                 message_id: CanFd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CanFd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u64;
         self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
         Ok(())
     }
@@ -660,9 +621,7 @@ impl CanFd {
     /// - Offset: 0
     #[inline(always)]
     pub fn fas(&self) -> u64 {
-        let signal = self.raw.view_bits::<Lsb0>()[64..128].load_le::<u64>();
-        let factor = 1;
-        u64::from(signal).saturating_mul(factor).saturating_add(0)
+        self.fas_raw_val()
     }
     /// Returns the raw value of `Fas`.
     ///
@@ -687,13 +646,6 @@ impl CanFd {
                 message_id: CanFd::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CanFd::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u64;
         self.raw.view_bits_mut::<Lsb0>()[64..128].store_le(value);
         Ok(())
     }
@@ -781,10 +733,7 @@ impl Foobar {
     /// - Offset: 0
     #[inline(always)]
     pub fn acc_02_crc(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..12].load_le::<i16>();
-        let factor = 1;
-        let signal = signal as i16;
-        i16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.acc_02_crc_raw_val()
     }
     /// Returns the raw value of `ACC_02_CRC`.
     ///
@@ -810,13 +759,6 @@ impl Foobar {
                 message_id: Foobar::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Foobar::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i16;
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..12].store_le(value);
         Ok(())

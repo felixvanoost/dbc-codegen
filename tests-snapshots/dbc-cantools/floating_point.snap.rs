@@ -93,10 +93,7 @@ impl Message1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn signal1(&self) -> i64 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<i64>();
-        let factor = 1;
-        let signal = signal as i64;
-        i64::from(signal).saturating_mul(factor).saturating_add(0)
+        self.signal1_raw_val()
     }
     /// Returns the raw value of `Signal1`.
     ///
@@ -122,13 +119,6 @@ impl Message1 {
                 message_id: Message1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Message1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i64;
         let value = u64::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
         Ok(())
@@ -220,10 +210,7 @@ impl Message2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn signal2(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.signal2_raw_val()
     }
     /// Returns the raw value of `Signal2`.
     ///
@@ -249,13 +236,6 @@ impl Message2 {
                 message_id: Message2::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Message2::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i32;
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
         Ok(())
@@ -270,10 +250,7 @@ impl Message2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn signal1(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.signal1_raw_val()
     }
     /// Returns the raw value of `Signal1`.
     ///
@@ -299,13 +276,6 @@ impl Message2 {
                 message_id: Message2::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Message2::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i32;
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
         Ok(())

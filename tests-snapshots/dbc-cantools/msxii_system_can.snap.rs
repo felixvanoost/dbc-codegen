@@ -513,13 +513,6 @@ impl BatteryVt {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
@@ -1048,9 +1041,7 @@ impl BatteryVtBatteryVtIndexM0 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_00(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_00_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_00`.
     ///
@@ -1075,13 +1066,6 @@ impl BatteryVtBatteryVtIndexM0 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -1095,9 +1079,7 @@ impl BatteryVtBatteryVtIndexM0 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_00(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_00_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_00`.
     ///
@@ -1122,13 +1104,6 @@ impl BatteryVtBatteryVtIndexM0 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -1169,9 +1144,7 @@ impl BatteryVtBatteryVtIndexM1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_01(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_01_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_01`.
     ///
@@ -1196,13 +1169,6 @@ impl BatteryVtBatteryVtIndexM1 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -1216,9 +1182,7 @@ impl BatteryVtBatteryVtIndexM1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_01(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_01_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_01`.
     ///
@@ -1243,13 +1207,6 @@ impl BatteryVtBatteryVtIndexM1 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -1290,9 +1247,7 @@ impl BatteryVtBatteryVtIndexM2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_02(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_02_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_02`.
     ///
@@ -1317,13 +1272,6 @@ impl BatteryVtBatteryVtIndexM2 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -1337,9 +1285,7 @@ impl BatteryVtBatteryVtIndexM2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_02(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_02_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_02`.
     ///
@@ -1364,13 +1310,6 @@ impl BatteryVtBatteryVtIndexM2 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -1411,9 +1350,7 @@ impl BatteryVtBatteryVtIndexM3 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_03(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_03_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_03`.
     ///
@@ -1438,13 +1375,6 @@ impl BatteryVtBatteryVtIndexM3 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -1458,9 +1388,7 @@ impl BatteryVtBatteryVtIndexM3 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_03(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_03_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_03`.
     ///
@@ -1485,13 +1413,6 @@ impl BatteryVtBatteryVtIndexM3 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -1532,9 +1453,7 @@ impl BatteryVtBatteryVtIndexM4 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_04(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_04_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_04`.
     ///
@@ -1559,13 +1478,6 @@ impl BatteryVtBatteryVtIndexM4 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -1579,9 +1491,7 @@ impl BatteryVtBatteryVtIndexM4 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_04(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_04_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_04`.
     ///
@@ -1606,13 +1516,6 @@ impl BatteryVtBatteryVtIndexM4 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -1653,9 +1556,7 @@ impl BatteryVtBatteryVtIndexM5 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_05(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_05_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_05`.
     ///
@@ -1680,13 +1581,6 @@ impl BatteryVtBatteryVtIndexM5 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -1700,9 +1594,7 @@ impl BatteryVtBatteryVtIndexM5 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_05(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_05_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_05`.
     ///
@@ -1727,13 +1619,6 @@ impl BatteryVtBatteryVtIndexM5 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -1774,9 +1659,7 @@ impl BatteryVtBatteryVtIndexM6 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_06(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_06_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_06`.
     ///
@@ -1801,13 +1684,6 @@ impl BatteryVtBatteryVtIndexM6 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -1821,9 +1697,7 @@ impl BatteryVtBatteryVtIndexM6 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_06(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_06_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_06`.
     ///
@@ -1848,13 +1722,6 @@ impl BatteryVtBatteryVtIndexM6 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -1895,9 +1762,7 @@ impl BatteryVtBatteryVtIndexM7 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_07(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_07_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_07`.
     ///
@@ -1922,13 +1787,6 @@ impl BatteryVtBatteryVtIndexM7 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -1942,9 +1800,7 @@ impl BatteryVtBatteryVtIndexM7 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_07(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_07_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_07`.
     ///
@@ -1969,13 +1825,6 @@ impl BatteryVtBatteryVtIndexM7 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -2016,9 +1865,7 @@ impl BatteryVtBatteryVtIndexM8 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_08(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_08_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_08`.
     ///
@@ -2043,13 +1890,6 @@ impl BatteryVtBatteryVtIndexM8 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -2063,9 +1903,7 @@ impl BatteryVtBatteryVtIndexM8 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_08(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_08_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_08`.
     ///
@@ -2090,13 +1928,6 @@ impl BatteryVtBatteryVtIndexM8 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -2137,9 +1968,7 @@ impl BatteryVtBatteryVtIndexM9 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_09(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_09_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_09`.
     ///
@@ -2164,13 +1993,6 @@ impl BatteryVtBatteryVtIndexM9 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -2184,9 +2006,7 @@ impl BatteryVtBatteryVtIndexM9 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_09(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_09_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_09`.
     ///
@@ -2211,13 +2031,6 @@ impl BatteryVtBatteryVtIndexM9 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -2258,9 +2071,7 @@ impl BatteryVtBatteryVtIndexM10 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_10(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_10_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_10`.
     ///
@@ -2285,13 +2096,6 @@ impl BatteryVtBatteryVtIndexM10 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -2305,9 +2109,7 @@ impl BatteryVtBatteryVtIndexM10 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_10(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_10_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_10`.
     ///
@@ -2332,13 +2134,6 @@ impl BatteryVtBatteryVtIndexM10 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -2379,9 +2174,7 @@ impl BatteryVtBatteryVtIndexM11 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_11(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_11_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_11`.
     ///
@@ -2406,13 +2199,6 @@ impl BatteryVtBatteryVtIndexM11 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -2426,9 +2212,7 @@ impl BatteryVtBatteryVtIndexM11 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_11(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_11_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_11`.
     ///
@@ -2453,13 +2237,6 @@ impl BatteryVtBatteryVtIndexM11 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -2500,9 +2277,7 @@ impl BatteryVtBatteryVtIndexM12 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_12(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_12_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_12`.
     ///
@@ -2527,13 +2302,6 @@ impl BatteryVtBatteryVtIndexM12 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -2547,9 +2315,7 @@ impl BatteryVtBatteryVtIndexM12 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_12(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_12_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_12`.
     ///
@@ -2574,13 +2340,6 @@ impl BatteryVtBatteryVtIndexM12 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -2621,9 +2380,7 @@ impl BatteryVtBatteryVtIndexM13 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_13(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_13_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_13`.
     ///
@@ -2648,13 +2405,6 @@ impl BatteryVtBatteryVtIndexM13 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -2668,9 +2418,7 @@ impl BatteryVtBatteryVtIndexM13 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_13(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_13_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_13`.
     ///
@@ -2695,13 +2443,6 @@ impl BatteryVtBatteryVtIndexM13 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -2742,9 +2483,7 @@ impl BatteryVtBatteryVtIndexM14 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_14(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_14_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_14`.
     ///
@@ -2769,13 +2508,6 @@ impl BatteryVtBatteryVtIndexM14 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -2789,9 +2521,7 @@ impl BatteryVtBatteryVtIndexM14 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_14(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_14_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_14`.
     ///
@@ -2816,13 +2546,6 @@ impl BatteryVtBatteryVtIndexM14 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -2863,9 +2586,7 @@ impl BatteryVtBatteryVtIndexM15 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_15(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_15_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_15`.
     ///
@@ -2890,13 +2611,6 @@ impl BatteryVtBatteryVtIndexM15 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -2910,9 +2624,7 @@ impl BatteryVtBatteryVtIndexM15 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_15(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_15_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_15`.
     ///
@@ -2937,13 +2649,6 @@ impl BatteryVtBatteryVtIndexM15 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -2984,9 +2689,7 @@ impl BatteryVtBatteryVtIndexM16 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_16(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_16_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_16`.
     ///
@@ -3011,13 +2714,6 @@ impl BatteryVtBatteryVtIndexM16 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -3031,9 +2727,7 @@ impl BatteryVtBatteryVtIndexM16 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_16(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_16_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_16`.
     ///
@@ -3058,13 +2752,6 @@ impl BatteryVtBatteryVtIndexM16 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -3105,9 +2792,7 @@ impl BatteryVtBatteryVtIndexM17 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_17(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_17_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_17`.
     ///
@@ -3132,13 +2817,6 @@ impl BatteryVtBatteryVtIndexM17 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -3152,9 +2830,7 @@ impl BatteryVtBatteryVtIndexM17 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_17(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_17_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_17`.
     ///
@@ -3179,13 +2855,6 @@ impl BatteryVtBatteryVtIndexM17 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -3226,9 +2895,7 @@ impl BatteryVtBatteryVtIndexM18 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_18(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_18_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_18`.
     ///
@@ -3253,13 +2920,6 @@ impl BatteryVtBatteryVtIndexM18 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -3273,9 +2933,7 @@ impl BatteryVtBatteryVtIndexM18 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_18(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_18_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_18`.
     ///
@@ -3300,13 +2958,6 @@ impl BatteryVtBatteryVtIndexM18 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -3347,9 +2998,7 @@ impl BatteryVtBatteryVtIndexM19 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_19(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_19_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_19`.
     ///
@@ -3374,13 +3023,6 @@ impl BatteryVtBatteryVtIndexM19 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -3394,9 +3036,7 @@ impl BatteryVtBatteryVtIndexM19 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_19(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_19_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_19`.
     ///
@@ -3421,13 +3061,6 @@ impl BatteryVtBatteryVtIndexM19 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -3468,9 +3101,7 @@ impl BatteryVtBatteryVtIndexM20 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_20(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_20_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_20`.
     ///
@@ -3495,13 +3126,6 @@ impl BatteryVtBatteryVtIndexM20 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -3515,9 +3139,7 @@ impl BatteryVtBatteryVtIndexM20 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_20(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_20_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_20`.
     ///
@@ -3542,13 +3164,6 @@ impl BatteryVtBatteryVtIndexM20 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -3589,9 +3204,7 @@ impl BatteryVtBatteryVtIndexM21 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_21(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_21_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_21`.
     ///
@@ -3616,13 +3229,6 @@ impl BatteryVtBatteryVtIndexM21 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -3636,9 +3242,7 @@ impl BatteryVtBatteryVtIndexM21 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_21(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_21_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_21`.
     ///
@@ -3663,13 +3267,6 @@ impl BatteryVtBatteryVtIndexM21 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -3710,9 +3307,7 @@ impl BatteryVtBatteryVtIndexM22 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_22(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_22_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_22`.
     ///
@@ -3737,13 +3332,6 @@ impl BatteryVtBatteryVtIndexM22 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -3757,9 +3345,7 @@ impl BatteryVtBatteryVtIndexM22 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_22(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_22_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_22`.
     ///
@@ -3784,13 +3370,6 @@ impl BatteryVtBatteryVtIndexM22 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -3831,9 +3410,7 @@ impl BatteryVtBatteryVtIndexM23 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_23(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_23_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_23`.
     ///
@@ -3858,13 +3435,6 @@ impl BatteryVtBatteryVtIndexM23 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -3878,9 +3448,7 @@ impl BatteryVtBatteryVtIndexM23 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_23(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_23_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_23`.
     ///
@@ -3905,13 +3473,6 @@ impl BatteryVtBatteryVtIndexM23 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -3952,9 +3513,7 @@ impl BatteryVtBatteryVtIndexM24 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_24(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_24_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_24`.
     ///
@@ -3979,13 +3538,6 @@ impl BatteryVtBatteryVtIndexM24 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -3999,9 +3551,7 @@ impl BatteryVtBatteryVtIndexM24 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_24(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_24_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_24`.
     ///
@@ -4026,13 +3576,6 @@ impl BatteryVtBatteryVtIndexM24 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -4073,9 +3616,7 @@ impl BatteryVtBatteryVtIndexM25 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_25(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_25_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_25`.
     ///
@@ -4100,13 +3641,6 @@ impl BatteryVtBatteryVtIndexM25 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -4120,9 +3654,7 @@ impl BatteryVtBatteryVtIndexM25 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_25(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_25_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_25`.
     ///
@@ -4147,13 +3679,6 @@ impl BatteryVtBatteryVtIndexM25 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -4194,9 +3719,7 @@ impl BatteryVtBatteryVtIndexM26 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_26(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_26_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_26`.
     ///
@@ -4221,13 +3744,6 @@ impl BatteryVtBatteryVtIndexM26 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -4241,9 +3757,7 @@ impl BatteryVtBatteryVtIndexM26 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_26(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_26_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_26`.
     ///
@@ -4268,13 +3782,6 @@ impl BatteryVtBatteryVtIndexM26 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -4315,9 +3822,7 @@ impl BatteryVtBatteryVtIndexM27 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_27(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_27_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_27`.
     ///
@@ -4342,13 +3847,6 @@ impl BatteryVtBatteryVtIndexM27 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -4362,9 +3860,7 @@ impl BatteryVtBatteryVtIndexM27 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_27(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_27_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_27`.
     ///
@@ -4389,13 +3885,6 @@ impl BatteryVtBatteryVtIndexM27 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -4436,9 +3925,7 @@ impl BatteryVtBatteryVtIndexM28 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_28(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_28_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_28`.
     ///
@@ -4463,13 +3950,6 @@ impl BatteryVtBatteryVtIndexM28 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -4483,9 +3963,7 @@ impl BatteryVtBatteryVtIndexM28 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_28(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_28_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_28`.
     ///
@@ -4510,13 +3988,6 @@ impl BatteryVtBatteryVtIndexM28 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -4557,9 +4028,7 @@ impl BatteryVtBatteryVtIndexM29 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_29(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_29_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_29`.
     ///
@@ -4584,13 +4053,6 @@ impl BatteryVtBatteryVtIndexM29 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -4604,9 +4066,7 @@ impl BatteryVtBatteryVtIndexM29 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_29(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_29_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_29`.
     ///
@@ -4631,13 +4091,6 @@ impl BatteryVtBatteryVtIndexM29 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -4678,9 +4131,7 @@ impl BatteryVtBatteryVtIndexM30 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_30(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_30_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_30`.
     ///
@@ -4705,13 +4156,6 @@ impl BatteryVtBatteryVtIndexM30 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -4725,9 +4169,7 @@ impl BatteryVtBatteryVtIndexM30 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_30(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_30_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_30`.
     ///
@@ -4752,13 +4194,6 @@ impl BatteryVtBatteryVtIndexM30 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -4799,9 +4234,7 @@ impl BatteryVtBatteryVtIndexM31 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_31(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_31_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_31`.
     ///
@@ -4826,13 +4259,6 @@ impl BatteryVtBatteryVtIndexM31 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -4846,9 +4272,7 @@ impl BatteryVtBatteryVtIndexM31 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_31(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_31_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_31`.
     ///
@@ -4873,13 +4297,6 @@ impl BatteryVtBatteryVtIndexM31 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -4920,9 +4337,7 @@ impl BatteryVtBatteryVtIndexM32 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_32(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_32_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_32`.
     ///
@@ -4947,13 +4362,6 @@ impl BatteryVtBatteryVtIndexM32 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -4967,9 +4375,7 @@ impl BatteryVtBatteryVtIndexM32 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_32(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_32_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_32`.
     ///
@@ -4994,13 +4400,6 @@ impl BatteryVtBatteryVtIndexM32 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -5041,9 +4440,7 @@ impl BatteryVtBatteryVtIndexM33 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_33(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_33_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_33`.
     ///
@@ -5068,13 +4465,6 @@ impl BatteryVtBatteryVtIndexM33 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -5088,9 +4478,7 @@ impl BatteryVtBatteryVtIndexM33 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_33(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_33_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_33`.
     ///
@@ -5115,13 +4503,6 @@ impl BatteryVtBatteryVtIndexM33 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -5162,9 +4543,7 @@ impl BatteryVtBatteryVtIndexM34 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_34(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_34_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_34`.
     ///
@@ -5189,13 +4568,6 @@ impl BatteryVtBatteryVtIndexM34 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -5209,9 +4581,7 @@ impl BatteryVtBatteryVtIndexM34 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_34(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_34_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_34`.
     ///
@@ -5236,13 +4606,6 @@ impl BatteryVtBatteryVtIndexM34 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -5283,9 +4646,7 @@ impl BatteryVtBatteryVtIndexM35 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_temp_35(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_temp_35_raw_val()
     }
     /// Returns the raw value of `MODULE_TEMP_35`.
     ///
@@ -5310,13 +4671,6 @@ impl BatteryVtBatteryVtIndexM35 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
@@ -5330,9 +4684,7 @@ impl BatteryVtBatteryVtIndexM35 {
     /// - Offset: 0
     #[inline(always)]
     pub fn module_voltage_35(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.module_voltage_35_raw_val()
     }
     /// Returns the raw value of `MODULE_VOLTAGE_35`.
     ///
@@ -5357,13 +4709,6 @@ impl BatteryVtBatteryVtIndexM35 {
                 message_id: BatteryVt::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BatteryVt::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }

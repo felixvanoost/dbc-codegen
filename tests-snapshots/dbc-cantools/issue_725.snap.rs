@@ -92,9 +92,7 @@ impl TestMessage {
     /// - Offset: 0
     #[inline(always)]
     pub fn signal1(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.signal1_raw_val()
     }
     /// Returns the raw value of `Signal1`.
     ///
@@ -119,13 +117,6 @@ impl TestMessage {
                 message_id: TestMessage::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestMessage::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }

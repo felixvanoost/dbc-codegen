@@ -1,16 +1,16 @@
 error[E0425]: cannot find type `ExtMuxCascadedMuxAIndex` in this scope
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:198:51
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:191:51
     |
-198 |     pub fn mux_a_multiplexed(&mut self) -> Result<ExtMuxCascadedMuxAIndex, CanError> {
+191 |     pub fn mux_a_multiplexed(&mut self) -> Result<ExtMuxCascadedMuxAIndex, CanError> {
     |                                                   ^^^^^^^^^^^^^^^^^^^^^^^
 ...
-308 | pub enum ExtMuxCascadedMuxedA2MuxBIndex {
+294 | pub enum ExtMuxCascadedMuxedA2MuxBIndex {
     | --------------------------------------- similarly named enum `ExtMuxCascadedMuxedA2MuxBIndex` defined here
     |
 help: an enum with a similar name exists
     |
-198 -     pub fn mux_a_multiplexed(&mut self) -> Result<ExtMuxCascadedMuxAIndex, CanError> {
-198 +     pub fn mux_a_multiplexed(&mut self) -> Result<ExtMuxCascadedMuxedA2MuxBIndex, CanError> {
+191 -     pub fn mux_a_multiplexed(&mut self) -> Result<ExtMuxCascadedMuxAIndex, CanError> {
+191 +     pub fn mux_a_multiplexed(&mut self) -> Result<ExtMuxCascadedMuxedA2MuxBIndex, CanError> {
     |
 help: you might be missing a type parameter
     |
@@ -18,109 +18,109 @@ help: you might be missing a type parameter
     |     +++++++++++++++++++++++++
 
 error[E0422]: cannot find struct, variant or union type `ExtMuxCascadedMuxAM0` in this scope
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:195:49
+    |
+ 55 | pub struct ExtMuxCascaded {
+    | ------------------------- similarly named struct `ExtMuxCascaded` defined here
+...
+195 |                     ExtMuxCascadedMuxAIndex::M0(ExtMuxCascadedMuxAM0 {
+    |                                                 ^^^^^^^^^^^^^^^^^^^^
+    |
+help: a struct with a similar name exists
+    |
+195 -                     ExtMuxCascadedMuxAIndex::M0(ExtMuxCascadedMuxAM0 {
+195 +                     ExtMuxCascadedMuxAIndex::M0(ExtMuxCascaded {
+    |
+
+error[E0422]: cannot find struct, variant or union type `ExtMuxCascadedMuxAM1` in this scope
    --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:202:49
     |
  55 | pub struct ExtMuxCascaded {
     | ------------------------- similarly named struct `ExtMuxCascaded` defined here
 ...
-202 |                     ExtMuxCascadedMuxAIndex::M0(ExtMuxCascadedMuxAM0 {
+202 |                     ExtMuxCascadedMuxAIndex::M1(ExtMuxCascadedMuxAM1 {
     |                                                 ^^^^^^^^^^^^^^^^^^^^
     |
 help: a struct with a similar name exists
     |
-202 -                     ExtMuxCascadedMuxAIndex::M0(ExtMuxCascadedMuxAM0 {
-202 +                     ExtMuxCascadedMuxAIndex::M0(ExtMuxCascaded {
-    |
-
-error[E0422]: cannot find struct, variant or union type `ExtMuxCascadedMuxAM1` in this scope
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:209:49
-    |
- 55 | pub struct ExtMuxCascaded {
-    | ------------------------- similarly named struct `ExtMuxCascaded` defined here
-...
-209 |                     ExtMuxCascadedMuxAIndex::M1(ExtMuxCascadedMuxAM1 {
-    |                                                 ^^^^^^^^^^^^^^^^^^^^
-    |
-help: a struct with a similar name exists
-    |
-209 -                     ExtMuxCascadedMuxAIndex::M1(ExtMuxCascadedMuxAM1 {
-209 +                     ExtMuxCascadedMuxAIndex::M1(ExtMuxCascaded {
+202 -                     ExtMuxCascadedMuxAIndex::M1(ExtMuxCascadedMuxAM1 {
+202 +                     ExtMuxCascadedMuxAIndex::M1(ExtMuxCascaded {
     |
 
 error[E0425]: cannot find type `ExtMuxCascadedMuxAM0` in this scope
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:243:37
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:229:37
     |
  55 | pub struct ExtMuxCascaded {
     | ------------------------- similarly named struct `ExtMuxCascaded` defined here
 ...
-243 |     pub fn set_m0(&mut self, value: ExtMuxCascadedMuxAM0) -> Result<(), CanError> {
+229 |     pub fn set_m0(&mut self, value: ExtMuxCascadedMuxAM0) -> Result<(), CanError> {
     |                                     ^^^^^^^^^^^^^^^^^^^^
     |
 help: a struct with a similar name exists
     |
-243 -     pub fn set_m0(&mut self, value: ExtMuxCascadedMuxAM0) -> Result<(), CanError> {
-243 +     pub fn set_m0(&mut self, value: ExtMuxCascaded) -> Result<(), CanError> {
+229 -     pub fn set_m0(&mut self, value: ExtMuxCascadedMuxAM0) -> Result<(), CanError> {
+229 +     pub fn set_m0(&mut self, value: ExtMuxCascaded) -> Result<(), CanError> {
     |
 
 error[E0425]: cannot find type `ExtMuxCascadedMuxAM1` in this scope
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:252:37
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:238:37
     |
  55 | pub struct ExtMuxCascaded {
     | ------------------------- similarly named struct `ExtMuxCascaded` defined here
 ...
-252 |     pub fn set_m1(&mut self, value: ExtMuxCascadedMuxAM1) -> Result<(), CanError> {
+238 |     pub fn set_m1(&mut self, value: ExtMuxCascadedMuxAM1) -> Result<(), CanError> {
     |                                     ^^^^^^^^^^^^^^^^^^^^
     |
 help: a struct with a similar name exists
     |
-252 -     pub fn set_m1(&mut self, value: ExtMuxCascadedMuxAM1) -> Result<(), CanError> {
-252 +     pub fn set_m1(&mut self, value: ExtMuxCascaded) -> Result<(), CanError> {
+238 -     pub fn set_m1(&mut self, value: ExtMuxCascadedMuxAM1) -> Result<(), CanError> {
+238 +     pub fn set_m1(&mut self, value: ExtMuxCascaded) -> Result<(), CanError> {
     |
 
 error[E0592]: duplicate definitions with name `set_m0`
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:243:5
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:229:5
     |
-158 | /     pub fn set_m0(
-159 | |         &mut self,
-160 | |         value: ExtMuxCascadedMuxedA2MuxBM0,
-161 | |     ) -> Result<(), CanError> {
+151 | /     pub fn set_m0(
+152 | |         &mut self,
+153 | |         value: ExtMuxCascadedMuxedA2MuxBM0,
+154 | |     ) -> Result<(), CanError> {
     | |_____________________________- other definition for `set_m0`
 ...
-243 |       pub fn set_m0(&mut self, value: ExtMuxCascadedMuxAM0) -> Result<(), CanError> {
+229 |       pub fn set_m0(&mut self, value: ExtMuxCascadedMuxAM0) -> Result<(), CanError> {
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `set_m0`
 
 error[E0592]: duplicate definitions with name `set_m1`
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:252:5
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:238:5
     |
-170 | /     pub fn set_m1(
-171 | |         &mut self,
-172 | |         value: ExtMuxCascadedMuxedA2MuxBM1,
-173 | |     ) -> Result<(), CanError> {
+163 | /     pub fn set_m1(
+164 | |         &mut self,
+165 | |         value: ExtMuxCascadedMuxedA2MuxBM1,
+166 | |     ) -> Result<(), CanError> {
     | |_____________________________- other definition for `set_m1`
 ...
-252 |       pub fn set_m1(&mut self, value: ExtMuxCascadedMuxAM1) -> Result<(), CanError> {
+238 |       pub fn set_m1(&mut self, value: ExtMuxCascadedMuxAM1) -> Result<(), CanError> {
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `set_m1`
+
+error[E0433]: cannot find type `ExtMuxCascadedMuxAIndex` in this scope
+   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:195:21
+    |
+195 |                     ExtMuxCascadedMuxAIndex::M0(ExtMuxCascadedMuxAM0 {
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `ExtMuxCascadedMuxAIndex`
+    |
+help: an enum with a similar name exists
+    |
+195 -                     ExtMuxCascadedMuxAIndex::M0(ExtMuxCascadedMuxAM0 {
+195 +                     ExtMuxCascadedMuxedA2MuxBIndex::M0(ExtMuxCascadedMuxAM0 {
+    |
 
 error[E0433]: cannot find type `ExtMuxCascadedMuxAIndex` in this scope
    --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:202:21
     |
-202 |                     ExtMuxCascadedMuxAIndex::M0(ExtMuxCascadedMuxAM0 {
+202 |                     ExtMuxCascadedMuxAIndex::M1(ExtMuxCascadedMuxAM1 {
     |                     ^^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `ExtMuxCascadedMuxAIndex`
     |
 help: an enum with a similar name exists
     |
-202 -                     ExtMuxCascadedMuxAIndex::M0(ExtMuxCascadedMuxAM0 {
-202 +                     ExtMuxCascadedMuxedA2MuxBIndex::M0(ExtMuxCascadedMuxAM0 {
-    |
-
-error[E0433]: cannot find type `ExtMuxCascadedMuxAIndex` in this scope
-   --> tests-snapshots/dbc-cantools/issue_184_extended_mux_cascaded_dumped.snap.rs:209:21
-    |
-209 |                     ExtMuxCascadedMuxAIndex::M1(ExtMuxCascadedMuxAM1 {
-    |                     ^^^^^^^^^^^^^^^^^^^^^^^ use of undeclared type `ExtMuxCascadedMuxAIndex`
-    |
-help: an enum with a similar name exists
-    |
-209 -                     ExtMuxCascadedMuxAIndex::M1(ExtMuxCascadedMuxAM1 {
-209 +                     ExtMuxCascadedMuxedA2MuxBIndex::M1(ExtMuxCascadedMuxAM1 {
+202 -                     ExtMuxCascadedMuxAIndex::M1(ExtMuxCascadedMuxAM1 {
+202 +                     ExtMuxCascadedMuxedA2MuxBIndex::M1(ExtMuxCascadedMuxAM1 {
     |

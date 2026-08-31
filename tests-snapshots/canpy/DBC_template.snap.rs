@@ -144,13 +144,6 @@ impl CanMultiplexed {
                 message_id: CanMultiplexed::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CanMultiplexed::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
@@ -331,9 +324,7 @@ impl CanMultiplexedMultiplexerM0 {
     }
     #[inline(always)]
     fn value0_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.value0_raw_val()
     }
     /// Returns the raw value of `Value0`.
     ///
@@ -359,13 +350,6 @@ impl CanMultiplexedMultiplexerM0 {
                 message_id: CanMultiplexed::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CanMultiplexed::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -415,9 +399,7 @@ impl CanMultiplexedMultiplexerM1 {
     }
     #[inline(always)]
     fn value1_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.value1_raw_val()
     }
     /// Returns the raw value of `Value1`.
     ///
@@ -443,13 +425,6 @@ impl CanMultiplexedMultiplexerM1 {
                 message_id: CanMultiplexed::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CanMultiplexed::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -551,10 +526,7 @@ impl CanMessage {
     /// - Offset: 0
     #[inline(always)]
     pub fn signal0(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.signal0_raw_val()
     }
     /// Returns the raw value of `Signal0`.
     ///
@@ -580,13 +552,6 @@ impl CanMessage {
                 message_id: CanMessage::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CanMessage::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i32;
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
         Ok(())

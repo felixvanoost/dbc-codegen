@@ -151,8 +151,7 @@ impl DriverDoorStatus {
     }
     #[inline(always)]
     fn driver_door_opened_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[7..8].load_be::<u8>();
-        signal == 1
+        self.driver_door_opened_raw_val() == 1
     }
     /// Returns the raw value of `DriverDoorOpened`.
     ///
@@ -307,9 +306,7 @@ impl Chime {
     /// - Offset: 0
     #[inline(always)]
     pub fn chime_type(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[0..8].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.chime_type_raw_val()
     }
     /// Returns the raw value of `ChimeType`.
     ///
@@ -334,13 +331,6 @@ impl Chime {
                 message_id: Chime::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Chime::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[0..8].store_be(value);
         Ok(())
     }
@@ -354,9 +344,7 @@ impl Chime {
     /// - Offset: 0
     #[inline(always)]
     pub fn chime_repeat(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[16..24].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.chime_repeat_raw_val()
     }
     /// Returns the raw value of `ChimeRepeat`.
     ///
@@ -381,13 +369,6 @@ impl Chime {
                 message_id: Chime::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Chime::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[16..24].store_be(value);
         Ok(())
     }
@@ -401,9 +382,7 @@ impl Chime {
     /// - Offset: 0
     #[inline(always)]
     pub fn chime_duration(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[8..16].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.chime_duration_raw_val()
     }
     /// Returns the raw value of `ChimeDuration`.
     ///
@@ -428,13 +407,6 @@ impl Chime {
                 message_id: Chime::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Chime::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[8..16].store_be(value);
         Ok(())
     }
@@ -448,9 +420,7 @@ impl Chime {
     /// - Offset: 0
     #[inline(always)]
     pub fn chime_byte5(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[32..40].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.chime_byte5_raw_val()
     }
     /// Returns the raw value of `ChimeByte5`.
     ///
@@ -475,13 +445,6 @@ impl Chime {
                 message_id: Chime::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Chime::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[32..40].store_be(value);
         Ok(())
     }
@@ -495,9 +458,7 @@ impl Chime {
     /// - Offset: 0
     #[inline(always)]
     pub fn chime_byte4(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[24..32].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.chime_byte4_raw_val()
     }
     /// Returns the raw value of `ChimeByte4`.
     ///
@@ -522,13 +483,6 @@ impl Chime {
                 message_id: Chime::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Chime::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[24..32].store_be(value);
         Ok(())
     }
@@ -627,8 +581,7 @@ impl BlinkerStatus {
     }
     #[inline(always)]
     fn right_blinker_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[1..2].load_be::<u8>();
-        signal == 1
+        self.right_blinker_raw_val() == 1
     }
     /// Returns the raw value of `RightBlinker`.
     ///
@@ -673,8 +626,7 @@ impl BlinkerStatus {
     }
     #[inline(always)]
     fn left_blinker_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[0..1].load_be::<u8>();
-        signal == 1
+        self.left_blinker_raw_val() == 1
     }
     /// Returns the raw value of `LeftBlinker`.
     ///
@@ -719,8 +671,7 @@ impl BlinkerStatus {
     }
     #[inline(always)]
     fn blinker_light_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[30..31].load_be::<u8>();
-        signal == 1
+        self.blinker_light_raw_val() == 1
     }
     /// Returns the raw value of `BlinkerLight`.
     ///
@@ -1034,9 +985,7 @@ impl GearShifter {
     }
     #[inline(always)]
     fn gear_shifter_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[22..24].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.gear_shifter_raw_val()
     }
     /// Returns the raw value of `GearShifter`.
     ///
@@ -1065,13 +1014,6 @@ impl GearShifter {
                 message_id: GearShifter::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: GearShifter::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[22..24].store_be(value);
         Ok(())
     }
@@ -1255,8 +1197,7 @@ impl GasPedalRegenCruise {
     }
     #[inline(always)]
     fn cruise_control_active_phys_val(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[63..64].load_be::<u8>();
-        signal == 1
+        self.cruise_control_active_raw_val() == 1
     }
     /// Returns the raw value of `CruiseControlActive`.
     ///
@@ -1294,8 +1235,7 @@ impl GasPedalRegenCruise {
     /// - Offset: 0
     #[inline(always)]
     pub fn max_regen(&self) -> bool {
-        let signal = self.raw.view_bits::<Msb0>()[11..12].load_be::<u8>();
-        signal == 1
+        self.max_regen_raw_val() == 1
     }
     /// Returns the raw value of `MaxRegen`.
     ///
@@ -1329,9 +1269,7 @@ impl GasPedalRegenCruise {
     /// - Offset: 0
     #[inline(always)]
     pub fn gas_pedal(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[40..48].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.gas_pedal_raw_val()
     }
     /// Returns the raw value of `GasPedal`.
     ///
@@ -1356,13 +1294,6 @@ impl GasPedalRegenCruise {
                 message_id: GasPedalRegenCruise::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: GasPedalRegenCruise::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[40..48].store_be(value);
         Ok(())
     }
@@ -1376,9 +1307,7 @@ impl GasPedalRegenCruise {
     /// - Offset: 0
     #[inline(always)]
     pub fn gear_shifter2_not_used(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[48..56].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.gear_shifter2_not_used_raw_val()
     }
     /// Returns the raw value of `GearShifter2NotUsed`.
     ///
@@ -1403,13 +1332,6 @@ impl GasPedalRegenCruise {
                 message_id: GasPedalRegenCruise::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: GasPedalRegenCruise::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[48..56].store_be(value);
         Ok(())
     }
@@ -1525,9 +1447,7 @@ impl BrakePedal {
     /// - Offset: 0
     #[inline(always)]
     pub fn brake_level(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[5..7].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.brake_level_raw_val()
     }
     /// Returns the raw value of `BrakeLevel`.
     ///
@@ -1552,13 +1472,6 @@ impl BrakePedal {
                 message_id: BrakePedal::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BrakePedal::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[5..7].store_be(value);
         Ok(())
     }
@@ -1572,9 +1485,7 @@ impl BrakePedal {
     /// - Offset: 0
     #[inline(always)]
     pub fn brake_sensor(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[8..16].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.brake_sensor_raw_val()
     }
     /// Returns the raw value of `BrakeSensor`.
     ///
@@ -1599,13 +1510,6 @@ impl BrakePedal {
                 message_id: BrakePedal::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: BrakePedal::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[8..16].store_be(value);
         Ok(())
     }
@@ -2132,9 +2036,7 @@ impl CruiseButtons {
     }
     #[inline(always)]
     fn cruise_buttons_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[4..7].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.cruise_buttons_raw_val()
     }
     /// Returns the raw value of `CruiseButtons`.
     ///
@@ -2163,13 +2065,6 @@ impl CruiseButtons {
                 message_id: CruiseButtons::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CruiseButtons::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[4..7].store_be(value);
         Ok(())
     }
@@ -2265,9 +2160,7 @@ impl CruiseButtons2 {
     }
     #[inline(always)]
     fn lka_gap_button_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[6..8].load_be::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.lka_gap_button_raw_val()
     }
     /// Returns the raw value of `LKAGapButton`.
     ///
@@ -2296,13 +2189,6 @@ impl CruiseButtons2 {
                 message_id: CruiseButtons2::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: CruiseButtons2::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Msb0>()[6..8].store_be(value);
         Ok(())
     }

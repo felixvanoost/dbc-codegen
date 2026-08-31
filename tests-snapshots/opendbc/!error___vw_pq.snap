@@ -7,10 +7,7 @@ Error {
         context: "write message `Lenkhilfe_1`",
         source: Error {
             context: "write signal impl `LH1_EPS_Diagmode`",
-            source: Error {
-                context: "signal from payload",
-                source: "signal ends at 17, but message is only 16 bits",
-            },
+            source: "signal ends at 17, but message is only 16 bits",
         },
     },
 }

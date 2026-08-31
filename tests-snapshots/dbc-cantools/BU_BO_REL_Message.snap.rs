@@ -96,9 +96,7 @@ impl Message1 {
     }
     #[inline(always)]
     fn signal_1_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.signal_1_raw_val()
     }
     /// Returns the raw value of `signal_1`.
     ///
@@ -124,13 +122,6 @@ impl Message1 {
                 message_id: Message1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Message1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }

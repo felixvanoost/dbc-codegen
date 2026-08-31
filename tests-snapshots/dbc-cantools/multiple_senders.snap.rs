@@ -90,10 +90,7 @@ impl Bar {
     /// - Offset: 0
     #[inline(always)]
     pub fn binary32(&self) -> i32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
-        let factor = 1;
-        let signal = signal as i32;
-        i32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.binary32_raw_val()
     }
     /// Returns the raw value of `Binary32`.
     ///
@@ -119,13 +116,6 @@ impl Bar {
                 message_id: Bar::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bar::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as i32;
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
         Ok(())

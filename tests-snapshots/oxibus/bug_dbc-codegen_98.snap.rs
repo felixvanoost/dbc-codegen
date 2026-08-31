@@ -157,13 +157,6 @@ impl TestInput {
                 message_id: TestInput::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestInput::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[56..60].store_le(value);
         Ok(())
     }
@@ -323,9 +316,7 @@ impl TestInputTestInputMuxM0 {
     /// - Offset: 0
     #[inline(always)]
     pub fn var1(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.var1_raw_val()
     }
     /// Returns the raw value of `Var1`.
     ///
@@ -350,13 +341,6 @@ impl TestInputTestInputMuxM0 {
                 message_id: TestInput::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestInput::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
@@ -397,9 +381,7 @@ impl TestInputTestInputMuxM1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn var2(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.var2_raw_val()
     }
     /// Returns the raw value of `Var2`.
     ///
@@ -424,13 +406,6 @@ impl TestInputTestInputMuxM1 {
                 message_id: TestInput::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestInput::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
@@ -471,9 +446,7 @@ impl TestInputTestInputMuxM2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn var3(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.var3_raw_val()
     }
     /// Returns the raw value of `Var3`.
     ///
@@ -498,13 +471,6 @@ impl TestInputTestInputMuxM2 {
                 message_id: TestInput::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestInput::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
@@ -545,9 +511,7 @@ impl TestInputTestInputMuxM3 {
     /// - Offset: 0
     #[inline(always)]
     pub fn var4(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.var4_raw_val()
     }
     /// Returns the raw value of `Var4`.
     ///
@@ -572,13 +536,6 @@ impl TestInputTestInputMuxM3 {
                 message_id: TestInput::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestInput::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
@@ -690,13 +647,6 @@ impl TestOutput {
                 message_id: TestOutput::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestOutput::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[56..60].store_le(value);
         Ok(())
     }
@@ -856,9 +806,7 @@ impl TestOutputTestOutputMuxM0 {
     /// - Offset: 0
     #[inline(always)]
     pub fn var5(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.var5_raw_val()
     }
     /// Returns the raw value of `Var5`.
     ///
@@ -883,13 +831,6 @@ impl TestOutputTestOutputMuxM0 {
                 message_id: TestOutput::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestOutput::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
@@ -930,9 +871,7 @@ impl TestOutputTestOutputMuxM1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn var6(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.var6_raw_val()
     }
     /// Returns the raw value of `Var6`.
     ///
@@ -957,13 +896,6 @@ impl TestOutputTestOutputMuxM1 {
                 message_id: TestOutput::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestOutput::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
@@ -1004,9 +936,7 @@ impl TestOutputTestOutputMuxM2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn var7(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.var7_raw_val()
     }
     /// Returns the raw value of `Var7`.
     ///
@@ -1031,13 +961,6 @@ impl TestOutputTestOutputMuxM2 {
                 message_id: TestOutput::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestOutput::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
@@ -1078,9 +1001,7 @@ impl TestOutputTestOutputMuxM3 {
     /// - Offset: 0
     #[inline(always)]
     pub fn var8(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.var8_raw_val()
     }
     /// Returns the raw value of `Var8`.
     ///
@@ -1105,13 +1026,6 @@ impl TestOutputTestOutputMuxM3 {
                 message_id: TestOutput::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: TestOutput::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }

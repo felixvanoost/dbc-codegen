@@ -130,13 +130,6 @@ impl Message1 {
                 message_id: Message1::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Message1::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[2..8].store_le(value);
         Ok(())
     }
@@ -247,8 +240,7 @@ impl Message1MultiplexorM8 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bit_l(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[24..25].load_le::<u8>();
-        signal == 1
+        self.bit_l_raw_val() == 1
     }
     /// Returns the raw value of `BIT_L`.
     ///
@@ -282,8 +274,7 @@ impl Message1MultiplexorM8 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bit_g(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[23..24].load_le::<u8>();
-        signal == 1
+        self.bit_g_raw_val() == 1
     }
     /// Returns the raw value of `BIT_G`.
     ///
@@ -317,8 +308,7 @@ impl Message1MultiplexorM8 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bit_c(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[19..20].load_le::<u8>();
-        signal == 1
+        self.bit_c_raw_val() == 1
     }
     /// Returns the raw value of `BIT_C`.
     ///
@@ -352,8 +342,7 @@ impl Message1MultiplexorM8 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bit_j(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[18..19].load_le::<u8>();
-        signal == 1
+        self.bit_j_raw_val() == 1
     }
     /// Returns the raw value of `BIT_J`.
     ///
@@ -414,8 +403,7 @@ impl Message1MultiplexorM24 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bit_f(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[39..40].load_le::<u8>();
-        signal == 1
+        self.bit_f_raw_val() == 1
     }
     /// Returns the raw value of `BIT_F`.
     ///
@@ -449,8 +437,7 @@ impl Message1MultiplexorM24 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bit_h(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[38..39].load_le::<u8>();
-        signal == 1
+        self.bit_h_raw_val() == 1
     }
     /// Returns the raw value of `BIT_H`.
     ///
@@ -484,8 +471,7 @@ impl Message1MultiplexorM24 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bit_b(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[33..34].load_le::<u8>();
-        signal == 1
+        self.bit_b_raw_val() == 1
     }
     /// Returns the raw value of `BIT_B`.
     ///
@@ -519,8 +505,7 @@ impl Message1MultiplexorM24 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bit_d(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[32..33].load_le::<u8>();
-        signal == 1
+        self.bit_d_raw_val() == 1
     }
     /// Returns the raw value of `BIT_D`.
     ///
@@ -554,8 +539,7 @@ impl Message1MultiplexorM24 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bit_e(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[29..30].load_le::<u8>();
-        signal == 1
+        self.bit_e_raw_val() == 1
     }
     /// Returns the raw value of `BIT_E`.
     ///
@@ -589,8 +573,7 @@ impl Message1MultiplexorM24 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bit_k(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[28..29].load_le::<u8>();
-        signal == 1
+        self.bit_k_raw_val() == 1
     }
     /// Returns the raw value of `BIT_K`.
     ///
@@ -624,8 +607,7 @@ impl Message1MultiplexorM24 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bit_a(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[26..27].load_le::<u8>();
-        signal == 1
+        self.bit_a_raw_val() == 1
     }
     /// Returns the raw value of `BIT_A`.
     ///

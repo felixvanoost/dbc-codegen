@@ -1499,9 +1499,7 @@ impl AbsSwitch {
     /// - Offset: 0
     #[inline(always)]
     pub fn abs_switchposition(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.abs_switchposition_raw_val()
     }
     /// Returns the raw value of `ABS_Switchposition`.
     ///
@@ -1526,13 +1524,6 @@ impl AbsSwitch {
                 message_id: AbsSwitch::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: AbsSwitch::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
@@ -1691,9 +1682,7 @@ impl Bremse31 {
     /// - Offset: 0
     #[inline(always)]
     pub fn idle_time(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        let factor = 1;
-        u16::from(signal).saturating_mul(factor).saturating_add(0)
+        self.idle_time_raw_val()
     }
     /// Returns the raw value of `Idle_Time`.
     ///
@@ -1718,13 +1707,6 @@ impl Bremse31 {
                 message_id: Bremse31::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse31::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
@@ -1936,9 +1918,7 @@ impl Bremse32 {
     /// - Offset: 0
     #[inline(always)]
     pub fn wheel_quality_fl(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.wheel_quality_fl_raw_val()
     }
     /// Returns the raw value of `WheelQuality_FL`.
     ///
@@ -1963,13 +1943,6 @@ impl Bremse32 {
                 message_id: Bremse32::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse32::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
@@ -1993,9 +1966,7 @@ impl Bremse32 {
     /// - Offset: 0
     #[inline(always)]
     pub fn wheel_quality_fr(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.wheel_quality_fr_raw_val()
     }
     /// Returns the raw value of `WheelQuality_FR`.
     ///
@@ -2020,13 +1991,6 @@ impl Bremse32 {
                 message_id: Bremse32::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse32::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
@@ -2050,9 +2014,7 @@ impl Bremse32 {
     /// - Offset: 0
     #[inline(always)]
     pub fn wheel_quality_rl(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.wheel_quality_rl_raw_val()
     }
     /// Returns the raw value of `WheelQuality_RL`.
     ///
@@ -2077,13 +2039,6 @@ impl Bremse32 {
                 message_id: Bremse32::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse32::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
         Ok(())
     }
@@ -2107,9 +2062,7 @@ impl Bremse32 {
     /// - Offset: 0
     #[inline(always)]
     pub fn wheel_quality_rr(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.wheel_quality_rr_raw_val()
     }
     /// Returns the raw value of `WheelQuality_RR`.
     ///
@@ -2134,13 +2087,6 @@ impl Bremse32 {
                 message_id: Bremse32::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse32::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
         Ok(())
     }
@@ -2340,9 +2286,7 @@ impl Bremse51 {
     /// - Offset: 0
     #[inline(always)]
     pub fn if_variant(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[48..54].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.if_variant_raw_val()
     }
     /// Returns the raw value of `IF_variant`.
     ///
@@ -2367,13 +2311,6 @@ impl Bremse51 {
                 message_id: Bremse51::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse51::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..54].store_le(value);
         Ok(())
     }
@@ -2389,9 +2326,7 @@ impl Bremse51 {
     /// - Offset: 0
     #[inline(always)]
     pub fn if_revision(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[54..60].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.if_revision_raw_val()
     }
     /// Returns the raw value of `IF_revision`.
     ///
@@ -2416,13 +2351,6 @@ impl Bremse51 {
                 message_id: Bremse51::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse51::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[54..60].store_le(value);
         Ok(())
     }
@@ -2438,9 +2366,7 @@ impl Bremse51 {
     /// - Offset: 0
     #[inline(always)]
     pub fn if_chksum(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[60..64].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.if_chksum_raw_val()
     }
     /// Returns the raw value of `IF_chksum`.
     ///
@@ -2465,13 +2391,6 @@ impl Bremse51 {
                 message_id: Bremse51::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse51::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[60..64].store_le(value);
         Ok(())
     }
@@ -2711,13 +2630,6 @@ impl Bremse52 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
@@ -2880,9 +2792,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn sw_version_high_upper(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sw_version_high_upper_raw_val()
     }
     /// Returns the raw value of `SW_version_High_upper`.
     ///
@@ -2907,13 +2817,6 @@ impl Bremse52MplxSwInfoM1 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -2929,9 +2832,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn sw_version_high_lower(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sw_version_high_lower_raw_val()
     }
     /// Returns the raw value of `SW_version_High_lower`.
     ///
@@ -2956,13 +2857,6 @@ impl Bremse52MplxSwInfoM1 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
@@ -2978,9 +2872,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn sw_version_mid_upper(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sw_version_mid_upper_raw_val()
     }
     /// Returns the raw value of `SW_version_Mid_upper`.
     ///
@@ -3005,13 +2897,6 @@ impl Bremse52MplxSwInfoM1 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
@@ -3027,9 +2912,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn sw_version_mid_lower(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sw_version_mid_lower_raw_val()
     }
     /// Returns the raw value of `SW_version_Mid_lower`.
     ///
@@ -3054,13 +2937,6 @@ impl Bremse52MplxSwInfoM1 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
@@ -3076,9 +2952,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn sw_version_low_upper(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sw_version_low_upper_raw_val()
     }
     /// Returns the raw value of `SW_version_Low_upper`.
     ///
@@ -3103,13 +2977,6 @@ impl Bremse52MplxSwInfoM1 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
@@ -3125,9 +2992,7 @@ impl Bremse52MplxSwInfoM1 {
     /// - Offset: 0
     #[inline(always)]
     pub fn sw_version_low_lower(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sw_version_low_lower_raw_val()
     }
     /// Returns the raw value of `SW_version_Low_lower`.
     ///
@@ -3152,13 +3017,6 @@ impl Bremse52MplxSwInfoM1 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
         Ok(())
     }
@@ -3199,9 +3057,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bb_dig1(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.bb_dig1_raw_val()
     }
     /// Returns the raw value of `BB_dig1`.
     ///
@@ -3226,13 +3082,6 @@ impl Bremse52MplxSwInfoM2 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -3246,9 +3095,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bb_dig2(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.bb_dig2_raw_val()
     }
     /// Returns the raw value of `BB_dig2`.
     ///
@@ -3273,13 +3120,6 @@ impl Bremse52MplxSwInfoM2 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
@@ -3293,9 +3133,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bb_dig3(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.bb_dig3_raw_val()
     }
     /// Returns the raw value of `BB_dig3`.
     ///
@@ -3320,13 +3158,6 @@ impl Bremse52MplxSwInfoM2 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
@@ -3340,9 +3171,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bb_dig4(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.bb_dig4_raw_val()
     }
     /// Returns the raw value of `BB_dig4`.
     ///
@@ -3367,13 +3196,6 @@ impl Bremse52MplxSwInfoM2 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
@@ -3387,9 +3209,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bb_dig5(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.bb_dig5_raw_val()
     }
     /// Returns the raw value of `BB_dig5`.
     ///
@@ -3414,13 +3234,6 @@ impl Bremse52MplxSwInfoM2 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
@@ -3434,9 +3247,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bb_dig6(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.bb_dig6_raw_val()
     }
     /// Returns the raw value of `BB_dig6`.
     ///
@@ -3461,13 +3272,6 @@ impl Bremse52MplxSwInfoM2 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
         Ok(())
     }
@@ -3481,9 +3285,7 @@ impl Bremse52MplxSwInfoM2 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bb_dig7(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.bb_dig7_raw_val()
     }
     /// Returns the raw value of `BB_dig7`.
     ///
@@ -3508,13 +3310,6 @@ impl Bremse52MplxSwInfoM2 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
         Ok(())
     }
@@ -3555,9 +3350,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_id_01(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_id_01_raw_val()
     }
     /// Returns the raw value of `Appl_Id_01`.
     ///
@@ -3582,13 +3375,6 @@ impl Bremse52MplxSwInfoM3 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -3602,9 +3388,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_id_02(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_id_02_raw_val()
     }
     /// Returns the raw value of `Appl_Id_02`.
     ///
@@ -3629,13 +3413,6 @@ impl Bremse52MplxSwInfoM3 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
@@ -3649,9 +3426,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_id_03(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_id_03_raw_val()
     }
     /// Returns the raw value of `Appl_Id_03`.
     ///
@@ -3676,13 +3451,6 @@ impl Bremse52MplxSwInfoM3 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
@@ -3696,9 +3464,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_id_04(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_id_04_raw_val()
     }
     /// Returns the raw value of `Appl_Id_04`.
     ///
@@ -3723,13 +3489,6 @@ impl Bremse52MplxSwInfoM3 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
@@ -3743,9 +3502,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_id_05(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_id_05_raw_val()
     }
     /// Returns the raw value of `Appl_Id_05`.
     ///
@@ -3770,13 +3527,6 @@ impl Bremse52MplxSwInfoM3 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
@@ -3790,9 +3540,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_id_06(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_id_06_raw_val()
     }
     /// Returns the raw value of `Appl_Id_06`.
     ///
@@ -3817,13 +3565,6 @@ impl Bremse52MplxSwInfoM3 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
         Ok(())
     }
@@ -3837,9 +3578,7 @@ impl Bremse52MplxSwInfoM3 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_id_07(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_id_07_raw_val()
     }
     /// Returns the raw value of `Appl_Id_07`.
     ///
@@ -3864,13 +3603,6 @@ impl Bremse52MplxSwInfoM3 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
         Ok(())
     }
@@ -3911,9 +3643,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_id_08(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_id_08_raw_val()
     }
     /// Returns the raw value of `Appl_Id_08`.
     ///
@@ -3938,13 +3668,6 @@ impl Bremse52MplxSwInfoM4 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -3958,9 +3681,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_id_09(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_id_09_raw_val()
     }
     /// Returns the raw value of `Appl_Id_09`.
     ///
@@ -3985,13 +3706,6 @@ impl Bremse52MplxSwInfoM4 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
@@ -4005,9 +3719,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_id_10(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_id_10_raw_val()
     }
     /// Returns the raw value of `Appl_Id_10`.
     ///
@@ -4032,13 +3744,6 @@ impl Bremse52MplxSwInfoM4 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
@@ -4052,9 +3757,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_id_11(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_id_11_raw_val()
     }
     /// Returns the raw value of `Appl_Id_11`.
     ///
@@ -4079,13 +3782,6 @@ impl Bremse52MplxSwInfoM4 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
@@ -4099,9 +3795,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_id_12(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_id_12_raw_val()
     }
     /// Returns the raw value of `Appl_Id_12`.
     ///
@@ -4126,13 +3820,6 @@ impl Bremse52MplxSwInfoM4 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
@@ -4146,9 +3833,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_id_13(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_id_13_raw_val()
     }
     /// Returns the raw value of `Appl_Id_13`.
     ///
@@ -4173,13 +3858,6 @@ impl Bremse52MplxSwInfoM4 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
         Ok(())
     }
@@ -4193,9 +3871,7 @@ impl Bremse52MplxSwInfoM4 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_id_14(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_id_14_raw_val()
     }
     /// Returns the raw value of `Appl_Id_14`.
     ///
@@ -4220,13 +3896,6 @@ impl Bremse52MplxSwInfoM4 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
         Ok(())
     }
@@ -4269,9 +3938,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_date_01(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_date_01_raw_val()
     }
     /// Returns the raw value of `Appl_date_01`.
     ///
@@ -4296,13 +3963,6 @@ impl Bremse52MplxSwInfoM5 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -4318,9 +3978,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_date_02(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_date_02_raw_val()
     }
     /// Returns the raw value of `Appl_date_02`.
     ///
@@ -4345,13 +4003,6 @@ impl Bremse52MplxSwInfoM5 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
@@ -4367,9 +4018,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_date_03(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_date_03_raw_val()
     }
     /// Returns the raw value of `Appl_date_03`.
     ///
@@ -4394,13 +4043,6 @@ impl Bremse52MplxSwInfoM5 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
@@ -4416,9 +4058,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_date_04(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_date_04_raw_val()
     }
     /// Returns the raw value of `Appl_date_04`.
     ///
@@ -4443,13 +4083,6 @@ impl Bremse52MplxSwInfoM5 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
@@ -4465,9 +4098,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_date_05(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_date_05_raw_val()
     }
     /// Returns the raw value of `Appl_date_05`.
     ///
@@ -4492,13 +4123,6 @@ impl Bremse52MplxSwInfoM5 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
@@ -4514,9 +4138,7 @@ impl Bremse52MplxSwInfoM5 {
     /// - Offset: 0
     #[inline(always)]
     pub fn appl_date_06(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.appl_date_06_raw_val()
     }
     /// Returns the raw value of `Appl_date_06`.
     ///
@@ -4541,13 +4163,6 @@ impl Bremse52MplxSwInfoM5 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
         Ok(())
     }
@@ -4588,9 +4203,7 @@ impl Bremse52MplxSwInfoM6 {
     /// - Offset: 0
     #[inline(always)]
     pub fn sw_can_ident(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.sw_can_ident_raw_val()
     }
     /// Returns the raw value of `SW_CAN_ident`.
     ///
@@ -4615,13 +4228,6 @@ impl Bremse52MplxSwInfoM6 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -4662,9 +4268,7 @@ impl Bremse52MplxSwInfoM7 {
     /// - Offset: 0
     #[inline(always)]
     pub fn hu_date_year(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.hu_date_year_raw_val()
     }
     /// Returns the raw value of `HU_date_year`.
     ///
@@ -4689,13 +4293,6 @@ impl Bremse52MplxSwInfoM7 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
@@ -4709,9 +4306,7 @@ impl Bremse52MplxSwInfoM7 {
     /// - Offset: 0
     #[inline(always)]
     pub fn hu_date_month(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.hu_date_month_raw_val()
     }
     /// Returns the raw value of `HU_date_month`.
     ///
@@ -4736,13 +4331,6 @@ impl Bremse52MplxSwInfoM7 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
@@ -4756,9 +4344,7 @@ impl Bremse52MplxSwInfoM7 {
     /// - Offset: 0
     #[inline(always)]
     pub fn hu_date_day(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.hu_date_day_raw_val()
     }
     /// Returns the raw value of `HU_date_day`.
     ///
@@ -4783,13 +4369,6 @@ impl Bremse52MplxSwInfoM7 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
@@ -4803,9 +4382,7 @@ impl Bremse52MplxSwInfoM7 {
     /// - Offset: 0
     #[inline(always)]
     pub fn ecu_serial(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
-        let factor = 1;
-        u32::from(signal).saturating_mul(factor).saturating_add(0)
+        self.ecu_serial_raw_val()
     }
     /// Returns the raw value of `Ecu_serial`.
     ///
@@ -4830,13 +4407,6 @@ impl Bremse52MplxSwInfoM7 {
                 message_id: Bremse52::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse52::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u32;
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
         Ok(())
     }
@@ -4948,9 +4518,7 @@ impl Bremse50 {
     /// - Offset: 0
     #[inline(always)]
     pub fn brake_bal_at50_advice(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.brake_bal_at50_advice_raw_val()
     }
     /// Returns the raw value of `Brake_bal_at50_advice`.
     ///
@@ -4975,13 +4543,6 @@ impl Bremse50 {
                 message_id: Bremse50::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse50::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
@@ -5043,9 +4604,7 @@ impl Bremse50 {
     /// - Offset: 0
     #[inline(always)]
     pub fn brake_bal_pct_advice(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.brake_bal_pct_advice_raw_val()
     }
     /// Returns the raw value of `Brake_bal_pct_advice`.
     ///
@@ -5070,13 +4629,6 @@ impl Bremse50 {
                 message_id: Bremse50::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse50::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
         Ok(())
     }
@@ -5222,9 +4774,7 @@ impl Bremse53 {
     /// - Offset: 0
     #[inline(always)]
     pub fn switch_position(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.switch_position_raw_val()
     }
     /// Returns the raw value of `SwitchPosition`.
     ///
@@ -5249,13 +4799,6 @@ impl Bremse53 {
                 message_id: Bremse53::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse53::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
@@ -5319,8 +4862,7 @@ impl Bremse53 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bls(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[24..25].load_le::<u8>();
-        signal == 1
+        self.bls_raw_val() == 1
     }
     /// Returns the raw value of `BLS`.
     ///
@@ -5354,9 +4896,7 @@ impl Bremse53 {
     /// - Offset: 0
     #[inline(always)]
     pub fn bremse_53_cnt(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[26..28].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.bremse_53_cnt_raw_val()
     }
     /// Returns the raw value of `Bremse_53_cnt`.
     ///
@@ -5381,13 +4921,6 @@ impl Bremse53 {
                 message_id: Bremse53::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse53::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[26..28].store_le(value);
         Ok(())
     }
@@ -5403,8 +4936,7 @@ impl Bremse53 {
     /// - Offset: 0
     #[inline(always)]
     pub fn abs_malfunction(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[28..29].load_le::<u8>();
-        signal == 1
+        self.abs_malfunction_raw_val() == 1
     }
     /// Returns the raw value of `ABS_Malfunction`.
     ///
@@ -5440,8 +4972,7 @@ impl Bremse53 {
     /// - Offset: 0
     #[inline(always)]
     pub fn abs_active(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[29..30].load_le::<u8>();
-        signal == 1
+        self.abs_active_raw_val() == 1
     }
     /// Returns the raw value of `ABS_Active`.
     ///
@@ -5477,8 +5008,7 @@ impl Bremse53 {
     /// - Offset: 0
     #[inline(always)]
     pub fn ebd_lamp(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[30..31].load_le::<u8>();
-        signal == 1
+        self.ebd_lamp_raw_val() == 1
     }
     /// Returns the raw value of `EBD_Lamp`.
     ///
@@ -5514,8 +5044,7 @@ impl Bremse53 {
     /// - Offset: 0
     #[inline(always)]
     pub fn abs_lamp(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[31..32].load_le::<u8>();
-        signal == 1
+        self.abs_lamp_raw_val() == 1
     }
     /// Returns the raw value of `ABS_Lamp`.
     ///
@@ -5560,9 +5089,7 @@ impl Bremse53 {
     }
     #[inline(always)]
     fn diag_fl_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..34].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.diag_fl_raw_val()
     }
     /// Returns the raw value of `Diag_FL`.
     ///
@@ -5588,13 +5115,6 @@ impl Bremse53 {
                 message_id: Bremse53::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse53::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..34].store_le(value);
         Ok(())
     }
@@ -5619,9 +5139,7 @@ impl Bremse53 {
     }
     #[inline(always)]
     fn diag_fr_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[34..36].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.diag_fr_raw_val()
     }
     /// Returns the raw value of `Diag_FR`.
     ///
@@ -5647,13 +5165,6 @@ impl Bremse53 {
                 message_id: Bremse53::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse53::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[34..36].store_le(value);
         Ok(())
     }
@@ -5678,9 +5189,7 @@ impl Bremse53 {
     }
     #[inline(always)]
     fn diag_rl_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[36..38].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.diag_rl_raw_val()
     }
     /// Returns the raw value of `Diag_RL`.
     ///
@@ -5706,13 +5215,6 @@ impl Bremse53 {
                 message_id: Bremse53::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse53::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[36..38].store_le(value);
         Ok(())
     }
@@ -5737,9 +5239,7 @@ impl Bremse53 {
     }
     #[inline(always)]
     fn diag_rr_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[38..40].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.diag_rr_raw_val()
     }
     /// Returns the raw value of `Diag_RR`.
     ///
@@ -5765,13 +5265,6 @@ impl Bremse53 {
                 message_id: Bremse53::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse53::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[38..40].store_le(value);
         Ok(())
     }
@@ -5787,8 +5280,7 @@ impl Bremse53 {
     /// - Offset: 0
     #[inline(always)]
     pub fn diag_abs_unit(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[40..41].load_le::<u8>();
-        signal == 1
+        self.diag_abs_unit_raw_val() == 1
     }
     /// Returns the raw value of `Diag_ABSUnit`.
     ///
@@ -5824,8 +5316,7 @@ impl Bremse53 {
     /// - Offset: 0
     #[inline(always)]
     pub fn diag_fuse_valve(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[41..42].load_le::<u8>();
-        signal == 1
+        self.diag_fuse_valve_raw_val() == 1
     }
     /// Returns the raw value of `Diag_FuseValve`.
     ///
@@ -5861,8 +5352,7 @@ impl Bremse53 {
     /// - Offset: 0
     #[inline(always)]
     pub fn diag_fuse_pump(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[42..43].load_le::<u8>();
-        signal == 1
+        self.diag_fuse_pump_raw_val() == 1
     }
     /// Returns the raw value of `Diag_FusePump`.
     ///
@@ -5898,8 +5388,7 @@ impl Bremse53 {
     /// - Offset: 0
     #[inline(always)]
     pub fn diag_p_fa(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[43..44].load_le::<u8>();
-        signal == 1
+        self.diag_p_fa_raw_val() == 1
     }
     /// Returns the raw value of `Diag_P_FA`.
     ///
@@ -5935,8 +5424,7 @@ impl Bremse53 {
     /// - Offset: 0
     #[inline(always)]
     pub fn diag_p_ra(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[44..45].load_le::<u8>();
-        signal == 1
+        self.diag_p_ra_raw_val() == 1
     }
     /// Returns the raw value of `Diag_P_RA`.
     ///
@@ -5972,8 +5460,7 @@ impl Bremse53 {
     /// - Offset: 0
     #[inline(always)]
     pub fn diag_yrs(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[45..46].load_le::<u8>();
-        signal == 1
+        self.diag_yrs_raw_val() == 1
     }
     /// Returns the raw value of `Diag_YRS`.
     ///
@@ -6017,9 +5504,7 @@ impl Bremse53 {
     }
     #[inline(always)]
     fn abs_fault_info_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[46..48].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
+        self.abs_fault_info_raw_val()
     }
     /// Returns the raw value of `ABS_fault_info`.
     ///
@@ -6048,13 +5533,6 @@ impl Bremse53 {
                 message_id: Bremse53::MESSAGE_ID,
             });
         }
-        let factor = 1;
-        let value = value
-            .checked_sub(0)
-            .ok_or(CanError::ParameterOutOfRange {
-                message_id: Bremse53::MESSAGE_ID,
-            })?;
-        let value = (value / factor) as u8;
         self.raw.view_bits_mut::<Lsb0>()[46..48].store_le(value);
         Ok(())
     }
