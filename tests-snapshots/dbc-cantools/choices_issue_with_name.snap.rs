@@ -69,7 +69,7 @@ impl TestMessage {
         ExtendedId::new_unchecked(0x90000)
     });
     pub const MESSAGE_SIZE: usize = 1;
-    /// Construct new 'TestMessage' from values
+    /// Constructs a new `TestMessage` message from values.
     pub fn new(
         signal_with_choices: TestMessageSignalWithChoices,
     ) -> Result<Self, CanError> {
@@ -77,15 +77,15 @@ impl TestMessage {
         res.set_signal_with_choices(signal_with_choices)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `TestMessage` message payload.
     pub fn raw(&self) -> &[u8; 1] {
         &self.raw
     }
-    /// Get value of 'SignalWithChoices'
+    /// Returns the value of `SignalWithChoices`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn signal_with_choices(&self) -> TestMessageSignalWithChoices {
@@ -98,17 +98,17 @@ impl TestMessage {
             }
         }
     }
-    /// Get physical value of 'SignalWithChoices'
+    /// Returns the physical value of `SignalWithChoices`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn signal_with_choices_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
-    /// Get raw value of 'SignalWithChoices'
+    /// Returns the raw value of `SignalWithChoices`.
     ///
     /// - Start bit: 0
     /// - Signal size: 1 bits
@@ -118,12 +118,12 @@ impl TestMessage {
     pub fn signal_with_choices_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>()
     }
-    /// Set raw value of 'SignalWithChoices'
+    /// Sets the raw value of `SignalWithChoices`.
     #[inline(always)]
     pub fn set_signal_with_choices_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
     }
-    /// Set value of 'SignalWithChoices'
+    /// Sets the value of `SignalWithChoices`.
     #[inline(always)]
     pub fn set_signal_with_choices(
         &mut self,

@@ -396,7 +396,7 @@ impl Config<'_> {
 
             self.render_attribute_structs(&mut w, msg, dbc)?;
 
-            writeln!(w, "/// Construct new '{}' from values", msg.name)?;
+            writeln!(w, "/// Constructs a new `{}` message from values.", msg.name)?;
             let args = msg
                 .signals
                 .iter()
@@ -435,7 +435,7 @@ impl Config<'_> {
             writeln!(w, "}}")?;
             writeln!(w)?;
 
-            writeln!(w, "/// Access message payload raw value")?;
+            writeln!(w, "/// Returns the raw `{}` message payload.", msg.name)?;
             writeln!(w, "pub fn raw(&self) -> &[u8; {}] {{", msg.size)?;
             {
                 let mut w = PadAdapter::wrap(&mut w);
@@ -821,7 +821,7 @@ impl Config<'_> {
         dbc: &Dbc,
         msg: &Message,
     ) -> Result<()> {
-        writeln!(w, "/// Get value of '{}'", signal.name)?;
+        writeln!(w, "/// Returns the value of `{}`.", signal.name)?;
         if let Some(comment) = dbc.signal_comment(msg.id, &signal.name) {
             writeln!(w, "///")?;
             for line in comment.trim().lines() {
@@ -831,7 +831,11 @@ impl Config<'_> {
         writeln!(w, "///")?;
         writeln!(w, "/// - Min: {}", signal.min)?;
         writeln!(w, "/// - Max: {}", signal.max)?;
-        writeln!(w, "/// - Unit: {:?}", signal.unit)?;
+        if signal.unit.is_empty() {
+            writeln!(w, "/// - Unit: Not specified")?;
+        } else {
+            writeln!(w, "/// - Unit: {:?}", signal.unit)?;
+        }
         if signal.receivers.is_empty() {
             writeln!(w, "/// - Receivers: Vector__XXX")?;
         } else {
@@ -892,11 +896,15 @@ impl Config<'_> {
             writeln!(w)?;
         }
 
-        writeln!(w, "/// Get physical value of '{}'", signal.name)?;
+        writeln!(w, "/// Returns the physical value of `{}`.", signal.name)?;
         writeln!(w, "///")?;
         writeln!(w, "/// - Factor: {}", signal.factor)?;
         writeln!(w, "/// - Offset: {}", signal.offset)?;
-        writeln!(w, "/// - Unit: {:?}", signal.unit)?;
+        if signal.unit.is_empty() {
+            writeln!(w, "/// - Unit: Not specified")?;
+        } else {
+            writeln!(w, "/// - Unit: {:?}", signal.unit)?;
+        }
         writeln!(w, "#[inline(always)]")?;
         let typ = ValType::from_signal(signal);
         writeln!(w, "pub fn {fn_name}_phys_val(&self) -> {typ} {{")?;
@@ -934,7 +942,7 @@ impl Config<'_> {
         let param_type = signal_pub_type(dbc, msg, signal);
         let is_enum_backed = param_type != typ.to_string();
 
-        writeln!(w, "/// Set value of '{}'", signal.name)?;
+        writeln!(w, "/// Sets the value of `{}`.", signal.name)?;
         writeln!(w, "#[inline(always)]")?;
         writeln!(
             w,
@@ -996,11 +1004,15 @@ impl Config<'_> {
         dbc: &Dbc,
         msg: &Message,
     ) -> Result<()> {
-        writeln!(w, "/// Get physical value of '{}'", signal.name)?;
+        writeln!(w, "/// Returns the physical value of `{}`.", signal.name)?;
         writeln!(w, "///")?;
         writeln!(w, "/// - Factor: {}", signal.factor)?;
         writeln!(w, "/// - Offset: {}", signal.offset)?;
-        writeln!(w, "/// - Unit: {:?}", signal.unit)?;
+        if signal.unit.is_empty() {
+            writeln!(w, "/// - Unit: Not specified")?;
+        } else {
+            writeln!(w, "/// - Unit: {:?}", signal.unit)?;
+        }
         writeln!(w, "#[inline(always)]")?;
         let field = signal.field_name();
         let signal_typ = ValType::from_signal(signal);
@@ -1155,7 +1167,7 @@ fn render_set_signal_multiplexer(
     msg: &Message,
     switch_index: u64,
 ) -> Result<()> {
-    writeln!(w, "/// Set value of '{}'", multiplexor.name)?;
+    writeln!(w, "/// Sets the value of `{}`.", multiplexor.name)?;
     writeln!(w, "#[inline(always)]")?;
     writeln!(
         w,
@@ -1370,7 +1382,7 @@ fn render_raw_accessors(w: &mut impl Write, signal: &Signal, msg: &Message) -> R
     let field = signal.field_name();
     let typ = ValType::from_signal_int(signal);
 
-    writeln!(w, "/// Get raw value of '{}'", signal.name)?;
+    writeln!(w, "/// Returns the raw value of `{}`.", signal.name)?;
     writeln!(w, "///")?;
     writeln!(w, "/// - Start bit: {}", signal.start_bit)?;
     writeln!(w, "/// - Signal size: {} bits", signal.size)?;
@@ -1393,7 +1405,7 @@ fn render_raw_accessors(w: &mut impl Write, signal: &Signal, msg: &Message) -> R
         "pub "
     };
 
-    writeln!(w, "/// Set raw value of '{}'", signal.name)?;
+    writeln!(w, "/// Sets the raw value of `{}`.", signal.name)?;
     if visibility.is_empty() {
         // Private multiplexor raw setters have no internal caller.
         writeln!(w, "#[allow(dead_code)]")?;

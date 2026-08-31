@@ -72,7 +72,7 @@ impl Message0 {
     pub const FOO_SIGNAL_MAX: u8 = 0_u8;
     pub const BAR_SIGNAL_MIN: u8 = 0_u8;
     pub const BAR_SIGNAL_MAX: u8 = 0_u8;
-    /// Construct new 'Message0' from values
+    /// Constructs a new `Message0` message from values.
     pub fn new(
         foo_signal: Message0FooSignal,
         bar_signal: Message0BarSignal,
@@ -82,15 +82,15 @@ impl Message0 {
         res.set_bar_signal(bar_signal)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Message0` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'FooSignal'
+    /// Returns the value of `FooSignal`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn foo_signal(&self) -> Message0FooSignal {
@@ -103,18 +103,18 @@ impl Message0 {
             _ => Message0FooSignal::_Other(self.foo_signal_phys_val()),
         }
     }
-    /// Get physical value of 'FooSignal'
+    /// Returns the physical value of `FooSignal`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn foo_signal_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..2].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 'FooSignal'
+    /// Returns the raw value of `FooSignal`.
     ///
     /// - Start bit: 0
     /// - Signal size: 2 bits
@@ -124,12 +124,12 @@ impl Message0 {
     pub fn foo_signal_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[0..2].load_le::<u8>()
     }
-    /// Set raw value of 'FooSignal'
+    /// Sets the raw value of `FooSignal`.
     #[inline(always)]
     pub fn set_foo_signal_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..2].store_le(value);
     }
-    /// Set value of 'FooSignal'
+    /// Sets the value of `FooSignal`.
     #[inline(always)]
     pub fn set_foo_signal(&mut self, value: Message0FooSignal) -> Result<(), CanError> {
         let value = u8::from(value);
@@ -148,11 +148,11 @@ impl Message0 {
         self.raw.view_bits_mut::<Lsb0>()[0..2].store_le(value);
         Ok(())
     }
-    /// Get value of 'BarSignal'
+    /// Returns the value of `BarSignal`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn bar_signal(&self) -> Message0BarSignal {
@@ -169,18 +169,18 @@ impl Message0 {
             _ => Message0BarSignal::_Other(self.bar_signal_phys_val()),
         }
     }
-    /// Get physical value of 'BarSignal'
+    /// Returns the physical value of `BarSignal`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn bar_signal_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[2..5].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 'BarSignal'
+    /// Returns the raw value of `BarSignal`.
     ///
     /// - Start bit: 2
     /// - Signal size: 3 bits
@@ -190,12 +190,12 @@ impl Message0 {
     pub fn bar_signal_raw_val(&self) -> u8 {
         self.raw.view_bits::<Lsb0>()[2..5].load_le::<u8>()
     }
-    /// Set raw value of 'BarSignal'
+    /// Sets the raw value of `BarSignal`.
     #[inline(always)]
     pub fn set_bar_signal_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[2..5].store_le(value);
     }
-    /// Set value of 'BarSignal'
+    /// Sets the value of `BarSignal`.
     #[inline(always)]
     pub fn set_bar_signal(&mut self, value: Message0BarSignal) -> Result<(), CanError> {
         let value = u8::from(value);

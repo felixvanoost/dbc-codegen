@@ -71,7 +71,7 @@ impl MyMsg {
     pub const MY_EXTRA_SIG_WITH_PLUS_MAX: i16 = 127_i16;
     pub const MY_NORMAL_SIG_MIN: i16 = -128_i16;
     pub const MY_NORMAL_SIG_MAX: i16 = 127_i16;
-    /// Construct new 'myMsg' from values
+    /// Constructs a new `myMsg` message from values.
     pub fn new(
         my_extra_sig_with_plus: i16,
         my_normal_sig: i16,
@@ -81,32 +81,32 @@ impl MyMsg {
         res.set_my_normal_sig(my_normal_sig)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `myMsg` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'myExtraSigWithPlus'
+    /// Returns the value of `myExtraSigWithPlus`.
     ///
     /// - Min: -128
     /// - Max: 127
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn my_extra_sig_with_plus(&self) -> i16 {
         self.my_extra_sig_with_plus_phys_val()
     }
-    /// Get physical value of 'myExtraSigWithPlus'
+    /// Returns the physical value of `myExtraSigWithPlus`.
     ///
     /// - Factor: 1
     /// - Offset: -128
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn my_extra_sig_with_plus_phys_val(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         i16::from(signal).saturating_mul(factor).saturating_sub(128)
     }
-    /// Get raw value of 'myExtraSigWithPlus'
+    /// Returns the raw value of `myExtraSigWithPlus`.
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
@@ -116,13 +116,13 @@ impl MyMsg {
     pub fn my_extra_sig_with_plus_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>()
     }
-    /// Set raw value of 'myExtraSigWithPlus'
+    /// Sets the raw value of `myExtraSigWithPlus`.
     #[inline(always)]
     pub fn set_my_extra_sig_with_plus_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
-    /// Set value of 'myExtraSigWithPlus'
+    /// Sets the value of `myExtraSigWithPlus`.
     #[inline(always)]
     pub fn set_my_extra_sig_with_plus(&mut self, value: i16) -> Result<(), CanError> {
         if value < -128_i16 || 127_i16 < value {
@@ -141,28 +141,28 @@ impl MyMsg {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// Get value of 'myNormalSig'
+    /// Returns the value of `myNormalSig`.
     ///
     /// - Min: -128
     /// - Max: 127
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn my_normal_sig(&self) -> i16 {
         self.my_normal_sig_phys_val()
     }
-    /// Get physical value of 'myNormalSig'
+    /// Returns the physical value of `myNormalSig`.
     ///
     /// - Factor: 1
     /// - Offset: -128
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn my_normal_sig_phys_val(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         i16::from(signal).saturating_mul(factor).saturating_sub(128)
     }
-    /// Get raw value of 'myNormalSig'
+    /// Returns the raw value of `myNormalSig`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -172,13 +172,13 @@ impl MyMsg {
     pub fn my_normal_sig_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set raw value of 'myNormalSig'
+    /// Sets the raw value of `myNormalSig`.
     #[inline(always)]
     pub fn set_my_normal_sig_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
-    /// Set value of 'myNormalSig'
+    /// Sets the value of `myNormalSig`.
     #[inline(always)]
     pub fn set_my_normal_sig(&mut self, value: i16) -> Result<(), CanError> {
         if value < -128_i16 || 127_i16 < value {

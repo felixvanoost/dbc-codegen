@@ -74,31 +74,31 @@ impl SomeFrame {
     pub const MESSAGE_SIZE: usize = 8;
     pub const SOME_DIFFERENT_SIG_MIN: i8 = 0_i8;
     pub const SOME_DIFFERENT_SIG_MAX: i8 = 0_i8;
-    /// Construct new 'SomeFrame' from values
+    /// Constructs a new `SomeFrame` message from values.
     pub fn new(some_different_sig: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_some_different_sig(some_different_sig)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `SomeFrame` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'SomeDifferentSig'
+    /// Returns the value of `SomeDifferentSig`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn some_different_sig(&self) -> i8 {
         self.some_different_sig_phys_val()
     }
-    /// Get physical value of 'SomeDifferentSig'
+    /// Returns the physical value of `SomeDifferentSig`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn some_different_sig_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
@@ -106,7 +106,7 @@ impl SomeFrame {
         let signal = signal as i8;
         i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 'SomeDifferentSig'
+    /// Returns the raw value of `SomeDifferentSig`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -116,13 +116,13 @@ impl SomeFrame {
     pub fn some_different_sig_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set raw value of 'SomeDifferentSig'
+    /// Sets the raw value of `SomeDifferentSig`.
     #[inline(always)]
     pub fn set_some_different_sig_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
-    /// Set value of 'SomeDifferentSig'
+    /// Sets the value of `SomeDifferentSig`.
     #[inline(always)]
     pub fn set_some_different_sig(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -204,31 +204,31 @@ impl SomeExtFrame {
     pub const MESSAGE_SIZE: usize = 8;
     pub const SOME_SIG_MIN: i8 = 0_i8;
     pub const SOME_SIG_MAX: i8 = 0_i8;
-    /// Construct new 'SomeExtFrame' from values
+    /// Constructs a new `SomeExtFrame` message from values.
     pub fn new(some_sig: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_some_sig(some_sig)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `SomeExtFrame` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'SomeSig'
+    /// Returns the value of `SomeSig`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn some_sig(&self) -> i8 {
         self.some_sig_phys_val()
     }
-    /// Get physical value of 'SomeSig'
+    /// Returns the physical value of `SomeSig`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn some_sig_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
@@ -236,7 +236,7 @@ impl SomeExtFrame {
         let signal = signal as i8;
         i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 'SomeSig'
+    /// Returns the raw value of `SomeSig`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -246,13 +246,13 @@ impl SomeExtFrame {
     pub fn some_sig_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set raw value of 'SomeSig'
+    /// Sets the raw value of `SomeSig`.
     #[inline(always)]
     pub fn set_some_sig_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
-    /// Set value of 'SomeSig'
+    /// Sets the value of `SomeSig`.
     #[inline(always)]
     pub fn set_some_sig(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {

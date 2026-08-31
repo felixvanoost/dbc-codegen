@@ -127,7 +127,7 @@ impl Message378910 {
     pub const S8_MAX: i8 = 0_i8;
     pub const S7_MIN: i8 = 0_i8;
     pub const S7_MAX: i8 = 0_i8;
-    /// Construct new 'Message378910' from values
+    /// Constructs a new `Message378910` message from values.
     pub fn new(
         s3big: i8,
         s3: i8,
@@ -149,25 +149,25 @@ impl Message378910 {
         res.set_s7(s7)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Message378910` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 's3big'
+    /// Returns the value of `s3big`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s3big(&self) -> i8 {
         self.s3big_phys_val()
     }
-    /// Get physical value of 's3big'
+    /// Returns the physical value of `s3big`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s3big_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Msb0>()[32..35].load_be::<i8>();
@@ -175,7 +175,7 @@ impl Message378910 {
         let signal = signal as i8;
         i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's3big'
+    /// Returns the raw value of `s3big`.
     ///
     /// - Start bit: 39
     /// - Signal size: 3 bits
@@ -185,13 +185,13 @@ impl Message378910 {
     pub fn s3big_raw_val(&self) -> i8 {
         self.raw.view_bits::<Msb0>()[32..35].load_be::<i8>()
     }
-    /// Set raw value of 's3big'
+    /// Sets the raw value of `s3big`.
     #[inline(always)]
     pub fn set_s3big_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[32..35].store_be(value);
     }
-    /// Set value of 's3big'
+    /// Sets the value of `s3big`.
     #[inline(always)]
     pub fn set_s3big(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -210,21 +210,21 @@ impl Message378910 {
         self.raw.view_bits_mut::<Msb0>()[32..35].store_be(value);
         Ok(())
     }
-    /// Get value of 's3'
+    /// Returns the value of `s3`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s3(&self) -> i8 {
         self.s3_phys_val()
     }
-    /// Get physical value of 's3'
+    /// Returns the physical value of `s3`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s3_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[34..37].load_le::<i8>();
@@ -232,7 +232,7 @@ impl Message378910 {
         let signal = signal as i8;
         i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's3'
+    /// Returns the raw value of `s3`.
     ///
     /// - Start bit: 34
     /// - Signal size: 3 bits
@@ -242,13 +242,13 @@ impl Message378910 {
     pub fn s3_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[34..37].load_le::<i8>()
     }
-    /// Set raw value of 's3'
+    /// Sets the raw value of `s3`.
     #[inline(always)]
     pub fn set_s3_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[34..37].store_le(value);
     }
-    /// Set value of 's3'
+    /// Sets the value of `s3`.
     #[inline(always)]
     pub fn set_s3(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -267,21 +267,21 @@ impl Message378910 {
         self.raw.view_bits_mut::<Lsb0>()[34..37].store_le(value);
         Ok(())
     }
-    /// Get value of 's10big'
+    /// Returns the value of `s10big`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s10big(&self) -> i16 {
         self.s10big_phys_val()
     }
-    /// Get physical value of 's10big'
+    /// Returns the physical value of `s10big`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s10big_phys_val(&self) -> i16 {
         let signal = self.raw.view_bits::<Msb0>()[47..57].load_be::<i16>();
@@ -289,7 +289,7 @@ impl Message378910 {
         let signal = signal as i16;
         i16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's10big'
+    /// Returns the raw value of `s10big`.
     ///
     /// - Start bit: 40
     /// - Signal size: 10 bits
@@ -299,13 +299,13 @@ impl Message378910 {
     pub fn s10big_raw_val(&self) -> i16 {
         self.raw.view_bits::<Msb0>()[47..57].load_be::<i16>()
     }
-    /// Set raw value of 's10big'
+    /// Sets the raw value of `s10big`.
     #[inline(always)]
     pub fn set_s10big_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[47..57].store_be(value);
     }
-    /// Set value of 's10big'
+    /// Sets the value of `s10big`.
     #[inline(always)]
     pub fn set_s10big(&mut self, value: i16) -> Result<(), CanError> {
         if value < 0_i16 || 0_i16 < value {
@@ -324,21 +324,21 @@ impl Message378910 {
         self.raw.view_bits_mut::<Msb0>()[47..57].store_be(value);
         Ok(())
     }
-    /// Get value of 's8big'
+    /// Returns the value of `s8big`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s8big(&self) -> i8 {
         self.s8big_phys_val()
     }
-    /// Get physical value of 's8big'
+    /// Returns the physical value of `s8big`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s8big_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Msb0>()[7..15].load_be::<i8>();
@@ -346,7 +346,7 @@ impl Message378910 {
         let signal = signal as i8;
         i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's8big'
+    /// Returns the raw value of `s8big`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -356,13 +356,13 @@ impl Message378910 {
     pub fn s8big_raw_val(&self) -> i8 {
         self.raw.view_bits::<Msb0>()[7..15].load_be::<i8>()
     }
-    /// Set raw value of 's8big'
+    /// Sets the raw value of `s8big`.
     #[inline(always)]
     pub fn set_s8big_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[7..15].store_be(value);
     }
-    /// Set value of 's8big'
+    /// Sets the value of `s8big`.
     #[inline(always)]
     pub fn set_s8big(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -381,21 +381,21 @@ impl Message378910 {
         self.raw.view_bits_mut::<Msb0>()[7..15].store_be(value);
         Ok(())
     }
-    /// Get value of 's7big'
+    /// Returns the value of `s7big`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s7big(&self) -> i8 {
         self.s7big_phys_val()
     }
-    /// Get physical value of 's7big'
+    /// Returns the physical value of `s7big`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s7big_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Msb0>()[57..64].load_be::<i8>();
@@ -403,7 +403,7 @@ impl Message378910 {
         let signal = signal as i8;
         i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's7big'
+    /// Returns the raw value of `s7big`.
     ///
     /// - Start bit: 62
     /// - Signal size: 7 bits
@@ -413,13 +413,13 @@ impl Message378910 {
     pub fn s7big_raw_val(&self) -> i8 {
         self.raw.view_bits::<Msb0>()[57..64].load_be::<i8>()
     }
-    /// Set raw value of 's7big'
+    /// Sets the raw value of `s7big`.
     #[inline(always)]
     pub fn set_s7big_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[57..64].store_be(value);
     }
-    /// Set value of 's7big'
+    /// Sets the value of `s7big`.
     #[inline(always)]
     pub fn set_s7big(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -438,21 +438,21 @@ impl Message378910 {
         self.raw.view_bits_mut::<Msb0>()[57..64].store_be(value);
         Ok(())
     }
-    /// Get value of 's9'
+    /// Returns the value of `s9`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s9(&self) -> i16 {
         self.s9_phys_val()
     }
-    /// Get physical value of 's9'
+    /// Returns the physical value of `s9`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s9_phys_val(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[17..26].load_le::<i16>();
@@ -460,7 +460,7 @@ impl Message378910 {
         let signal = signal as i16;
         i16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's9'
+    /// Returns the raw value of `s9`.
     ///
     /// - Start bit: 17
     /// - Signal size: 9 bits
@@ -470,13 +470,13 @@ impl Message378910 {
     pub fn s9_raw_val(&self) -> i16 {
         self.raw.view_bits::<Lsb0>()[17..26].load_le::<i16>()
     }
-    /// Set raw value of 's9'
+    /// Sets the raw value of `s9`.
     #[inline(always)]
     pub fn set_s9_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[17..26].store_le(value);
     }
-    /// Set value of 's9'
+    /// Sets the value of `s9`.
     #[inline(always)]
     pub fn set_s9(&mut self, value: i16) -> Result<(), CanError> {
         if value < 0_i16 || 0_i16 < value {
@@ -495,21 +495,21 @@ impl Message378910 {
         self.raw.view_bits_mut::<Lsb0>()[17..26].store_le(value);
         Ok(())
     }
-    /// Get value of 's8'
+    /// Returns the value of `s8`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s8(&self) -> i8 {
         self.s8_phys_val()
     }
-    /// Get physical value of 's8'
+    /// Returns the physical value of `s8`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s8_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[26..34].load_le::<i8>();
@@ -517,7 +517,7 @@ impl Message378910 {
         let signal = signal as i8;
         i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's8'
+    /// Returns the raw value of `s8`.
     ///
     /// - Start bit: 26
     /// - Signal size: 8 bits
@@ -527,13 +527,13 @@ impl Message378910 {
     pub fn s8_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[26..34].load_le::<i8>()
     }
-    /// Set raw value of 's8'
+    /// Sets the raw value of `s8`.
     #[inline(always)]
     pub fn set_s8_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[26..34].store_le(value);
     }
-    /// Set value of 's8'
+    /// Sets the value of `s8`.
     #[inline(always)]
     pub fn set_s8(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -552,21 +552,21 @@ impl Message378910 {
         self.raw.view_bits_mut::<Lsb0>()[26..34].store_le(value);
         Ok(())
     }
-    /// Get value of 's7'
+    /// Returns the value of `s7`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s7(&self) -> i8 {
         self.s7_phys_val()
     }
-    /// Get physical value of 's7'
+    /// Returns the physical value of `s7`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s7_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[1..8].load_le::<i8>();
@@ -574,7 +574,7 @@ impl Message378910 {
         let signal = signal as i8;
         i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's7'
+    /// Returns the raw value of `s7`.
     ///
     /// - Start bit: 1
     /// - Signal size: 7 bits
@@ -584,13 +584,13 @@ impl Message378910 {
     pub fn s7_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[1..8].load_le::<i8>()
     }
-    /// Set raw value of 's7'
+    /// Sets the raw value of `s7`.
     #[inline(always)]
     pub fn set_s7_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[1..8].store_le(value);
     }
-    /// Set value of 's7'
+    /// Sets the value of `s7`.
     #[inline(always)]
     pub fn set_s7(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -672,31 +672,31 @@ impl Message63big1 {
     pub const MESSAGE_SIZE: usize = 8;
     pub const S63BIG_MIN: i64 = 0_i64;
     pub const S63BIG_MAX: i64 = 0_i64;
-    /// Construct new 'Message63big_1' from values
+    /// Constructs a new `Message63big_1` message from values.
     pub fn new(s63big: i64) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_s63big(s63big)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Message63big_1` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 's63big'
+    /// Returns the value of `s63big`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s63big(&self) -> i64 {
         self.s63big_phys_val()
     }
-    /// Get physical value of 's63big'
+    /// Returns the physical value of `s63big`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s63big_phys_val(&self) -> i64 {
         let signal = self.raw.view_bits::<Msb0>()[1..64].load_be::<i64>();
@@ -704,7 +704,7 @@ impl Message63big1 {
         let signal = signal as i64;
         i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's63big'
+    /// Returns the raw value of `s63big`.
     ///
     /// - Start bit: 6
     /// - Signal size: 63 bits
@@ -714,13 +714,13 @@ impl Message63big1 {
     pub fn s63big_raw_val(&self) -> i64 {
         self.raw.view_bits::<Msb0>()[1..64].load_be::<i64>()
     }
-    /// Set raw value of 's63big'
+    /// Sets the raw value of `s63big`.
     #[inline(always)]
     pub fn set_s63big_raw_val(&mut self, value: i64) {
         let value = u64::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[1..64].store_be(value);
     }
-    /// Set value of 's63big'
+    /// Sets the value of `s63big`.
     #[inline(always)]
     pub fn set_s63big(&mut self, value: i64) -> Result<(), CanError> {
         if value < 0_i64 || 0_i64 < value {
@@ -802,31 +802,31 @@ impl Message631 {
     pub const MESSAGE_SIZE: usize = 8;
     pub const S63_MIN: i64 = 0_i64;
     pub const S63_MAX: i64 = 0_i64;
-    /// Construct new 'Message63_1' from values
+    /// Constructs a new `Message63_1` message from values.
     pub fn new(s63: i64) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_s63(s63)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Message63_1` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 's63'
+    /// Returns the value of `s63`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s63(&self) -> i64 {
         self.s63_phys_val()
     }
-    /// Get physical value of 's63'
+    /// Returns the physical value of `s63`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s63_phys_val(&self) -> i64 {
         let signal = self.raw.view_bits::<Lsb0>()[1..64].load_le::<i64>();
@@ -834,7 +834,7 @@ impl Message631 {
         let signal = signal as i64;
         i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's63'
+    /// Returns the raw value of `s63`.
     ///
     /// - Start bit: 1
     /// - Signal size: 63 bits
@@ -844,13 +844,13 @@ impl Message631 {
     pub fn s63_raw_val(&self) -> i64 {
         self.raw.view_bits::<Lsb0>()[1..64].load_le::<i64>()
     }
-    /// Set raw value of 's63'
+    /// Sets the raw value of `s63`.
     #[inline(always)]
     pub fn set_s63_raw_val(&mut self, value: i64) {
         let value = u64::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[1..64].store_le(value);
     }
-    /// Set value of 's63'
+    /// Sets the value of `s63`.
     #[inline(always)]
     pub fn set_s63(&mut self, value: i64) -> Result<(), CanError> {
         if value < 0_i64 || 0_i64 < value {
@@ -932,31 +932,31 @@ impl Message63big {
     pub const MESSAGE_SIZE: usize = 8;
     pub const S63BIG_MIN: i64 = 0_i64;
     pub const S63BIG_MAX: i64 = 0_i64;
-    /// Construct new 'Message63big' from values
+    /// Constructs a new `Message63big` message from values.
     pub fn new(s63big: i64) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_s63big(s63big)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Message63big` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 's63big'
+    /// Returns the value of `s63big`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s63big(&self) -> i64 {
         self.s63big_phys_val()
     }
-    /// Get physical value of 's63big'
+    /// Returns the physical value of `s63big`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s63big_phys_val(&self) -> i64 {
         let signal = self.raw.view_bits::<Msb0>()[0..63].load_be::<i64>();
@@ -964,7 +964,7 @@ impl Message63big {
         let signal = signal as i64;
         i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's63big'
+    /// Returns the raw value of `s63big`.
     ///
     /// - Start bit: 7
     /// - Signal size: 63 bits
@@ -974,13 +974,13 @@ impl Message63big {
     pub fn s63big_raw_val(&self) -> i64 {
         self.raw.view_bits::<Msb0>()[0..63].load_be::<i64>()
     }
-    /// Set raw value of 's63big'
+    /// Sets the raw value of `s63big`.
     #[inline(always)]
     pub fn set_s63big_raw_val(&mut self, value: i64) {
         let value = u64::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[0..63].store_be(value);
     }
-    /// Set value of 's63big'
+    /// Sets the value of `s63big`.
     #[inline(always)]
     pub fn set_s63big(&mut self, value: i64) -> Result<(), CanError> {
         if value < 0_i64 || 0_i64 < value {
@@ -1062,31 +1062,31 @@ impl Message63 {
     pub const MESSAGE_SIZE: usize = 8;
     pub const S63_MIN: i64 = 0_i64;
     pub const S63_MAX: i64 = 0_i64;
-    /// Construct new 'Message63' from values
+    /// Constructs a new `Message63` message from values.
     pub fn new(s63: i64) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_s63(s63)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Message63` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 's63'
+    /// Returns the value of `s63`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s63(&self) -> i64 {
         self.s63_phys_val()
     }
-    /// Get physical value of 's63'
+    /// Returns the physical value of `s63`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s63_phys_val(&self) -> i64 {
         let signal = self.raw.view_bits::<Lsb0>()[0..63].load_le::<i64>();
@@ -1094,7 +1094,7 @@ impl Message63 {
         let signal = signal as i64;
         i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's63'
+    /// Returns the raw value of `s63`.
     ///
     /// - Start bit: 0
     /// - Signal size: 63 bits
@@ -1104,13 +1104,13 @@ impl Message63 {
     pub fn s63_raw_val(&self) -> i64 {
         self.raw.view_bits::<Lsb0>()[0..63].load_le::<i64>()
     }
-    /// Set raw value of 's63'
+    /// Sets the raw value of `s63`.
     #[inline(always)]
     pub fn set_s63_raw_val(&mut self, value: i64) {
         let value = u64::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..63].store_le(value);
     }
-    /// Set value of 's63'
+    /// Sets the value of `s63`.
     #[inline(always)]
     pub fn set_s63(&mut self, value: i64) -> Result<(), CanError> {
         if value < 0_i64 || 0_i64 < value {
@@ -1192,31 +1192,31 @@ impl Message32big {
     pub const MESSAGE_SIZE: usize = 8;
     pub const S32BIG_MIN: i32 = 0_i32;
     pub const S32BIG_MAX: i32 = 0_i32;
-    /// Construct new 'Message32big' from values
+    /// Constructs a new `Message32big` message from values.
     pub fn new(s32big: i32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_s32big(s32big)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Message32big` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 's32big'
+    /// Returns the value of `s32big`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s32big(&self) -> i32 {
         self.s32big_phys_val()
     }
-    /// Get physical value of 's32big'
+    /// Returns the physical value of `s32big`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s32big_phys_val(&self) -> i32 {
         let signal = self.raw.view_bits::<Msb0>()[0..32].load_be::<i32>();
@@ -1224,7 +1224,7 @@ impl Message32big {
         let signal = signal as i32;
         i32::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's32big'
+    /// Returns the raw value of `s32big`.
     ///
     /// - Start bit: 7
     /// - Signal size: 32 bits
@@ -1234,13 +1234,13 @@ impl Message32big {
     pub fn s32big_raw_val(&self) -> i32 {
         self.raw.view_bits::<Msb0>()[0..32].load_be::<i32>()
     }
-    /// Set raw value of 's32big'
+    /// Sets the raw value of `s32big`.
     #[inline(always)]
     pub fn set_s32big_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[0..32].store_be(value);
     }
-    /// Set value of 's32big'
+    /// Sets the value of `s32big`.
     #[inline(always)]
     pub fn set_s32big(&mut self, value: i32) -> Result<(), CanError> {
         if value < 0_i32 || 0_i32 < value {
@@ -1322,31 +1322,31 @@ impl Message33big {
     pub const MESSAGE_SIZE: usize = 8;
     pub const S33BIG_MIN: i64 = 0_i64;
     pub const S33BIG_MAX: i64 = 0_i64;
-    /// Construct new 'Message33big' from values
+    /// Constructs a new `Message33big` message from values.
     pub fn new(s33big: i64) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_s33big(s33big)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Message33big` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 's33big'
+    /// Returns the value of `s33big`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s33big(&self) -> i64 {
         self.s33big_phys_val()
     }
-    /// Get physical value of 's33big'
+    /// Returns the physical value of `s33big`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s33big_phys_val(&self) -> i64 {
         let signal = self.raw.view_bits::<Msb0>()[0..33].load_be::<i64>();
@@ -1354,7 +1354,7 @@ impl Message33big {
         let signal = signal as i64;
         i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's33big'
+    /// Returns the raw value of `s33big`.
     ///
     /// - Start bit: 7
     /// - Signal size: 33 bits
@@ -1364,13 +1364,13 @@ impl Message33big {
     pub fn s33big_raw_val(&self) -> i64 {
         self.raw.view_bits::<Msb0>()[0..33].load_be::<i64>()
     }
-    /// Set raw value of 's33big'
+    /// Sets the raw value of `s33big`.
     #[inline(always)]
     pub fn set_s33big_raw_val(&mut self, value: i64) {
         let value = u64::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[0..33].store_be(value);
     }
-    /// Set value of 's33big'
+    /// Sets the value of `s33big`.
     #[inline(always)]
     pub fn set_s33big(&mut self, value: i64) -> Result<(), CanError> {
         if value < 0_i64 || 0_i64 < value {
@@ -1452,31 +1452,31 @@ impl Message64big {
     pub const MESSAGE_SIZE: usize = 8;
     pub const S64BIG_MIN: i64 = 0_i64;
     pub const S64BIG_MAX: i64 = 0_i64;
-    /// Construct new 'Message64big' from values
+    /// Constructs a new `Message64big` message from values.
     pub fn new(s64big: i64) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_s64big(s64big)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Message64big` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 's64big'
+    /// Returns the value of `s64big`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s64big(&self) -> i64 {
         self.s64big_phys_val()
     }
-    /// Get physical value of 's64big'
+    /// Returns the physical value of `s64big`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s64big_phys_val(&self) -> i64 {
         let signal = self.raw.view_bits::<Msb0>()[0..64].load_be::<i64>();
@@ -1484,7 +1484,7 @@ impl Message64big {
         let signal = signal as i64;
         i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's64big'
+    /// Returns the raw value of `s64big`.
     ///
     /// - Start bit: 7
     /// - Signal size: 64 bits
@@ -1494,13 +1494,13 @@ impl Message64big {
     pub fn s64big_raw_val(&self) -> i64 {
         self.raw.view_bits::<Msb0>()[0..64].load_be::<i64>()
     }
-    /// Set raw value of 's64big'
+    /// Sets the raw value of `s64big`.
     #[inline(always)]
     pub fn set_s64big_raw_val(&mut self, value: i64) {
         let value = u64::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[0..64].store_be(value);
     }
-    /// Set value of 's64big'
+    /// Sets the value of `s64big`.
     #[inline(always)]
     pub fn set_s64big(&mut self, value: i64) -> Result<(), CanError> {
         if value < 0_i64 || 0_i64 < value {
@@ -1582,31 +1582,31 @@ impl Message64 {
     pub const MESSAGE_SIZE: usize = 8;
     pub const S64_MIN: i64 = -9223372036854780000_i64;
     pub const S64_MAX: i64 = 9223372036854780000_i64;
-    /// Construct new 'Message64' from values
+    /// Constructs a new `Message64` message from values.
     pub fn new(s64: i64) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_s64(s64)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Message64` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 's64'
+    /// Returns the value of `s64`.
     ///
     /// - Min: -9223372036854780000
     /// - Max: 9223372036854780000
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s64(&self) -> i64 {
         self.s64_phys_val()
     }
-    /// Get physical value of 's64'
+    /// Returns the physical value of `s64`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s64_phys_val(&self) -> i64 {
         let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<i64>();
@@ -1614,7 +1614,7 @@ impl Message64 {
         let signal = signal as i64;
         i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's64'
+    /// Returns the raw value of `s64`.
     ///
     /// - Start bit: 0
     /// - Signal size: 64 bits
@@ -1624,13 +1624,13 @@ impl Message64 {
     pub fn s64_raw_val(&self) -> i64 {
         self.raw.view_bits::<Lsb0>()[0..64].load_le::<i64>()
     }
-    /// Set raw value of 's64'
+    /// Sets the raw value of `s64`.
     #[inline(always)]
     pub fn set_s64_raw_val(&mut self, value: i64) {
         let value = u64::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
     }
-    /// Set value of 's64'
+    /// Sets the value of `s64`.
     #[inline(always)]
     pub fn set_s64(&mut self, value: i64) -> Result<(), CanError> {
         if value < -9223372036854780000_i64 || 9223372036854780000_i64 < value {
@@ -1712,31 +1712,31 @@ impl Message33 {
     pub const MESSAGE_SIZE: usize = 8;
     pub const S33_MIN: i64 = -4294967296_i64;
     pub const S33_MAX: i64 = 4294967295_i64;
-    /// Construct new 'Message33' from values
+    /// Constructs a new `Message33` message from values.
     pub fn new(s33: i64) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_s33(s33)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Message33` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 's33'
+    /// Returns the value of `s33`.
     ///
     /// - Min: -4294967296
     /// - Max: 4294967295
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s33(&self) -> i64 {
         self.s33_phys_val()
     }
-    /// Get physical value of 's33'
+    /// Returns the physical value of `s33`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s33_phys_val(&self) -> i64 {
         let signal = self.raw.view_bits::<Lsb0>()[0..33].load_le::<i64>();
@@ -1744,7 +1744,7 @@ impl Message33 {
         let signal = signal as i64;
         i64::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's33'
+    /// Returns the raw value of `s33`.
     ///
     /// - Start bit: 0
     /// - Signal size: 33 bits
@@ -1754,13 +1754,13 @@ impl Message33 {
     pub fn s33_raw_val(&self) -> i64 {
         self.raw.view_bits::<Lsb0>()[0..33].load_le::<i64>()
     }
-    /// Set raw value of 's33'
+    /// Sets the raw value of `s33`.
     #[inline(always)]
     pub fn set_s33_raw_val(&mut self, value: i64) {
         let value = u64::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..33].store_le(value);
     }
-    /// Set value of 's33'
+    /// Sets the value of `s33`.
     #[inline(always)]
     pub fn set_s33(&mut self, value: i64) -> Result<(), CanError> {
         if value < -4294967296_i64 || 4294967295_i64 < value {
@@ -1842,31 +1842,31 @@ impl Message32 {
     pub const MESSAGE_SIZE: usize = 8;
     pub const S32_MIN: i32 = 0_i32;
     pub const S32_MAX: i32 = 0_i32;
-    /// Construct new 'Message32' from values
+    /// Constructs a new `Message32` message from values.
     pub fn new(s32: i32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_s32(s32)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Message32` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 's32'
+    /// Returns the value of `s32`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn s32(&self) -> i32 {
         self.s32_phys_val()
     }
-    /// Get physical value of 's32'
+    /// Returns the physical value of `s32`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn s32_phys_val(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
@@ -1874,7 +1874,7 @@ impl Message32 {
         let signal = signal as i32;
         i32::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 's32'
+    /// Returns the raw value of `s32`.
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
@@ -1884,13 +1884,13 @@ impl Message32 {
     pub fn s32_raw_val(&self) -> i32 {
         self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>()
     }
-    /// Set raw value of 's32'
+    /// Sets the raw value of `s32`.
     #[inline(always)]
     pub fn set_s32_raw_val(&mut self, value: i32) {
         let value = u32::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
     }
-    /// Set value of 's32'
+    /// Sets the value of `s32`.
     #[inline(always)]
     pub fn set_s32(&mut self, value: i32) -> Result<(), CanError> {
         if value < 0_i32 || 0_i32 < value {

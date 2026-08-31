@@ -77,31 +77,31 @@ impl TheMessage {
     pub const MESSAGE_CYCLE_TIME_MS: u32 = 1000;
     pub const THE_SIGNAL_MIN: i8 = 0_i8;
     pub const THE_SIGNAL_MAX: i8 = 0_i8;
-    /// Construct new 'TheMessage' from values
+    /// Constructs a new `TheMessage` message from values.
     pub fn new(the_signal: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_the_signal(the_signal)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `TheMessage` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'TheSignal'
+    /// Returns the value of `TheSignal`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn the_signal(&self) -> i8 {
         self.the_signal_phys_val()
     }
-    /// Get physical value of 'TheSignal'
+    /// Returns the physical value of `TheSignal`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn the_signal_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
@@ -109,7 +109,7 @@ impl TheMessage {
         let signal = signal as i8;
         i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 'TheSignal'
+    /// Returns the raw value of `TheSignal`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -119,13 +119,13 @@ impl TheMessage {
     pub fn the_signal_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set raw value of 'TheSignal'
+    /// Sets the raw value of `TheSignal`.
     #[inline(always)]
     pub fn set_the_signal_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
-    /// Set value of 'TheSignal'
+    /// Sets the value of `TheSignal`.
     #[inline(always)]
     pub fn set_the_signal(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {
@@ -207,31 +207,31 @@ impl TheOtherMessage {
     pub const MESSAGE_SIZE: usize = 8;
     pub const THE_SIGNAL_MIN: i8 = 0_i8;
     pub const THE_SIGNAL_MAX: i8 = 0_i8;
-    /// Construct new 'TheOtherMessage' from values
+    /// Constructs a new `TheOtherMessage` message from values.
     pub fn new(the_signal: i8) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_the_signal(the_signal)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `TheOtherMessage` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'TheSignal'
+    /// Returns the value of `TheSignal`.
     ///
     /// - Min: 0
     /// - Max: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn the_signal(&self) -> i8 {
         self.the_signal_phys_val()
     }
-    /// Get physical value of 'TheSignal'
+    /// Returns the physical value of `TheSignal`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn the_signal_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
@@ -239,7 +239,7 @@ impl TheOtherMessage {
         let signal = signal as i8;
         i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 'TheSignal'
+    /// Returns the raw value of `TheSignal`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -249,13 +249,13 @@ impl TheOtherMessage {
     pub fn the_signal_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set raw value of 'TheSignal'
+    /// Sets the raw value of `TheSignal`.
     #[inline(always)]
     pub fn set_the_signal_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
-    /// Set value of 'TheSignal'
+    /// Sets the value of `TheSignal`.
     #[inline(always)]
     pub fn set_the_signal(&mut self, value: i8) -> Result<(), CanError> {
         if value < 0_i8 || 0_i8 < value {

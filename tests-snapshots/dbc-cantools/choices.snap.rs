@@ -69,21 +69,21 @@ impl Foo {
     pub const MESSAGE_SIZE: usize = 8;
     pub const FOO_MIN: i8 = -128_i8;
     pub const FOO_MAX: i8 = 127_i8;
-    /// Construct new 'Foo' from values
+    /// Constructs a new `Foo` message from values.
     pub fn new(foo: FooFoo) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_foo(foo)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Foo` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'Foo'
+    /// Returns the value of `Foo`.
     ///
     /// - Min: -128
     /// - Max: 127
-    /// - Unit: ""
+    /// - Unit: Not specified
     /// - Receivers: Vector__XXX
     #[inline(always)]
     pub fn foo(&self) -> FooFoo {
@@ -100,11 +100,11 @@ impl Foo {
             _ => FooFoo::_Other(self.foo_phys_val()),
         }
     }
-    /// Get physical value of 'Foo'
+    /// Returns the physical value of `Foo`.
     ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: ""
+    /// - Unit: Not specified
     #[inline(always)]
     pub fn foo_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
@@ -112,7 +112,7 @@ impl Foo {
         let signal = signal as i8;
         i8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Get raw value of 'Foo'
+    /// Returns the raw value of `Foo`.
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -122,13 +122,13 @@ impl Foo {
     pub fn foo_raw_val(&self) -> i8 {
         self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>()
     }
-    /// Set raw value of 'Foo'
+    /// Sets the raw value of `Foo`.
     #[inline(always)]
     pub fn set_foo_raw_val(&mut self, value: i8) {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
-    /// Set value of 'Foo'
+    /// Sets the value of `Foo`.
     #[inline(always)]
     pub fn set_foo(&mut self, value: FooFoo) -> Result<(), CanError> {
         let value = i8::from(value);

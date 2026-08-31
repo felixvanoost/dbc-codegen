@@ -74,17 +74,17 @@ impl Foo {
     pub const MESSAGE_CYCLE_TIME_MS: u32 = 200;
     pub const FOO_MIN: f32 = 229.53_f32;
     pub const FOO_MAX: f32 = 270.47_f32;
-    /// Construct new 'Foo' from values
+    /// Constructs a new `Foo` message from values.
     pub fn new(foo: f32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_foo(foo)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Foo` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'Foo'
+    /// Returns the value of `Foo`.
     ///
     /// - Min: 229.53
     /// - Max: 270.47
@@ -94,7 +94,7 @@ impl Foo {
     pub fn foo(&self) -> f32 {
         self.foo_phys_val()
     }
-    /// Get physical value of 'Foo'
+    /// Returns the physical value of `Foo`.
     ///
     /// - Factor: 0.01
     /// - Offset: 250
@@ -106,7 +106,7 @@ impl Foo {
         let offset = 250_f32;
         (signal as f32) * factor + offset
     }
-    /// Get raw value of 'Foo'
+    /// Returns the raw value of `Foo`.
     ///
     /// - Start bit: 0
     /// - Signal size: 12 bits
@@ -116,13 +116,13 @@ impl Foo {
     pub fn foo_raw_val(&self) -> i16 {
         self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>()
     }
-    /// Set raw value of 'Foo'
+    /// Sets the raw value of `Foo`.
     #[inline(always)]
     pub fn set_foo_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[7..19].store_be(value);
     }
-    /// Set value of 'Foo'
+    /// Sets the value of `Foo`.
     #[inline(always)]
     pub fn set_foo(&mut self, value: f32) -> Result<(), CanError> {
         if value < 229.53_f32 || 270.47_f32 < value {
@@ -201,17 +201,17 @@ impl Bar {
     pub const MESSAGE_SIZE: usize = 8;
     pub const FOO_MIN: f32 = 229.53_f32;
     pub const FOO_MAX: f32 = 270.47_f32;
-    /// Construct new 'Bar' from values
+    /// Constructs a new `Bar` message from values.
     pub fn new(foo: f32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 8] };
         res.set_foo(foo)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `Bar` message payload.
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get value of 'Foo'
+    /// Returns the value of `Foo`.
     ///
     /// - Min: 229.53
     /// - Max: 270.47
@@ -221,7 +221,7 @@ impl Bar {
     pub fn foo(&self) -> f32 {
         self.foo_phys_val()
     }
-    /// Get physical value of 'Foo'
+    /// Returns the physical value of `Foo`.
     ///
     /// - Factor: 0.01
     /// - Offset: 250
@@ -233,7 +233,7 @@ impl Bar {
         let offset = 250_f32;
         (signal as f32) * factor + offset
     }
-    /// Get raw value of 'Foo'
+    /// Returns the raw value of `Foo`.
     ///
     /// - Start bit: 0
     /// - Signal size: 12 bits
@@ -243,13 +243,13 @@ impl Bar {
     pub fn foo_raw_val(&self) -> i16 {
         self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>()
     }
-    /// Set raw value of 'Foo'
+    /// Sets the raw value of `Foo`.
     #[inline(always)]
     pub fn set_foo_raw_val(&mut self, value: i16) {
         let value = u16::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Msb0>()[7..19].store_be(value);
     }
-    /// Set value of 'Foo'
+    /// Sets the value of `Foo`.
     #[inline(always)]
     pub fn set_foo(&mut self, value: f32) -> Result<(), CanError> {
         if value < 229.53_f32 || 270.47_f32 < value {

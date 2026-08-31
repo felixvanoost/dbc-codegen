@@ -74,17 +74,17 @@ impl ExampleMessage {
     pub const MESSAGE_SIZE: usize = 2;
     pub const TEMPERATURE_MIN: f32 = 4070_f32;
     pub const TEMPERATURE_MAX: f32 = 4100_f32;
-    /// Construct new 'ExampleMessage' from values
+    /// Constructs a new `ExampleMessage` message from values.
     pub fn new(temperature: ExampleMessageTemperature) -> Result<Self, CanError> {
         let mut res = Self { raw: [0x00; 2] };
         res.set_temperature(temperature)?;
         Ok(res)
     }
-    /// Access message payload raw value
+    /// Returns the raw `ExampleMessage` message payload.
     pub fn raw(&self) -> &[u8; 2] {
         &self.raw
     }
-    /// Get value of 'Temperature'
+    /// Returns the value of `Temperature`.
     ///
     /// - Min: 4070
     /// - Max: 4100
@@ -99,7 +99,7 @@ impl ExampleMessage {
             _ => ExampleMessageTemperature::_Other(self.temperature_phys_val()),
         }
     }
-    /// Get physical value of 'Temperature'
+    /// Returns the physical value of `Temperature`.
     ///
     /// - Factor: -0.01
     /// - Offset: 4100
@@ -111,7 +111,7 @@ impl ExampleMessage {
         let offset = 4100_f32;
         (signal as f32) * factor + offset
     }
-    /// Get raw value of 'Temperature'
+    /// Returns the raw value of `Temperature`.
     ///
     /// - Start bit: 3
     /// - Signal size: 12 bits
@@ -121,12 +121,12 @@ impl ExampleMessage {
     pub fn temperature_raw_val(&self) -> u16 {
         self.raw.view_bits::<Msb0>()[4..16].load_be::<u16>()
     }
-    /// Set raw value of 'Temperature'
+    /// Sets the raw value of `Temperature`.
     #[inline(always)]
     pub fn set_temperature_raw_val(&mut self, value: u16) {
         self.raw.view_bits_mut::<Msb0>()[4..16].store_be(value);
     }
-    /// Set value of 'Temperature'
+    /// Sets the value of `Temperature`.
     #[inline(always)]
     pub fn set_temperature(
         &mut self,
