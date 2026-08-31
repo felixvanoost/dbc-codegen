@@ -92,17 +92,10 @@ impl Message1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn signal1(&self) -> i64 {
-        self.signal1_phys_val()
-    }
-    /// Returns the physical value of `Signal1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal1_phys_val(&self) -> i64 {
+    pub fn signal1(&self) -> i64 {
         let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<i64>();
         let factor = 1;
         let signal = signal as i64;
@@ -226,17 +219,10 @@ impl Message2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn signal2(&self) -> i32 {
-        self.signal2_phys_val()
-    }
-    /// Returns the physical value of `Signal2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal2_phys_val(&self) -> i32 {
+    pub fn signal2(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 1;
         let signal = signal as i32;
@@ -283,17 +269,10 @@ impl Message2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn signal1(&self) -> i32 {
-        self.signal1_phys_val()
-    }
-    /// Returns the physical value of `Signal1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal1_phys_val(&self) -> i32 {
+    pub fn signal1(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 1;
         let signal = signal as i32;
@@ -413,17 +392,10 @@ impl Message3 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn signal3(&self) -> f32 {
-        self.signal3_phys_val()
-    }
-    /// Returns the physical value of `Signal3`.
-    ///
     /// - Factor: 0.001
     /// - Offset: -0.125
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal3_phys_val(&self) -> f32 {
+    pub fn signal3(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 0.001_f32;
         let offset = -0.125_f32;

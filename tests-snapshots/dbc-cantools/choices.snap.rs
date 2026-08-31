@@ -100,13 +100,8 @@ impl Foo {
             _ => FooFoo::_Other(self.foo_phys_val()),
         }
     }
-    /// Returns the physical value of `Foo`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn foo_phys_val(&self) -> i8 {
+    fn foo_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;

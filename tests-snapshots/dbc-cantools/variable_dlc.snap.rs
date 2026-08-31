@@ -99,17 +99,10 @@ impl TestMessage1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Test
-    #[inline(always)]
-    pub fn signal1(&self) -> u8 {
-        self.signal1_phys_val()
-    }
-    /// Returns the physical value of `Signal1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal1_phys_val(&self) -> u8 {
+    pub fn signal1(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -153,17 +146,10 @@ impl TestMessage1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Test
-    #[inline(always)]
-    pub fn signal2(&self) -> u8 {
-        self.signal2_phys_val()
-    }
-    /// Returns the physical value of `Signal2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal2_phys_val(&self) -> u8 {
+    pub fn signal2(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -207,17 +193,10 @@ impl TestMessage1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Test
-    #[inline(always)]
-    pub fn signal3(&self) -> u8 {
-        self.signal3_phys_val()
-    }
-    /// Returns the physical value of `Signal3`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal3_phys_val(&self) -> u8 {
+    pub fn signal3(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -353,17 +332,10 @@ impl TestMessage2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Test
-    #[inline(always)]
-    pub fn signal4(&self) -> u16 {
-        self.signal4_phys_val()
-    }
-    /// Returns the physical value of `Signal4`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal4_phys_val(&self) -> u16 {
+    pub fn signal4(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..15].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -407,17 +379,10 @@ impl TestMessage2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Test
-    #[inline(always)]
-    pub fn signal5(&self) -> u16 {
-        self.signal5_phys_val()
-    }
-    /// Returns the physical value of `Signal5`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal5_phys_val(&self) -> u16 {
+    pub fn signal5(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[15..30].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -461,17 +426,10 @@ impl TestMessage2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Test
-    #[inline(always)]
-    pub fn signal6(&self) -> u16 {
-        self.signal6_phys_val()
-    }
-    /// Returns the physical value of `Signal6`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal6_phys_val(&self) -> u16 {
+    pub fn signal6(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[30..45].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -515,17 +473,10 @@ impl TestMessage2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Test
-    #[inline(always)]
-    pub fn signal7(&self) -> u16 {
-        self.signal7_phys_val()
-    }
-    /// Returns the physical value of `Signal7`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal7_phys_val(&self) -> u16 {
+    pub fn signal7(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[45..60].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -569,17 +520,10 @@ impl TestMessage2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Test
-    #[inline(always)]
-    pub fn signal8(&self) -> u16 {
-        self.signal8_phys_val()
-    }
-    /// Returns the physical value of `Signal8`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal8_phys_val(&self) -> u16 {
+    pub fn signal8(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[60..75].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)

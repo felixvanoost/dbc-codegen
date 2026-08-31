@@ -88,17 +88,10 @@ impl TestMessage {
     /// - Max: 250
     /// - Unit: Not specified
     /// - Receivers: Node2
-    #[inline(always)]
-    pub fn signal1(&self) -> u8 {
-        self.signal1_phys_val()
-    }
-    /// Returns the physical value of `Signal1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal1_phys_val(&self) -> u8 {
+    pub fn signal1(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)

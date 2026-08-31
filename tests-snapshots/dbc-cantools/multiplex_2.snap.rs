@@ -94,18 +94,6 @@ impl Shared {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Returns the physical value of `S0`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
-    #[inline(always)]
-    pub fn s0_phys_val(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..4].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
-    }
     /// Returns the raw value of `S0`.
     ///
     /// - Start bit: 0
@@ -123,8 +111,9 @@ impl Shared {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
     }
-    pub fn s0(&mut self) -> Result<SharedS0Index, CanError> {
-        match self.s0_phys_val() {
+    /// Selects the active multiplexed sub-message for `S0`.
+    pub fn s0_multiplexed(&mut self) -> Result<SharedS0Index, CanError> {
+        match self.s0_raw_val() {
             1 => Ok(SharedS0Index::M1(SharedS0M1 { raw: self.raw })),
             2 => Ok(SharedS0Index::M2(SharedS0M2 { raw: self.raw })),
             multiplexor => {
@@ -257,17 +246,10 @@ impl SharedS0M1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s1(&self) -> i8 {
-        self.s1_phys_val()
-    }
-    /// Returns the physical value of `S1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s1_phys_val(&self) -> i8 {
+    pub fn s1(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[4..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -341,17 +323,10 @@ impl SharedS0M2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s2(&self) -> i8 {
-        self.s2_phys_val()
-    }
-    /// Returns the physical value of `S2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s2_phys_val(&self) -> i8 {
+    pub fn s2(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -431,18 +406,6 @@ impl Normal {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Returns the physical value of `S0`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
-    #[inline(always)]
-    pub fn s0_phys_val(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..4].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
-    }
     /// Returns the raw value of `S0`.
     ///
     /// - Start bit: 0
@@ -460,8 +423,9 @@ impl Normal {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
     }
-    pub fn s0(&mut self) -> Result<NormalS0Index, CanError> {
-        match self.s0_phys_val() {
+    /// Selects the active multiplexed sub-message for `S0`.
+    pub fn s0_multiplexed(&mut self) -> Result<NormalS0Index, CanError> {
+        match self.s0_raw_val() {
             0 => Ok(NormalS0Index::M0(NormalS0M0 { raw: self.raw })),
             1 => Ok(NormalS0Index::M1(NormalS0M1 { raw: self.raw })),
             multiplexor => {
@@ -594,17 +558,10 @@ impl NormalS0M0 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s1(&self) -> i8 {
-        self.s1_phys_val()
-    }
-    /// Returns the physical value of `S1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s1_phys_val(&self) -> i8 {
+    pub fn s1(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[4..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -678,17 +635,10 @@ impl NormalS0M1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s2(&self) -> i8 {
-        self.s2_phys_val()
-    }
-    /// Returns the physical value of `S2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s2_phys_val(&self) -> i8 {
+    pub fn s2(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -781,18 +731,6 @@ impl Extended {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Returns the physical value of `S6`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
-    #[inline(always)]
-    pub fn s6_phys_val(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
-    }
     /// Returns the raw value of `S6`.
     ///
     /// - Start bit: 32
@@ -810,8 +748,9 @@ impl Extended {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
     }
-    pub fn s6(&mut self) -> Result<ExtendedS6Index, CanError> {
-        match self.s6_phys_val() {
+    /// Selects the active multiplexed sub-message for `S6`.
+    pub fn s6_multiplexed(&mut self) -> Result<ExtendedS6Index, CanError> {
+        match self.s6_raw_val() {
             0 => Ok(ExtendedS6Index::M0(ExtendedS6M0 { raw: self.raw })),
             1 => Ok(ExtendedS6Index::M1(ExtendedS6M1 { raw: self.raw })),
             2 => Ok(ExtendedS6Index::M2(ExtendedS6M2 { raw: self.raw })),
@@ -869,18 +808,6 @@ impl Extended {
         self.set_s6(2)?;
         Ok(())
     }
-    /// Returns the physical value of `S0`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
-    #[inline(always)]
-    pub fn s0_phys_val(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..4].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
-    }
     /// Returns the raw value of `S0`.
     ///
     /// - Start bit: 0
@@ -898,8 +825,9 @@ impl Extended {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..4].store_le(value);
     }
-    pub fn s0(&mut self) -> Result<ExtendedS0Index, CanError> {
-        match self.s0_phys_val() {
+    /// Selects the active multiplexed sub-message for `S0`.
+    pub fn s0_multiplexed(&mut self) -> Result<ExtendedS0Index, CanError> {
+        match self.s0_raw_val() {
             0 => Ok(ExtendedS0Index::M0(ExtendedS0M0 { raw: self.raw })),
             1 => Ok(ExtendedS0Index::M1(ExtendedS0M1 { raw: self.raw })),
             2 => Ok(ExtendedS0Index::M2(ExtendedS0M2 { raw: self.raw })),
@@ -1043,17 +971,10 @@ impl ExtendedS6M0 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s3(&self) -> i16 {
-        self.s3_phys_val()
-    }
-    /// Returns the physical value of `S3`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s3_phys_val(&self) -> i16 {
+    pub fn s3(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 1;
         let signal = signal as i16;
@@ -1100,17 +1021,10 @@ impl ExtendedS6M0 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s2(&self) -> i8 {
-        self.s2_phys_val()
-    }
-    /// Returns the physical value of `S2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s2_phys_val(&self) -> i8 {
+    pub fn s2(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -1184,17 +1098,10 @@ impl ExtendedS6M1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s7(&self) -> i32 {
-        self.s7_phys_val()
-    }
-    /// Returns the physical value of `S7`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s7_phys_val(&self) -> i32 {
+    pub fn s7(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..64].load_le::<i32>();
         let factor = 1;
         let signal = signal as i32;
@@ -1241,17 +1148,10 @@ impl ExtendedS6M1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s5(&self) -> i32 {
-        self.s5_phys_val()
-    }
-    /// Returns the physical value of `S5`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s5_phys_val(&self) -> i32 {
+    pub fn s5(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[4..32].load_le::<i32>();
         let factor = 1;
         let signal = signal as i32;
@@ -1325,17 +1225,10 @@ impl ExtendedS6M2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s8(&self) -> i8 {
-        self.s8_phys_val()
-    }
-    /// Returns the physical value of `S8`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s8_phys_val(&self) -> i8 {
+    pub fn s8(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -1382,17 +1275,10 @@ impl ExtendedS6M2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s4(&self) -> i32 {
-        self.s4_phys_val()
-    }
-    /// Returns the physical value of `S4`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s4_phys_val(&self) -> i32 {
+    pub fn s4(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..32].load_le::<i32>();
         let factor = 1;
         let signal = signal as i32;
@@ -1474,17 +1360,6 @@ impl ExtendedTypes {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Returns the physical value of `S11`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
-    #[inline(always)]
-    pub fn s11_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..5].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
-    }
     /// Returns the raw value of `S11`.
     ///
     /// - Start bit: 0
@@ -1501,8 +1376,9 @@ impl ExtendedTypes {
     fn set_s11_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..5].store_le(value);
     }
-    pub fn s11(&mut self) -> Result<ExtendedTypesS11Index, CanError> {
-        match self.s11_phys_val() {
+    /// Selects the active multiplexed sub-message for `S11`.
+    pub fn s11_multiplexed(&mut self) -> Result<ExtendedTypesS11Index, CanError> {
+        match self.s11_raw_val() {
             0 => {
                 Ok(
                     ExtendedTypesS11Index::M0(ExtendedTypesS11M0 {
@@ -1646,17 +1522,10 @@ impl ExtendedTypesS11M0 {
     /// - Max: 340000000000000000000000000000000000000
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s10(&self) -> i32 {
-        self.s10_phys_val()
-    }
-    /// Returns the physical value of `S10`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s10_phys_val(&self) -> i32 {
+    pub fn s10(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..48].load_le::<i32>();
         let factor = 1;
         let signal = signal as i32;
@@ -1732,17 +1601,10 @@ impl ExtendedTypesS11M5 {
     /// - Max: 1235
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s9(&self) -> i32 {
-        self.s9_phys_val()
-    }
-    /// Returns the physical value of `S9`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s9_phys_val(&self) -> i32 {
+    pub fn s9(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[24..56].load_le::<i32>();
         let factor = 1;
         let signal = signal as i32;

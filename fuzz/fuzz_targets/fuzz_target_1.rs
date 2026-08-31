@@ -19,18 +19,19 @@ fuzz_target!(|dbc_codegen_bar: can_messages::Bar| {
 
     println!(
         "{} {} {} {} {}",
-        dbc_codegen_bar.one_phys_val(),
-        dbc_codegen_bar.two_phys_val(),
-        dbc_codegen_bar.three_phys_val(),
-        dbc_codegen_bar.four_phys_val(),
-        dbc_codegen_bar.xtype_phys_val()
+        dbc_codegen_bar.one(),
+        dbc_codegen_bar.two(),
+        u8::from(dbc_codegen_bar.three()),
+        u8::from(dbc_codegen_bar.four()),
+        bool::from(dbc_codegen_bar.xtype())
     );
 
-    let one = unsafe { example_bar_one_encode(dbc_codegen_bar.one_phys_val() as f64) };
-    let two = unsafe { example_bar_two_encode(dbc_codegen_bar.two_phys_val() as f64) };
-    let three = unsafe { example_bar_three_encode(dbc_codegen_bar.three_phys_val() as f64) };
-    let four = unsafe { example_bar_four_encode(dbc_codegen_bar.four_phys_val() as f64) };
-    let type_ = unsafe { example_bar_type_encode(dbc_codegen_bar.xtype_phys_val() as u8 as f64) };
+    let one = unsafe { example_bar_one_encode(dbc_codegen_bar.one() as f64) };
+    let two = unsafe { example_bar_two_encode(dbc_codegen_bar.two() as f64) };
+    let three = unsafe { example_bar_three_encode(u8::from(dbc_codegen_bar.three()) as f64) };
+    let four = unsafe { example_bar_four_encode(u8::from(dbc_codegen_bar.four()) as f64) };
+    let type_ =
+        unsafe { example_bar_type_encode(bool::from(dbc_codegen_bar.xtype()) as u8 as f64) };
 
     let bar = example_bar_t {
         one,

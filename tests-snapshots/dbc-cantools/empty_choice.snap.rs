@@ -98,17 +98,10 @@ impl ExampleMessage {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn no_choice(&self) -> i8 {
-        self.no_choice_phys_val()
-    }
-    /// Returns the physical value of `no_choice`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn no_choice_phys_val(&self) -> i8 {
+    pub fn no_choice(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -162,13 +155,8 @@ impl ExampleMessage {
             _ => ExampleMessageEmptyChoice::_Other(self.empty_choice_phys_val()),
         }
     }
-    /// Returns the physical value of `empty_choice`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn empty_choice_phys_val(&self) -> i8 {
+    fn empty_choice_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -228,13 +216,8 @@ impl ExampleMessage {
             _ => ExampleMessageNonEmptyChoice::_Other(self.non_empty_choice_phys_val()),
         }
     }
-    /// Returns the physical value of `non_empty_choice`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn non_empty_choice_phys_val(&self) -> i8 {
+    fn non_empty_choice_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;

@@ -94,13 +94,8 @@ impl Control {
             _ => ControlState::_Other(self.state_phys_val()),
         }
     }
-    /// Returns the physical value of `state`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: "%"
     #[inline(always)]
-    pub fn state_phys_val(&self) -> u8 {
+    fn state_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)

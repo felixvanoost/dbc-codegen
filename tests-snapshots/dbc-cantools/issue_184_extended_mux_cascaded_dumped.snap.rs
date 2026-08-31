@@ -90,18 +90,6 @@ impl ExtMuxCascaded {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Returns the physical value of `muxed_A_2_MUX_B`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
-    #[inline(always)]
-    pub fn muxed_a_2_mux_b_phys_val(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
-    }
     /// Returns the raw value of `muxed_A_2_MUX_B`.
     ///
     /// - Start bit: 8
@@ -119,10 +107,11 @@ impl ExtMuxCascaded {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
     }
-    pub fn muxed_a_2_mux_b(
+    /// Selects the active multiplexed sub-message for `muxed_A_2_MUX_B`.
+    pub fn muxed_a_2_mux_b_multiplexed(
         &mut self,
     ) -> Result<ExtMuxCascadedMuxedA2MuxBIndex, CanError> {
-        match self.muxed_a_2_mux_b_phys_val() {
+        match self.muxed_a_2_mux_b_raw_val() {
             0 => {
                 Ok(
                     ExtMuxCascadedMuxedA2MuxBIndex::M0(ExtMuxCascadedMuxedA2MuxBM0 {
@@ -188,18 +177,6 @@ impl ExtMuxCascaded {
         self.set_muxed_a_2_mux_b(1)?;
         Ok(())
     }
-    /// Returns the physical value of `MUX_A`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
-    #[inline(always)]
-    pub fn mux_a_phys_val(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
-    }
     /// Returns the raw value of `MUX_A`.
     ///
     /// - Start bit: 0
@@ -217,8 +194,9 @@ impl ExtMuxCascaded {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
-    pub fn mux_a(&mut self) -> Result<ExtMuxCascadedMuxAIndex, CanError> {
-        match self.mux_a_phys_val() {
+    /// Selects the active multiplexed sub-message for `MUX_A`.
+    pub fn mux_a_multiplexed(&mut self) -> Result<ExtMuxCascadedMuxAIndex, CanError> {
+        match self.mux_a_raw_val() {
             0 => {
                 Ok(
                     ExtMuxCascadedMuxAIndex::M0(ExtMuxCascadedMuxAM0 {
@@ -363,17 +341,10 @@ impl ExtMuxCascadedMuxedA2MuxBM0 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn muxed_b_0(&self) -> i8 {
-        self.muxed_b_0_phys_val()
-    }
-    /// Returns the physical value of `muxed_B_0`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn muxed_b_0_phys_val(&self) -> i8 {
+    pub fn muxed_b_0(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -447,17 +418,10 @@ impl ExtMuxCascadedMuxedA2MuxBM1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn muxed_b_1(&self) -> i8 {
-        self.muxed_b_1_phys_val()
-    }
-    /// Returns the physical value of `muxed_B_1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn muxed_b_1_phys_val(&self) -> i8 {
+    pub fn muxed_b_1(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -504,17 +468,10 @@ impl ExtMuxCascadedMuxedA2MuxBM1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn muxed_a_1(&self) -> i8 {
-        self.muxed_a_1_phys_val()
-    }
-    /// Returns the physical value of `muxed_A_1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn muxed_a_1_phys_val(&self) -> i8 {
+    pub fn muxed_a_1(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;

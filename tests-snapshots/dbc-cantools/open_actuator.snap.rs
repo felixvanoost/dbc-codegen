@@ -132,17 +132,10 @@ impl ControlCmd {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Actuator
-    #[inline(always)]
-    pub fn crc8_cmd1(&self) -> u8 {
-        self.crc8_cmd1_phys_val()
-    }
-    /// Returns the physical value of `CRC8_CMD1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn crc8_cmd1_phys_val(&self) -> u8 {
+    pub fn crc8_cmd1(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -186,17 +179,10 @@ impl ControlCmd {
     /// - Max: 15
     /// - Unit: Not specified
     /// - Receivers: Actuator
-    #[inline(always)]
-    pub fn counter_cmd1(&self) -> u8 {
-        self.counter_cmd1_phys_val()
-    }
-    /// Returns the physical value of `Counter_CMD1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn counter_cmd1_phys_val(&self) -> u8 {
+    pub fn counter_cmd1(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..52].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -240,17 +226,10 @@ impl ControlCmd {
     /// - Max: 3
     /// - Unit: Not specified
     /// - Receivers: Actuator
-    #[inline(always)]
-    pub fn target_motor_id_cmd1(&self) -> u8 {
-        self.target_motor_id_cmd1_phys_val()
-    }
-    /// Returns the physical value of `TargetMotorID_CMD1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn target_motor_id_cmd1_phys_val(&self) -> u8 {
+    pub fn target_motor_id_cmd1(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[12..14].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -306,13 +285,8 @@ impl ControlCmd {
             _ => ControlCmdTargetMode::_Other(self.target_mode_phys_val()),
         }
     }
-    /// Returns the physical value of `TargetMode`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn target_mode_phys_val(&self) -> u8 {
+    fn target_mode_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..11].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -364,17 +338,10 @@ impl ControlCmd {
     /// - Max: 450
     /// - Unit: "deg"
     /// - Receivers: Actuator
-    #[inline(always)]
-    pub fn position_cmd_64(&self) -> f32 {
-        self.position_cmd_64_phys_val()
-    }
-    /// Returns the physical value of `PositionCmd_64`.
-    ///
     /// - Factor: 0.0154286
     /// - Offset: 0
-    /// - Unit: "deg"
     #[inline(always)]
-    pub fn position_cmd_64_phys_val(&self) -> f32 {
+    pub fn position_cmd_64(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.0154286_f32;
         let offset = 0_f32;
@@ -420,17 +387,10 @@ impl ControlCmd {
     /// - Max: 8
     /// - Unit: "N*m"
     /// - Receivers: Actuator
-    #[inline(always)]
-    pub fn torque_command_8(&self) -> f32 {
-        self.torque_command_8_phys_val()
-    }
-    /// Returns the physical value of `TorqueCommand_8`.
-    ///
     /// - Factor: 0.0166667
     /// - Offset: 0
-    /// - Unit: "N*m"
     #[inline(always)]
-    pub fn torque_command_8_phys_val(&self) -> f32 {
+    pub fn torque_command_8(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..42].load_le::<i16>();
         let factor = 0.0166667_f32;
         let offset = 0_f32;
@@ -480,17 +440,10 @@ impl ControlCmd {
     /// - Max: 8
     /// - Unit: "N*m"
     /// - Receivers: Actuator
-    #[inline(always)]
-    pub fn torque_close_loop_max_32(&self) -> f32 {
-        self.torque_close_loop_max_32_phys_val()
-    }
-    /// Returns the physical value of `TorqueCloseLoopMax_32`.
-    ///
     /// - Factor: 0.186666
     /// - Offset: 0
-    /// - Unit: "N*m"
     #[inline(always)]
-    pub fn torque_close_loop_max_32_phys_val(&self) -> f32 {
+    pub fn torque_close_loop_max_32(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[42..48].load_le::<u8>();
         let factor = 0.186666_f32;
         let offset = 0_f32;
@@ -650,17 +603,10 @@ impl LimitsCmd {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Actuator
-    #[inline(always)]
-    pub fn crc8_cmd2(&self) -> u8 {
-        self.crc8_cmd2_phys_val()
-    }
-    /// Returns the physical value of `CRC8_CMD2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn crc8_cmd2_phys_val(&self) -> u8 {
+    pub fn crc8_cmd2(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -704,17 +650,10 @@ impl LimitsCmd {
     /// - Max: 15
     /// - Unit: Not specified
     /// - Receivers: Actuator
-    #[inline(always)]
-    pub fn counter_cmd2(&self) -> u8 {
-        self.counter_cmd2_phys_val()
-    }
-    /// Returns the physical value of `Counter_CMD2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn counter_cmd2_phys_val(&self) -> u8 {
+    pub fn counter_cmd2(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -758,17 +697,10 @@ impl LimitsCmd {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Actuator
-    #[inline(always)]
-    pub fn velocity_limit(&self) -> u16 {
-        self.velocity_limit_phys_val()
-    }
-    /// Returns the physical value of `VelocityLimit`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn velocity_limit_phys_val(&self) -> u16 {
+    pub fn velocity_limit(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -812,17 +744,10 @@ impl LimitsCmd {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Actuator
-    #[inline(always)]
-    pub fn accel_limit(&self) -> u16 {
-        self.accel_limit_phys_val()
-    }
-    /// Returns the physical value of `AccelLimit`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accel_limit_phys_val(&self) -> u16 {
+    pub fn accel_limit(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -954,17 +879,10 @@ impl ControlStatus {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Driver, Actuator
-    #[inline(always)]
-    pub fn crc8_stat1(&self) -> u8 {
-        self.crc8_stat1_phys_val()
-    }
-    /// Returns the physical value of `CRC8_STAT1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn crc8_stat1_phys_val(&self) -> u8 {
+    pub fn crc8_stat1(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1008,17 +926,10 @@ impl ControlStatus {
     /// - Max: 15
     /// - Unit: Not specified
     /// - Receivers: Driver
-    #[inline(always)]
-    pub fn counter_stat1(&self) -> u8 {
-        self.counter_stat1_phys_val()
-    }
-    /// Returns the physical value of `Counter_STAT1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn counter_stat1_phys_val(&self) -> u8 {
+    pub fn counter_stat1(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1062,17 +973,10 @@ impl ControlStatus {
     /// - Max: 8
     /// - Unit: "N*m"
     /// - Receivers: Driver
-    #[inline(always)]
-    pub fn torque_actual(&self) -> f32 {
-        self.torque_actual_phys_val()
-    }
-    /// Returns the physical value of `TorqueActual`.
-    ///
     /// - Factor: 0.015625
     /// - Offset: 0
-    /// - Unit: "N*m"
     #[inline(always)]
-    pub fn torque_actual_phys_val(&self) -> f32 {
+    pub fn torque_actual(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..26].load_le::<i16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -1115,17 +1019,10 @@ impl ControlStatus {
     /// - Max: 8
     /// - Unit: "N*m"
     /// - Receivers: Driver
-    #[inline(always)]
-    pub fn torque_close_loop_actual(&self) -> f32 {
-        self.torque_close_loop_actual_phys_val()
-    }
-    /// Returns the physical value of `TorqueCloseLoopActual`.
-    ///
     /// - Factor: 0.125
     /// - Offset: 0
-    /// - Unit: "N*m"
     #[inline(always)]
-    pub fn torque_close_loop_actual_phys_val(&self) -> f32 {
+    pub fn torque_close_loop_actual(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[26..32].load_le::<u8>();
         let factor = 0.125_f32;
         let offset = 0_f32;
@@ -1250,17 +1147,10 @@ impl SystemStatus {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Driver
-    #[inline(always)]
-    pub fn crc8_stat2(&self) -> u8 {
-        self.crc8_stat2_phys_val()
-    }
-    /// Returns the physical value of `CRC8_STAT2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn crc8_stat2_phys_val(&self) -> u8 {
+    pub fn crc8_stat2(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1304,17 +1194,10 @@ impl SystemStatus {
     /// - Max: 15
     /// - Unit: Not specified
     /// - Receivers: Driver
-    #[inline(always)]
-    pub fn counter_stat2(&self) -> u8 {
-        self.counter_stat2_phys_val()
-    }
-    /// Returns the physical value of `Counter_STAT2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn counter_stat2_phys_val(&self) -> u8 {
+    pub fn counter_stat2(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[12..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1358,17 +1241,10 @@ impl SystemStatus {
     /// - Max: 195
     /// - Unit: "C"
     /// - Receivers: Driver
-    #[inline(always)]
-    pub fn chip_temp(&self) -> i16 {
-        self.chip_temp_phys_val()
-    }
-    /// Returns the physical value of `ChipTemp`.
-    ///
     /// - Factor: 1
     /// - Offset: -60
-    /// - Unit: "C"
     #[inline(always)]
-    pub fn chip_temp_phys_val(&self) -> i16 {
+    pub fn chip_temp(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         i16::from(signal).saturating_mul(factor).saturating_sub(60)
@@ -1496,17 +1372,10 @@ impl TorqueSensorData {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Driver
-    #[inline(always)]
-    pub fn crc8_data1(&self) -> u8 {
-        self.crc8_data1_phys_val()
-    }
-    /// Returns the physical value of `CRC8_DATA1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn crc8_data1_phys_val(&self) -> u8 {
+    pub fn crc8_data1(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1550,17 +1419,10 @@ impl TorqueSensorData {
     /// - Max: 15
     /// - Unit: Not specified
     /// - Receivers: Driver
-    #[inline(always)]
-    pub fn counter_data1(&self) -> u8 {
-        self.counter_data1_phys_val()
-    }
-    /// Returns the physical value of `Counter_DATA1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn counter_data1_phys_val(&self) -> u8 {
+    pub fn counter_data1(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..12].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1606,17 +1468,10 @@ impl TorqueSensorData {
     /// - Max: 20
     /// - Unit: "N*m"
     /// - Receivers: Driver
-    #[inline(always)]
-    pub fn torque_sense(&self) -> f32 {
-        self.torque_sense_phys_val()
-    }
-    /// Returns the physical value of `TorqueSense`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "N*m"
     #[inline(always)]
-    pub fn torque_sense_phys_val(&self) -> f32 {
+    pub fn torque_sense(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[12..24].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;

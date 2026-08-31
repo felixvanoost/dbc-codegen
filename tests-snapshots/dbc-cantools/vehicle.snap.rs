@@ -1201,17 +1201,10 @@ impl RtSbInsVelBodyAxes {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_vel_sideways_2d(&self) -> f32 {
-        self.ins_vel_sideways_2d_phys_val()
-    }
-    /// Returns the physical value of `INS_Vel_Sideways_2D`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_sideways_2d_phys_val(&self) -> f32 {
+    pub fn ins_vel_sideways_2d(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..64].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -1256,17 +1249,10 @@ impl RtSbInsVelBodyAxes {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_vel_forwards_2d(&self) -> f32 {
-        self.ins_vel_forwards_2d_phys_val()
-    }
-    /// Returns the physical value of `INS_Vel_Forwards_2D`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_forwards_2d_phys_val(&self) -> f32 {
+    pub fn ins_vel_forwards_2d(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -1311,17 +1297,10 @@ impl RtSbInsVelBodyAxes {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_vel_body(&self) -> u8 {
-        self.accuracy_ins_vel_body_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Vel_Body`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_vel_body_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_vel_body(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1367,17 +1346,10 @@ impl RtSbInsVelBodyAxes {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_vel_sideways(&self) -> bool {
-        self.validity_ins_vel_sideways_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Vel_Sideways`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_vel_sideways_phys_val(&self) -> bool {
+    pub fn validity_ins_vel_sideways(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -1414,17 +1386,10 @@ impl RtSbInsVelBodyAxes {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_vel_forwards(&self) -> bool {
-        self.validity_ins_vel_forwards_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Vel_Forwards`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_vel_forwards_phys_val(&self) -> bool {
+    pub fn validity_ins_vel_forwards(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -1540,17 +1505,10 @@ impl RtDl1mk3Speed {
     /// - Max: 20000
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn speed(&self) -> f32 {
-        self.speed_phys_val()
-    }
-    /// Returns the physical value of `Speed`.
-    ///
     /// - Factor: 0.00001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn speed_phys_val(&self) -> f32 {
+    pub fn speed(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..48].load_le::<i32>();
         let factor = 0.00001_f32;
         let offset = 0_f32;
@@ -1595,17 +1553,10 @@ impl RtDl1mk3Speed {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_speed(&self) -> u8 {
-        self.accuracy_speed_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_Speed`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_speed_phys_val(&self) -> u8 {
+    pub fn accuracy_speed(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1651,17 +1602,10 @@ impl RtDl1mk3Speed {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_speed(&self) -> bool {
-        self.validity_speed_phys_val()
-    }
-    /// Returns the physical value of `Validity_Speed`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_speed_phys_val(&self) -> bool {
+    pub fn validity_speed(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -1780,17 +1724,10 @@ impl RtDl1mk3GpsTime {
     /// - Max: 65535
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_week(&self) -> u16 {
-        self.gps_week_phys_val()
-    }
-    /// Returns the physical value of `GPS_Week`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn gps_week_phys_val(&self) -> u16 {
+    pub fn gps_week(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1836,17 +1773,10 @@ impl RtDl1mk3GpsTime {
     /// - Max: 604800
     /// - Unit: "s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_time(&self) -> f32 {
-        self.gps_time_phys_val()
-    }
-    /// Returns the physical value of `GPS_Time`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "s"
     #[inline(always)]
-    pub fn gps_time_phys_val(&self) -> f32 {
+    pub fn gps_time(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..48].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -1887,17 +1817,10 @@ impl RtDl1mk3GpsTime {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_time(&self) -> u8 {
-        self.accuracy_gps_time_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Time`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_time_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_time(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1943,17 +1866,10 @@ impl RtDl1mk3GpsTime {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_week(&self) -> bool {
-        self.validity_gps_week_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Week`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_week_phys_val(&self) -> bool {
+    pub fn validity_gps_week(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -1987,17 +1903,10 @@ impl RtDl1mk3GpsTime {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_time(&self) -> bool {
-        self.validity_gps_time_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Time`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_time_phys_val(&self) -> bool {
+    pub fn validity_gps_time(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -2108,17 +2017,10 @@ impl RtDl1mk3GpsPosLlh2 {
     /// - Max: 100000
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_pos_llh_altitude(&self) -> f32 {
-        self.gps_pos_llh_altitude_phys_val()
-    }
-    /// Returns the physical value of `GPS_Pos_LLH_Altitude`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn gps_pos_llh_altitude_phys_val(&self) -> f32 {
+    pub fn gps_pos_llh_altitude(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -2161,17 +2063,10 @@ impl RtDl1mk3GpsPosLlh2 {
     /// - Max: 180
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_pos_llh_longitude(&self) -> f32 {
-        self.gps_pos_llh_longitude_phys_val()
-    }
-    /// Returns the physical value of `GPS_Pos_LLH_Longitude`.
-    ///
     /// - Factor: 0.0000001
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_pos_llh_longitude_phys_val(&self) -> f32 {
+    pub fn gps_pos_llh_longitude(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 0.0000001_f32;
         let offset = 0_f32;
@@ -2307,17 +2202,10 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Max: 90
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_pos_llh_latitude(&self) -> f32 {
-        self.gps_pos_llh_latitude_phys_val()
-    }
-    /// Returns the physical value of `GPS_Pos_LLH_Latitude`.
-    ///
     /// - Factor: 0.0000001
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_pos_llh_latitude_phys_val(&self) -> f32 {
+    pub fn gps_pos_llh_latitude(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.0000001_f32;
         let offset = 0_f32;
@@ -2362,17 +2250,10 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_pos_llh_altitude(&self) -> u8 {
-        self.accuracy_gps_pos_llh_altitude_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Pos_LLH_Altitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_altitude_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_altitude(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2421,17 +2302,10 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_pos_llh_longitude(&self) -> u8 {
-        self.accuracy_gps_pos_llh_longitude_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Pos_LLH_Longitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_longitude_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_longitude(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2480,17 +2354,10 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_pos_llh_latitude(&self) -> u8 {
-        self.accuracy_gps_pos_llh_latitude_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Pos_LLH_Latitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_latitude_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_latitude(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2539,17 +2406,10 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_pos_llh_altitude(&self) -> bool {
-        self.validity_gps_pos_llh_altitude_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Pos_LLH_Altitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_pos_llh_altitude_phys_val(&self) -> bool {
+    pub fn validity_gps_pos_llh_altitude(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -2586,17 +2446,10 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_pos_llh_longitude(&self) -> bool {
-        self.validity_gps_pos_llh_longitude_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Pos_LLH_Longitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_pos_llh_longitude_phys_val(&self) -> bool {
+    pub fn validity_gps_pos_llh_longitude(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -2633,17 +2486,10 @@ impl RtDl1mk3GpsPosLlh1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_pos_llh_latitude(&self) -> bool {
-        self.validity_gps_pos_llh_latitude_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Pos_LLH_Latitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_pos_llh_latitude_phys_val(&self) -> bool {
+    pub fn validity_gps_pos_llh_latitude(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -2767,17 +2613,10 @@ impl RtDl1mk3GpsSpeed {
     /// - Max: 1675
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_speed_3d(&self) -> f32 {
-        self.gps_speed_3d_phys_val()
-    }
-    /// Returns the physical value of `GPS_Speed_3D`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_speed_3d_phys_val(&self) -> f32 {
+    pub fn gps_speed_3d(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..64].load_le::<u32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -2820,17 +2659,10 @@ impl RtDl1mk3GpsSpeed {
     /// - Max: 1675
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_speed_2d(&self) -> f32 {
-        self.gps_speed_2d_phys_val()
-    }
-    /// Returns the physical value of `GPS_Speed_2D`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_speed_2d_phys_val(&self) -> f32 {
+    pub fn gps_speed_2d(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..40].load_le::<u32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -2873,17 +2705,10 @@ impl RtDl1mk3GpsSpeed {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_speed(&self) -> u8 {
-        self.accuracy_gps_speed_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Speed`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_speed_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_speed(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2929,17 +2754,10 @@ impl RtDl1mk3GpsSpeed {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_speed_3d(&self) -> bool {
-        self.validity_gps_speed_3d_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Speed_3D`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_speed_3d_phys_val(&self) -> bool {
+    pub fn validity_gps_speed_3d(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -2973,17 +2791,10 @@ impl RtDl1mk3GpsSpeed {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_speed_2d(&self) -> bool {
-        self.validity_gps_speed_2d_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Speed_2D`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_speed_2d_phys_val(&self) -> bool {
+    pub fn validity_gps_speed_2d(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -3088,17 +2899,10 @@ impl RtIrTempTemp7 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_7(&self) -> f32 {
-        self.ir_temperature_7_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_7`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_7_phys_val(&self) -> f32 {
+    pub fn ir_temperature_7(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3228,17 +3032,10 @@ impl RtIrTempTempRr2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_32(&self) -> f32 {
-        self.ir_temperature_32_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_32`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_32_phys_val(&self) -> f32 {
+    pub fn ir_temperature_32(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3281,17 +3078,10 @@ impl RtIrTempTempRr2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_31(&self) -> f32 {
-        self.ir_temperature_31_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_31`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_31_phys_val(&self) -> f32 {
+    pub fn ir_temperature_31(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3334,17 +3124,10 @@ impl RtIrTempTempRr2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_30(&self) -> f32 {
-        self.ir_temperature_30_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_30`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_30_phys_val(&self) -> f32 {
+    pub fn ir_temperature_30(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3387,17 +3170,10 @@ impl RtIrTempTempRr2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_29(&self) -> f32 {
-        self.ir_temperature_29_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_29`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_29_phys_val(&self) -> f32 {
+    pub fn ir_temperature_29(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3527,17 +3303,10 @@ impl RtIrTempTempRl2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_24(&self) -> f32 {
-        self.ir_temperature_24_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_24`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_24_phys_val(&self) -> f32 {
+    pub fn ir_temperature_24(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3580,17 +3349,10 @@ impl RtIrTempTempRl2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_23(&self) -> f32 {
-        self.ir_temperature_23_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_23`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_23_phys_val(&self) -> f32 {
+    pub fn ir_temperature_23(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3633,17 +3395,10 @@ impl RtIrTempTempRl2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_22(&self) -> f32 {
-        self.ir_temperature_22_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_22`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_22_phys_val(&self) -> f32 {
+    pub fn ir_temperature_22(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3686,17 +3441,10 @@ impl RtIrTempTempRl2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_21(&self) -> f32 {
-        self.ir_temperature_21_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_21`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_21_phys_val(&self) -> f32 {
+    pub fn ir_temperature_21(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3826,17 +3574,10 @@ impl RtIrTempTempFr2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_16(&self) -> f32 {
-        self.ir_temperature_16_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_16`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_16_phys_val(&self) -> f32 {
+    pub fn ir_temperature_16(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3879,17 +3620,10 @@ impl RtIrTempTempFr2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_15(&self) -> f32 {
-        self.ir_temperature_15_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_15`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_15_phys_val(&self) -> f32 {
+    pub fn ir_temperature_15(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3932,17 +3666,10 @@ impl RtIrTempTempFr2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_14(&self) -> f32 {
-        self.ir_temperature_14_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_14`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_14_phys_val(&self) -> f32 {
+    pub fn ir_temperature_14(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -3985,17 +3712,10 @@ impl RtIrTempTempFr2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_13(&self) -> f32 {
-        self.ir_temperature_13_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_13`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_13_phys_val(&self) -> f32 {
+    pub fn ir_temperature_13(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4125,17 +3845,10 @@ impl RtIrTempTempFl2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_8(&self) -> f32 {
-        self.ir_temperature_8_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_8`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_8_phys_val(&self) -> f32 {
+    pub fn ir_temperature_8(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4178,17 +3891,10 @@ impl RtIrTempTempFl2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_7(&self) -> f32 {
-        self.ir_temperature_7_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_7`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_7_phys_val(&self) -> f32 {
+    pub fn ir_temperature_7(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4231,17 +3937,10 @@ impl RtIrTempTempFl2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_6(&self) -> f32 {
-        self.ir_temperature_6_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_6`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_6_phys_val(&self) -> f32 {
+    pub fn ir_temperature_6(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4284,17 +3983,10 @@ impl RtIrTempTempFl2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_5(&self) -> f32 {
-        self.ir_temperature_5_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_5`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_5_phys_val(&self) -> f32 {
+    pub fn ir_temperature_5(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4424,17 +4116,10 @@ impl RtIrTempTempRr1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_28(&self) -> f32 {
-        self.ir_temperature_28_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_28`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_28_phys_val(&self) -> f32 {
+    pub fn ir_temperature_28(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4477,17 +4162,10 @@ impl RtIrTempTempRr1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_27(&self) -> f32 {
-        self.ir_temperature_27_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_27`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_27_phys_val(&self) -> f32 {
+    pub fn ir_temperature_27(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4530,17 +4208,10 @@ impl RtIrTempTempRr1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_26(&self) -> f32 {
-        self.ir_temperature_26_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_26`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_26_phys_val(&self) -> f32 {
+    pub fn ir_temperature_26(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4583,17 +4254,10 @@ impl RtIrTempTempRr1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_25(&self) -> f32 {
-        self.ir_temperature_25_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_25`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_25_phys_val(&self) -> f32 {
+    pub fn ir_temperature_25(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4723,17 +4387,10 @@ impl RtIrTempTempRl1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_20(&self) -> f32 {
-        self.ir_temperature_20_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_20`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_20_phys_val(&self) -> f32 {
+    pub fn ir_temperature_20(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4776,17 +4433,10 @@ impl RtIrTempTempRl1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_19(&self) -> f32 {
-        self.ir_temperature_19_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_19`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_19_phys_val(&self) -> f32 {
+    pub fn ir_temperature_19(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4829,17 +4479,10 @@ impl RtIrTempTempRl1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_18(&self) -> f32 {
-        self.ir_temperature_18_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_18`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_18_phys_val(&self) -> f32 {
+    pub fn ir_temperature_18(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -4882,17 +4525,10 @@ impl RtIrTempTempRl1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_17(&self) -> f32 {
-        self.ir_temperature_17_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_17`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_17_phys_val(&self) -> f32 {
+    pub fn ir_temperature_17(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5022,17 +4658,10 @@ impl RtIrTempTempFr1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_12(&self) -> f32 {
-        self.ir_temperature_12_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_12`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_12_phys_val(&self) -> f32 {
+    pub fn ir_temperature_12(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5075,17 +4704,10 @@ impl RtIrTempTempFr1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_11(&self) -> f32 {
-        self.ir_temperature_11_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_11`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_11_phys_val(&self) -> f32 {
+    pub fn ir_temperature_11(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5128,17 +4750,10 @@ impl RtIrTempTempFr1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_10(&self) -> f32 {
-        self.ir_temperature_10_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_10`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_10_phys_val(&self) -> f32 {
+    pub fn ir_temperature_10(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5181,17 +4796,10 @@ impl RtIrTempTempFr1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_9(&self) -> f32 {
-        self.ir_temperature_9_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_9`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_9_phys_val(&self) -> f32 {
+    pub fn ir_temperature_9(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5321,17 +4929,10 @@ impl RtIrTempTempFl1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_4(&self) -> f32 {
-        self.ir_temperature_4_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_4`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_4_phys_val(&self) -> f32 {
+    pub fn ir_temperature_4(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5374,17 +4975,10 @@ impl RtIrTempTempFl1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_3(&self) -> f32 {
-        self.ir_temperature_3_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_3`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_3_phys_val(&self) -> f32 {
+    pub fn ir_temperature_3(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5427,17 +5021,10 @@ impl RtIrTempTempFl1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_2(&self) -> f32 {
-        self.ir_temperature_2_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_2`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_2_phys_val(&self) -> f32 {
+    pub fn ir_temperature_2(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5480,17 +5067,10 @@ impl RtIrTempTempFl1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_1(&self) -> f32 {
-        self.ir_temperature_1_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_1`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_1_phys_val(&self) -> f32 {
+    pub fn ir_temperature_1(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5606,17 +5186,10 @@ impl RtIrTempTemp32 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_32(&self) -> f32 {
-        self.ir_temperature_32_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_32`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_32_phys_val(&self) -> f32 {
+    pub fn ir_temperature_32(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5732,17 +5305,10 @@ impl RtIrTempTemp31 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_31(&self) -> f32 {
-        self.ir_temperature_31_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_31`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_31_phys_val(&self) -> f32 {
+    pub fn ir_temperature_31(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5858,17 +5424,10 @@ impl RtIrTempTemp30 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_30(&self) -> f32 {
-        self.ir_temperature_30_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_30`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_30_phys_val(&self) -> f32 {
+    pub fn ir_temperature_30(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5984,17 +5543,10 @@ impl RtIrTempTemp29 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_29(&self) -> f32 {
-        self.ir_temperature_29_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_29`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_29_phys_val(&self) -> f32 {
+    pub fn ir_temperature_29(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6110,17 +5662,10 @@ impl RtIrTempTemp28 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_28(&self) -> f32 {
-        self.ir_temperature_28_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_28`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_28_phys_val(&self) -> f32 {
+    pub fn ir_temperature_28(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6236,17 +5781,10 @@ impl RtIrTempTemp27 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_27(&self) -> f32 {
-        self.ir_temperature_27_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_27`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_27_phys_val(&self) -> f32 {
+    pub fn ir_temperature_27(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6362,17 +5900,10 @@ impl RtIrTempTemp26 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_26(&self) -> f32 {
-        self.ir_temperature_26_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_26`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_26_phys_val(&self) -> f32 {
+    pub fn ir_temperature_26(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6488,17 +6019,10 @@ impl RtIrTempTemp25 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_25(&self) -> f32 {
-        self.ir_temperature_25_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_25`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_25_phys_val(&self) -> f32 {
+    pub fn ir_temperature_25(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6614,17 +6138,10 @@ impl RtIrTempTemp24 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_24(&self) -> f32 {
-        self.ir_temperature_24_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_24`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_24_phys_val(&self) -> f32 {
+    pub fn ir_temperature_24(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6740,17 +6257,10 @@ impl RtIrTempTemp22 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_22(&self) -> f32 {
-        self.ir_temperature_22_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_22`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_22_phys_val(&self) -> f32 {
+    pub fn ir_temperature_22(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6866,17 +6376,10 @@ impl RtIrTempTemp23 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_23(&self) -> f32 {
-        self.ir_temperature_23_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_23`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_23_phys_val(&self) -> f32 {
+    pub fn ir_temperature_23(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -6992,17 +6495,10 @@ impl RtIrTempTemp21 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_21(&self) -> f32 {
-        self.ir_temperature_21_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_21`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_21_phys_val(&self) -> f32 {
+    pub fn ir_temperature_21(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7118,17 +6614,10 @@ impl RtIrTempTemp20 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_20(&self) -> f32 {
-        self.ir_temperature_20_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_20`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_20_phys_val(&self) -> f32 {
+    pub fn ir_temperature_20(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7244,17 +6733,10 @@ impl RtIrTempTemp19 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_19(&self) -> f32 {
-        self.ir_temperature_19_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_19`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_19_phys_val(&self) -> f32 {
+    pub fn ir_temperature_19(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7370,17 +6852,10 @@ impl RtIrTempTemp18 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_18(&self) -> f32 {
-        self.ir_temperature_18_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_18`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_18_phys_val(&self) -> f32 {
+    pub fn ir_temperature_18(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7496,17 +6971,10 @@ impl RtIrTempTemp16 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_16(&self) -> f32 {
-        self.ir_temperature_16_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_16`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_16_phys_val(&self) -> f32 {
+    pub fn ir_temperature_16(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7622,17 +7090,10 @@ impl RtIrTempTemp15 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_15(&self) -> f32 {
-        self.ir_temperature_15_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_15`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_15_phys_val(&self) -> f32 {
+    pub fn ir_temperature_15(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7748,17 +7209,10 @@ impl RtIrTempTemp14 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_14(&self) -> f32 {
-        self.ir_temperature_14_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_14`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_14_phys_val(&self) -> f32 {
+    pub fn ir_temperature_14(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -7874,17 +7328,10 @@ impl RtIrTempTemp13 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_13(&self) -> f32 {
-        self.ir_temperature_13_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_13`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_13_phys_val(&self) -> f32 {
+    pub fn ir_temperature_13(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8000,17 +7447,10 @@ impl RtIrTempTemp12 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_12(&self) -> f32 {
-        self.ir_temperature_12_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_12`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_12_phys_val(&self) -> f32 {
+    pub fn ir_temperature_12(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8126,17 +7566,10 @@ impl RtIrTempTemp11 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_11(&self) -> f32 {
-        self.ir_temperature_11_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_11`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_11_phys_val(&self) -> f32 {
+    pub fn ir_temperature_11(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8252,17 +7685,10 @@ impl RtIrTempTemp10 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_10(&self) -> f32 {
-        self.ir_temperature_10_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_10`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_10_phys_val(&self) -> f32 {
+    pub fn ir_temperature_10(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8378,17 +7804,10 @@ impl RtIrTempTemp8 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_8(&self) -> f32 {
-        self.ir_temperature_8_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_8`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_8_phys_val(&self) -> f32 {
+    pub fn ir_temperature_8(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8504,17 +7923,10 @@ impl RtIrTempTemp9 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_9(&self) -> f32 {
-        self.ir_temperature_9_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_9`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_9_phys_val(&self) -> f32 {
+    pub fn ir_temperature_9(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8630,17 +8042,10 @@ impl RtIrTempTemp17 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_17(&self) -> f32 {
-        self.ir_temperature_17_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_17`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_17_phys_val(&self) -> f32 {
+    pub fn ir_temperature_17(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8756,17 +8161,10 @@ impl RtIrTempTemp6 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_6(&self) -> f32 {
-        self.ir_temperature_6_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_6`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_6_phys_val(&self) -> f32 {
+    pub fn ir_temperature_6(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -8882,17 +8280,10 @@ impl RtIrTempTemp5 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_5(&self) -> f32 {
-        self.ir_temperature_5_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_5`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_5_phys_val(&self) -> f32 {
+    pub fn ir_temperature_5(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -9008,17 +8399,10 @@ impl RtIrTempTemp4 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_4(&self) -> f32 {
-        self.ir_temperature_4_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_4`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_4_phys_val(&self) -> f32 {
+    pub fn ir_temperature_4(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -9134,17 +8518,10 @@ impl RtIrTempTemp3 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_3(&self) -> f32 {
-        self.ir_temperature_3_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_3`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_3_phys_val(&self) -> f32 {
+    pub fn ir_temperature_3(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -9260,17 +8637,10 @@ impl RtIrTempTemp2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_2(&self) -> f32 {
-        self.ir_temperature_2_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_2`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_2_phys_val(&self) -> f32 {
+    pub fn ir_temperature_2(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -9386,17 +8756,10 @@ impl RtIrTempTemp1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ir_temperature_1(&self) -> f32 {
-        self.ir_temperature_1_phys_val()
-    }
-    /// Returns the physical value of `IR_Temperature_1`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ir_temperature_1_phys_val(&self) -> f32 {
+    pub fn ir_temperature_1(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -9515,17 +8878,10 @@ impl RtSbTrigFinalCondition {
     /// - Max: 1675
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn final_speed(&self) -> f32 {
-        self.final_speed_phys_val()
-    }
-    /// Returns the physical value of `Final_Speed`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn final_speed_phys_val(&self) -> f32 {
+    pub fn final_speed(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..32].load_le::<u32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -9568,17 +8924,10 @@ impl RtSbTrigFinalCondition {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_final_speed(&self) -> bool {
-        self.validity_final_speed_phys_val()
-    }
-    /// Returns the physical value of `Validity_Final_Speed`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_final_speed_phys_val(&self) -> bool {
+    pub fn validity_final_speed(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -9701,17 +9050,10 @@ impl RtSbTrigInitialCondition {
     /// - Max: 100
     /// - Unit: "%"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn mfdd_end_threshold(&self) -> u8 {
-        self.mfdd_end_threshold_phys_val()
-    }
-    /// Returns the physical value of `MFDD_End_Threshold`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "%"
     #[inline(always)]
-    pub fn mfdd_end_threshold_phys_val(&self) -> u8 {
+    pub fn mfdd_end_threshold(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -9755,17 +9097,10 @@ impl RtSbTrigInitialCondition {
     /// - Max: 100
     /// - Unit: "%"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn mfdd_start_threshold(&self) -> u8 {
-        self.mfdd_start_threshold_phys_val()
-    }
-    /// Returns the physical value of `MFDD_Start_Threshold`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "%"
     #[inline(always)]
-    pub fn mfdd_start_threshold_phys_val(&self) -> u8 {
+    pub fn mfdd_start_threshold(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -9811,17 +9146,10 @@ impl RtSbTrigInitialCondition {
     /// - Max: 180
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn initial_heading(&self) -> f32 {
-        self.initial_heading_phys_val()
-    }
-    /// Returns the physical value of `Initial_Heading`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn initial_heading_phys_val(&self) -> f32 {
+    pub fn initial_heading(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -9866,17 +9194,10 @@ impl RtSbTrigInitialCondition {
     /// - Max: 1675
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn initial_speed(&self) -> f32 {
-        self.initial_speed_phys_val()
-    }
-    /// Returns the physical value of `Initial_Speed`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn initial_speed_phys_val(&self) -> f32 {
+    pub fn initial_speed(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..32].load_le::<u32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -9919,17 +9240,10 @@ impl RtSbTrigInitialCondition {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_initial_heading(&self) -> bool {
-        self.validity_initial_heading_phys_val()
-    }
-    /// Returns the physical value of `Validity_Initial_Heading`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_initial_heading_phys_val(&self) -> bool {
+    pub fn validity_initial_heading(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -9963,17 +9277,10 @@ impl RtSbTrigInitialCondition {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_initial_speed(&self) -> bool {
-        self.validity_initial_speed_phys_val()
-    }
-    /// Returns the physical value of `Validity_Initial_Speed`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_initial_speed_phys_val(&self) -> bool {
+    pub fn validity_initial_speed(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -10083,17 +9390,10 @@ impl RtSbTrigDirectDist {
     /// - Max: 4294967
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn path_distance_2d(&self) -> f32 {
-        self.path_distance_2d_phys_val()
-    }
-    /// Returns the physical value of `Path_Distance_2D`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn path_distance_2d_phys_val(&self) -> f32 {
+    pub fn path_distance_2d(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -10136,17 +9436,10 @@ impl RtSbTrigDirectDist {
     /// - Max: 4294967
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn direct_distance(&self) -> f32 {
-        self.direct_distance_phys_val()
-    }
-    /// Returns the physical value of `Direct_Distance`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn direct_distance_phys_val(&self) -> f32 {
+    pub fn direct_distance(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -10268,17 +9561,10 @@ impl RtSbTrigForwardDist {
     /// - Max: 2147483.647
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn deviation_distance(&self) -> f32 {
-        self.deviation_distance_phys_val()
-    }
-    /// Returns the physical value of `Deviation_Distance`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn deviation_distance_phys_val(&self) -> f32 {
+    pub fn deviation_distance(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -10323,17 +9609,10 @@ impl RtSbTrigForwardDist {
     /// - Max: 2147483.647
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn forward_distance(&self) -> f32 {
-        self.forward_distance_phys_val()
-    }
-    /// Returns the physical value of `Forward_Distance`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn forward_distance_phys_val(&self) -> f32 {
+    pub fn forward_distance(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -10451,17 +9730,10 @@ impl RtSbTrigPathDist {
     /// - Max: 4294967
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn path_distance_3d(&self) -> f32 {
-        self.path_distance_3d_phys_val()
-    }
-    /// Returns the physical value of `Path_Distance_3D`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn path_distance_3d_phys_val(&self) -> f32 {
+    pub fn path_distance_3d(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -10593,17 +9865,10 @@ impl RtSbTrigAccel {
     /// - Max: 167772
     /// - Unit: "s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn triggered_time(&self) -> f32 {
-        self.triggered_time_phys_val()
-    }
-    /// Returns the physical value of `Triggered_Time`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "s"
     #[inline(always)]
-    pub fn triggered_time_phys_val(&self) -> f32 {
+    pub fn triggered_time(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..64].load_le::<u32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -10646,17 +9911,10 @@ impl RtSbTrigAccel {
     /// - Max: 65
     /// - Unit: "g"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn average_accel(&self) -> f32 {
-        self.average_accel_phys_val()
-    }
-    /// Returns the physical value of `Average_Accel`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn average_accel_phys_val(&self) -> f32 {
+    pub fn average_accel(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[24..40].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -10701,17 +9959,10 @@ impl RtSbTrigAccel {
     /// - Max: 65
     /// - Unit: "g"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn mfdd(&self) -> f32 {
-        self.mfdd_phys_val()
-    }
-    /// Returns the physical value of `MFDD`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn mfdd_phys_val(&self) -> f32 {
+    pub fn mfdd(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..24].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -10756,17 +10007,10 @@ impl RtSbTrigAccel {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_triggered_time(&self) -> bool {
-        self.validity_triggered_time_phys_val()
-    }
-    /// Returns the physical value of `Validity_Triggered_Time`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_triggered_time_phys_val(&self) -> bool {
+    pub fn validity_triggered_time(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -10800,17 +10044,10 @@ impl RtSbTrigAccel {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_average_accel(&self) -> bool {
-        self.validity_average_accel_phys_val()
-    }
-    /// Returns the physical value of `Validity_Average_Accel`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_average_accel_phys_val(&self) -> bool {
+    pub fn validity_average_accel(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -10844,17 +10081,10 @@ impl RtSbTrigAccel {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_mfdd(&self) -> bool {
-        self.validity_mfdd_phys_val()
-    }
-    /// Returns the physical value of `Validity_MFDD`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_mfdd_phys_val(&self) -> bool {
+    pub fn validity_mfdd(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -10959,17 +10189,10 @@ impl RtDl1mk3MeasureTime12 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn measured_time_12(&self) -> u32 {
-        self.measured_time_12_phys_val()
-    }
-    /// Returns the physical value of `Measured_Time_12`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn measured_time_12_phys_val(&self) -> u32 {
+    pub fn measured_time_12(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11086,17 +10309,10 @@ impl RtDl1mk3MeasureTime11 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn measured_time_11(&self) -> u32 {
-        self.measured_time_11_phys_val()
-    }
-    /// Returns the physical value of `Measured_Time_11`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn measured_time_11_phys_val(&self) -> u32 {
+    pub fn measured_time_11(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11213,17 +10429,10 @@ impl RtDl1mk3MeasureTime10 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn measured_time_10(&self) -> u32 {
-        self.measured_time_10_phys_val()
-    }
-    /// Returns the physical value of `Measured_Time_10`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn measured_time_10_phys_val(&self) -> u32 {
+    pub fn measured_time_10(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11340,17 +10549,10 @@ impl RtDl1mk3MeasureTime9 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn measured_time_9(&self) -> u32 {
-        self.measured_time_9_phys_val()
-    }
-    /// Returns the physical value of `Measured_Time_9`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn measured_time_9_phys_val(&self) -> u32 {
+    pub fn measured_time_9(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11467,17 +10669,10 @@ impl RtDl1mk3MeasureTime8 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn measured_time_8(&self) -> u32 {
-        self.measured_time_8_phys_val()
-    }
-    /// Returns the physical value of `Measured_Time_8`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn measured_time_8_phys_val(&self) -> u32 {
+    pub fn measured_time_8(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11594,17 +10789,10 @@ impl RtDl1mk3MeasureTime7 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn measured_time_7(&self) -> u32 {
-        self.measured_time_7_phys_val()
-    }
-    /// Returns the physical value of `Measured_Time_7`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn measured_time_7_phys_val(&self) -> u32 {
+    pub fn measured_time_7(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11721,17 +10909,10 @@ impl RtDl1mk3MeasureTime6 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn measured_time_6(&self) -> u32 {
-        self.measured_time_6_phys_val()
-    }
-    /// Returns the physical value of `Measured_Time_6`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn measured_time_6_phys_val(&self) -> u32 {
+    pub fn measured_time_6(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11848,17 +11029,10 @@ impl RtDl1mk3MeasureTime5 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn measured_time_5(&self) -> u32 {
-        self.measured_time_5_phys_val()
-    }
-    /// Returns the physical value of `Measured_Time_5`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn measured_time_5_phys_val(&self) -> u32 {
+    pub fn measured_time_5(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -11975,17 +11149,10 @@ impl RtDl1mk3MeasureTime4 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn measured_time_4(&self) -> u32 {
-        self.measured_time_4_phys_val()
-    }
-    /// Returns the physical value of `Measured_Time_4`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn measured_time_4_phys_val(&self) -> u32 {
+    pub fn measured_time_4(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -12102,17 +11269,10 @@ impl RtDl1mk3MeasureTime3 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn measured_time_3(&self) -> u32 {
-        self.measured_time_3_phys_val()
-    }
-    /// Returns the physical value of `Measured_Time_3`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn measured_time_3_phys_val(&self) -> u32 {
+    pub fn measured_time_3(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -12229,17 +11389,10 @@ impl RtDl1mk3MeasureTime2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn measured_time_2(&self) -> u32 {
-        self.measured_time_2_phys_val()
-    }
-    /// Returns the physical value of `Measured_Time_2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn measured_time_2_phys_val(&self) -> u32 {
+    pub fn measured_time_2(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -12356,17 +11509,10 @@ impl RtDl1mk3MeasureTime1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn measured_time_1(&self) -> u32 {
-        self.measured_time_1_phys_val()
-    }
-    /// Returns the physical value of `Measured_Time_1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn measured_time_1_phys_val(&self) -> u32 {
+    pub fn measured_time_1(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -12483,17 +11629,10 @@ impl RtDl1mk3Rpm {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn rpm(&self) -> u16 {
-        self.rpm_phys_val()
-    }
-    /// Returns the physical value of `RPM`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn rpm_phys_val(&self) -> u16 {
+    pub fn rpm(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -12610,17 +11749,10 @@ impl RtDl1mk3Freq4 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn frequency_4(&self) -> f32 {
-        self.frequency_4_phys_val()
-    }
-    /// Returns the physical value of `Frequency_4`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn frequency_4_phys_val(&self) -> f32 {
+    pub fn frequency_4(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -12734,17 +11866,10 @@ impl RtDl1mk3Freq3 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn frequency_3(&self) -> f32 {
-        self.frequency_3_phys_val()
-    }
-    /// Returns the physical value of `Frequency_3`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn frequency_3_phys_val(&self) -> f32 {
+    pub fn frequency_3(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -12858,17 +11983,10 @@ impl RtDl1mk3Freq2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn frequency_2(&self) -> f32 {
-        self.frequency_2_phys_val()
-    }
-    /// Returns the physical value of `Frequency_2`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn frequency_2_phys_val(&self) -> f32 {
+    pub fn frequency_2(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -12982,17 +12100,10 @@ impl RtDl1mk3Misc3 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn misc_3(&self) -> f32 {
-        self.misc_3_phys_val()
-    }
-    /// Returns the physical value of `Misc_3`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn misc_3_phys_val(&self) -> f32 {
+    pub fn misc_3(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -13106,17 +12217,10 @@ impl RtDl1mk3Misc2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn misc_2(&self) -> f32 {
-        self.misc_2_phys_val()
-    }
-    /// Returns the physical value of `Misc_2`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn misc_2_phys_val(&self) -> f32 {
+    pub fn misc_2(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -13230,17 +12334,10 @@ impl RtDl1mk3Misc1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn misc_1(&self) -> f32 {
-        self.misc_1_phys_val()
-    }
-    /// Returns the physical value of `Misc_1`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn misc_1_phys_val(&self) -> f32 {
+    pub fn misc_1(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -13354,17 +12451,10 @@ impl RtDl1mk3Aux31 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_31(&self) -> f32 {
-        self.aux_31_phys_val()
-    }
-    /// Returns the physical value of `AUX_31`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_31_phys_val(&self) -> f32 {
+    pub fn aux_31(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -13478,17 +12568,10 @@ impl RtDl1mk3Aux30 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_30(&self) -> f32 {
-        self.aux_30_phys_val()
-    }
-    /// Returns the physical value of `AUX_30`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_30_phys_val(&self) -> f32 {
+    pub fn aux_30(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -13602,17 +12685,10 @@ impl RtDl1mk3Aux29 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_29(&self) -> f32 {
-        self.aux_29_phys_val()
-    }
-    /// Returns the physical value of `AUX_29`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_29_phys_val(&self) -> f32 {
+    pub fn aux_29(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -13726,17 +12802,10 @@ impl RtDl1mk3Aux28 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_28(&self) -> f32 {
-        self.aux_28_phys_val()
-    }
-    /// Returns the physical value of `AUX_28`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_28_phys_val(&self) -> f32 {
+    pub fn aux_28(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -13850,17 +12919,10 @@ impl RtDl1mk3Aux27 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_27(&self) -> f32 {
-        self.aux_27_phys_val()
-    }
-    /// Returns the physical value of `AUX_27`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_27_phys_val(&self) -> f32 {
+    pub fn aux_27(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -13974,17 +13036,10 @@ impl RtDl1mk3Aux26 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_26(&self) -> f32 {
-        self.aux_26_phys_val()
-    }
-    /// Returns the physical value of `AUX_26`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_26_phys_val(&self) -> f32 {
+    pub fn aux_26(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -14098,17 +13153,10 @@ impl RtDl1mk3Aux25 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_25(&self) -> f32 {
-        self.aux_25_phys_val()
-    }
-    /// Returns the physical value of `AUX_25`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_25_phys_val(&self) -> f32 {
+    pub fn aux_25(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -14222,17 +13270,10 @@ impl RtDl1mk3Aux24 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_24(&self) -> f32 {
-        self.aux_24_phys_val()
-    }
-    /// Returns the physical value of `AUX_24`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_24_phys_val(&self) -> f32 {
+    pub fn aux_24(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -14346,17 +13387,10 @@ impl RtDl1mk3Aux23 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_23(&self) -> f32 {
-        self.aux_23_phys_val()
-    }
-    /// Returns the physical value of `AUX_23`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_23_phys_val(&self) -> f32 {
+    pub fn aux_23(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -14470,17 +13504,10 @@ impl RtDl1mk3Aux22 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_22(&self) -> u32 {
-        self.aux_22_phys_val()
-    }
-    /// Returns the physical value of `AUX_22`.
-    ///
     /// - Factor: 10
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_22_phys_val(&self) -> u32 {
+    pub fn aux_22(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 10;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -14597,17 +13624,10 @@ impl RtDl1mk3Aux21 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_21(&self) -> f32 {
-        self.aux_21_phys_val()
-    }
-    /// Returns the physical value of `AUX_21`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_21_phys_val(&self) -> f32 {
+    pub fn aux_21(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -14721,17 +13741,10 @@ impl RtDl1mk3Aux20 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_20(&self) -> f32 {
-        self.aux_20_phys_val()
-    }
-    /// Returns the physical value of `AUX_20`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_20_phys_val(&self) -> f32 {
+    pub fn aux_20(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -14845,17 +13858,10 @@ impl RtDl1mk3Aux19 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_19(&self) -> f32 {
-        self.aux_19_phys_val()
-    }
-    /// Returns the physical value of `AUX_19`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_19_phys_val(&self) -> f32 {
+    pub fn aux_19(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -14969,17 +13975,10 @@ impl RtDl1mk3Aux18 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_18(&self) -> f32 {
-        self.aux_18_phys_val()
-    }
-    /// Returns the physical value of `AUX_18`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_18_phys_val(&self) -> f32 {
+    pub fn aux_18(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15093,17 +14092,10 @@ impl RtDl1mk3Aux17 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_17(&self) -> f32 {
-        self.aux_17_phys_val()
-    }
-    /// Returns the physical value of `AUX_17`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_17_phys_val(&self) -> f32 {
+    pub fn aux_17(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15217,17 +14209,10 @@ impl RtDl1mk3Aux16 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_16(&self) -> f32 {
-        self.aux_16_phys_val()
-    }
-    /// Returns the physical value of `AUX_16`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_16_phys_val(&self) -> f32 {
+    pub fn aux_16(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15341,17 +14326,10 @@ impl RtDl1mk3Aux15 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_15(&self) -> f32 {
-        self.aux_15_phys_val()
-    }
-    /// Returns the physical value of `AUX_15`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_15_phys_val(&self) -> f32 {
+    pub fn aux_15(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15465,17 +14443,10 @@ impl RtDl1mk3Aux14 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_14(&self) -> f32 {
-        self.aux_14_phys_val()
-    }
-    /// Returns the physical value of `AUX_14`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_14_phys_val(&self) -> f32 {
+    pub fn aux_14(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15589,17 +14560,10 @@ impl RtDl1mk3Aux13 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_13(&self) -> f32 {
-        self.aux_13_phys_val()
-    }
-    /// Returns the physical value of `AUX_13`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_13_phys_val(&self) -> f32 {
+    pub fn aux_13(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15713,17 +14677,10 @@ impl RtDl1mk3Aux12 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_12(&self) -> f32 {
-        self.aux_12_phys_val()
-    }
-    /// Returns the physical value of `AUX_12`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_12_phys_val(&self) -> f32 {
+    pub fn aux_12(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15837,17 +14794,10 @@ impl RtDl1mk3Aux11 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_11(&self) -> f32 {
-        self.aux_11_phys_val()
-    }
-    /// Returns the physical value of `AUX_11`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_11_phys_val(&self) -> f32 {
+    pub fn aux_11(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -15961,17 +14911,10 @@ impl RtDl1mk3Aux9 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_9(&self) -> f32 {
-        self.aux_9_phys_val()
-    }
-    /// Returns the physical value of `AUX_9`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_9_phys_val(&self) -> f32 {
+    pub fn aux_9(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16085,17 +15028,10 @@ impl RtDl1mk3Aux10 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_10(&self) -> f32 {
-        self.aux_10_phys_val()
-    }
-    /// Returns the physical value of `AUX_10`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_10_phys_val(&self) -> f32 {
+    pub fn aux_10(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16209,17 +15145,10 @@ impl RtDl1mk3Aux8 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_8(&self) -> f32 {
-        self.aux_8_phys_val()
-    }
-    /// Returns the physical value of `AUX_8`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_8_phys_val(&self) -> f32 {
+    pub fn aux_8(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16333,17 +15262,10 @@ impl RtDl1mk3Aux7 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_7(&self) -> f32 {
-        self.aux_7_phys_val()
-    }
-    /// Returns the physical value of `AUX_7`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_7_phys_val(&self) -> f32 {
+    pub fn aux_7(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16457,17 +15379,10 @@ impl RtDl1mk3Aux6 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_6(&self) -> f32 {
-        self.aux_6_phys_val()
-    }
-    /// Returns the physical value of `AUX_6`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_6_phys_val(&self) -> f32 {
+    pub fn aux_6(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16581,17 +15496,10 @@ impl RtDl1mk3Aux5 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_5(&self) -> f32 {
-        self.aux_5_phys_val()
-    }
-    /// Returns the physical value of `AUX_5`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_5_phys_val(&self) -> f32 {
+    pub fn aux_5(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16705,17 +15613,10 @@ impl RtDl1mk3Aux4 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_4(&self) -> f32 {
-        self.aux_4_phys_val()
-    }
-    /// Returns the physical value of `AUX_4`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_4_phys_val(&self) -> f32 {
+    pub fn aux_4(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16829,17 +15730,10 @@ impl RtDl1mk3Aux3 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_3(&self) -> f32 {
-        self.aux_3_phys_val()
-    }
-    /// Returns the physical value of `AUX_3`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_3_phys_val(&self) -> f32 {
+    pub fn aux_3(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -16953,17 +15847,10 @@ impl RtDl1mk3Aux2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_2(&self) -> f32 {
-        self.aux_2_phys_val()
-    }
-    /// Returns the physical value of `AUX_2`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_2_phys_val(&self) -> f32 {
+    pub fn aux_2(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17077,17 +15964,10 @@ impl RtDl1mk3Aux1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn aux_1(&self) -> f32 {
-        self.aux_1_phys_val()
-    }
-    /// Returns the physical value of `AUX_1`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn aux_1_phys_val(&self) -> f32 {
+    pub fn aux_1(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17201,17 +16081,10 @@ impl RtDl1mk3Pressure5 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn pressure_5(&self) -> f32 {
-        self.pressure_5_phys_val()
-    }
-    /// Returns the physical value of `Pressure_5`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn pressure_5_phys_val(&self) -> f32 {
+    pub fn pressure_5(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17325,17 +16198,10 @@ impl RtDl1mk3Pressure4 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn pressure_4(&self) -> f32 {
-        self.pressure_4_phys_val()
-    }
-    /// Returns the physical value of `Pressure_4`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn pressure_4_phys_val(&self) -> f32 {
+    pub fn pressure_4(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17449,17 +16315,10 @@ impl RtDl1mk3Pressure3 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn pressure_3(&self) -> f32 {
-        self.pressure_3_phys_val()
-    }
-    /// Returns the physical value of `Pressure_3`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn pressure_3_phys_val(&self) -> f32 {
+    pub fn pressure_3(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17573,17 +16432,10 @@ impl RtDl1mk3Pressure2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn pressure_2(&self) -> f32 {
-        self.pressure_2_phys_val()
-    }
-    /// Returns the physical value of `Pressure_2`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn pressure_2_phys_val(&self) -> f32 {
+    pub fn pressure_2(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17697,17 +16549,10 @@ impl RtDl1mk3Pressure1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn pressure_1(&self) -> f32 {
-        self.pressure_1_phys_val()
-    }
-    /// Returns the physical value of `Pressure_1`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn pressure_1_phys_val(&self) -> f32 {
+    pub fn pressure_1(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<u32>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17821,17 +16666,10 @@ impl RtDl1mk3Angle3 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn angle_3(&self) -> f32 {
-        self.angle_3_phys_val()
-    }
-    /// Returns the physical value of `Angle_3`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn angle_3_phys_val(&self) -> f32 {
+    pub fn angle_3(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -17947,17 +16785,10 @@ impl RtDl1mk3Angle2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn angle_2(&self) -> f32 {
-        self.angle_2_phys_val()
-    }
-    /// Returns the physical value of `Angle_2`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn angle_2_phys_val(&self) -> f32 {
+    pub fn angle_2(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18073,17 +16904,10 @@ impl RtDl1mk3Angle1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn angle_1(&self) -> f32 {
-        self.angle_1_phys_val()
-    }
-    /// Returns the physical value of `Angle_1`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn angle_1_phys_val(&self) -> f32 {
+    pub fn angle_1(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18199,17 +17023,10 @@ impl RtDl1mk3Temp25 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_25(&self) -> f32 {
-        self.temperature_25_phys_val()
-    }
-    /// Returns the physical value of `Temperature_25`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_25_phys_val(&self) -> f32 {
+    pub fn temperature_25(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18325,17 +17142,10 @@ impl RtDl1mk3Temp24 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_24(&self) -> f32 {
-        self.temperature_24_phys_val()
-    }
-    /// Returns the physical value of `Temperature_24`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_24_phys_val(&self) -> f32 {
+    pub fn temperature_24(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18451,17 +17261,10 @@ impl RtDl1mk3Temp23 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_23(&self) -> f32 {
-        self.temperature_23_phys_val()
-    }
-    /// Returns the physical value of `Temperature_23`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_23_phys_val(&self) -> f32 {
+    pub fn temperature_23(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18577,17 +17380,10 @@ impl RtDl1mk3Temp22 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_22(&self) -> f32 {
-        self.temperature_22_phys_val()
-    }
-    /// Returns the physical value of `Temperature_22`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_22_phys_val(&self) -> f32 {
+    pub fn temperature_22(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18703,17 +17499,10 @@ impl RtDl1mk3Temp21 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_21(&self) -> f32 {
-        self.temperature_21_phys_val()
-    }
-    /// Returns the physical value of `Temperature_21`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_21_phys_val(&self) -> f32 {
+    pub fn temperature_21(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18829,17 +17618,10 @@ impl RtDl1mk3Temp20 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_20(&self) -> f32 {
-        self.temperature_20_phys_val()
-    }
-    /// Returns the physical value of `Temperature_20`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_20_phys_val(&self) -> f32 {
+    pub fn temperature_20(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -18955,17 +17737,10 @@ impl RtDl1mk3Temp19 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_19(&self) -> f32 {
-        self.temperature_19_phys_val()
-    }
-    /// Returns the physical value of `Temperature_19`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_19_phys_val(&self) -> f32 {
+    pub fn temperature_19(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19081,17 +17856,10 @@ impl RtDl1mk3Temp18 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_18(&self) -> f32 {
-        self.temperature_18_phys_val()
-    }
-    /// Returns the physical value of `Temperature_18`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_18_phys_val(&self) -> f32 {
+    pub fn temperature_18(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19207,17 +17975,10 @@ impl RtDl1mk3Temp17 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_17(&self) -> f32 {
-        self.temperature_17_phys_val()
-    }
-    /// Returns the physical value of `Temperature_17`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_17_phys_val(&self) -> f32 {
+    pub fn temperature_17(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19333,17 +18094,10 @@ impl RtDl1mk3Temp16 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_16(&self) -> f32 {
-        self.temperature_16_phys_val()
-    }
-    /// Returns the physical value of `Temperature_16`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_16_phys_val(&self) -> f32 {
+    pub fn temperature_16(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19459,17 +18213,10 @@ impl RtDl1mk3Temp15 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_15(&self) -> f32 {
-        self.temperature_15_phys_val()
-    }
-    /// Returns the physical value of `Temperature_15`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_15_phys_val(&self) -> f32 {
+    pub fn temperature_15(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19585,17 +18332,10 @@ impl RtDl1mk3Temp14 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_14(&self) -> f32 {
-        self.temperature_14_phys_val()
-    }
-    /// Returns the physical value of `Temperature_14`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_14_phys_val(&self) -> f32 {
+    pub fn temperature_14(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19711,17 +18451,10 @@ impl RtDl1mk3Temp13 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_13(&self) -> f32 {
-        self.temperature_13_phys_val()
-    }
-    /// Returns the physical value of `Temperature_13`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_13_phys_val(&self) -> f32 {
+    pub fn temperature_13(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19837,17 +18570,10 @@ impl RtDl1mk3Temp12 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_12(&self) -> f32 {
-        self.temperature_12_phys_val()
-    }
-    /// Returns the physical value of `Temperature_12`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_12_phys_val(&self) -> f32 {
+    pub fn temperature_12(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -19963,17 +18689,10 @@ impl RtDl1mk3Temp11 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_11(&self) -> f32 {
-        self.temperature_11_phys_val()
-    }
-    /// Returns the physical value of `Temperature_11`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_11_phys_val(&self) -> f32 {
+    pub fn temperature_11(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20089,17 +18808,10 @@ impl RtDl1mk3Temp10 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_10(&self) -> f32 {
-        self.temperature_10_phys_val()
-    }
-    /// Returns the physical value of `Temperature_10`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_10_phys_val(&self) -> f32 {
+    pub fn temperature_10(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20215,17 +18927,10 @@ impl RtDl1mk3Temp9 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_9(&self) -> f32 {
-        self.temperature_9_phys_val()
-    }
-    /// Returns the physical value of `Temperature_9`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_9_phys_val(&self) -> f32 {
+    pub fn temperature_9(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20341,17 +19046,10 @@ impl RtDl1mk3Temp8 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_8(&self) -> f32 {
-        self.temperature_8_phys_val()
-    }
-    /// Returns the physical value of `Temperature_8`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_8_phys_val(&self) -> f32 {
+    pub fn temperature_8(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20467,17 +19165,10 @@ impl RtDl1mk3Temp7 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_7(&self) -> f32 {
-        self.temperature_7_phys_val()
-    }
-    /// Returns the physical value of `Temperature_7`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_7_phys_val(&self) -> f32 {
+    pub fn temperature_7(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20593,17 +19284,10 @@ impl RtDl1mk3Temp6 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_6(&self) -> f32 {
-        self.temperature_6_phys_val()
-    }
-    /// Returns the physical value of `Temperature_6`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_6_phys_val(&self) -> f32 {
+    pub fn temperature_6(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20719,17 +19403,10 @@ impl RtDl1mk3Temp5 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_5(&self) -> f32 {
-        self.temperature_5_phys_val()
-    }
-    /// Returns the physical value of `Temperature_5`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_5_phys_val(&self) -> f32 {
+    pub fn temperature_5(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20845,17 +19522,10 @@ impl RtDl1mk3Temp4 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_4(&self) -> f32 {
-        self.temperature_4_phys_val()
-    }
-    /// Returns the physical value of `Temperature_4`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_4_phys_val(&self) -> f32 {
+    pub fn temperature_4(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -20971,17 +19641,10 @@ impl RtDl1mk3Temp3 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_3(&self) -> f32 {
-        self.temperature_3_phys_val()
-    }
-    /// Returns the physical value of `Temperature_3`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_3_phys_val(&self) -> f32 {
+    pub fn temperature_3(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -21097,17 +19760,10 @@ impl RtDl1mk3Temp2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_2(&self) -> f32 {
-        self.temperature_2_phys_val()
-    }
-    /// Returns the physical value of `Temperature_2`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_2_phys_val(&self) -> f32 {
+    pub fn temperature_2(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -21223,17 +19879,10 @@ impl RtDl1mk3Temp1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temperature_1(&self) -> f32 {
-        self.temperature_1_phys_val()
-    }
-    /// Returns the physical value of `Temperature_1`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn temperature_1_phys_val(&self) -> f32 {
+    pub fn temperature_1(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -21349,17 +19998,10 @@ impl RtDl1mk3Analog32 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_32(&self) -> f32 {
-        self.analog_32_phys_val()
-    }
-    /// Returns the physical value of `Analog_32`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_32_phys_val(&self) -> f32 {
+    pub fn analog_32(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -21473,17 +20115,10 @@ impl RtDl1mk3Analog31 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_31(&self) -> f32 {
-        self.analog_31_phys_val()
-    }
-    /// Returns the physical value of `Analog_31`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_31_phys_val(&self) -> f32 {
+    pub fn analog_31(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -21597,17 +20232,10 @@ impl RtDl1mk3Analog30 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_30(&self) -> f32 {
-        self.analog_30_phys_val()
-    }
-    /// Returns the physical value of `Analog_30`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_30_phys_val(&self) -> f32 {
+    pub fn analog_30(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -21721,17 +20349,10 @@ impl RtDl1mk3Analog29 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_29(&self) -> f32 {
-        self.analog_29_phys_val()
-    }
-    /// Returns the physical value of `Analog_29`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_29_phys_val(&self) -> f32 {
+    pub fn analog_29(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -21845,17 +20466,10 @@ impl RtDl1mk3Analog28 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_28(&self) -> f32 {
-        self.analog_28_phys_val()
-    }
-    /// Returns the physical value of `Analog_28`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_28_phys_val(&self) -> f32 {
+    pub fn analog_28(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -21969,17 +20583,10 @@ impl RtDl1mk3Analog27 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_27(&self) -> f32 {
-        self.analog_27_phys_val()
-    }
-    /// Returns the physical value of `Analog_27`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_27_phys_val(&self) -> f32 {
+    pub fn analog_27(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22093,17 +20700,10 @@ impl RtDl1mk3Analog26 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_26(&self) -> f32 {
-        self.analog_26_phys_val()
-    }
-    /// Returns the physical value of `Analog_26`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_26_phys_val(&self) -> f32 {
+    pub fn analog_26(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22217,17 +20817,10 @@ impl RtDl1mk3Analog25 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_25(&self) -> f32 {
-        self.analog_25_phys_val()
-    }
-    /// Returns the physical value of `Analog_25`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_25_phys_val(&self) -> f32 {
+    pub fn analog_25(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22341,17 +20934,10 @@ impl RtDl1mk3Analog15 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_15(&self) -> f32 {
-        self.analog_15_phys_val()
-    }
-    /// Returns the physical value of `Analog_15`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_15_phys_val(&self) -> f32 {
+    pub fn analog_15(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22465,17 +21051,10 @@ impl RtDl1mk3Analog14 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_14(&self) -> f32 {
-        self.analog_14_phys_val()
-    }
-    /// Returns the physical value of `Analog_14`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_14_phys_val(&self) -> f32 {
+    pub fn analog_14(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22589,17 +21168,10 @@ impl RtDl1mk3Analog17 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_17(&self) -> f32 {
-        self.analog_17_phys_val()
-    }
-    /// Returns the physical value of `Analog_17`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_17_phys_val(&self) -> f32 {
+    pub fn analog_17(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22713,17 +21285,10 @@ impl RtDl1mk3Analog24 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_24(&self) -> f32 {
-        self.analog_24_phys_val()
-    }
-    /// Returns the physical value of `Analog_24`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_24_phys_val(&self) -> f32 {
+    pub fn analog_24(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22837,17 +21402,10 @@ impl RtDl1mk3Analog23 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_23(&self) -> f32 {
-        self.analog_23_phys_val()
-    }
-    /// Returns the physical value of `Analog_23`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_23_phys_val(&self) -> f32 {
+    pub fn analog_23(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -22961,17 +21519,10 @@ impl RtDl1mk3Analog22 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_22(&self) -> f32 {
-        self.analog_22_phys_val()
-    }
-    /// Returns the physical value of `Analog_22`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_22_phys_val(&self) -> f32 {
+    pub fn analog_22(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23085,17 +21636,10 @@ impl RtDl1mk3Analog21 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_21(&self) -> f32 {
-        self.analog_21_phys_val()
-    }
-    /// Returns the physical value of `Analog_21`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_21_phys_val(&self) -> f32 {
+    pub fn analog_21(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23209,17 +21753,10 @@ impl RtDl1mk3Analog20 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_20(&self) -> f32 {
-        self.analog_20_phys_val()
-    }
-    /// Returns the physical value of `Analog_20`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_20_phys_val(&self) -> f32 {
+    pub fn analog_20(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23333,17 +21870,10 @@ impl RtDl1mk3Analog19 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_19(&self) -> f32 {
-        self.analog_19_phys_val()
-    }
-    /// Returns the physical value of `Analog_19`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_19_phys_val(&self) -> f32 {
+    pub fn analog_19(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23457,17 +21987,10 @@ impl RtDl1mk3Analog16 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_16(&self) -> f32 {
-        self.analog_16_phys_val()
-    }
-    /// Returns the physical value of `Analog_16`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_16_phys_val(&self) -> f32 {
+    pub fn analog_16(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23581,17 +22104,10 @@ impl RtDl1mk3Analog18 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_18(&self) -> f32 {
-        self.analog_18_phys_val()
-    }
-    /// Returns the physical value of `Analog_18`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_18_phys_val(&self) -> f32 {
+    pub fn analog_18(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23705,17 +22221,10 @@ impl RtDl1mk3Analog12 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_12(&self) -> f32 {
-        self.analog_12_phys_val()
-    }
-    /// Returns the physical value of `Analog_12`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_12_phys_val(&self) -> f32 {
+    pub fn analog_12(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23829,17 +22338,10 @@ impl RtDl1mk3Analog11 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_11(&self) -> f32 {
-        self.analog_11_phys_val()
-    }
-    /// Returns the physical value of `Analog_11`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_11_phys_val(&self) -> f32 {
+    pub fn analog_11(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -23953,17 +22455,10 @@ impl RtDl1mk3Analog10 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_10(&self) -> f32 {
-        self.analog_10_phys_val()
-    }
-    /// Returns the physical value of `Analog_10`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_10_phys_val(&self) -> f32 {
+    pub fn analog_10(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24077,17 +22572,10 @@ impl RtDl1mk3Analog9 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_9(&self) -> f32 {
-        self.analog_9_phys_val()
-    }
-    /// Returns the physical value of `Analog_9`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_9_phys_val(&self) -> f32 {
+    pub fn analog_9(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24201,17 +22689,10 @@ impl RtDl1mk3Analog8 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_8(&self) -> f32 {
-        self.analog_8_phys_val()
-    }
-    /// Returns the physical value of `Analog_8`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_8_phys_val(&self) -> f32 {
+    pub fn analog_8(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24325,17 +22806,10 @@ impl RtDl1mk3Analog7 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_7(&self) -> f32 {
-        self.analog_7_phys_val()
-    }
-    /// Returns the physical value of `Analog_7`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_7_phys_val(&self) -> f32 {
+    pub fn analog_7(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24449,17 +22923,10 @@ impl RtDl1mk3Analog6 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_6(&self) -> f32 {
-        self.analog_6_phys_val()
-    }
-    /// Returns the physical value of `Analog_6`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_6_phys_val(&self) -> f32 {
+    pub fn analog_6(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24573,17 +23040,10 @@ impl RtDl1mk3Analog5 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_5(&self) -> f32 {
-        self.analog_5_phys_val()
-    }
-    /// Returns the physical value of `Analog_5`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_5_phys_val(&self) -> f32 {
+    pub fn analog_5(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24697,17 +23157,10 @@ impl RtDl1mk3Analog4 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_4(&self) -> f32 {
-        self.analog_4_phys_val()
-    }
-    /// Returns the physical value of `Analog_4`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_4_phys_val(&self) -> f32 {
+    pub fn analog_4(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24821,17 +23274,10 @@ impl RtDl1mk3Analog3 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_3(&self) -> f32 {
-        self.analog_3_phys_val()
-    }
-    /// Returns the physical value of `Analog_3`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_3_phys_val(&self) -> f32 {
+    pub fn analog_3(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -24945,17 +23391,10 @@ impl RtDl1mk3Analog2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_2(&self) -> f32 {
-        self.analog_2_phys_val()
-    }
-    /// Returns the physical value of `Analog_2`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_2_phys_val(&self) -> f32 {
+    pub fn analog_2(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -25069,17 +23508,10 @@ impl RtDl1mk3Analog1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn analog_1(&self) -> f32 {
-        self.analog_1_phys_val()
-    }
-    /// Returns the physical value of `Analog_1`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn analog_1_phys_val(&self) -> f32 {
+    pub fn analog_1(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -25215,17 +23647,10 @@ impl RtDl1mk3Accel {
     /// - Max: 65
     /// - Unit: "g"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accel_vertical(&self) -> f32 {
-        self.accel_vertical_phys_val()
-    }
-    /// Returns the physical value of `Accel_Vertical`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_vertical_phys_val(&self) -> f32 {
+    pub fn accel_vertical(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -25270,17 +23695,10 @@ impl RtDl1mk3Accel {
     /// - Max: 65
     /// - Unit: "g"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accel_lateral(&self) -> f32 {
-        self.accel_lateral_phys_val()
-    }
-    /// Returns the physical value of `Accel_Lateral`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_lateral_phys_val(&self) -> f32 {
+    pub fn accel_lateral(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -25325,17 +23743,10 @@ impl RtDl1mk3Accel {
     /// - Max: 65
     /// - Unit: "g"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accel_longitudinal(&self) -> f32 {
-        self.accel_longitudinal_phys_val()
-    }
-    /// Returns the physical value of `Accel_Longitudinal`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_longitudinal_phys_val(&self) -> f32 {
+    pub fn accel_longitudinal(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -25380,17 +23791,10 @@ impl RtDl1mk3Accel {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_accel(&self) -> u8 {
-        self.accuracy_accel_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_Accel`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_accel_phys_val(&self) -> u8 {
+    pub fn accuracy_accel(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -25436,17 +23840,10 @@ impl RtDl1mk3Accel {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_accel_vertical(&self) -> bool {
-        self.validity_accel_vertical_phys_val()
-    }
-    /// Returns the physical value of `Validity_Accel_Vertical`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_accel_vertical_phys_val(&self) -> bool {
+    pub fn validity_accel_vertical(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -25480,17 +23877,10 @@ impl RtDl1mk3Accel {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_accel_lateral(&self) -> bool {
-        self.validity_accel_lateral_phys_val()
-    }
-    /// Returns the physical value of `Validity_Accel_Lateral`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_accel_lateral_phys_val(&self) -> bool {
+    pub fn validity_accel_lateral(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -25524,17 +23914,10 @@ impl RtDl1mk3Accel {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_accel_longitudinal(&self) -> bool {
-        self.validity_accel_longitudinal_phys_val()
-    }
-    /// Returns the physical value of `Validity_Accel_Longitudinal`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_accel_longitudinal_phys_val(&self) -> bool {
+    pub fn validity_accel_longitudinal(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -25654,17 +24037,10 @@ impl RtSbInsVpt4VelNed2 {
     /// - Max: 180
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_4_slip(&self) -> f32 {
-        self.virtual_4_slip_phys_val()
-    }
-    /// Returns the physical value of `Virtual_4_Slip`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_4_slip_phys_val(&self) -> f32 {
+    pub fn virtual_4_slip(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -25709,17 +24085,10 @@ impl RtSbInsVpt4VelNed2 {
     /// - Max: 180
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_4_heading(&self) -> f32 {
-        self.virtual_4_heading_phys_val()
-    }
-    /// Returns the physical value of `Virtual_4_Heading`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_4_heading_phys_val(&self) -> f32 {
+    pub fn virtual_4_heading(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -25764,17 +24133,10 @@ impl RtSbInsVpt4VelNed2 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_4_vel_ned_d(&self) -> f32 {
-        self.virtual_4_vel_ned_d_phys_val()
-    }
-    /// Returns the physical value of `Virtual_4_Vel_NED_D`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_4_vel_ned_d_phys_val(&self) -> f32 {
+    pub fn virtual_4_vel_ned_d(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -25898,17 +24260,10 @@ impl RtSbInsVpt4VelNed1 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_4_vel_ned_e(&self) -> f32 {
-        self.virtual_4_vel_ned_e_phys_val()
-    }
-    /// Returns the physical value of `Virtual_4_Vel_NED_E`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_4_vel_ned_e_phys_val(&self) -> f32 {
+    pub fn virtual_4_vel_ned_e(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -25953,17 +24308,10 @@ impl RtSbInsVpt4VelNed1 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_4_vel_ned_n(&self) -> f32 {
-        self.virtual_4_vel_ned_n_phys_val()
-    }
-    /// Returns the physical value of `Virtual_4_Vel_NED_N`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_4_vel_ned_n_phys_val(&self) -> f32 {
+    pub fn virtual_4_vel_ned_n(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -26091,17 +24439,10 @@ impl RtSbInsVpt4Offset {
     /// - Max: 32.767
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_4_offset_z(&self) -> f32 {
-        self.virtual_4_offset_z_phys_val()
-    }
-    /// Returns the physical value of `Virtual_4_Offset_Z`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_4_offset_z_phys_val(&self) -> f32 {
+    pub fn virtual_4_offset_z(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -26146,17 +24487,10 @@ impl RtSbInsVpt4Offset {
     /// - Max: 32.767
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_4_offset_y(&self) -> f32 {
-        self.virtual_4_offset_y_phys_val()
-    }
-    /// Returns the physical value of `Virtual_4_Offset_Y`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_4_offset_y_phys_val(&self) -> f32 {
+    pub fn virtual_4_offset_y(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -26201,17 +24535,10 @@ impl RtSbInsVpt4Offset {
     /// - Max: 32.767
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_4_offset_x(&self) -> f32 {
-        self.virtual_4_offset_x_phys_val()
-    }
-    /// Returns the physical value of `Virtual_4_Offset_X`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_4_offset_x_phys_val(&self) -> f32 {
+    pub fn virtual_4_offset_x(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -26339,17 +24666,10 @@ impl RtSbInsVpt3VelNed2 {
     /// - Max: 180
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_3_slip(&self) -> f32 {
-        self.virtual_3_slip_phys_val()
-    }
-    /// Returns the physical value of `Virtual_3_Slip`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_3_slip_phys_val(&self) -> f32 {
+    pub fn virtual_3_slip(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -26394,17 +24714,10 @@ impl RtSbInsVpt3VelNed2 {
     /// - Max: 180
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_3_heading(&self) -> f32 {
-        self.virtual_3_heading_phys_val()
-    }
-    /// Returns the physical value of `Virtual_3_Heading`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_3_heading_phys_val(&self) -> f32 {
+    pub fn virtual_3_heading(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -26449,17 +24762,10 @@ impl RtSbInsVpt3VelNed2 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_3_vel_ned_d(&self) -> f32 {
-        self.virtual_3_vel_ned_d_phys_val()
-    }
-    /// Returns the physical value of `Virtual_3_Vel_NED_D`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_3_vel_ned_d_phys_val(&self) -> f32 {
+    pub fn virtual_3_vel_ned_d(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -26583,17 +24889,10 @@ impl RtSbInsVpt3VelNed1 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_3_vel_ned_e(&self) -> f32 {
-        self.virtual_3_vel_ned_e_phys_val()
-    }
-    /// Returns the physical value of `Virtual_3_Vel_NED_E`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_3_vel_ned_e_phys_val(&self) -> f32 {
+    pub fn virtual_3_vel_ned_e(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -26638,17 +24937,10 @@ impl RtSbInsVpt3VelNed1 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_3_vel_ned_n(&self) -> f32 {
-        self.virtual_3_vel_ned_n_phys_val()
-    }
-    /// Returns the physical value of `Virtual_3_Vel_NED_N`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_3_vel_ned_n_phys_val(&self) -> f32 {
+    pub fn virtual_3_vel_ned_n(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -26776,17 +25068,10 @@ impl RtSbInsVpt3Offset {
     /// - Max: 32.767
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_3_offset_z(&self) -> f32 {
-        self.virtual_3_offset_z_phys_val()
-    }
-    /// Returns the physical value of `Virtual_3_Offset_Z`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_3_offset_z_phys_val(&self) -> f32 {
+    pub fn virtual_3_offset_z(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -26831,17 +25116,10 @@ impl RtSbInsVpt3Offset {
     /// - Max: 32.767
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_3_offset_y(&self) -> f32 {
-        self.virtual_3_offset_y_phys_val()
-    }
-    /// Returns the physical value of `Virtual_3_Offset_Y`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_3_offset_y_phys_val(&self) -> f32 {
+    pub fn virtual_3_offset_y(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -26886,17 +25164,10 @@ impl RtSbInsVpt3Offset {
     /// - Max: 32.767
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_3_offset_x(&self) -> f32 {
-        self.virtual_3_offset_x_phys_val()
-    }
-    /// Returns the physical value of `Virtual_3_Offset_X`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_3_offset_x_phys_val(&self) -> f32 {
+    pub fn virtual_3_offset_x(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -27024,17 +25295,10 @@ impl RtSbInsVpt2VelNed2 {
     /// - Max: 180
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_2_slip(&self) -> f32 {
-        self.virtual_2_slip_phys_val()
-    }
-    /// Returns the physical value of `Virtual_2_Slip`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_2_slip_phys_val(&self) -> f32 {
+    pub fn virtual_2_slip(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -27079,17 +25343,10 @@ impl RtSbInsVpt2VelNed2 {
     /// - Max: 180
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_2_heading(&self) -> f32 {
-        self.virtual_2_heading_phys_val()
-    }
-    /// Returns the physical value of `Virtual_2_Heading`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_2_heading_phys_val(&self) -> f32 {
+    pub fn virtual_2_heading(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -27134,17 +25391,10 @@ impl RtSbInsVpt2VelNed2 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_2_vel_ned_d(&self) -> f32 {
-        self.virtual_2_vel_ned_d_phys_val()
-    }
-    /// Returns the physical value of `Virtual_2_Vel_NED_D`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_2_vel_ned_d_phys_val(&self) -> f32 {
+    pub fn virtual_2_vel_ned_d(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -27268,17 +25518,10 @@ impl RtSbInsVpt2VelNed1 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_2_vel_ned_e(&self) -> f32 {
-        self.virtual_2_vel_ned_e_phys_val()
-    }
-    /// Returns the physical value of `Virtual_2_Vel_NED_E`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_2_vel_ned_e_phys_val(&self) -> f32 {
+    pub fn virtual_2_vel_ned_e(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -27323,17 +25566,10 @@ impl RtSbInsVpt2VelNed1 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_2_vel_ned_n(&self) -> f32 {
-        self.virtual_2_vel_ned_n_phys_val()
-    }
-    /// Returns the physical value of `Virtual_2_Vel_NED_N`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_2_vel_ned_n_phys_val(&self) -> f32 {
+    pub fn virtual_2_vel_ned_n(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -27461,17 +25697,10 @@ impl RtSbInsVpt2Offset {
     /// - Max: 32.767
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_2_offset_z(&self) -> f32 {
-        self.virtual_2_offset_z_phys_val()
-    }
-    /// Returns the physical value of `Virtual_2_Offset_Z`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_2_offset_z_phys_val(&self) -> f32 {
+    pub fn virtual_2_offset_z(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -27516,17 +25745,10 @@ impl RtSbInsVpt2Offset {
     /// - Max: 32.767
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_2_offset_y(&self) -> f32 {
-        self.virtual_2_offset_y_phys_val()
-    }
-    /// Returns the physical value of `Virtual_2_Offset_Y`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_2_offset_y_phys_val(&self) -> f32 {
+    pub fn virtual_2_offset_y(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -27571,17 +25793,10 @@ impl RtSbInsVpt2Offset {
     /// - Max: 32.767
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_2_offset_x(&self) -> f32 {
-        self.virtual_2_offset_x_phys_val()
-    }
-    /// Returns the physical value of `Virtual_2_Offset_X`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_2_offset_x_phys_val(&self) -> f32 {
+    pub fn virtual_2_offset_x(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -27709,17 +25924,10 @@ impl RtSbInsVpt1VelNed2 {
     /// - Max: 180
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_1_slip(&self) -> f32 {
-        self.virtual_1_slip_phys_val()
-    }
-    /// Returns the physical value of `Virtual_1_Slip`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_1_slip_phys_val(&self) -> f32 {
+    pub fn virtual_1_slip(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -27764,17 +25972,10 @@ impl RtSbInsVpt1VelNed2 {
     /// - Max: 180
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_1_heading(&self) -> f32 {
-        self.virtual_1_heading_phys_val()
-    }
-    /// Returns the physical value of `Virtual_1_Heading`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn virtual_1_heading_phys_val(&self) -> f32 {
+    pub fn virtual_1_heading(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -27819,17 +26020,10 @@ impl RtSbInsVpt1VelNed2 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_1_vel_ned_d(&self) -> f32 {
-        self.virtual_1_vel_ned_d_phys_val()
-    }
-    /// Returns the physical value of `Virtual_1_Vel_NED_D`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_1_vel_ned_d_phys_val(&self) -> f32 {
+    pub fn virtual_1_vel_ned_d(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -27953,17 +26147,10 @@ impl RtSbInsVpt1VelNed1 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_1_vel_ned_e(&self) -> f32 {
-        self.virtual_1_vel_ned_e_phys_val()
-    }
-    /// Returns the physical value of `Virtual_1_Vel_NED_E`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_1_vel_ned_e_phys_val(&self) -> f32 {
+    pub fn virtual_1_vel_ned_e(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -28008,17 +26195,10 @@ impl RtSbInsVpt1VelNed1 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_1_vel_ned_n(&self) -> f32 {
-        self.virtual_1_vel_ned_n_phys_val()
-    }
-    /// Returns the physical value of `Virtual_1_Vel_NED_N`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn virtual_1_vel_ned_n_phys_val(&self) -> f32 {
+    pub fn virtual_1_vel_ned_n(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..24].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -28146,17 +26326,10 @@ impl RtSbInsVpt1Offset {
     /// - Max: 32.767
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_1_offset_z(&self) -> f32 {
-        self.virtual_1_offset_z_phys_val()
-    }
-    /// Returns the physical value of `Virtual_1_Offset_Z`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_1_offset_z_phys_val(&self) -> f32 {
+    pub fn virtual_1_offset_z(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -28201,17 +26374,10 @@ impl RtSbInsVpt1Offset {
     /// - Max: 32.767
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_1_offset_y(&self) -> f32 {
-        self.virtual_1_offset_y_phys_val()
-    }
-    /// Returns the physical value of `Virtual_1_Offset_Y`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_1_offset_y_phys_val(&self) -> f32 {
+    pub fn virtual_1_offset_y(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -28256,17 +26422,10 @@ impl RtSbInsVpt1Offset {
     /// - Max: 32.767
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn virtual_1_offset_x(&self) -> f32 {
-        self.virtual_1_offset_x_phys_val()
-    }
-    /// Returns the physical value of `Virtual_1_Offset_X`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn virtual_1_offset_x_phys_val(&self) -> f32 {
+    pub fn virtual_1_offset_x(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -28402,17 +26561,10 @@ impl RtSbInsSlip {
     /// - Max: 360
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_squat(&self) -> f32 {
-        self.ins_squat_phys_val()
-    }
-    /// Returns the physical value of `INS_Squat`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_squat_phys_val(&self) -> f32 {
+    pub fn ins_squat(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -28457,17 +26609,10 @@ impl RtSbInsSlip {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_squat(&self) -> u8 {
-        self.accuracy_ins_squat_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Squat`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_squat_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_squat(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -28513,17 +26658,10 @@ impl RtSbInsSlip {
     /// - Max: 360
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_slip(&self) -> f32 {
-        self.ins_slip_phys_val()
-    }
-    /// Returns the physical value of `INS_Slip`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_slip_phys_val(&self) -> f32 {
+    pub fn ins_slip(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -28568,17 +26706,10 @@ impl RtSbInsSlip {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_slip(&self) -> u8 {
-        self.accuracy_ins_slip_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Slip`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_slip_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_slip(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -28622,17 +26753,10 @@ impl RtSbInsSlip {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_squat(&self) -> bool {
-        self.validity_ins_squat_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Squat`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_squat_phys_val(&self) -> bool {
+    pub fn validity_ins_squat(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -28664,17 +26788,10 @@ impl RtSbInsSlip {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_slip(&self) -> bool {
-        self.validity_ins_slip_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Slip`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_slip_phys_val(&self) -> bool {
+    pub fn validity_ins_slip(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -28791,17 +26908,10 @@ impl RtSbInsVelEcef2 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_vel_ecef_z(&self) -> f32 {
-        self.ins_vel_ecef_z_phys_val()
-    }
-    /// Returns the physical value of `INS_Vel_ECEF_Z`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_ecef_z_phys_val(&self) -> f32 {
+    pub fn ins_vel_ecef_z(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -28846,17 +26956,10 @@ impl RtSbInsVelEcef2 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_vel_ecef_y(&self) -> f32 {
-        self.ins_vel_ecef_y_phys_val()
-    }
-    /// Returns the physical value of `INS_Vel_ECEF_Y`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_ecef_y_phys_val(&self) -> f32 {
+    pub fn ins_vel_ecef_y(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..32].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -28901,17 +27004,10 @@ impl RtSbInsVelEcef2 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_vel_ecef_z(&self) -> bool {
-        self.validity_ins_vel_ecef_z_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Vel_ECEF_Z`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_vel_ecef_z_phys_val(&self) -> bool {
+    pub fn validity_ins_vel_ecef_z(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -28945,17 +27041,10 @@ impl RtSbInsVelEcef2 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_vel_ecef_y(&self) -> bool {
-        self.validity_ins_vel_ecef_y_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Vel_ECEF_Y`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_vel_ecef_y_phys_val(&self) -> bool {
+    pub fn validity_ins_vel_ecef_y(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -29078,17 +27167,10 @@ impl RtSbInsVelEcef1 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_vel_ecef_x(&self) -> f32 {
-        self.ins_vel_ecef_x_phys_val()
-    }
-    /// Returns the physical value of `INS_Vel_ECEF_X`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_ecef_x_phys_val(&self) -> f32 {
+    pub fn ins_vel_ecef_x(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -29131,17 +27213,10 @@ impl RtSbInsVelEcef1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_vel_ecef_z(&self) -> u8 {
-        self.accuracy_ins_vel_ecef_z_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Vel_ECEF_Z`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_vel_ecef_z_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_vel_ecef_z(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -29185,17 +27260,10 @@ impl RtSbInsVelEcef1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_vel_ecef_y(&self) -> u8 {
-        self.accuracy_ins_vel_ecef_y_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Vel_ECEF_Y`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_vel_ecef_y_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_vel_ecef_y(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -29239,17 +27307,10 @@ impl RtSbInsVelEcef1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_vel_ecef_x(&self) -> u8 {
-        self.accuracy_ins_vel_ecef_x_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Vel_ECEF_X`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_vel_ecef_x_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_vel_ecef_x(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -29295,17 +27356,10 @@ impl RtSbInsVelEcef1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_vel_ecef_x(&self) -> bool {
-        self.validity_ins_vel_ecef_x_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Vel_ECEF_X`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_vel_ecef_x_phys_val(&self) -> bool {
+    pub fn validity_ins_vel_ecef_x(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -29420,17 +27474,10 @@ impl RtSbInsVelNed2 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_vel_ned_d(&self) -> f32 {
-        self.ins_vel_ned_d_phys_val()
-    }
-    /// Returns the physical value of `INS_Vel_NED_D`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_ned_d_phys_val(&self) -> f32 {
+    pub fn ins_vel_ned_d(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -29473,17 +27520,10 @@ impl RtSbInsVelNed2 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_vel_d(&self) -> u8 {
-        self.accuracy_ins_vel_d_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Vel_D`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_vel_d_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_vel_d(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -29529,17 +27569,10 @@ impl RtSbInsVelNed2 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_vel_ned_d(&self) -> bool {
-        self.validity_ins_vel_ned_d_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Vel_NED_D`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_vel_ned_d_phys_val(&self) -> bool {
+    pub fn validity_ins_vel_ned_d(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -29660,17 +27693,10 @@ impl RtSbInsVelNed1 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_vel_ned_e(&self) -> f32 {
-        self.ins_vel_ned_e_phys_val()
-    }
-    /// Returns the physical value of `INS_Vel_NED_E`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_ned_e_phys_val(&self) -> f32 {
+    pub fn ins_vel_ned_e(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..64].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -29715,17 +27741,10 @@ impl RtSbInsVelNed1 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_vel_ned_n(&self) -> f32 {
-        self.ins_vel_ned_n_phys_val()
-    }
-    /// Returns the physical value of `INS_Vel_NED_N`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn ins_vel_ned_n_phys_val(&self) -> f32 {
+    pub fn ins_vel_ned_n(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -29768,17 +27787,10 @@ impl RtSbInsVelNed1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_vel_ne(&self) -> u8 {
-        self.accuracy_ins_vel_ne_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Vel_NE`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_vel_ne_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_vel_ne(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -29824,17 +27836,10 @@ impl RtSbInsVelNed1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_vel_ned_e(&self) -> bool {
-        self.validity_ins_vel_ned_e_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Vel_NED_E`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_vel_ned_e_phys_val(&self) -> bool {
+    pub fn validity_ins_vel_ned_e(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -29868,17 +27873,10 @@ impl RtSbInsVelNed1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_vel_ned_n(&self) -> bool {
-        self.validity_ins_vel_ned_n_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Vel_NED_N`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_vel_ned_n_phys_val(&self) -> bool {
+    pub fn validity_ins_vel_ned_n(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -29988,17 +27986,10 @@ impl RtSbInsPosEcef2 {
     /// - Max: 10000000
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_pos_ecef_z(&self) -> f32 {
-        self.ins_pos_ecef_z_phys_val()
-    }
-    /// Returns the physical value of `INS_Pos_ECEF_Z`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn ins_pos_ecef_z_phys_val(&self) -> f32 {
+    pub fn ins_pos_ecef_z(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -30043,17 +28034,10 @@ impl RtSbInsPosEcef2 {
     /// - Max: 10000000
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_pos_ecef_y(&self) -> f32 {
-        self.ins_pos_ecef_y_phys_val()
-    }
-    /// Returns the physical value of `INS_Pos_ECEF_Y`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn ins_pos_ecef_y_phys_val(&self) -> f32 {
+    pub fn ins_pos_ecef_y(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -30191,17 +28175,10 @@ impl RtSbInsPosEcef1 {
     /// - Max: 10000000
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_pos_ecef_x(&self) -> f32 {
-        self.ins_pos_ecef_x_phys_val()
-    }
-    /// Returns the physical value of `INS_Pos_ECEF_X`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn ins_pos_ecef_x_phys_val(&self) -> f32 {
+    pub fn ins_pos_ecef_x(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -30246,17 +28223,10 @@ impl RtSbInsPosEcef1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_pos_ecef_z(&self) -> u8 {
-        self.accuracy_ins_pos_ecef_z_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Pos_ECEF_Z`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_pos_ecef_z_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_pos_ecef_z(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -30302,17 +28272,10 @@ impl RtSbInsPosEcef1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_pos_ecef_y(&self) -> u8 {
-        self.accuracy_ins_pos_ecef_y_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Pos_ECEF_Y`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_pos_ecef_y_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_pos_ecef_y(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -30358,17 +28321,10 @@ impl RtSbInsPosEcef1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_pos_ecef_x(&self) -> u8 {
-        self.accuracy_ins_pos_ecef_x_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Pos_ECEF_X`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_pos_ecef_x_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_pos_ecef_x(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -30414,17 +28370,10 @@ impl RtSbInsPosEcef1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_pos_ecef_z(&self) -> bool {
-        self.validity_ins_pos_ecef_z_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Pos_ECEF_Z`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_pos_ecef_z_phys_val(&self) -> bool {
+    pub fn validity_ins_pos_ecef_z(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -30458,17 +28407,10 @@ impl RtSbInsPosEcef1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_pos_ecef_y(&self) -> bool {
-        self.validity_ins_pos_ecef_y_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Pos_ECEF_Y`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_pos_ecef_y_phys_val(&self) -> bool {
+    pub fn validity_ins_pos_ecef_y(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -30502,17 +28444,10 @@ impl RtSbInsPosEcef1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_pos_ecef_x(&self) -> bool {
-        self.validity_ins_pos_ecef_x_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Pos_ECEF_X`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_pos_ecef_x_phys_val(&self) -> bool {
+    pub fn validity_ins_pos_ecef_x(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -30623,17 +28558,10 @@ impl RtSbInsPosLlh2 {
     /// - Max: 100000
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_pos_llh_altitude(&self) -> f32 {
-        self.ins_pos_llh_altitude_phys_val()
-    }
-    /// Returns the physical value of `INS_Pos_LLH_Altitude`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn ins_pos_llh_altitude_phys_val(&self) -> f32 {
+    pub fn ins_pos_llh_altitude(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -30676,17 +28604,10 @@ impl RtSbInsPosLlh2 {
     /// - Max: 180
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_pos_llh_longitude(&self) -> f32 {
-        self.ins_pos_llh_longitude_phys_val()
-    }
-    /// Returns the physical value of `INS_Pos_LLH_Longitude`.
-    ///
     /// - Factor: 0.0000001
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_pos_llh_longitude_phys_val(&self) -> f32 {
+    pub fn ins_pos_llh_longitude(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 0.0000001_f32;
         let offset = 0_f32;
@@ -30822,17 +28743,10 @@ impl RtSbInsPosLlh1 {
     /// - Max: 90
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_pos_llh_latitude(&self) -> f32 {
-        self.ins_pos_llh_latitude_phys_val()
-    }
-    /// Returns the physical value of `INS_Pos_LLH_Latitude`.
-    ///
     /// - Factor: 0.0000001
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_pos_llh_latitude_phys_val(&self) -> f32 {
+    pub fn ins_pos_llh_latitude(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.0000001_f32;
         let offset = 0_f32;
@@ -30877,17 +28791,10 @@ impl RtSbInsPosLlh1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_pos_llh_altitude(&self) -> u8 {
-        self.accuracy_ins_pos_llh_altitude_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Pos_LLH_Altitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_pos_llh_altitude_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_pos_llh_altitude(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -30936,17 +28843,10 @@ impl RtSbInsPosLlh1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_pos_llh_longitude(&self) -> u8 {
-        self.accuracy_ins_pos_llh_longitude_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Pos_LLH_Longitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_pos_llh_longitude_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_pos_llh_longitude(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -30995,17 +28895,10 @@ impl RtSbInsPosLlh1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_pos_llh_latitude(&self) -> u8 {
-        self.accuracy_ins_pos_llh_latitude_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Pos_LLH_Latitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_pos_llh_latitude_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_pos_llh_latitude(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -31054,17 +28947,10 @@ impl RtSbInsPosLlh1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_pos_llh_altitude(&self) -> bool {
-        self.validity_ins_pos_llh_altitude_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Pos_LLH_Altitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_pos_llh_altitude_phys_val(&self) -> bool {
+    pub fn validity_ins_pos_llh_altitude(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -31101,17 +28987,10 @@ impl RtSbInsPosLlh1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_pos_llh_longitude(&self) -> bool {
-        self.validity_ins_pos_llh_longitude_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Pos_LLH_Longitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_pos_llh_longitude_phys_val(&self) -> bool {
+    pub fn validity_ins_pos_llh_longitude(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -31148,17 +29027,10 @@ impl RtSbInsPosLlh1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_pos_llh_latitude(&self) -> bool {
-        self.validity_ins_pos_llh_latitude_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Pos_LLH_Latitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_pos_llh_latitude_phys_val(&self) -> bool {
+    pub fn validity_ins_pos_llh_latitude(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -31286,17 +29158,10 @@ impl RtSbInsHeadingGradient2 {
     /// - Max: 90
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_gradient(&self) -> f32 {
-        self.ins_gradient_phys_val()
-    }
-    /// Returns the physical value of `INS_Gradient`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_gradient_phys_val(&self) -> f32 {
+    pub fn ins_gradient(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -31341,17 +29206,10 @@ impl RtSbInsHeadingGradient2 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_gradient(&self) -> u8 {
-        self.accuracy_ins_gradient_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Gradient`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_gradient_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_gradient(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -31397,17 +29255,10 @@ impl RtSbInsHeadingGradient2 {
     /// - Max: 360
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_heading_2(&self) -> f32 {
-        self.ins_heading_2_phys_val()
-    }
-    /// Returns the physical value of `INS_Heading_2`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_heading_2_phys_val(&self) -> f32 {
+    pub fn ins_heading_2(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -31450,17 +29301,10 @@ impl RtSbInsHeadingGradient2 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_heading(&self) -> u8 {
-        self.accuracy_ins_heading_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Heading`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_heading_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_heading(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -31506,17 +29350,10 @@ impl RtSbInsHeadingGradient2 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_gradient(&self) -> bool {
-        self.validity_ins_gradient_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Gradient`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_gradient_phys_val(&self) -> bool {
+    pub fn validity_ins_gradient(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -31550,17 +29387,10 @@ impl RtSbInsHeadingGradient2 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_heading(&self) -> bool {
-        self.validity_ins_heading_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Heading`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_heading_phys_val(&self) -> bool {
+    pub fn validity_ins_heading(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -31685,17 +29515,10 @@ impl RtSbInsHeadingGradient {
     /// - Max: 90
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_gradient(&self) -> f32 {
-        self.ins_gradient_phys_val()
-    }
-    /// Returns the physical value of `INS_Gradient`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_gradient_phys_val(&self) -> f32 {
+    pub fn ins_gradient(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -31740,17 +29563,10 @@ impl RtSbInsHeadingGradient {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_gradient(&self) -> u8 {
-        self.accuracy_ins_gradient_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Gradient`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_gradient_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_gradient(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -31796,17 +29612,10 @@ impl RtSbInsHeadingGradient {
     /// - Max: 180
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ins_heading(&self) -> f32 {
-        self.ins_heading_phys_val()
-    }
-    /// Returns the physical value of `INS_Heading`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn ins_heading_phys_val(&self) -> f32 {
+    pub fn ins_heading(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -31851,17 +29660,10 @@ impl RtSbInsHeadingGradient {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_ins_heading(&self) -> u8 {
-        self.accuracy_ins_heading_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_INS_Heading`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_ins_heading_phys_val(&self) -> u8 {
+    pub fn accuracy_ins_heading(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -31907,17 +29709,10 @@ impl RtSbInsHeadingGradient {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_gradient(&self) -> bool {
-        self.validity_ins_gradient_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Gradient`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_gradient_phys_val(&self) -> bool {
+    pub fn validity_ins_gradient(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -31951,17 +29746,10 @@ impl RtSbInsHeadingGradient {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_ins_heading(&self) -> bool {
-        self.validity_ins_heading_phys_val()
-    }
-    /// Returns the physical value of `Validity_INS_Heading`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_ins_heading_phys_val(&self) -> bool {
+    pub fn validity_ins_heading(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -32076,13 +29864,8 @@ impl RtSbInsStatus {
             _ => RtSbInsStatusInsStatus::_Other(self.ins_status_phys_val()),
         }
     }
-    /// Returns the physical value of `INS_Status`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ins_status_phys_val(&self) -> u8 {
+    fn ins_status_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -32250,17 +30033,10 @@ impl RtSbInsAttitude {
     /// - Max: 360
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn attitude_roll(&self) -> f32 {
-        self.attitude_roll_phys_val()
-    }
-    /// Returns the physical value of `Attitude_Roll`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn attitude_roll_phys_val(&self) -> f32 {
+    pub fn attitude_roll(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -32303,17 +30079,10 @@ impl RtSbInsAttitude {
     /// - Max: 360
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn attitude_pitch(&self) -> f32 {
-        self.attitude_pitch_phys_val()
-    }
-    /// Returns the physical value of `Attitude_Pitch`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn attitude_pitch_phys_val(&self) -> f32 {
+    pub fn attitude_pitch(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -32356,17 +30125,10 @@ impl RtSbInsAttitude {
     /// - Max: 360
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn attitude_yaw(&self) -> f32 {
-        self.attitude_yaw_phys_val()
-    }
-    /// Returns the physical value of `Attitude_Yaw`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn attitude_yaw_phys_val(&self) -> f32 {
+    pub fn attitude_yaw(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -32409,17 +30171,10 @@ impl RtSbInsAttitude {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_attitude(&self) -> u8 {
-        self.accuracy_attitude_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_Attitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_attitude_phys_val(&self) -> u8 {
+    pub fn accuracy_attitude(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -32472,13 +30227,8 @@ impl RtSbInsAttitude {
             _ => RtSbInsAttitudeValidityRoll::_Other(self.validity_roll_phys_val()),
         }
     }
-    /// Returns the physical value of `Validity_Roll`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_roll_phys_val(&self) -> bool {
+    fn validity_roll_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -32523,13 +30273,8 @@ impl RtSbInsAttitude {
             _ => RtSbInsAttitudeValidityPitch::_Other(self.validity_pitch_phys_val()),
         }
     }
-    /// Returns the physical value of `Validity_Pitch`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_pitch_phys_val(&self) -> bool {
+    fn validity_pitch_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -32574,13 +30319,8 @@ impl RtSbInsAttitude {
             _ => RtSbInsAttitudeValidityYaw::_Other(self.validity_yaw_phys_val()),
         }
     }
-    /// Returns the physical value of `Validity_Yaw`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_yaw_phys_val(&self) -> bool {
+    fn validity_yaw_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -32786,17 +30526,10 @@ impl RtSbOutputStatus {
     /// - Max: 604800
     /// - Unit: "s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_time(&self) -> f32 {
-        self.gps_time_phys_val()
-    }
-    /// Returns the physical value of `GPS_Time`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "s"
     #[inline(always)]
-    pub fn gps_time_phys_val(&self) -> f32 {
+    pub fn gps_time(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -32848,13 +30581,8 @@ impl RtSbOutputStatus {
             _ => RtSbOutputStatusStatusTrigger::_Other(self.status_trigger_phys_val()),
         }
     }
-    /// Returns the physical value of `Status_Trigger`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn status_trigger_phys_val(&self) -> bool {
+    fn status_trigger_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[15..16].load_le::<u8>();
         signal == 1
     }
@@ -32905,13 +30633,8 @@ impl RtSbOutputStatus {
             }
         }
     }
-    /// Returns the physical value of `Status_Serial_Output_2`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn status_serial_output_2_phys_val(&self) -> bool {
+    fn status_serial_output_2_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[14..15].load_le::<u8>();
         signal == 1
     }
@@ -32962,13 +30685,8 @@ impl RtSbOutputStatus {
             }
         }
     }
-    /// Returns the physical value of `Status_Serial_Output_1`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn status_serial_output_1_phys_val(&self) -> bool {
+    fn status_serial_output_1_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[13..14].load_le::<u8>();
         signal == 1
     }
@@ -33019,13 +30737,8 @@ impl RtSbOutputStatus {
             }
         }
     }
-    /// Returns the physical value of `Status_Pulse_Output`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn status_pulse_output_phys_val(&self) -> bool {
+    fn status_pulse_output_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[12..13].load_le::<u8>();
         signal == 1
     }
@@ -33076,13 +30789,8 @@ impl RtSbOutputStatus {
             }
         }
     }
-    /// Returns the physical value of `Status_Analogue_4`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn status_analogue_4_phys_val(&self) -> bool {
+    fn status_analogue_4_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[11..12].load_le::<u8>();
         signal == 1
     }
@@ -33133,13 +30841,8 @@ impl RtSbOutputStatus {
             }
         }
     }
-    /// Returns the physical value of `Status_Analogue_3`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn status_analogue_3_phys_val(&self) -> bool {
+    fn status_analogue_3_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[10..11].load_le::<u8>();
         signal == 1
     }
@@ -33190,13 +30893,8 @@ impl RtSbOutputStatus {
             }
         }
     }
-    /// Returns the physical value of `Status_Analogue_2`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn status_analogue_2_phys_val(&self) -> bool {
+    fn status_analogue_2_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[9..10].load_le::<u8>();
         signal == 1
     }
@@ -33247,13 +30945,8 @@ impl RtSbOutputStatus {
             }
         }
     }
-    /// Returns the physical value of `Status_Analogue_1`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn status_analogue_1_phys_val(&self) -> bool {
+    fn status_analogue_1_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[8..9].load_le::<u8>();
         signal == 1
     }
@@ -33291,17 +30984,10 @@ impl RtSbOutputStatus {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_status_timestamp(&self) -> bool {
-        self.validity_status_timestamp_phys_val()
-    }
-    /// Returns the physical value of `Validity_Status_Timestamp`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_status_timestamp_phys_val(&self) -> bool {
+    pub fn validity_status_timestamp(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -33629,17 +31315,10 @@ impl RtSbGpsHeadingGradient2 {
     /// - Max: 90
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_gradient(&self) -> f32 {
-        self.gps_gradient_phys_val()
-    }
-    /// Returns the physical value of `GPS_Gradient`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_gradient_phys_val(&self) -> f32 {
+    pub fn gps_gradient(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -33684,17 +31363,10 @@ impl RtSbGpsHeadingGradient2 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_gradient(&self) -> u8 {
-        self.accuracy_gps_gradient_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Gradient`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_gradient_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_gradient(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -33740,17 +31412,10 @@ impl RtSbGpsHeadingGradient2 {
     /// - Max: 360
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_heading_2(&self) -> f32 {
-        self.gps_heading_2_phys_val()
-    }
-    /// Returns the physical value of `GPS_Heading_2`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_heading_2_phys_val(&self) -> f32 {
+    pub fn gps_heading_2(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -33793,17 +31458,10 @@ impl RtSbGpsHeadingGradient2 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_heading(&self) -> u8 {
-        self.accuracy_gps_heading_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Heading`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_heading_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_heading(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -33849,17 +31507,10 @@ impl RtSbGpsHeadingGradient2 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_gradient(&self) -> bool {
-        self.validity_gps_gradient_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Gradient`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_gradient_phys_val(&self) -> bool {
+    pub fn validity_gps_gradient(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -33893,17 +31544,10 @@ impl RtSbGpsHeadingGradient2 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_heading(&self) -> bool {
-        self.validity_gps_heading_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Heading`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_heading_phys_val(&self) -> bool {
+    pub fn validity_gps_heading(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -34020,17 +31664,10 @@ impl RtSbCumulativeDistance2 {
     /// - Max: 4294967
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn cumulative_distance(&self) -> f32 {
-        self.cumulative_distance_phys_val()
-    }
-    /// Returns the physical value of `Cumulative_Distance`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn cumulative_distance_phys_val(&self) -> f32 {
+    pub fn cumulative_distance(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -34071,17 +31708,10 @@ impl RtSbCumulativeDistance2 {
     /// - Max: 167772
     /// - Unit: "s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn cumulative_time(&self) -> f32 {
-        self.cumulative_time_phys_val()
-    }
-    /// Returns the physical value of `Cumulative_Time`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "s"
     #[inline(always)]
-    pub fn cumulative_time_phys_val(&self) -> f32 {
+    pub fn cumulative_time(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..32].load_le::<u32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -34124,17 +31754,10 @@ impl RtSbCumulativeDistance2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_cumulative_distance(&self) -> bool {
-        self.validity_cumulative_distance_phys_val()
-    }
-    /// Returns the physical value of `Validity_Cumulative_Distance`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_cumulative_distance_phys_val(&self) -> bool {
+    pub fn validity_cumulative_distance(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -34171,17 +31794,10 @@ impl RtSbCumulativeDistance2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_cumulative_time(&self) -> bool {
-        self.validity_cumulative_time_phys_val()
-    }
-    /// Returns the physical value of `Validity_Cumulative_Time`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_cumulative_time_phys_val(&self) -> bool {
+    pub fn validity_cumulative_time(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -34298,17 +31914,10 @@ impl RtSbCumulativeDistance1 {
     /// - Max: 4294967
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn cumulative_distance(&self) -> f32 {
-        self.cumulative_distance_phys_val()
-    }
-    /// Returns the physical value of `Cumulative_Distance`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn cumulative_distance_phys_val(&self) -> f32 {
+    pub fn cumulative_distance(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -34349,17 +31958,10 @@ impl RtSbCumulativeDistance1 {
     /// - Max: 167772
     /// - Unit: "s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn cumulative_time(&self) -> f32 {
-        self.cumulative_time_phys_val()
-    }
-    /// Returns the physical value of `Cumulative_Time`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "s"
     #[inline(always)]
-    pub fn cumulative_time_phys_val(&self) -> f32 {
+    pub fn cumulative_time(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..32].load_le::<u32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -34402,17 +32004,10 @@ impl RtSbCumulativeDistance1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_cumulative_distance(&self) -> bool {
-        self.validity_cumulative_distance_phys_val()
-    }
-    /// Returns the physical value of `Validity_Cumulative_Distance`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_cumulative_distance_phys_val(&self) -> bool {
+    pub fn validity_cumulative_distance(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -34449,17 +32044,10 @@ impl RtSbCumulativeDistance1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_cumulative_time(&self) -> bool {
-        self.validity_cumulative_time_phys_val()
-    }
-    /// Returns the physical value of `Validity_Cumulative_Time`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_cumulative_time_phys_val(&self) -> bool {
+    pub fn validity_cumulative_time(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -34580,17 +32168,10 @@ impl RtSbTriggerTimestamp {
     /// - Max: 604800
     /// - Unit: "s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_high_resolution_time(&self) -> f32 {
-        self.gps_high_resolution_time_phys_val()
-    }
-    /// Returns the physical value of `GPS_High_Resolution_Time`.
-    ///
     /// - Factor: 0.000001
     /// - Offset: 0
-    /// - Unit: "s"
     #[inline(always)]
-    pub fn gps_high_resolution_time_phys_val(&self) -> f32 {
+    pub fn gps_high_resolution_time(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[24..64].load_le::<u64>();
         let factor = 0.000001_f32;
         let offset = 0_f32;
@@ -34644,13 +32225,8 @@ impl RtSbTriggerTimestamp {
             }
         }
     }
-    /// Returns the physical value of `Trigger_Timestamp_Type`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn trigger_timestamp_type_phys_val(&self) -> bool {
+    fn trigger_timestamp_type_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[23..24].load_le::<u8>();
         signal == 1
     }
@@ -34688,17 +32264,10 @@ impl RtSbTriggerTimestamp {
     /// - Max: 128
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn trigger_number(&self) -> u8 {
-        self.trigger_number_phys_val()
-    }
-    /// Returns the physical value of `Trigger_Number`.
-    ///
     /// - Factor: 1
     /// - Offset: 1
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn trigger_number_phys_val(&self) -> u8 {
+    pub fn trigger_number(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..23].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(1)
@@ -34744,17 +32313,10 @@ impl RtSbTriggerTimestamp {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_trigger_timestamp(&self) -> u8 {
-        self.accuracy_trigger_timestamp_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_Trigger_Timestamp`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_trigger_timestamp_phys_val(&self) -> u8 {
+    pub fn accuracy_trigger_timestamp(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -34800,17 +32362,10 @@ impl RtSbTriggerTimestamp {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_trigger_timestamp(&self) -> bool {
-        self.validity_trigger_timestamp_phys_val()
-    }
-    /// Returns the physical value of `Validity_Trigger_Timestamp`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_trigger_timestamp_phys_val(&self) -> bool {
+    pub fn validity_trigger_timestamp(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -34965,17 +32520,10 @@ impl RtImu06GyroRates {
     /// - Max: 327
     /// - Unit: "degrees/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gyro_rate_roll(&self) -> f32 {
-        self.gyro_rate_roll_phys_val()
-    }
-    /// Returns the physical value of `Gyro_Rate_Roll`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees/s"
     #[inline(always)]
-    pub fn gyro_rate_roll_phys_val(&self) -> f32 {
+    pub fn gyro_rate_roll(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -35020,17 +32568,10 @@ impl RtImu06GyroRates {
     /// - Max: 327
     /// - Unit: "degrees/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gyro_rate_pitch(&self) -> f32 {
-        self.gyro_rate_pitch_phys_val()
-    }
-    /// Returns the physical value of `Gyro_Rate_Pitch`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees/s"
     #[inline(always)]
-    pub fn gyro_rate_pitch_phys_val(&self) -> f32 {
+    pub fn gyro_rate_pitch(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -35075,17 +32616,10 @@ impl RtImu06GyroRates {
     /// - Max: 327
     /// - Unit: "degrees/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gyro_rate_yaw(&self) -> f32 {
-        self.gyro_rate_yaw_phys_val()
-    }
-    /// Returns the physical value of `Gyro_Rate_Yaw`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees/s"
     #[inline(always)]
-    pub fn gyro_rate_yaw_phys_val(&self) -> f32 {
+    pub fn gyro_rate_yaw(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -35130,17 +32664,10 @@ impl RtImu06GyroRates {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gyro_rates(&self) -> u8 {
-        self.accuracy_gyro_rates_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_Gyro_Rates`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gyro_rates_phys_val(&self) -> u8 {
+    pub fn accuracy_gyro_rates(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -35186,17 +32713,10 @@ impl RtImu06GyroRates {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gyro_rate_roll(&self) -> bool {
-        self.validity_gyro_rate_roll_phys_val()
-    }
-    /// Returns the physical value of `Validity_Gyro_Rate_Roll`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gyro_rate_roll_phys_val(&self) -> bool {
+    pub fn validity_gyro_rate_roll(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -35230,17 +32750,10 @@ impl RtImu06GyroRates {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gyro_rate_pitch(&self) -> bool {
-        self.validity_gyro_rate_pitch_phys_val()
-    }
-    /// Returns the physical value of `Validity_Gyro_Rate_Pitch`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gyro_rate_pitch_phys_val(&self) -> bool {
+    pub fn validity_gyro_rate_pitch(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -35274,17 +32787,10 @@ impl RtImu06GyroRates {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gyro_rate_yaw(&self) -> bool {
-        self.validity_gyro_rate_yaw_phys_val()
-    }
-    /// Returns the physical value of `Validity_Gyro_Rate_Yaw`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gyro_rate_yaw_phys_val(&self) -> bool {
+    pub fn validity_gyro_rate_yaw(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -35411,17 +32917,10 @@ impl RtImu06Accel {
     /// - Max: 65
     /// - Unit: "g"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accel_vertical(&self) -> f32 {
-        self.accel_vertical_phys_val()
-    }
-    /// Returns the physical value of `Accel_Vertical`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_vertical_phys_val(&self) -> f32 {
+    pub fn accel_vertical(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -35466,17 +32965,10 @@ impl RtImu06Accel {
     /// - Max: 65
     /// - Unit: "g"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accel_lateral(&self) -> f32 {
-        self.accel_lateral_phys_val()
-    }
-    /// Returns the physical value of `Accel_Lateral`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_lateral_phys_val(&self) -> f32 {
+    pub fn accel_lateral(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -35521,17 +33013,10 @@ impl RtImu06Accel {
     /// - Max: 65
     /// - Unit: "g"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accel_longitudinal(&self) -> f32 {
-        self.accel_longitudinal_phys_val()
-    }
-    /// Returns the physical value of `Accel_Longitudinal`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_longitudinal_phys_val(&self) -> f32 {
+    pub fn accel_longitudinal(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -35576,17 +33061,10 @@ impl RtImu06Accel {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_accel(&self) -> u8 {
-        self.accuracy_accel_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_Accel`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_accel_phys_val(&self) -> u8 {
+    pub fn accuracy_accel(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -35632,17 +33110,10 @@ impl RtImu06Accel {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_accel_vertical(&self) -> bool {
-        self.validity_accel_vertical_phys_val()
-    }
-    /// Returns the physical value of `Validity_Accel_Vertical`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_accel_vertical_phys_val(&self) -> bool {
+    pub fn validity_accel_vertical(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -35676,17 +33147,10 @@ impl RtImu06Accel {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_accel_lateral(&self) -> bool {
-        self.validity_accel_lateral_phys_val()
-    }
-    /// Returns the physical value of `Validity_Accel_Lateral`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_accel_lateral_phys_val(&self) -> bool {
+    pub fn validity_accel_lateral(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -35720,17 +33184,10 @@ impl RtImu06Accel {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_accel_longitudinal(&self) -> bool {
-        self.validity_accel_longitudinal_phys_val()
-    }
-    /// Returns the physical value of `Validity_Accel_Longitudinal`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_accel_longitudinal_phys_val(&self) -> bool {
+    pub fn validity_accel_longitudinal(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -35846,17 +33303,10 @@ impl RtSbSpeed {
     /// - Max: 20000
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn speed(&self) -> f32 {
-        self.speed_phys_val()
-    }
-    /// Returns the physical value of `Speed`.
-    ///
     /// - Factor: 0.00001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn speed_phys_val(&self) -> f32 {
+    pub fn speed(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..48].load_le::<i32>();
         let factor = 0.00001_f32;
         let offset = 0_f32;
@@ -35901,17 +33351,10 @@ impl RtSbSpeed {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_speed(&self) -> u8 {
-        self.accuracy_speed_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_Speed`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_speed_phys_val(&self) -> u8 {
+    pub fn accuracy_speed(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -35957,17 +33400,10 @@ impl RtSbSpeed {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_speed(&self) -> bool {
-        self.validity_speed_phys_val()
-    }
-    /// Returns the physical value of `Validity_Speed`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_speed_phys_val(&self) -> bool {
+    pub fn validity_speed(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -36094,17 +33530,10 @@ impl RtSbRtkSlip {
     /// - Max: 65535
     /// - Unit: "mm"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn rtk_baseline(&self) -> u16 {
-        self.rtk_baseline_phys_val()
-    }
-    /// Returns the physical value of `RTK_Baseline`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "mm"
     #[inline(always)]
-    pub fn rtk_baseline_phys_val(&self) -> u16 {
+    pub fn rtk_baseline(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -36150,17 +33579,10 @@ impl RtSbRtkSlip {
     /// - Max: 360
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn rtk_squat(&self) -> f32 {
-        self.rtk_squat_phys_val()
-    }
-    /// Returns the physical value of `RTK_Squat`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn rtk_squat_phys_val(&self) -> f32 {
+    pub fn rtk_squat(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -36205,17 +33627,10 @@ impl RtSbRtkSlip {
     /// - Max: 360
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn rtk_slip(&self) -> f32 {
-        self.rtk_slip_phys_val()
-    }
-    /// Returns the physical value of `RTK_Slip`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn rtk_slip_phys_val(&self) -> f32 {
+    pub fn rtk_slip(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -36258,17 +33673,10 @@ impl RtSbRtkSlip {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_rtk_baseline(&self) -> u8 {
-        self.accuracy_rtk_baseline_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_RTK_Baseline`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_rtk_baseline_phys_val(&self) -> u8 {
+    pub fn accuracy_rtk_baseline(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -36314,17 +33722,10 @@ impl RtSbRtkSlip {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_rtk_baseline(&self) -> bool {
-        self.validity_rtk_baseline_phys_val()
-    }
-    /// Returns the physical value of `Validity_RTK_Baseline`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_rtk_baseline_phys_val(&self) -> bool {
+    pub fn validity_rtk_baseline(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -36358,17 +33759,10 @@ impl RtSbRtkSlip {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_rtk_squat(&self) -> bool {
-        self.validity_rtk_squat_phys_val()
-    }
-    /// Returns the physical value of `Validity_RTK_Squat`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_rtk_squat_phys_val(&self) -> bool {
+    pub fn validity_rtk_squat(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -36402,17 +33796,10 @@ impl RtSbRtkSlip {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_rtk_slip(&self) -> bool {
-        self.validity_rtk_slip_phys_val()
-    }
-    /// Returns the physical value of `Validity_RTK_Slip`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_rtk_slip_phys_val(&self) -> bool {
+    pub fn validity_rtk_slip(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -36539,17 +33926,10 @@ impl RtSbRtkAttitude {
     /// - Max: 90
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn rtk_attitude_roll(&self) -> f32 {
-        self.rtk_attitude_roll_phys_val()
-    }
-    /// Returns the physical value of `RTK_Attitude_Roll`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn rtk_attitude_roll_phys_val(&self) -> f32 {
+    pub fn rtk_attitude_roll(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -36594,17 +33974,10 @@ impl RtSbRtkAttitude {
     /// - Max: 90
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn rtk_attitude_pitch(&self) -> f32 {
-        self.rtk_attitude_pitch_phys_val()
-    }
-    /// Returns the physical value of `RTK_Attitude_Pitch`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn rtk_attitude_pitch_phys_val(&self) -> f32 {
+    pub fn rtk_attitude_pitch(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -36649,17 +34022,10 @@ impl RtSbRtkAttitude {
     /// - Max: 360
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn rtk_attitude_yaw(&self) -> f32 {
-        self.rtk_attitude_yaw_phys_val()
-    }
-    /// Returns the physical value of `RTK_Attitude_Yaw`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn rtk_attitude_yaw_phys_val(&self) -> f32 {
+    pub fn rtk_attitude_yaw(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -36704,17 +34070,10 @@ impl RtSbRtkAttitude {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_rtk_attitude(&self) -> u8 {
-        self.accuracy_rtk_attitude_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_RTK_Attitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_rtk_attitude_phys_val(&self) -> u8 {
+    pub fn accuracy_rtk_attitude(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -36760,17 +34119,10 @@ impl RtSbRtkAttitude {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_rtk_roll(&self) -> bool {
-        self.validity_rtk_roll_phys_val()
-    }
-    /// Returns the physical value of `Validity_RTK_Roll`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_rtk_roll_phys_val(&self) -> bool {
+    pub fn validity_rtk_roll(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -36804,17 +34156,10 @@ impl RtSbRtkAttitude {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_rtk_pitch(&self) -> bool {
-        self.validity_rtk_pitch_phys_val()
-    }
-    /// Returns the physical value of `Validity_RTK_Pitch`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_rtk_pitch_phys_val(&self) -> bool {
+    pub fn validity_rtk_pitch(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -36848,17 +34193,10 @@ impl RtSbRtkAttitude {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_rtk_yaw(&self) -> bool {
-        self.validity_rtk_yaw_phys_val()
-    }
-    /// Returns the physical value of `Validity_RTK_Yaw`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_rtk_yaw_phys_val(&self) -> bool {
+    pub fn validity_rtk_yaw(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -36979,17 +34317,10 @@ impl RtSbGpsMcycleLean {
     /// - Max: 90
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_mcycle_lean_angle(&self) -> f32 {
-        self.gps_mcycle_lean_angle_phys_val()
-    }
-    /// Returns the physical value of `GPS_Mcycle_Lean_Angle`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_mcycle_lean_angle_phys_val(&self) -> f32 {
+    pub fn gps_mcycle_lean_angle(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -37034,17 +34365,10 @@ impl RtSbGpsMcycleLean {
     /// - Max: 65
     /// - Unit: "g"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_lateral_accel(&self) -> f32 {
-        self.gps_lateral_accel_phys_val()
-    }
-    /// Returns the physical value of `GPS_Lateral_Accel`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn gps_lateral_accel_phys_val(&self) -> f32 {
+    pub fn gps_lateral_accel(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -37089,17 +34413,10 @@ impl RtSbGpsMcycleLean {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_lateral_accel(&self) -> u8 {
-        self.accuracy_gps_lateral_accel_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Lateral_Accel`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_lateral_accel_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_lateral_accel(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37145,17 +34462,10 @@ impl RtSbGpsMcycleLean {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_mcycle_lean(&self) -> bool {
-        self.validity_gps_mcycle_lean_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Mcycle_Lean`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_mcycle_lean_phys_val(&self) -> bool {
+    pub fn validity_gps_mcycle_lean(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -37189,17 +34499,10 @@ impl RtSbGpsMcycleLean {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_lateral_accel(&self) -> bool {
-        self.validity_gps_lateral_accel_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Lateral_Accel`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_lateral_accel_phys_val(&self) -> bool {
+    pub fn validity_gps_lateral_accel(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -37349,13 +34652,8 @@ impl RtSbGpsStatus {
             _ => RtSbGpsStatusRtkStatus::_Other(self.rtk_status_phys_val()),
         }
     }
-    /// Returns the physical value of `RTK_Status`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn rtk_status_phys_val(&self) -> u8 {
+    fn rtk_status_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37405,17 +34703,10 @@ impl RtSbGpsStatus {
     /// - Max: 16
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_n_sv_rtk(&self) -> u8 {
-        self.gps_n_sv_rtk_phys_val()
-    }
-    /// Returns the physical value of `GPS_nSv_RTK`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn gps_n_sv_rtk_phys_val(&self) -> u8 {
+    pub fn gps_n_sv_rtk(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37461,17 +34752,10 @@ impl RtSbGpsStatus {
     /// - Max: 16
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_n_sv_2(&self) -> u8 {
-        self.gps_n_sv_2_phys_val()
-    }
-    /// Returns the physical value of `GPS_nSv_2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn gps_n_sv_2_phys_val(&self) -> u8 {
+    pub fn gps_n_sv_2(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37517,17 +34801,10 @@ impl RtSbGpsStatus {
     /// - Max: 16
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_n_sv(&self) -> u8 {
-        self.gps_n_sv_phys_val()
-    }
-    /// Returns the physical value of `GPS_nSv`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn gps_n_sv_phys_val(&self) -> u8 {
+    pub fn gps_n_sv(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37571,17 +34848,10 @@ impl RtSbGpsStatus {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn firmware_version_minor(&self) -> u8 {
-        self.firmware_version_minor_phys_val()
-    }
-    /// Returns the physical value of `Firmware_Version_Minor`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn firmware_version_minor_phys_val(&self) -> u8 {
+    pub fn firmware_version_minor(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37625,17 +34895,10 @@ impl RtSbGpsStatus {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn firmware_version_intermediate(&self) -> u8 {
-        self.firmware_version_intermediate_phys_val()
-    }
-    /// Returns the physical value of `Firmware_Version_Intermediate`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn firmware_version_intermediate_phys_val(&self) -> u8 {
+    pub fn firmware_version_intermediate(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37682,17 +34945,10 @@ impl RtSbGpsStatus {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn firmware_version_major(&self) -> u8 {
-        self.firmware_version_major_phys_val()
-    }
-    /// Returns the physical value of `Firmware_Version_Major`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn firmware_version_major_phys_val(&self) -> u8 {
+    pub fn firmware_version_major(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37756,13 +35012,8 @@ impl RtSbGpsStatus {
             _ => RtSbGpsStatusGpsStatus::_Other(self.gps_status_phys_val()),
         }
     }
-    /// Returns the physical value of `GPS_Status`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn gps_status_phys_val(&self) -> u8 {
+    fn gps_status_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -37960,17 +35211,10 @@ impl RtSbGpsPosEcef2 {
     /// - Max: 10000000
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_pos_ecef_z(&self) -> f32 {
-        self.gps_pos_ecef_z_phys_val()
-    }
-    /// Returns the physical value of `GPS_Pos_ECEF_Z`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn gps_pos_ecef_z_phys_val(&self) -> f32 {
+    pub fn gps_pos_ecef_z(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -38015,17 +35259,10 @@ impl RtSbGpsPosEcef2 {
     /// - Max: 10000000
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_pos_ecef_y(&self) -> f32 {
-        self.gps_pos_ecef_y_phys_val()
-    }
-    /// Returns the physical value of `GPS_Pos_ECEF_Y`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn gps_pos_ecef_y_phys_val(&self) -> f32 {
+    pub fn gps_pos_ecef_y(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -38163,17 +35400,10 @@ impl RtSbGpsPosEcef1 {
     /// - Max: 10000000
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_pos_ecef_x(&self) -> f32 {
-        self.gps_pos_ecef_x_phys_val()
-    }
-    /// Returns the physical value of `GPS_Pos_ECEF_X`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn gps_pos_ecef_x_phys_val(&self) -> f32 {
+    pub fn gps_pos_ecef_x(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -38218,17 +35448,10 @@ impl RtSbGpsPosEcef1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_pos_ecef_z(&self) -> u8 {
-        self.accuracy_gps_pos_ecef_z_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Pos_ECEF_Z`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_pos_ecef_z_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_pos_ecef_z(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -38274,17 +35497,10 @@ impl RtSbGpsPosEcef1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_pos_ecef_y(&self) -> u8 {
-        self.accuracy_gps_pos_ecef_y_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Pos_ECEF_Y`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_pos_ecef_y_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_pos_ecef_y(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -38330,17 +35546,10 @@ impl RtSbGpsPosEcef1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_pos_ecef_x(&self) -> u8 {
-        self.accuracy_gps_pos_ecef_x_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Pos_ECEF_X`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_pos_ecef_x_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_pos_ecef_x(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -38386,17 +35595,10 @@ impl RtSbGpsPosEcef1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_pos_ecef_z(&self) -> bool {
-        self.validity_gps_pos_ecef_z_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Pos_ECEF_Z`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_pos_ecef_z_phys_val(&self) -> bool {
+    pub fn validity_gps_pos_ecef_z(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -38430,17 +35632,10 @@ impl RtSbGpsPosEcef1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_pos_ecef_y(&self) -> bool {
-        self.validity_gps_pos_ecef_y_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Pos_ECEF_Y`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_pos_ecef_y_phys_val(&self) -> bool {
+    pub fn validity_gps_pos_ecef_y(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -38474,17 +35669,10 @@ impl RtSbGpsPosEcef1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_pos_ecef_x(&self) -> bool {
-        self.validity_gps_pos_ecef_x_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Pos_ECEF_X`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_pos_ecef_x_phys_val(&self) -> bool {
+    pub fn validity_gps_pos_ecef_x(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -38595,17 +35783,10 @@ impl RtSbGpsPosLlh2 {
     /// - Max: 100000
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_pos_llh_altitude(&self) -> f32 {
-        self.gps_pos_llh_altitude_phys_val()
-    }
-    /// Returns the physical value of `GPS_Pos_LLH_Altitude`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn gps_pos_llh_altitude_phys_val(&self) -> f32 {
+    pub fn gps_pos_llh_altitude(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -38648,17 +35829,10 @@ impl RtSbGpsPosLlh2 {
     /// - Max: 180
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_pos_llh_longitude(&self) -> f32 {
-        self.gps_pos_llh_longitude_phys_val()
-    }
-    /// Returns the physical value of `GPS_Pos_LLH_Longitude`.
-    ///
     /// - Factor: 0.0000001
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_pos_llh_longitude_phys_val(&self) -> f32 {
+    pub fn gps_pos_llh_longitude(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 0.0000001_f32;
         let offset = 0_f32;
@@ -38794,17 +35968,10 @@ impl RtSbGpsPosLlh1 {
     /// - Max: 90
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_pos_llh_latitude(&self) -> f32 {
-        self.gps_pos_llh_latitude_phys_val()
-    }
-    /// Returns the physical value of `GPS_Pos_LLH_Latitude`.
-    ///
     /// - Factor: 0.0000001
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_pos_llh_latitude_phys_val(&self) -> f32 {
+    pub fn gps_pos_llh_latitude(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
         let factor = 0.0000001_f32;
         let offset = 0_f32;
@@ -38849,17 +36016,10 @@ impl RtSbGpsPosLlh1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_pos_llh_altitude(&self) -> u8 {
-        self.accuracy_gps_pos_llh_altitude_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Pos_LLH_Altitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_altitude_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_altitude(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -38908,17 +36068,10 @@ impl RtSbGpsPosLlh1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_pos_llh_longitude(&self) -> u8 {
-        self.accuracy_gps_pos_llh_longitude_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Pos_LLH_Longitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_longitude_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_longitude(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -38967,17 +36120,10 @@ impl RtSbGpsPosLlh1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_pos_llh_latitude(&self) -> u8 {
-        self.accuracy_gps_pos_llh_latitude_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Pos_LLH_Latitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_pos_llh_latitude_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_pos_llh_latitude(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -39026,17 +36172,10 @@ impl RtSbGpsPosLlh1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_pos_llh_altitude(&self) -> bool {
-        self.validity_gps_pos_llh_altitude_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Pos_LLH_Altitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_pos_llh_altitude_phys_val(&self) -> bool {
+    pub fn validity_gps_pos_llh_altitude(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -39073,17 +36212,10 @@ impl RtSbGpsPosLlh1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_pos_llh_longitude(&self) -> bool {
-        self.validity_gps_pos_llh_longitude_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Pos_LLH_Longitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_pos_llh_longitude_phys_val(&self) -> bool {
+    pub fn validity_gps_pos_llh_longitude(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -39120,17 +36252,10 @@ impl RtSbGpsPosLlh1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_pos_llh_latitude(&self) -> bool {
-        self.validity_gps_pos_llh_latitude_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Pos_LLH_Latitude`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_pos_llh_latitude_phys_val(&self) -> bool {
+    pub fn validity_gps_pos_llh_latitude(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -39258,17 +36383,10 @@ impl RtSbGpsHeadingGradient {
     /// - Max: 90
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_gradient(&self) -> f32 {
-        self.gps_gradient_phys_val()
-    }
-    /// Returns the physical value of `GPS_Gradient`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_gradient_phys_val(&self) -> f32 {
+    pub fn gps_gradient(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -39313,17 +36431,10 @@ impl RtSbGpsHeadingGradient {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_gradient(&self) -> u8 {
-        self.accuracy_gps_gradient_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Gradient`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_gradient_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_gradient(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -39369,17 +36480,10 @@ impl RtSbGpsHeadingGradient {
     /// - Max: 180
     /// - Unit: "degrees"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_heading(&self) -> f32 {
-        self.gps_heading_phys_val()
-    }
-    /// Returns the physical value of `GPS_Heading`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees"
     #[inline(always)]
-    pub fn gps_heading_phys_val(&self) -> f32 {
+    pub fn gps_heading(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -39424,17 +36528,10 @@ impl RtSbGpsHeadingGradient {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_heading(&self) -> u8 {
-        self.accuracy_gps_heading_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Heading`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_heading_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_heading(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -39480,17 +36577,10 @@ impl RtSbGpsHeadingGradient {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_gradient(&self) -> bool {
-        self.validity_gps_gradient_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Gradient`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_gradient_phys_val(&self) -> bool {
+    pub fn validity_gps_gradient(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -39524,17 +36614,10 @@ impl RtSbGpsHeadingGradient {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_heading(&self) -> bool {
-        self.validity_gps_heading_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Heading`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_heading_phys_val(&self) -> bool {
+    pub fn validity_gps_heading(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -39651,17 +36734,10 @@ impl RtSbGpsVelEcef2 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_vel_ecef_z(&self) -> f32 {
-        self.gps_vel_ecef_z_phys_val()
-    }
-    /// Returns the physical value of `GPS_Vel_ECEF_Z`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_vel_ecef_z_phys_val(&self) -> f32 {
+    pub fn gps_vel_ecef_z(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -39706,17 +36782,10 @@ impl RtSbGpsVelEcef2 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_vel_ecef_y(&self) -> f32 {
-        self.gps_vel_ecef_y_phys_val()
-    }
-    /// Returns the physical value of `GPS_Vel_ECEF_Y`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_vel_ecef_y_phys_val(&self) -> f32 {
+    pub fn gps_vel_ecef_y(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..32].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -39761,17 +36830,10 @@ impl RtSbGpsVelEcef2 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_vel_ecef_z(&self) -> bool {
-        self.validity_gps_vel_ecef_z_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Vel_ECEF_Z`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_vel_ecef_z_phys_val(&self) -> bool {
+    pub fn validity_gps_vel_ecef_z(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -39805,17 +36867,10 @@ impl RtSbGpsVelEcef2 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_vel_ecef_y(&self) -> bool {
-        self.validity_gps_vel_ecef_y_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Vel_ECEF_Y`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_vel_ecef_y_phys_val(&self) -> bool {
+    pub fn validity_gps_vel_ecef_y(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -39938,17 +36993,10 @@ impl RtSbGpsVelEcef1 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_vel_ecef_x(&self) -> f32 {
-        self.gps_vel_ecef_x_phys_val()
-    }
-    /// Returns the physical value of `GPS_Vel_ECEF_X`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_vel_ecef_x_phys_val(&self) -> f32 {
+    pub fn gps_vel_ecef_x(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..56].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -39991,17 +37039,10 @@ impl RtSbGpsVelEcef1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_vel_ecef_z(&self) -> u8 {
-        self.accuracy_gps_vel_ecef_z_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Vel_ECEF_Z`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_vel_ecef_z_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_vel_ecef_z(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -40045,17 +37086,10 @@ impl RtSbGpsVelEcef1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_vel_ecef_y(&self) -> u8 {
-        self.accuracy_gps_vel_ecef_y_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Vel_ECEF_Y`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_vel_ecef_y_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_vel_ecef_y(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -40099,17 +37133,10 @@ impl RtSbGpsVelEcef1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_vel_ecef_x(&self) -> u8 {
-        self.accuracy_gps_vel_ecef_x_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Vel_ECEF_X`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_vel_ecef_x_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_vel_ecef_x(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -40155,17 +37182,10 @@ impl RtSbGpsVelEcef1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_vel_ecef_x(&self) -> bool {
-        self.validity_gps_vel_ecef_x_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Vel_ECEF_X`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_vel_ecef_x_phys_val(&self) -> bool {
+    pub fn validity_gps_vel_ecef_x(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -40280,17 +37300,10 @@ impl RtSbGpsVelNed2 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_vel_ned_d(&self) -> f32 {
-        self.gps_vel_ned_d_phys_val()
-    }
-    /// Returns the physical value of `GPS_Vel_NED_D`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_vel_ned_d_phys_val(&self) -> f32 {
+    pub fn gps_vel_ned_d(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -40333,17 +37346,10 @@ impl RtSbGpsVelNed2 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_vel_d(&self) -> u8 {
-        self.accuracy_gps_vel_d_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Vel_D`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_vel_d_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_vel_d(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -40389,17 +37395,10 @@ impl RtSbGpsVelNed2 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_vel_ned_d(&self) -> bool {
-        self.validity_gps_vel_ned_d_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Vel_NED_D`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_vel_ned_d_phys_val(&self) -> bool {
+    pub fn validity_gps_vel_ned_d(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -40520,17 +37519,10 @@ impl RtSbGpsVelNed1 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_vel_ned_e(&self) -> f32 {
-        self.gps_vel_ned_e_phys_val()
-    }
-    /// Returns the physical value of `GPS_Vel_NED_E`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_vel_ned_e_phys_val(&self) -> f32 {
+    pub fn gps_vel_ned_e(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..64].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -40575,17 +37567,10 @@ impl RtSbGpsVelNed1 {
     /// - Max: 838
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_vel_ned_n(&self) -> f32 {
-        self.gps_vel_ned_n_phys_val()
-    }
-    /// Returns the physical value of `GPS_Vel_NED_N`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_vel_ned_n_phys_val(&self) -> f32 {
+    pub fn gps_vel_ned_n(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..40].load_le::<i32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -40628,17 +37613,10 @@ impl RtSbGpsVelNed1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_vel_ne(&self) -> u8 {
-        self.accuracy_gps_vel_ne_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Vel_NE`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_vel_ne_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_vel_ne(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -40684,17 +37662,10 @@ impl RtSbGpsVelNed1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_vel_ned_e(&self) -> bool {
-        self.validity_gps_vel_ned_e_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Vel_NED_E`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_vel_ned_e_phys_val(&self) -> bool {
+    pub fn validity_gps_vel_ned_e(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -40728,17 +37699,10 @@ impl RtSbGpsVelNed1 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_vel_ned_n(&self) -> bool {
-        self.validity_gps_vel_ned_n_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Vel_NED_N`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_vel_ned_n_phys_val(&self) -> bool {
+    pub fn validity_gps_vel_ned_n(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -40859,17 +37823,10 @@ impl RtSbGpsSpeed {
     /// - Max: 1675
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_speed_3d(&self) -> f32 {
-        self.gps_speed_3d_phys_val()
-    }
-    /// Returns the physical value of `GPS_Speed_3D`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_speed_3d_phys_val(&self) -> f32 {
+    pub fn gps_speed_3d(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..64].load_le::<u32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -40912,17 +37869,10 @@ impl RtSbGpsSpeed {
     /// - Max: 1675
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_speed_2d(&self) -> f32 {
-        self.gps_speed_2d_phys_val()
-    }
-    /// Returns the physical value of `GPS_Speed_2D`.
-    ///
     /// - Factor: 0.0001
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn gps_speed_2d_phys_val(&self) -> f32 {
+    pub fn gps_speed_2d(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..40].load_le::<u32>();
         let factor = 0.0001_f32;
         let offset = 0_f32;
@@ -40965,17 +37915,10 @@ impl RtSbGpsSpeed {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_speed(&self) -> u8 {
-        self.accuracy_gps_speed_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Speed`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_speed_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_speed(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -41021,17 +37964,10 @@ impl RtSbGpsSpeed {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_speed_3d(&self) -> bool {
-        self.validity_gps_speed_3d_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Speed_3D`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_speed_3d_phys_val(&self) -> bool {
+    pub fn validity_gps_speed_3d(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -41065,17 +38001,10 @@ impl RtSbGpsSpeed {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_speed_2d(&self) -> bool {
-        self.validity_gps_speed_2d_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Speed_2D`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_speed_2d_phys_val(&self) -> bool {
+    pub fn validity_gps_speed_2d(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -41194,17 +38123,10 @@ impl RtSbGpsTime {
     /// - Max: 65535
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_week(&self) -> u16 {
-        self.gps_week_phys_val()
-    }
-    /// Returns the physical value of `GPS_Week`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn gps_week_phys_val(&self) -> u16 {
+    pub fn gps_week(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -41250,17 +38172,10 @@ impl RtSbGpsTime {
     /// - Max: 604800
     /// - Unit: "s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gps_time(&self) -> f32 {
-        self.gps_time_phys_val()
-    }
-    /// Returns the physical value of `GPS_Time`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "s"
     #[inline(always)]
-    pub fn gps_time_phys_val(&self) -> f32 {
+    pub fn gps_time(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..48].load_le::<u32>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -41301,17 +38216,10 @@ impl RtSbGpsTime {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gps_time(&self) -> u8 {
-        self.accuracy_gps_time_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_GPS_Time`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gps_time_phys_val(&self) -> u8 {
+    pub fn accuracy_gps_time(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -41357,17 +38265,10 @@ impl RtSbGpsTime {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_week(&self) -> bool {
-        self.validity_gps_week_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Week`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_week_phys_val(&self) -> bool {
+    pub fn validity_gps_week(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -41401,17 +38302,10 @@ impl RtSbGpsTime {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gps_time(&self) -> bool {
-        self.validity_gps_time_phys_val()
-    }
-    /// Returns the physical value of `Validity_GPS_Time`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gps_time_phys_val(&self) -> bool {
+    pub fn validity_gps_time(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -41538,17 +38432,10 @@ impl RtSbAccel {
     /// - Max: 65
     /// - Unit: "g"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accel_vertical(&self) -> f32 {
-        self.accel_vertical_phys_val()
-    }
-    /// Returns the physical value of `Accel_Vertical`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_vertical_phys_val(&self) -> f32 {
+    pub fn accel_vertical(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -41593,17 +38480,10 @@ impl RtSbAccel {
     /// - Max: 65
     /// - Unit: "g"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accel_lateral(&self) -> f32 {
-        self.accel_lateral_phys_val()
-    }
-    /// Returns the physical value of `Accel_Lateral`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_lateral_phys_val(&self) -> f32 {
+    pub fn accel_lateral(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -41648,17 +38528,10 @@ impl RtSbAccel {
     /// - Max: 65
     /// - Unit: "g"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accel_longitudinal(&self) -> f32 {
-        self.accel_longitudinal_phys_val()
-    }
-    /// Returns the physical value of `Accel_Longitudinal`.
-    ///
     /// - Factor: 0.001
     /// - Offset: 0
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn accel_longitudinal_phys_val(&self) -> f32 {
+    pub fn accel_longitudinal(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.001_f32;
         let offset = 0_f32;
@@ -41703,17 +38576,10 @@ impl RtSbAccel {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_accel(&self) -> u8 {
-        self.accuracy_accel_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_Accel`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_accel_phys_val(&self) -> u8 {
+    pub fn accuracy_accel(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -41759,17 +38625,10 @@ impl RtSbAccel {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_accel_vertical(&self) -> bool {
-        self.validity_accel_vertical_phys_val()
-    }
-    /// Returns the physical value of `Validity_Accel_Vertical`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_accel_vertical_phys_val(&self) -> bool {
+    pub fn validity_accel_vertical(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -41803,17 +38662,10 @@ impl RtSbAccel {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_accel_lateral(&self) -> bool {
-        self.validity_accel_lateral_phys_val()
-    }
-    /// Returns the physical value of `Validity_Accel_Lateral`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_accel_lateral_phys_val(&self) -> bool {
+    pub fn validity_accel_lateral(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -41847,17 +38699,10 @@ impl RtSbAccel {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_accel_longitudinal(&self) -> bool {
-        self.validity_accel_longitudinal_phys_val()
-    }
-    /// Returns the physical value of `Validity_Accel_Longitudinal`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_accel_longitudinal_phys_val(&self) -> bool {
+    pub fn validity_accel_longitudinal(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
@@ -41987,17 +38832,10 @@ impl RtSbGyroRates {
     /// - Max: 327
     /// - Unit: "degrees/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gyro_rate_roll(&self) -> f32 {
-        self.gyro_rate_roll_phys_val()
-    }
-    /// Returns the physical value of `Gyro_Rate_Roll`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees/s"
     #[inline(always)]
-    pub fn gyro_rate_roll_phys_val(&self) -> f32 {
+    pub fn gyro_rate_roll(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -42042,17 +38880,10 @@ impl RtSbGyroRates {
     /// - Max: 327
     /// - Unit: "degrees/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gyro_rate_pitch(&self) -> f32 {
-        self.gyro_rate_pitch_phys_val()
-    }
-    /// Returns the physical value of `Gyro_Rate_Pitch`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees/s"
     #[inline(always)]
-    pub fn gyro_rate_pitch_phys_val(&self) -> f32 {
+    pub fn gyro_rate_pitch(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -42097,17 +38928,10 @@ impl RtSbGyroRates {
     /// - Max: 327
     /// - Unit: "degrees/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn gyro_rate_yaw(&self) -> f32 {
-        self.gyro_rate_yaw_phys_val()
-    }
-    /// Returns the physical value of `Gyro_Rate_Yaw`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "degrees/s"
     #[inline(always)]
-    pub fn gyro_rate_yaw_phys_val(&self) -> f32 {
+    pub fn gyro_rate_yaw(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -42152,17 +38976,10 @@ impl RtSbGyroRates {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn accuracy_gyro_rates(&self) -> u8 {
-        self.accuracy_gyro_rates_phys_val()
-    }
-    /// Returns the physical value of `Accuracy_Gyro_Rates`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn accuracy_gyro_rates_phys_val(&self) -> u8 {
+    pub fn accuracy_gyro_rates(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -42208,17 +39025,10 @@ impl RtSbGyroRates {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gyro_rate_roll(&self) -> bool {
-        self.validity_gyro_rate_roll_phys_val()
-    }
-    /// Returns the physical value of `Validity_Gyro_Rate_Roll`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gyro_rate_roll_phys_val(&self) -> bool {
+    pub fn validity_gyro_rate_roll(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -42252,17 +39062,10 @@ impl RtSbGyroRates {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gyro_rate_pitch(&self) -> bool {
-        self.validity_gyro_rate_pitch_phys_val()
-    }
-    /// Returns the physical value of `Validity_Gyro_Rate_Pitch`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gyro_rate_pitch_phys_val(&self) -> bool {
+    pub fn validity_gyro_rate_pitch(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
@@ -42296,17 +39099,10 @@ impl RtSbGyroRates {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn validity_gyro_rate_yaw(&self) -> bool {
-        self.validity_gyro_rate_yaw_phys_val()
-    }
-    /// Returns the physical value of `Validity_Gyro_Rate_Yaw`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn validity_gyro_rate_yaw_phys_val(&self) -> bool {
+    pub fn validity_gyro_rate_yaw(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }

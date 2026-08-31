@@ -94,18 +94,6 @@ impl ExtMuxIndepMultiplexors {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Returns the physical value of `MUX_B`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
-    #[inline(always)]
-    pub fn mux_b_phys_val(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
-    }
     /// Returns the raw value of `MUX_B`.
     ///
     /// - Start bit: 16
@@ -123,8 +111,11 @@ impl ExtMuxIndepMultiplexors {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
     }
-    pub fn mux_b(&mut self) -> Result<ExtMuxIndepMultiplexorsMuxBIndex, CanError> {
-        match self.mux_b_phys_val() {
+    /// Selects the active multiplexed sub-message for `MUX_B`.
+    pub fn mux_b_multiplexed(
+        &mut self,
+    ) -> Result<ExtMuxIndepMultiplexorsMuxBIndex, CanError> {
+        match self.mux_b_raw_val() {
             0 => {
                 Ok(
                     ExtMuxIndepMultiplexorsMuxBIndex::M0(ExtMuxIndepMultiplexorsMuxBM0 {
@@ -209,18 +200,6 @@ impl ExtMuxIndepMultiplexors {
         self.set_mux_b(2)?;
         Ok(())
     }
-    /// Returns the physical value of `MUX_A`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
-    #[inline(always)]
-    pub fn mux_a_phys_val(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
-    }
     /// Returns the raw value of `MUX_A`.
     ///
     /// - Start bit: 0
@@ -238,8 +217,11 @@ impl ExtMuxIndepMultiplexors {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
-    pub fn mux_a(&mut self) -> Result<ExtMuxIndepMultiplexorsMuxAIndex, CanError> {
-        match self.mux_a_phys_val() {
+    /// Selects the active multiplexed sub-message for `MUX_A`.
+    pub fn mux_a_multiplexed(
+        &mut self,
+    ) -> Result<ExtMuxIndepMultiplexorsMuxAIndex, CanError> {
+        match self.mux_a_raw_val() {
             0 => {
                 Ok(
                     ExtMuxIndepMultiplexorsMuxAIndex::M0(ExtMuxIndepMultiplexorsMuxAM0 {
@@ -410,17 +392,10 @@ impl ExtMuxIndepMultiplexorsMuxBM0 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn muxed_a_0(&self) -> i8 {
-        self.muxed_a_0_phys_val()
-    }
-    /// Returns the physical value of `muxed_A_0`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn muxed_a_0_phys_val(&self) -> i8 {
+    pub fn muxed_a_0(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -494,17 +469,10 @@ impl ExtMuxIndepMultiplexorsMuxBM1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn muxed_b_1(&self) -> i8 {
-        self.muxed_b_1_phys_val()
-    }
-    /// Returns the physical value of `muxed_B_1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn muxed_b_1_phys_val(&self) -> i8 {
+    pub fn muxed_b_1(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -551,17 +519,10 @@ impl ExtMuxIndepMultiplexorsMuxBM1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn muxed_a_1(&self) -> i8 {
-        self.muxed_a_1_phys_val()
-    }
-    /// Returns the physical value of `muxed_A_1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn muxed_a_1_phys_val(&self) -> i8 {
+    pub fn muxed_a_1(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -635,17 +596,10 @@ impl ExtMuxIndepMultiplexorsMuxBM2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn muxed_b_2(&self) -> i8 {
-        self.muxed_b_2_phys_val()
-    }
-    /// Returns the physical value of `muxed_B_2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn muxed_b_2_phys_val(&self) -> i8 {
+    pub fn muxed_b_2(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;

@@ -87,17 +87,10 @@ impl Foo {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn signal_without_sender(&self) -> i8 {
-        self.signal_without_sender_phys_val()
-    }
-    /// Returns the physical value of `signal_without_sender`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal_without_sender_phys_val(&self) -> i8 {
+    pub fn signal_without_sender(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;

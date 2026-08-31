@@ -846,9 +846,14 @@ impl Config<'_> {
             writeln!(w, "/// - Receivers: {}", signal.receivers.join(", "))?;
         }
 
-        writeln!(w, "#[inline(always)]")?;
         let fn_name = signal.field_name();
-        if let Some(variants) = dbc.value_descriptions_for_signal(msg.id, &signal.name) {
+        let variants = dbc.value_descriptions_for_signal(msg.id, &signal.name);
+        if variants.is_none() {
+            writeln!(w, "/// - Factor: {}", signal.factor)?;
+            writeln!(w, "/// - Offset: {}", signal.offset)?;
+        }
+        writeln!(w, "#[inline(always)]")?;
+        if let Some(variants) = variants {
             let type_name = enum_name(msg, signal);
             let signal_ty = ValType::from_signal(signal);
             let variant_infos = generate_variant_info(variants, signal_ty);
@@ -889,35 +894,27 @@ impl Config<'_> {
             }
             writeln!(w, "}}")?;
             writeln!(w)?;
+
+            // Private helper for the `_Other()` fallback above.
+            writeln!(w, "#[inline(always)]")?;
+            let typ = ValType::from_signal(signal);
+            writeln!(w, "fn {fn_name}_phys_val(&self) -> {typ} {{")?;
+            {
+                let mut w = PadAdapter::wrap(w);
+                signal_from_payload(&mut w, signal, msg).context("signal from payload")?;
+            }
+            writeln!(w, "}}")?;
+            writeln!(w)?;
         } else {
             let typ = ValType::from_signal(signal);
             writeln!(w, "pub fn {fn_name}(&self) -> {typ} {{")?;
             {
                 let mut w = PadAdapter::wrap(w);
-                writeln!(w, "self.{fn_name}_phys_val()")?;
+                signal_from_payload(&mut w, signal, msg).context("signal from payload")?;
             }
             writeln!(w, "}}")?;
             writeln!(w)?;
         }
-
-        writeln!(w, "/// Returns the physical value of `{}`.", signal.name)?;
-        writeln!(w, "///")?;
-        writeln!(w, "/// - Factor: {}", signal.factor)?;
-        writeln!(w, "/// - Offset: {}", signal.offset)?;
-        if signal.unit.is_empty() {
-            writeln!(w, "/// - Unit: Not specified")?;
-        } else {
-            writeln!(w, "/// - Unit: {:?}", signal.unit)?;
-        }
-        writeln!(w, "#[inline(always)]")?;
-        let typ = ValType::from_signal(signal);
-        writeln!(w, "pub fn {fn_name}_phys_val(&self) -> {typ} {{")?;
-        {
-            let mut w = PadAdapter::wrap(w);
-            signal_from_payload(&mut w, signal, msg).context("signal from payload")?;
-        }
-        writeln!(w, "}}")?;
-        writeln!(w)?;
 
         render_raw_accessors(w, signal, msg)?;
 
@@ -1008,31 +1005,21 @@ impl Config<'_> {
         dbc: &Dbc,
         msg: &Message,
     ) -> Result<()> {
-        writeln!(w, "/// Returns the physical value of `{}`.", signal.name)?;
-        writeln!(w, "///")?;
-        writeln!(w, "/// - Factor: {}", signal.factor)?;
-        writeln!(w, "/// - Offset: {}", signal.offset)?;
-        if signal.unit.is_empty() {
-            writeln!(w, "/// - Unit: Not specified")?;
-        } else {
-            writeln!(w, "/// - Unit: {:?}", signal.unit)?;
-        }
-        writeln!(w, "#[inline(always)]")?;
-        let field = signal.field_name();
         let signal_typ = ValType::from_signal(signal);
-        writeln!(w, "pub fn {field}_phys_val(&self) -> {signal_typ} {{")?;
-        {
-            let mut w = PadAdapter::wrap(w);
-            signal_from_payload(&mut w, signal, msg).context("signal from payload")?;
-        }
-        writeln!(w, "}}")?;
-        writeln!(w)?;
 
         render_raw_accessors(w, signal, msg)?;
 
         let field = signal.field_name();
         let typ = multiplex_enum_name(msg, signal)?;
-        writeln!(w, "pub fn {field}(&mut self) -> Result<{typ}, CanError> {{")?;
+        writeln!(
+            w,
+            "/// Selects the active multiplexed sub-message for `{}`.",
+            signal.name
+        )?;
+        writeln!(
+            w,
+            "pub fn {field}_multiplexed(&mut self) -> Result<{typ}, CanError> {{"
+        )?;
 
         let multiplexer_indexes: BTreeSet<u64> = msg
             .signals
@@ -1049,7 +1036,7 @@ impl Config<'_> {
 
         {
             let mut w = PadAdapter::wrap(w);
-            writeln!(w, "match self.{}_phys_val() {{", signal.field_name())?;
+            writeln!(w, "match self.{}_raw_val() {{", signal.field_name())?;
 
             {
                 let mut w = PadAdapter::wrap(&mut w);

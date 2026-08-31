@@ -100,17 +100,10 @@ impl ExampleMessage {
     /// - Max: 270.47
     /// - Unit: "degK"
     /// - Receivers: PCM1, FOO
-    #[inline(always)]
-    pub fn temperature(&self) -> f32 {
-        self.temperature_phys_val()
-    }
-    /// Returns the physical value of `Temperature`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 250
-    /// - Unit: "degK"
     #[inline(always)]
-    pub fn temperature_phys_val(&self) -> f32 {
+    pub fn temperature(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
         let factor = 0.01_f32;
         let offset = 250_f32;
@@ -155,17 +148,10 @@ impl ExampleMessage {
     /// - Max: 5
     /// - Unit: "m"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn average_radius(&self) -> f32 {
-        self.average_radius_phys_val()
-    }
-    /// Returns the physical value of `AverageRadius`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn average_radius_phys_val(&self) -> f32 {
+    pub fn average_radius(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[1..7].load_be::<u8>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -217,13 +203,8 @@ impl ExampleMessage {
             _ => ExampleMessageEnable::_Other(self.enable_phys_val()),
         }
     }
-    /// Returns the physical value of `Enable`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: "-"
     #[inline(always)]
-    pub fn enable_phys_val(&self) -> bool {
+    fn enable_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Msb0>()[0..1].load_be::<u8>();
         signal == 1
     }

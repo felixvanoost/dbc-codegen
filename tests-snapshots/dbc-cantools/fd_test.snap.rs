@@ -100,17 +100,10 @@ impl TestMsgEx {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn test_sig_copy_1(&self) -> i8 {
-        self.test_sig_copy_1_phys_val()
-    }
-    /// Returns the physical value of `TestSig_Copy_1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn test_sig_copy_1_phys_val(&self) -> i8 {
+    pub fn test_sig_copy_1(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -230,17 +223,10 @@ impl TestMsgStd {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn test_sig_copy_3(&self) -> i8 {
-        self.test_sig_copy_3_phys_val()
-    }
-    /// Returns the physical value of `TestSig_Copy_3`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn test_sig_copy_3_phys_val(&self) -> i8 {
+    pub fn test_sig_copy_3(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -360,17 +346,10 @@ impl TestMsgFdStd {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn test_sig_copy_2(&self) -> i8 {
-        self.test_sig_copy_2_phys_val()
-    }
-    /// Returns the physical value of `TestSig_Copy_2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn test_sig_copy_2_phys_val(&self) -> i8 {
+    pub fn test_sig_copy_2(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -490,17 +469,10 @@ impl TestMsgFdEx {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn test_sig(&self) -> i8 {
-        self.test_sig_phys_val()
-    }
-    /// Returns the physical value of `TestSig`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn test_sig_phys_val(&self) -> i8 {
+    pub fn test_sig(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;

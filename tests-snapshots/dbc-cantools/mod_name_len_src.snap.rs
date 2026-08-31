@@ -90,17 +90,10 @@ impl MsgWillBeShortened345678912 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sig_will_be_shortened_3456789_12(&self) -> u8 {
-        self.sig_will_be_shortened_3456789_12_phys_val()
-    }
-    /// Returns the physical value of `Sig_will_be_shortened_3456789_12`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sig_will_be_shortened_3456789_12_phys_val(&self) -> u8 {
+    pub fn sig_will_be_shortened_3456789_12(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[1..9].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)

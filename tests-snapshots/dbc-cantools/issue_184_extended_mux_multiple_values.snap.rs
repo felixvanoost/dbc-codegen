@@ -87,18 +87,6 @@ impl ExtMuxMultipleValues {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Returns the physical value of `MUX`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
-    #[inline(always)]
-    pub fn mux_phys_val(&self) -> i8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
-        let factor = 1;
-        let signal = signal as i8;
-        i8::from(signal).saturating_mul(factor).saturating_add(0)
-    }
     /// Returns the raw value of `MUX`.
     ///
     /// - Start bit: 0
@@ -116,8 +104,9 @@ impl ExtMuxMultipleValues {
         let value = u8::from_ne_bytes(value.to_ne_bytes());
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
-    pub fn mux(&mut self) -> Result<ExtMuxMultipleValuesMuxIndex, CanError> {
-        match self.mux_phys_val() {
+    /// Selects the active multiplexed sub-message for `MUX`.
+    pub fn mux_multiplexed(&mut self) -> Result<ExtMuxMultipleValuesMuxIndex, CanError> {
+        match self.mux_raw_val() {
             0 => {
                 Ok(
                     ExtMuxMultipleValuesMuxIndex::M0(ExtMuxMultipleValuesMuxM0 {
@@ -279,17 +268,10 @@ impl ExtMuxMultipleValuesMuxM0 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn muxed_0_3_4_5(&self) -> i8 {
-        self.muxed_0_3_4_5_phys_val()
-    }
-    /// Returns the physical value of `muxed_0_3_4_5`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn muxed_0_3_4_5_phys_val(&self) -> i8 {
+    pub fn muxed_0_3_4_5(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -363,17 +345,10 @@ impl ExtMuxMultipleValuesMuxM1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn muxed_1(&self) -> i8 {
-        self.muxed_1_phys_val()
-    }
-    /// Returns the physical value of `muxed_1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn muxed_1_phys_val(&self) -> i8 {
+    pub fn muxed_1(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -447,17 +422,10 @@ impl ExtMuxMultipleValuesMuxM2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn muxed_2(&self) -> i8 {
-        self.muxed_2_phys_val()
-    }
-    /// Returns the physical value of `muxed_2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn muxed_2_phys_val(&self) -> i8 {
+    pub fn muxed_2(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;

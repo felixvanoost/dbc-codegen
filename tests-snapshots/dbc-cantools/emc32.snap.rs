@@ -94,17 +94,10 @@ impl EmvStati {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn emv_aktion_status_5(&self) -> bool {
-        self.emv_aktion_status_5_phys_val()
-    }
-    /// Returns the physical value of `EMV_Aktion_Status_5`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn emv_aktion_status_5_phys_val(&self) -> bool {
+    pub fn emv_aktion_status_5(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[4..5].load_le::<u8>();
         signal == 1
     }
@@ -136,17 +129,10 @@ impl EmvStati {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn emv_aktion_status_4(&self) -> bool {
-        self.emv_aktion_status_4_phys_val()
-    }
-    /// Returns the physical value of `EMV_Aktion_Status_4`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn emv_aktion_status_4_phys_val(&self) -> bool {
+    pub fn emv_aktion_status_4(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[3..4].load_le::<u8>();
         signal == 1
     }
@@ -178,17 +164,10 @@ impl EmvStati {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: EMV_Statusmeldungen
-    #[inline(always)]
-    pub fn emv_aktion_status_3(&self) -> bool {
-        self.emv_aktion_status_3_phys_val()
-    }
-    /// Returns the physical value of `EMV_Aktion_Status_3`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn emv_aktion_status_3_phys_val(&self) -> bool {
+    pub fn emv_aktion_status_3(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
@@ -220,17 +199,10 @@ impl EmvStati {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn emv_aktion_status_2(&self) -> bool {
-        self.emv_aktion_status_2_phys_val()
-    }
-    /// Returns the physical value of `EMV_Aktion_Status_2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn emv_aktion_status_2_phys_val(&self) -> bool {
+    pub fn emv_aktion_status_2(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[6..7].load_le::<u8>();
         signal == 1
     }
@@ -262,17 +234,10 @@ impl EmvStati {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn emv_aktion_status_1(&self) -> bool {
-        self.emv_aktion_status_1_phys_val()
-    }
-    /// Returns the physical value of `EMV_Aktion_Status_1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn emv_aktion_status_1_phys_val(&self) -> bool {
+    pub fn emv_aktion_status_1(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[5..6].load_le::<u8>();
         signal == 1
     }

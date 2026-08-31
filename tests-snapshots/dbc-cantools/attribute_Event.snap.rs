@@ -89,17 +89,10 @@ impl Inv2EventMsg1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn the_signal(&self) -> i8 {
-        self.the_signal_phys_val()
-    }
-    /// Returns the physical value of `TheSignal`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn the_signal_phys_val(&self) -> i8 {
+    pub fn the_signal(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;

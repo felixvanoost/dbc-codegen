@@ -90,17 +90,10 @@ impl Foo {
     /// - Max: 270.47
     /// - Unit: "degK"
     /// - Receivers: Receiver
-    #[inline(always)]
-    pub fn foo(&self) -> f32 {
-        self.foo_phys_val()
-    }
-    /// Returns the physical value of `Foo`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 250
-    /// - Unit: "degK"
     #[inline(always)]
-    pub fn foo_phys_val(&self) -> f32 {
+    pub fn foo(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
         let factor = 0.01_f32;
         let offset = 250_f32;
@@ -217,17 +210,10 @@ impl Bar {
     /// - Max: 270.47
     /// - Unit: "degK"
     /// - Receivers: Receiver
-    #[inline(always)]
-    pub fn foo(&self) -> f32 {
-        self.foo_phys_val()
-    }
-    /// Returns the physical value of `Foo`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 250
-    /// - Unit: "degK"
     #[inline(always)]
-    pub fn foo_phys_val(&self) -> f32 {
+    pub fn foo(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
         let factor = 0.01_f32;
         let offset = 250_f32;

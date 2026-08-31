@@ -153,17 +153,10 @@ impl Bremse33 {
     /// - Max: 100
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn whlspeed_fl(&self) -> f32 {
-        self.whlspeed_fl_phys_val()
-    }
-    /// Returns the physical value of `whlspeed_FL`.
-    ///
     /// - Factor: 0.015625
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_fl_phys_val(&self) -> f32 {
+    pub fn whlspeed_fl(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -206,17 +199,10 @@ impl Bremse33 {
     /// - Max: 100
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn whlspeed_fr(&self) -> f32 {
-        self.whlspeed_fr_phys_val()
-    }
-    /// Returns the physical value of `whlspeed_FR`.
-    ///
     /// - Factor: 0.015625
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_fr_phys_val(&self) -> f32 {
+    pub fn whlspeed_fr(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -259,17 +245,10 @@ impl Bremse33 {
     /// - Max: 100
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn whlspeed_rl(&self) -> f32 {
-        self.whlspeed_rl_phys_val()
-    }
-    /// Returns the physical value of `whlspeed_RL`.
-    ///
     /// - Factor: 0.015625
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_rl_phys_val(&self) -> f32 {
+    pub fn whlspeed_rl(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -312,17 +291,10 @@ impl Bremse33 {
     /// - Max: 100
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn whlspeed_rr(&self) -> f32 {
-        self.whlspeed_rr_phys_val()
-    }
-    /// Returns the physical value of `whlspeed_RR`.
-    ///
     /// - Factor: 0.015625
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_rr_phys_val(&self) -> f32 {
+    pub fn whlspeed_rr(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -797,17 +769,10 @@ impl Mm510Tx1 {
     /// - Max: 163.83
     /// - Unit: "°/s"
     /// - Receivers: ABS
-    #[inline(always)]
-    pub fn yaw_rate(&self) -> f32 {
-        self.yaw_rate_phys_val()
-    }
-    /// Returns the physical value of `Yaw_Rate`.
-    ///
     /// - Factor: 0.005
     /// - Offset: -163.84
-    /// - Unit: "°/s"
     #[inline(always)]
-    pub fn yaw_rate_phys_val(&self) -> f32 {
+    pub fn yaw_rate(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.005_f32;
         let offset = -163.84_f32;
@@ -850,17 +815,10 @@ impl Mm510Tx1 {
     /// - Max: 4.1765
     /// - Unit: "g"
     /// - Receivers: ABS
-    #[inline(always)]
-    pub fn ay1(&self) -> f32 {
-        self.ay1_phys_val()
-    }
-    /// Returns the physical value of `AY1`.
-    ///
     /// - Factor: 0.000127465
     /// - Offset: -4.1768
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn ay1_phys_val(&self) -> f32 {
+    pub fn ay1(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 0.000127465_f32;
         let offset = -4.1768_f32;
@@ -980,17 +938,10 @@ impl Mm510Tx2 {
     /// - Max: 163.835
     /// - Unit: "°/s"
     /// - Receivers: ABS
-    #[inline(always)]
-    pub fn roll_rate(&self) -> f32 {
-        self.roll_rate_phys_val()
-    }
-    /// Returns the physical value of `Roll_Rate`.
-    ///
     /// - Factor: 0.005
     /// - Offset: -163.84
-    /// - Unit: "°/s"
     #[inline(always)]
-    pub fn roll_rate_phys_val(&self) -> f32 {
+    pub fn roll_rate(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.005_f32;
         let offset = -163.84_f32;
@@ -1033,17 +984,10 @@ impl Mm510Tx2 {
     /// - Max: 4.1765
     /// - Unit: "g"
     /// - Receivers: ABS
-    #[inline(always)]
-    pub fn ax1(&self) -> f32 {
-        self.ax1_phys_val()
-    }
-    /// Returns the physical value of `AX1`.
-    ///
     /// - Factor: 0.000127465
     /// - Offset: -4.1768
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn ax1_phys_val(&self) -> f32 {
+    pub fn ax1(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 0.000127465_f32;
         let offset = -4.1768_f32;
@@ -1160,17 +1104,10 @@ impl Mm510Tx3 {
     /// - Max: 4.1765
     /// - Unit: "g"
     /// - Receivers: ABS
-    #[inline(always)]
-    pub fn az(&self) -> f32 {
-        self.az_phys_val()
-    }
-    /// Returns the physical value of `AZ`.
-    ///
     /// - Factor: 0.000127465
     /// - Offset: -4.1768
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn az_phys_val(&self) -> f32 {
+    pub fn az(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 0.000127465_f32;
         let offset = -4.1768_f32;
@@ -1301,17 +1238,10 @@ impl Bremse2 {
     /// - Max: 100
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn whlspeed_fl_bremse2(&self) -> f32 {
-        self.whlspeed_fl_bremse2_phys_val()
-    }
-    /// Returns the physical value of `whlspeed_FL_Bremse2`.
-    ///
     /// - Factor: 0.015625
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_fl_bremse2_phys_val(&self) -> f32 {
+    pub fn whlspeed_fl_bremse2(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -1354,17 +1284,10 @@ impl Bremse2 {
     /// - Max: 100
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn whlspeed_fr_bremse2(&self) -> f32 {
-        self.whlspeed_fr_bremse2_phys_val()
-    }
-    /// Returns the physical value of `whlspeed_FR_Bremse2`.
-    ///
     /// - Factor: 0.015625
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_fr_bremse2_phys_val(&self) -> f32 {
+    pub fn whlspeed_fr_bremse2(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -1407,17 +1330,10 @@ impl Bremse2 {
     /// - Max: 100
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn whlspeed_rl_bremse2(&self) -> f32 {
-        self.whlspeed_rl_bremse2_phys_val()
-    }
-    /// Returns the physical value of `whlspeed_RL_Bremse2`.
-    ///
     /// - Factor: 0.015625
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_rl_bremse2_phys_val(&self) -> f32 {
+    pub fn whlspeed_rl_bremse2(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -1460,17 +1376,10 @@ impl Bremse2 {
     /// - Max: 100
     /// - Unit: "m/s"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn whlspeed_rr_bremse2(&self) -> f32 {
-        self.whlspeed_rr_bremse2_phys_val()
-    }
-    /// Returns the physical value of `whlspeed_RR_Bremse2`.
-    ///
     /// - Factor: 0.015625
     /// - Offset: 0
-    /// - Unit: "m/s"
     #[inline(always)]
-    pub fn whlspeed_rr_bremse2_phys_val(&self) -> f32 {
+    pub fn whlspeed_rr_bremse2(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<u16>();
         let factor = 0.015625_f32;
         let offset = 0_f32;
@@ -1586,17 +1495,10 @@ impl AbsSwitch {
     /// - Max: 11
     /// - Unit: Not specified
     /// - Receivers: ABS
-    #[inline(always)]
-    pub fn abs_switchposition(&self) -> u8 {
-        self.abs_switchposition_phys_val()
-    }
-    /// Returns the physical value of `ABS_Switchposition`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn abs_switchposition_phys_val(&self) -> u8 {
+    pub fn abs_switchposition(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1785,17 +1687,10 @@ impl Bremse31 {
     /// - Max: 0
     /// - Unit: "-"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn idle_time(&self) -> u16 {
-        self.idle_time_phys_val()
-    }
-    /// Returns the physical value of `Idle_Time`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "-"
     #[inline(always)]
-    pub fn idle_time_phys_val(&self) -> u16 {
+    pub fn idle_time(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1937,17 +1832,10 @@ impl Bremse32 {
     /// - Max: 10
     /// - Unit: "cm3"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn acc_fa(&self) -> f32 {
-        self.acc_fa_phys_val()
-    }
-    /// Returns the physical value of `acc_FA`.
-    ///
     /// - Factor: 0.05
     /// - Offset: 0
-    /// - Unit: "cm3"
     #[inline(always)]
-    pub fn acc_fa_phys_val(&self) -> f32 {
+    pub fn acc_fa(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 0.05_f32;
         let offset = 0_f32;
@@ -1990,17 +1878,10 @@ impl Bremse32 {
     /// - Max: 10
     /// - Unit: "cm3"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn acc_ra(&self) -> f32 {
-        self.acc_ra_phys_val()
-    }
-    /// Returns the physical value of `acc_RA`.
-    ///
     /// - Factor: 0.05
     /// - Offset: 0
-    /// - Unit: "cm3"
     #[inline(always)]
-    pub fn acc_ra_phys_val(&self) -> f32 {
+    pub fn acc_ra(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 0.05_f32;
         let offset = 0_f32;
@@ -2051,17 +1932,10 @@ impl Bremse32 {
     /// - Max: 32
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn wheel_quality_fl(&self) -> u8 {
-        self.wheel_quality_fl_phys_val()
-    }
-    /// Returns the physical value of `WheelQuality_FL`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn wheel_quality_fl_phys_val(&self) -> u8 {
+    pub fn wheel_quality_fl(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2115,17 +1989,10 @@ impl Bremse32 {
     /// - Max: 32
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn wheel_quality_fr(&self) -> u8 {
-        self.wheel_quality_fr_phys_val()
-    }
-    /// Returns the physical value of `WheelQuality_FR`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn wheel_quality_fr_phys_val(&self) -> u8 {
+    pub fn wheel_quality_fr(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2179,17 +2046,10 @@ impl Bremse32 {
     /// - Max: 32
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn wheel_quality_rl(&self) -> u8 {
-        self.wheel_quality_rl_phys_val()
-    }
-    /// Returns the physical value of `WheelQuality_RL`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn wheel_quality_rl_phys_val(&self) -> u8 {
+    pub fn wheel_quality_rl(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2243,17 +2103,10 @@ impl Bremse32 {
     /// - Max: 32
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn wheel_quality_rr(&self) -> u8 {
-        self.wheel_quality_rr_phys_val()
-    }
-    /// Returns the physical value of `WheelQuality_RR`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn wheel_quality_rr_phys_val(&self) -> u8 {
+    pub fn wheel_quality_rr(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2391,17 +2244,10 @@ impl Bremse51 {
     /// - Max: 4.1736697
     /// - Unit: "g"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ax1_abs_int(&self) -> f32 {
-        self.ax1_abs_int_phys_val()
-    }
-    /// Returns the physical value of `AX1_ABS_int`.
-    ///
     /// - Factor: 0.00012742
     /// - Offset: -4.1768
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn ax1_abs_int_phys_val(&self) -> f32 {
+    pub fn ax1_abs_int(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 0.00012742_f32;
         let offset = -4.1768_f32;
@@ -2444,17 +2290,10 @@ impl Bremse51 {
     /// - Max: 4.1765
     /// - Unit: "g"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ay1_abs_int(&self) -> f32 {
-        self.ay1_abs_int_phys_val()
-    }
-    /// Returns the physical value of `AY1_ABS_int`.
-    ///
     /// - Factor: 0.00012742
     /// - Offset: -4.1768
-    /// - Unit: "g"
     #[inline(always)]
-    pub fn ay1_abs_int_phys_val(&self) -> f32 {
+    pub fn ay1_abs_int(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 0.00012742_f32;
         let offset = -4.1768_f32;
@@ -2497,17 +2336,10 @@ impl Bremse51 {
     /// - Max: 63
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn if_variant(&self) -> u8 {
-        self.if_variant_phys_val()
-    }
-    /// Returns the physical value of `IF_variant`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn if_variant_phys_val(&self) -> u8 {
+    pub fn if_variant(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..54].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2553,17 +2385,10 @@ impl Bremse51 {
     /// - Max: 63
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn if_revision(&self) -> u8 {
-        self.if_revision_phys_val()
-    }
-    /// Returns the physical value of `IF_revision`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn if_revision_phys_val(&self) -> u8 {
+    pub fn if_revision(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[54..60].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2609,17 +2434,10 @@ impl Bremse51 {
     /// - Max: 15
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn if_chksum(&self) -> u8 {
-        self.if_chksum_phys_val()
-    }
-    /// Returns the physical value of `IF_chksum`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn if_chksum_phys_val(&self) -> u8 {
+    pub fn if_chksum(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[60..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2807,17 +2625,6 @@ impl Bremse52 {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Returns the physical value of `Mplx_SW_Info`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
-    #[inline(always)]
-    pub fn mplx_sw_info_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
-    }
     /// Returns the raw value of `Mplx_SW_Info`.
     ///
     /// - Start bit: 0
@@ -2834,8 +2641,11 @@ impl Bremse52 {
     fn set_mplx_sw_info_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
-    pub fn mplx_sw_info(&mut self) -> Result<Bremse52MplxSwInfoIndex, CanError> {
-        match self.mplx_sw_info_phys_val() {
+    /// Selects the active multiplexed sub-message for `Mplx_SW_Info`.
+    pub fn mplx_sw_info_multiplexed(
+        &mut self,
+    ) -> Result<Bremse52MplxSwInfoIndex, CanError> {
+        match self.mplx_sw_info_raw_val() {
             1 => {
                 Ok(
                     Bremse52MplxSwInfoIndex::M1(Bremse52MplxSwInfoM1 {
@@ -3066,17 +2876,10 @@ impl Bremse52MplxSwInfoM1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sw_version_high_upper(&self) -> u8 {
-        self.sw_version_high_upper_phys_val()
-    }
-    /// Returns the physical value of `SW_version_High_upper`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sw_version_high_upper_phys_val(&self) -> u8 {
+    pub fn sw_version_high_upper(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3122,17 +2925,10 @@ impl Bremse52MplxSwInfoM1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sw_version_high_lower(&self) -> u8 {
-        self.sw_version_high_lower_phys_val()
-    }
-    /// Returns the physical value of `SW_version_High_lower`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sw_version_high_lower_phys_val(&self) -> u8 {
+    pub fn sw_version_high_lower(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3178,17 +2974,10 @@ impl Bremse52MplxSwInfoM1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sw_version_mid_upper(&self) -> u8 {
-        self.sw_version_mid_upper_phys_val()
-    }
-    /// Returns the physical value of `SW_version_Mid_upper`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sw_version_mid_upper_phys_val(&self) -> u8 {
+    pub fn sw_version_mid_upper(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3234,17 +3023,10 @@ impl Bremse52MplxSwInfoM1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sw_version_mid_lower(&self) -> u8 {
-        self.sw_version_mid_lower_phys_val()
-    }
-    /// Returns the physical value of `SW_version_Mid_lower`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sw_version_mid_lower_phys_val(&self) -> u8 {
+    pub fn sw_version_mid_lower(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3290,17 +3072,10 @@ impl Bremse52MplxSwInfoM1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sw_version_low_upper(&self) -> u8 {
-        self.sw_version_low_upper_phys_val()
-    }
-    /// Returns the physical value of `SW_version_Low_upper`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sw_version_low_upper_phys_val(&self) -> u8 {
+    pub fn sw_version_low_upper(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3346,17 +3121,10 @@ impl Bremse52MplxSwInfoM1 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sw_version_low_lower(&self) -> u8 {
-        self.sw_version_low_lower_phys_val()
-    }
-    /// Returns the physical value of `SW_version_Low_lower`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sw_version_low_lower_phys_val(&self) -> u8 {
+    pub fn sw_version_low_lower(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3427,17 +3195,10 @@ impl Bremse52MplxSwInfoM2 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn bb_dig1(&self) -> u8 {
-        self.bb_dig1_phys_val()
-    }
-    /// Returns the physical value of `BB_dig1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn bb_dig1_phys_val(&self) -> u8 {
+    pub fn bb_dig1(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3481,17 +3242,10 @@ impl Bremse52MplxSwInfoM2 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn bb_dig2(&self) -> u8 {
-        self.bb_dig2_phys_val()
-    }
-    /// Returns the physical value of `BB_dig2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn bb_dig2_phys_val(&self) -> u8 {
+    pub fn bb_dig2(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3535,17 +3289,10 @@ impl Bremse52MplxSwInfoM2 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn bb_dig3(&self) -> u8 {
-        self.bb_dig3_phys_val()
-    }
-    /// Returns the physical value of `BB_dig3`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn bb_dig3_phys_val(&self) -> u8 {
+    pub fn bb_dig3(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3589,17 +3336,10 @@ impl Bremse52MplxSwInfoM2 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn bb_dig4(&self) -> u8 {
-        self.bb_dig4_phys_val()
-    }
-    /// Returns the physical value of `BB_dig4`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn bb_dig4_phys_val(&self) -> u8 {
+    pub fn bb_dig4(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3643,17 +3383,10 @@ impl Bremse52MplxSwInfoM2 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn bb_dig5(&self) -> u8 {
-        self.bb_dig5_phys_val()
-    }
-    /// Returns the physical value of `BB_dig5`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn bb_dig5_phys_val(&self) -> u8 {
+    pub fn bb_dig5(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3697,17 +3430,10 @@ impl Bremse52MplxSwInfoM2 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn bb_dig6(&self) -> u8 {
-        self.bb_dig6_phys_val()
-    }
-    /// Returns the physical value of `BB_dig6`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn bb_dig6_phys_val(&self) -> u8 {
+    pub fn bb_dig6(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3751,17 +3477,10 @@ impl Bremse52MplxSwInfoM2 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn bb_dig7(&self) -> u8 {
-        self.bb_dig7_phys_val()
-    }
-    /// Returns the physical value of `BB_dig7`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn bb_dig7_phys_val(&self) -> u8 {
+    pub fn bb_dig7(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3832,17 +3551,10 @@ impl Bremse52MplxSwInfoM3 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_id_01(&self) -> u8 {
-        self.appl_id_01_phys_val()
-    }
-    /// Returns the physical value of `Appl_Id_01`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_01_phys_val(&self) -> u8 {
+    pub fn appl_id_01(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3886,17 +3598,10 @@ impl Bremse52MplxSwInfoM3 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_id_02(&self) -> u8 {
-        self.appl_id_02_phys_val()
-    }
-    /// Returns the physical value of `Appl_Id_02`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_02_phys_val(&self) -> u8 {
+    pub fn appl_id_02(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3940,17 +3645,10 @@ impl Bremse52MplxSwInfoM3 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_id_03(&self) -> u8 {
-        self.appl_id_03_phys_val()
-    }
-    /// Returns the physical value of `Appl_Id_03`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_03_phys_val(&self) -> u8 {
+    pub fn appl_id_03(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -3994,17 +3692,10 @@ impl Bremse52MplxSwInfoM3 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_id_04(&self) -> u8 {
-        self.appl_id_04_phys_val()
-    }
-    /// Returns the physical value of `Appl_Id_04`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_04_phys_val(&self) -> u8 {
+    pub fn appl_id_04(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4048,17 +3739,10 @@ impl Bremse52MplxSwInfoM3 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_id_05(&self) -> u8 {
-        self.appl_id_05_phys_val()
-    }
-    /// Returns the physical value of `Appl_Id_05`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_05_phys_val(&self) -> u8 {
+    pub fn appl_id_05(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4102,17 +3786,10 @@ impl Bremse52MplxSwInfoM3 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_id_06(&self) -> u8 {
-        self.appl_id_06_phys_val()
-    }
-    /// Returns the physical value of `Appl_Id_06`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_06_phys_val(&self) -> u8 {
+    pub fn appl_id_06(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4156,17 +3833,10 @@ impl Bremse52MplxSwInfoM3 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_id_07(&self) -> u8 {
-        self.appl_id_07_phys_val()
-    }
-    /// Returns the physical value of `Appl_Id_07`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_07_phys_val(&self) -> u8 {
+    pub fn appl_id_07(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4237,17 +3907,10 @@ impl Bremse52MplxSwInfoM4 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_id_08(&self) -> u8 {
-        self.appl_id_08_phys_val()
-    }
-    /// Returns the physical value of `Appl_Id_08`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_08_phys_val(&self) -> u8 {
+    pub fn appl_id_08(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4291,17 +3954,10 @@ impl Bremse52MplxSwInfoM4 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_id_09(&self) -> u8 {
-        self.appl_id_09_phys_val()
-    }
-    /// Returns the physical value of `Appl_Id_09`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_09_phys_val(&self) -> u8 {
+    pub fn appl_id_09(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4345,17 +4001,10 @@ impl Bremse52MplxSwInfoM4 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_id_10(&self) -> u8 {
-        self.appl_id_10_phys_val()
-    }
-    /// Returns the physical value of `Appl_Id_10`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_10_phys_val(&self) -> u8 {
+    pub fn appl_id_10(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4399,17 +4048,10 @@ impl Bremse52MplxSwInfoM4 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_id_11(&self) -> u8 {
-        self.appl_id_11_phys_val()
-    }
-    /// Returns the physical value of `Appl_Id_11`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_11_phys_val(&self) -> u8 {
+    pub fn appl_id_11(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4453,17 +4095,10 @@ impl Bremse52MplxSwInfoM4 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_id_12(&self) -> u8 {
-        self.appl_id_12_phys_val()
-    }
-    /// Returns the physical value of `Appl_Id_12`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_12_phys_val(&self) -> u8 {
+    pub fn appl_id_12(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4507,17 +4142,10 @@ impl Bremse52MplxSwInfoM4 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_id_13(&self) -> u8 {
-        self.appl_id_13_phys_val()
-    }
-    /// Returns the physical value of `Appl_Id_13`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_13_phys_val(&self) -> u8 {
+    pub fn appl_id_13(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4561,17 +4189,10 @@ impl Bremse52MplxSwInfoM4 {
     /// - Max: 255
     /// - Unit: "ASCII"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_id_14(&self) -> u8 {
-        self.appl_id_14_phys_val()
-    }
-    /// Returns the physical value of `Appl_Id_14`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "ASCII"
     #[inline(always)]
-    pub fn appl_id_14_phys_val(&self) -> u8 {
+    pub fn appl_id_14(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4644,17 +4265,10 @@ impl Bremse52MplxSwInfoM5 {
     /// - Max: 99
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_date_01(&self) -> u8 {
-        self.appl_date_01_phys_val()
-    }
-    /// Returns the physical value of `Appl_date_01`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn appl_date_01_phys_val(&self) -> u8 {
+    pub fn appl_date_01(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4700,17 +4314,10 @@ impl Bremse52MplxSwInfoM5 {
     /// - Max: 12
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_date_02(&self) -> u8 {
-        self.appl_date_02_phys_val()
-    }
-    /// Returns the physical value of `Appl_date_02`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn appl_date_02_phys_val(&self) -> u8 {
+    pub fn appl_date_02(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4756,17 +4363,10 @@ impl Bremse52MplxSwInfoM5 {
     /// - Max: 31
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_date_03(&self) -> u8 {
-        self.appl_date_03_phys_val()
-    }
-    /// Returns the physical value of `Appl_date_03`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn appl_date_03_phys_val(&self) -> u8 {
+    pub fn appl_date_03(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4812,17 +4412,10 @@ impl Bremse52MplxSwInfoM5 {
     /// - Max: 24
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_date_04(&self) -> u8 {
-        self.appl_date_04_phys_val()
-    }
-    /// Returns the physical value of `Appl_date_04`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn appl_date_04_phys_val(&self) -> u8 {
+    pub fn appl_date_04(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4868,17 +4461,10 @@ impl Bremse52MplxSwInfoM5 {
     /// - Max: 59
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_date_05(&self) -> u8 {
-        self.appl_date_05_phys_val()
-    }
-    /// Returns the physical value of `Appl_date_05`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn appl_date_05_phys_val(&self) -> u8 {
+    pub fn appl_date_05(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[40..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -4924,17 +4510,10 @@ impl Bremse52MplxSwInfoM5 {
     /// - Max: 59
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn appl_date_06(&self) -> u8 {
-        self.appl_date_06_phys_val()
-    }
-    /// Returns the physical value of `Appl_date_06`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn appl_date_06_phys_val(&self) -> u8 {
+    pub fn appl_date_06(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[48..56].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5005,17 +4584,10 @@ impl Bremse52MplxSwInfoM6 {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sw_can_ident(&self) -> u8 {
-        self.sw_can_ident_phys_val()
-    }
-    /// Returns the physical value of `SW_CAN_ident`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sw_can_ident_phys_val(&self) -> u8 {
+    pub fn sw_can_ident(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5086,17 +4658,10 @@ impl Bremse52MplxSwInfoM7 {
     /// - Max: 99
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn hu_date_year(&self) -> u8 {
-        self.hu_date_year_phys_val()
-    }
-    /// Returns the physical value of `HU_date_year`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn hu_date_year_phys_val(&self) -> u8 {
+    pub fn hu_date_year(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5140,17 +4705,10 @@ impl Bremse52MplxSwInfoM7 {
     /// - Max: 12
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn hu_date_month(&self) -> u8 {
-        self.hu_date_month_phys_val()
-    }
-    /// Returns the physical value of `HU_date_month`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn hu_date_month_phys_val(&self) -> u8 {
+    pub fn hu_date_month(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5194,17 +4752,10 @@ impl Bremse52MplxSwInfoM7 {
     /// - Max: 31
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn hu_date_day(&self) -> u8 {
-        self.hu_date_day_phys_val()
-    }
-    /// Returns the physical value of `HU_date_day`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn hu_date_day_phys_val(&self) -> u8 {
+    pub fn hu_date_day(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5248,17 +4799,10 @@ impl Bremse52MplxSwInfoM7 {
     /// - Max: 99999
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ecu_serial(&self) -> u32 {
-        self.ecu_serial_phys_val()
-    }
-    /// Returns the physical value of `Ecu_serial`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ecu_serial_phys_val(&self) -> u32 {
+    pub fn ecu_serial(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5354,17 +4898,10 @@ impl Bremse50 {
     /// - Max: 100
     /// - Unit: "Bar"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn brake_bal_at50(&self) -> f32 {
-        self.brake_bal_at50_phys_val()
-    }
-    /// Returns the physical value of `Brake_bal_at50`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: "Bar"
     #[inline(always)]
-    pub fn brake_bal_at50_phys_val(&self) -> f32 {
+    pub fn brake_bal_at50(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5407,17 +4944,10 @@ impl Bremse50 {
     /// - Max: 100
     /// - Unit: "Bar"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn brake_bal_at50_advice(&self) -> u8 {
-        self.brake_bal_at50_advice_phys_val()
-    }
-    /// Returns the physical value of `Brake_bal_at50_advice`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "Bar"
     #[inline(always)]
-    pub fn brake_bal_at50_advice_phys_val(&self) -> u8 {
+    pub fn brake_bal_at50_advice(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5463,17 +4993,10 @@ impl Bremse50 {
     /// - Max: 100
     /// - Unit: "%"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn brake_bal_pct(&self) -> f32 {
-        self.brake_bal_pct_phys_val()
-    }
-    /// Returns the physical value of `Brake_bal_pct`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: "%"
     #[inline(always)]
-    pub fn brake_bal_pct_phys_val(&self) -> f32 {
+    pub fn brake_bal_pct(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -5516,17 +5039,10 @@ impl Bremse50 {
     /// - Max: 100
     /// - Unit: "%"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn brake_bal_pct_advice(&self) -> u8 {
-        self.brake_bal_pct_advice_phys_val()
-    }
-    /// Returns the physical value of `Brake_bal_pct_advice`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: "%"
     #[inline(always)]
-    pub fn brake_bal_pct_advice_phys_val(&self) -> u8 {
+    pub fn brake_bal_pct_advice(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[56..64].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5702,17 +5218,10 @@ impl Bremse53 {
     /// - Max: 12
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn switch_position(&self) -> u8 {
-        self.switch_position_phys_val()
-    }
-    /// Returns the physical value of `SwitchPosition`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn switch_position_phys_val(&self) -> u8 {
+    pub fn switch_position(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5758,17 +5267,10 @@ impl Bremse53 {
     /// - Max: 425
     /// - Unit: "bar"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn p_fa(&self) -> f32 {
-        self.p_fa_phys_val()
-    }
-    /// Returns the physical value of `P_FA`.
-    ///
     /// - Factor: 0.01526
     /// - Offset: 0
-    /// - Unit: "bar"
     #[inline(always)]
-    pub fn p_fa_phys_val(&self) -> f32 {
+    pub fn p_fa(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[8..24].load_le::<i16>();
         let factor = 0.01526_f32;
         let offset = 0_f32;
@@ -5813,17 +5315,10 @@ impl Bremse53 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn bls(&self) -> bool {
-        self.bls_phys_val()
-    }
-    /// Returns the physical value of `BLS`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn bls_phys_val(&self) -> bool {
+    pub fn bls(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[24..25].load_le::<u8>();
         signal == 1
     }
@@ -5855,17 +5350,10 @@ impl Bremse53 {
     /// - Max: 3
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn bremse_53_cnt(&self) -> u8 {
-        self.bremse_53_cnt_phys_val()
-    }
-    /// Returns the physical value of `Bremse_53_cnt`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn bremse_53_cnt_phys_val(&self) -> u8 {
+    pub fn bremse_53_cnt(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[26..28].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -5911,17 +5399,10 @@ impl Bremse53 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn abs_malfunction(&self) -> bool {
-        self.abs_malfunction_phys_val()
-    }
-    /// Returns the physical value of `ABS_Malfunction`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn abs_malfunction_phys_val(&self) -> bool {
+    pub fn abs_malfunction(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[28..29].load_le::<u8>();
         signal == 1
     }
@@ -5955,17 +5436,10 @@ impl Bremse53 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn abs_active(&self) -> bool {
-        self.abs_active_phys_val()
-    }
-    /// Returns the physical value of `ABS_Active`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn abs_active_phys_val(&self) -> bool {
+    pub fn abs_active(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[29..30].load_le::<u8>();
         signal == 1
     }
@@ -5999,17 +5473,10 @@ impl Bremse53 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn ebd_lamp(&self) -> bool {
-        self.ebd_lamp_phys_val()
-    }
-    /// Returns the physical value of `EBD_Lamp`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn ebd_lamp_phys_val(&self) -> bool {
+    pub fn ebd_lamp(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[30..31].load_le::<u8>();
         signal == 1
     }
@@ -6043,17 +5510,10 @@ impl Bremse53 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn abs_lamp(&self) -> bool {
-        self.abs_lamp_phys_val()
-    }
-    /// Returns the physical value of `ABS_Lamp`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn abs_lamp_phys_val(&self) -> bool {
+    pub fn abs_lamp(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[31..32].load_le::<u8>();
         signal == 1
     }
@@ -6098,13 +5558,8 @@ impl Bremse53 {
             _ => Bremse53DiagFl::_Other(self.diag_fl_phys_val()),
         }
     }
-    /// Returns the physical value of `Diag_FL`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn diag_fl_phys_val(&self) -> u8 {
+    fn diag_fl_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[32..34].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -6162,13 +5617,8 @@ impl Bremse53 {
             _ => Bremse53DiagFr::_Other(self.diag_fr_phys_val()),
         }
     }
-    /// Returns the physical value of `Diag_FR`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn diag_fr_phys_val(&self) -> u8 {
+    fn diag_fr_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[34..36].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -6226,13 +5676,8 @@ impl Bremse53 {
             _ => Bremse53DiagRl::_Other(self.diag_rl_phys_val()),
         }
     }
-    /// Returns the physical value of `Diag_RL`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn diag_rl_phys_val(&self) -> u8 {
+    fn diag_rl_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[36..38].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -6290,13 +5735,8 @@ impl Bremse53 {
             _ => Bremse53DiagRr::_Other(self.diag_rr_phys_val()),
         }
     }
-    /// Returns the physical value of `Diag_RR`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn diag_rr_phys_val(&self) -> u8 {
+    fn diag_rr_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[38..40].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -6343,17 +5783,10 @@ impl Bremse53 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn diag_abs_unit(&self) -> bool {
-        self.diag_abs_unit_phys_val()
-    }
-    /// Returns the physical value of `Diag_ABSUnit`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn diag_abs_unit_phys_val(&self) -> bool {
+    pub fn diag_abs_unit(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[40..41].load_le::<u8>();
         signal == 1
     }
@@ -6387,17 +5820,10 @@ impl Bremse53 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn diag_fuse_valve(&self) -> bool {
-        self.diag_fuse_valve_phys_val()
-    }
-    /// Returns the physical value of `Diag_FuseValve`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn diag_fuse_valve_phys_val(&self) -> bool {
+    pub fn diag_fuse_valve(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[41..42].load_le::<u8>();
         signal == 1
     }
@@ -6431,17 +5857,10 @@ impl Bremse53 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn diag_fuse_pump(&self) -> bool {
-        self.diag_fuse_pump_phys_val()
-    }
-    /// Returns the physical value of `Diag_FusePump`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn diag_fuse_pump_phys_val(&self) -> bool {
+    pub fn diag_fuse_pump(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[42..43].load_le::<u8>();
         signal == 1
     }
@@ -6475,17 +5894,10 @@ impl Bremse53 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn diag_p_fa(&self) -> bool {
-        self.diag_p_fa_phys_val()
-    }
-    /// Returns the physical value of `Diag_P_FA`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn diag_p_fa_phys_val(&self) -> bool {
+    pub fn diag_p_fa(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[43..44].load_le::<u8>();
         signal == 1
     }
@@ -6519,17 +5931,10 @@ impl Bremse53 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn diag_p_ra(&self) -> bool {
-        self.diag_p_ra_phys_val()
-    }
-    /// Returns the physical value of `Diag_P_RA`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn diag_p_ra_phys_val(&self) -> bool {
+    pub fn diag_p_ra(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[44..45].load_le::<u8>();
         signal == 1
     }
@@ -6563,17 +5968,10 @@ impl Bremse53 {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn diag_yrs(&self) -> bool {
-        self.diag_yrs_phys_val()
-    }
-    /// Returns the physical value of `Diag_YRS`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn diag_yrs_phys_val(&self) -> bool {
+    pub fn diag_yrs(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[45..46].load_le::<u8>();
         signal == 1
     }
@@ -6617,13 +6015,8 @@ impl Bremse53 {
             _ => Bremse53AbsFaultInfo::_Other(self.abs_fault_info_phys_val()),
         }
     }
-    /// Returns the physical value of `ABS_fault_info`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn abs_fault_info_phys_val(&self) -> u8 {
+    fn abs_fault_info_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[46..48].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -6673,17 +6066,10 @@ impl Bremse53 {
     /// - Max: 425
     /// - Unit: "bar"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn p_ra(&self) -> f32 {
-        self.p_ra_phys_val()
-    }
-    /// Returns the physical value of `P_RA`.
-    ///
     /// - Factor: 0.01526
     /// - Offset: 0
-    /// - Unit: "bar"
     #[inline(always)]
-    pub fn p_ra_phys_val(&self) -> f32 {
+    pub fn p_ra(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.01526_f32;
         let offset = 0_f32;

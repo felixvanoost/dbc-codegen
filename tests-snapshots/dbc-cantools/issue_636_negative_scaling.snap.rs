@@ -99,13 +99,8 @@ impl ExampleMessage {
             _ => ExampleMessageTemperature::_Other(self.temperature_phys_val()),
         }
     }
-    /// Returns the physical value of `Temperature`.
-    ///
-    /// - Factor: -0.01
-    /// - Offset: 4100
-    /// - Unit: "degK"
     #[inline(always)]
-    pub fn temperature_phys_val(&self) -> f32 {
+    fn temperature_phys_val(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[4..16].load_be::<u16>();
         let factor = -0.01_f32;
         let offset = 4100_f32;

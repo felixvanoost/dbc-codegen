@@ -107,17 +107,10 @@ impl Aft1psi2 {
     /// - Max: 6425.5
     /// - Unit: "ohm"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn htr_res(&self) -> f32 {
-        self.htr_res_phys_val()
-    }
-    /// Returns the physical value of `HtrRes`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: "ohm"
     #[inline(always)]
-    pub fn htr_res_phys_val(&self) -> f32 {
+    pub fn htr_res(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[40..56].load_le::<u16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -158,17 +151,10 @@ impl Aft1psi2 {
     /// - Max: 62500
     /// - Unit: "kohm"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn max_res(&self) -> u32 {
-        self.max_res_phys_val()
-    }
-    /// Returns the physical value of `MaxRes`.
-    ///
     /// - Factor: 250
     /// - Offset: 0
-    /// - Unit: "kohm"
     #[inline(always)]
-    pub fn max_res_phys_val(&self) -> u32 {
+    pub fn max_res(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         let factor = 250;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
@@ -212,17 +198,10 @@ impl Aft1psi2 {
     /// - Max: 1734.96875
     /// - Unit: "ï¿½C"
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn temp(&self) -> f32 {
-        self.temp_phys_val()
-    }
-    /// Returns the physical value of `Temp`.
-    ///
     /// - Factor: 0.03125
     /// - Offset: -273
-    /// - Unit: "ï¿½C"
     #[inline(always)]
-    pub fn temp_phys_val(&self) -> f32 {
+    pub fn temp(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
         let factor = 0.03125_f32;
         let offset = -273_f32;
@@ -263,17 +242,10 @@ impl Aft1psi2 {
     /// - Max: 250
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn regen_failed_count(&self) -> u8 {
-        self.regen_failed_count_phys_val()
-    }
-    /// Returns the physical value of `RegenFailedCount`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn regen_failed_count_phys_val(&self) -> u8 {
+    pub fn regen_failed_count(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -317,17 +289,10 @@ impl Aft1psi2 {
     /// - Max: 3
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn pwr_supply(&self) -> u8 {
-        self.pwr_supply_phys_val()
-    }
-    /// Returns the physical value of `PwrSupply`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn pwr_supply_phys_val(&self) -> u8 {
+    pub fn pwr_supply(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[4..6].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -371,17 +336,10 @@ impl Aft1psi2 {
     /// - Max: 15
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn detection_status(&self) -> u8 {
-        self.detection_status_phys_val()
-    }
-    /// Returns the physical value of `DetectionStatus`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn detection_status_phys_val(&self) -> u8 {
+    pub fn detection_status(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..4].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)

@@ -98,13 +98,8 @@ impl TestMessage {
             }
         }
     }
-    /// Returns the physical value of `SignalWithChoices`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal_with_choices_phys_val(&self) -> bool {
+    fn signal_with_choices_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }

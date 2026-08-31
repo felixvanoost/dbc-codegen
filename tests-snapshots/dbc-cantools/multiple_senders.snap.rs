@@ -86,17 +86,10 @@ impl Bar {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: FUM
-    #[inline(always)]
-    pub fn binary32(&self) -> i32 {
-        self.binary32_phys_val()
-    }
-    /// Returns the physical value of `Binary32`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn binary32_phys_val(&self) -> i32 {
+    pub fn binary32(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 1;
         let signal = signal as i32;

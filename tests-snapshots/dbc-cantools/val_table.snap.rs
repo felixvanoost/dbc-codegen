@@ -94,13 +94,8 @@ impl Message1 {
             _ => Message1Signal1::_Other(self.signal1_phys_val()),
         }
     }
-    /// Returns the physical value of `Signal1`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal1_phys_val(&self) -> i8 {
+    fn signal1_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;

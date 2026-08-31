@@ -91,17 +91,10 @@ impl MyMsg {
     /// - Max: 127
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn my_extra_sig_with_plus(&self) -> i16 {
-        self.my_extra_sig_with_plus_phys_val()
-    }
-    /// Returns the physical value of `myExtraSigWithPlus`.
-    ///
     /// - Factor: 1
     /// - Offset: -128
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn my_extra_sig_with_plus_phys_val(&self) -> i16 {
+    pub fn my_extra_sig_with_plus(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         i16::from(signal).saturating_mul(factor).saturating_sub(128)
@@ -147,17 +140,10 @@ impl MyMsg {
     /// - Max: 127
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn my_normal_sig(&self) -> i16 {
-        self.my_normal_sig_phys_val()
-    }
-    /// Returns the physical value of `myNormalSig`.
-    ///
     /// - Factor: 1
     /// - Offset: -128
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn my_normal_sig_phys_val(&self) -> i16 {
+    pub fn my_normal_sig(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         i16::from(signal).saturating_mul(factor).saturating_sub(128)

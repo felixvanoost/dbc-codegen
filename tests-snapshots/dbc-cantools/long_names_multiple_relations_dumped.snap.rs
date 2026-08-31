@@ -136,17 +136,10 @@ impl MsgLongName5678912345678912 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn rx_twice_short(&self) -> i32 {
-        self.rx_twice_short_phys_val()
-    }
-    /// Returns the physical value of `rx_twice_short`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn rx_twice_short_phys_val(&self) -> i32 {
+    pub fn rx_twice_short(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..34].load_le::<i32>();
         let factor = 1;
         let signal = signal as i32;
@@ -193,17 +186,10 @@ impl MsgLongName5678912345678912 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn rx_twice_11111111111111111111111(&self) -> i8 {
-        self.rx_twice_11111111111111111111111_phys_val()
-    }
-    /// Returns the physical value of `rx_twice_11111111111111111111111`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn rx_twice_11111111111111111111111_phys_val(&self) -> i8 {
+    pub fn rx_twice_11111111111111111111111(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -253,17 +239,10 @@ impl MsgLongName5678912345678912 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefghi_ab(&self) -> i8 {
-        self.sig_used_twice_efgh_abcdefghi_ab_phys_val()
-    }
-    /// Returns the physical value of `Sig_used_twice_efgh_abcdefghi_ab`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefghi_ab_phys_val(&self) -> i8 {
+    pub fn sig_used_twice_efgh_abcdefghi_ab(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..6].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -393,17 +372,10 @@ impl TxTwice {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Receiver_1, Receiver_2_zzzzzzzzzzzzzzzzzzzzz
-    #[inline(always)]
-    pub fn rx_twice_long_yyyyyyyyyyyyyyyyyy(&self) -> i8 {
-        self.rx_twice_long_yyyyyyyyyyyyyyyyyy_phys_val()
-    }
-    /// Returns the physical value of `rx_twice_long_yyyyyyyyyyyyyyyyyy`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn rx_twice_long_yyyyyyyyyyyyyyyyyy_phys_val(&self) -> i8 {
+    pub fn rx_twice_long_yyyyyyyyyyyyyyyyyy(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -453,17 +425,10 @@ impl TxTwice {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Receiver_2_zzzzzzzzzzzzzzzzzzzzz, Receiver_1
-    #[inline(always)]
-    pub fn rx_twice_short(&self) -> i8 {
-        self.rx_twice_short_phys_val()
-    }
-    /// Returns the physical value of `rx_twice_short`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn rx_twice_short_phys_val(&self) -> i8 {
+    pub fn rx_twice_short(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -584,17 +549,10 @@ impl RxTx1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefg_0000(&self) -> i16 {
-        self.sig_used_twice_efgh_abcdefg_0000_phys_val()
-    }
-    /// Returns the physical value of `Sig_used_twice_efgh_abcdefg_0000`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefg_0000_phys_val(&self) -> i16 {
+    pub fn sig_used_twice_efgh_abcdefg_0000(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..9].load_le::<i16>();
         let factor = 1;
         let signal = signal as i16;
@@ -884,13 +842,8 @@ impl MsgWithValueTableSigs {
             }
         }
     }
-    /// Returns the physical value of `Sig_with_short_val_table`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sig_with_short_val_table_phys_val(&self) -> i8 {
+    fn sig_with_short_val_table_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -968,13 +921,8 @@ impl MsgWithValueTableSigs {
             }
         }
     }
-    /// Returns the physical value of `Sig_with_long_val_table_2`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sig_with_long_val_table_2_phys_val(&self) -> i8 {
+    fn sig_with_long_val_table_2_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -1042,13 +990,8 @@ impl MsgWithValueTableSigs {
             }
         }
     }
-    /// Returns the physical value of `Sig_with_long_val_table_1`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sig_with_long_val_table_1_phys_val(&self) -> i8 {
+    fn sig_with_long_val_table_1_phys_val(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -1285,17 +1228,10 @@ impl MsgLongName5678912345670000 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn rx_twice_11111111111111111111111(&self) -> i8 {
-        self.rx_twice_11111111111111111111111_phys_val()
-    }
-    /// Returns the physical value of `rx_twice_11111111111111111111111`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn rx_twice_11111111111111111111111_phys_val(&self) -> i8 {
+    pub fn rx_twice_11111111111111111111111(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..10].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -1345,17 +1281,10 @@ impl MsgLongName5678912345670000 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefg_0001(&self) -> i8 {
-        self.sig_used_twice_efgh_abcdefg_0001_phys_val()
-    }
-    /// Returns the physical value of `Sig_used_twice_efgh_abcdefg_0001`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefg_0001_phys_val(&self) -> i8 {
+    pub fn sig_used_twice_efgh_abcdefg_0001(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -1484,17 +1413,10 @@ impl MsgLongName5678912345670001 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn rx_twice_short(&self) -> i8 {
-        self.rx_twice_short_phys_val()
-    }
-    /// Returns the physical value of `rx_twice_short`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn rx_twice_short_phys_val(&self) -> i8 {
+    pub fn rx_twice_short(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -1541,17 +1463,10 @@ impl MsgLongName5678912345670001 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefg_0002(&self) -> i8 {
-        self.sig_used_twice_efgh_abcdefg_0002_phys_val()
-    }
-    /// Returns the physical value of `Sig_used_twice_efgh_abcdefg_0002`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sig_used_twice_efgh_abcdefg_0002_phys_val(&self) -> i8 {
+    pub fn sig_used_twice_efgh_abcdefg_0002(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..6].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;

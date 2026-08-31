@@ -149,13 +149,8 @@ impl DriverDoorStatus {
             }
         }
     }
-    /// Returns the physical value of `DriverDoorOpened`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn driver_door_opened_phys_val(&self) -> bool {
+    fn driver_door_opened_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Msb0>()[7..8].load_be::<u8>();
         signal == 1
     }
@@ -308,17 +303,10 @@ impl Chime {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: GMLAN
-    #[inline(always)]
-    pub fn chime_type(&self) -> u8 {
-        self.chime_type_phys_val()
-    }
-    /// Returns the physical value of `ChimeType`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn chime_type_phys_val(&self) -> u8 {
+    pub fn chime_type(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[0..8].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -362,17 +350,10 @@ impl Chime {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: GMLAN
-    #[inline(always)]
-    pub fn chime_repeat(&self) -> u8 {
-        self.chime_repeat_phys_val()
-    }
-    /// Returns the physical value of `ChimeRepeat`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn chime_repeat_phys_val(&self) -> u8 {
+    pub fn chime_repeat(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[16..24].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -416,17 +397,10 @@ impl Chime {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: GMLAN
-    #[inline(always)]
-    pub fn chime_duration(&self) -> u8 {
-        self.chime_duration_phys_val()
-    }
-    /// Returns the physical value of `ChimeDuration`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn chime_duration_phys_val(&self) -> u8 {
+    pub fn chime_duration(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[8..16].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -470,17 +444,10 @@ impl Chime {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: GMLAN
-    #[inline(always)]
-    pub fn chime_byte5(&self) -> u8 {
-        self.chime_byte5_phys_val()
-    }
-    /// Returns the physical value of `ChimeByte5`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn chime_byte5_phys_val(&self) -> u8 {
+    pub fn chime_byte5(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[32..40].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -524,17 +491,10 @@ impl Chime {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: GMLAN
-    #[inline(always)]
-    pub fn chime_byte4(&self) -> u8 {
-        self.chime_byte4_phys_val()
-    }
-    /// Returns the physical value of `ChimeByte4`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn chime_byte4_phys_val(&self) -> u8 {
+    pub fn chime_byte4(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[24..32].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -665,13 +625,8 @@ impl BlinkerStatus {
             _ => BlinkerStatusRightBlinker::_Other(self.right_blinker_phys_val()),
         }
     }
-    /// Returns the physical value of `RightBlinker`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn right_blinker_phys_val(&self) -> bool {
+    fn right_blinker_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Msb0>()[1..2].load_be::<u8>();
         signal == 1
     }
@@ -716,13 +671,8 @@ impl BlinkerStatus {
             _ => BlinkerStatusLeftBlinker::_Other(self.left_blinker_phys_val()),
         }
     }
-    /// Returns the physical value of `LeftBlinker`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn left_blinker_phys_val(&self) -> bool {
+    fn left_blinker_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Msb0>()[0..1].load_be::<u8>();
         signal == 1
     }
@@ -767,13 +717,8 @@ impl BlinkerStatus {
             _ => BlinkerStatusBlinkerLight::_Other(self.blinker_light_phys_val()),
         }
     }
-    /// Returns the physical value of `BlinkerLight`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn blinker_light_phys_val(&self) -> bool {
+    fn blinker_light_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Msb0>()[30..31].load_be::<u8>();
         signal == 1
     }
@@ -958,17 +903,10 @@ impl SteeringWheelAngle {
     /// - Max: 540
     /// - Unit: "deg"
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn steering_wheel_angle(&self) -> f32 {
-        self.steering_wheel_angle_phys_val()
-    }
-    /// Returns the physical value of `SteeringWheelAngle`.
-    ///
     /// - Factor: 0.0625
     /// - Offset: 0
-    /// - Unit: "deg"
     #[inline(always)]
-    pub fn steering_wheel_angle_phys_val(&self) -> f32 {
+    pub fn steering_wheel_angle(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[32..48].load_be::<i16>();
         let factor = 0.0625_f32;
         let offset = 0_f32;
@@ -1094,13 +1032,8 @@ impl GearShifter {
             _ => GearShifterGearShifter::_Other(self.gear_shifter_phys_val()),
         }
     }
-    /// Returns the physical value of `GearShifter`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn gear_shifter_phys_val(&self) -> u8 {
+    fn gear_shifter_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[22..24].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1320,13 +1253,8 @@ impl GasPedalRegenCruise {
             }
         }
     }
-    /// Returns the physical value of `CruiseControlActive`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn cruise_control_active_phys_val(&self) -> bool {
+    fn cruise_control_active_phys_val(&self) -> bool {
         let signal = self.raw.view_bits::<Msb0>()[63..64].load_be::<u8>();
         signal == 1
     }
@@ -1362,17 +1290,10 @@ impl GasPedalRegenCruise {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: GMLAN, NEO
-    #[inline(always)]
-    pub fn max_regen(&self) -> bool {
-        self.max_regen_phys_val()
-    }
-    /// Returns the physical value of `MaxRegen`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn max_regen_phys_val(&self) -> bool {
+    pub fn max_regen(&self) -> bool {
         let signal = self.raw.view_bits::<Msb0>()[11..12].load_be::<u8>();
         signal == 1
     }
@@ -1404,17 +1325,10 @@ impl GasPedalRegenCruise {
     /// - Max: 254
     /// - Unit: Not specified
     /// - Receivers: GMLAN, NEO
-    #[inline(always)]
-    pub fn gas_pedal(&self) -> u8 {
-        self.gas_pedal_phys_val()
-    }
-    /// Returns the physical value of `GasPedal`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn gas_pedal_phys_val(&self) -> u8 {
+    pub fn gas_pedal(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[40..48].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1458,17 +1372,10 @@ impl GasPedalRegenCruise {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: GMLAN, NEO
-    #[inline(always)]
-    pub fn gear_shifter2_not_used(&self) -> u8 {
-        self.gear_shifter2_not_used_phys_val()
-    }
-    /// Returns the physical value of `GearShifter2NotUsed`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn gear_shifter2_not_used_phys_val(&self) -> u8 {
+    pub fn gear_shifter2_not_used(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[48..56].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1614,17 +1521,10 @@ impl BrakePedal {
     /// - Max: 3
     /// - Unit: Not specified
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn brake_level(&self) -> u8 {
-        self.brake_level_phys_val()
-    }
-    /// Returns the physical value of `BrakeLevel`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn brake_level_phys_val(&self) -> u8 {
+    pub fn brake_level(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[5..7].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1668,17 +1568,10 @@ impl BrakePedal {
     /// - Max: 255
     /// - Unit: Not specified
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn brake_sensor(&self) -> u8 {
-        self.brake_sensor_phys_val()
-    }
-    /// Returns the physical value of `BrakeSensor`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn brake_sensor_phys_val(&self) -> u8 {
+    pub fn brake_sensor(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[8..16].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -1810,17 +1703,10 @@ impl WheelSpeed {
     /// - Max: 70
     /// - Unit: "yd/s"
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn wheel_speed_fl(&self) -> f32 {
-        self.wheel_speed_fl_phys_val()
-    }
-    /// Returns the physical value of `WheelSpeedFL`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "yd/s"
     #[inline(always)]
-    pub fn wheel_speed_fl_phys_val(&self) -> f32 {
+    pub fn wheel_speed_fl(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -1861,17 +1747,10 @@ impl WheelSpeed {
     /// - Max: 70
     /// - Unit: "yd/s"
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn wheel_speed_fr(&self) -> f32 {
-        self.wheel_speed_fr_phys_val()
-    }
-    /// Returns the physical value of `WheelSpeedFR`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "yd/s"
     #[inline(always)]
-    pub fn wheel_speed_fr_phys_val(&self) -> f32 {
+    pub fn wheel_speed_fr(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[32..48].load_be::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -1912,17 +1791,10 @@ impl WheelSpeed {
     /// - Max: 70
     /// - Unit: "yd/s"
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn wheel_speed_rl(&self) -> f32 {
-        self.wheel_speed_rl_phys_val()
-    }
-    /// Returns the physical value of `WheelSpeedRL`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "yd/s"
     #[inline(always)]
-    pub fn wheel_speed_rl_phys_val(&self) -> f32 {
+    pub fn wheel_speed_rl(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[16..32].load_be::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -1963,17 +1835,10 @@ impl WheelSpeed {
     /// - Max: 70
     /// - Unit: "yd/s"
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn wheel_speed_rr(&self) -> f32 {
-        self.wheel_speed_rr_phys_val()
-    }
-    /// Returns the physical value of `WheelSpeedRR`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "yd/s"
     #[inline(always)]
-    pub fn wheel_speed_rr_phys_val(&self) -> f32 {
+    pub fn wheel_speed_rr(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[48..64].load_be::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -2091,17 +1956,10 @@ impl VehicleSpeed {
     /// - Max: 100
     /// - Unit: "mph"
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn vehicle_speed1(&self) -> f32 {
-        self.vehicle_speed1_phys_val()
-    }
-    /// Returns the physical value of `VehicleSpeed1`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "mph"
     #[inline(always)]
-    pub fn vehicle_speed1_phys_val(&self) -> f32 {
+    pub fn vehicle_speed1(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[0..16].load_be::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -2142,17 +2000,10 @@ impl VehicleSpeed {
     /// - Max: 100
     /// - Unit: "mph"
     /// - Receivers: NEO
-    #[inline(always)]
-    pub fn vehicle_speed2(&self) -> f32 {
-        self.vehicle_speed2_phys_val()
-    }
-    /// Returns the physical value of `VehicleSpeed2`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 0
-    /// - Unit: "mph"
     #[inline(always)]
-    pub fn vehicle_speed2_phys_val(&self) -> f32 {
+    pub fn vehicle_speed2(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[32..48].load_be::<u16>();
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -2279,13 +2130,8 @@ impl CruiseButtons {
             _ => CruiseButtonsCruiseButtons::_Other(self.cruise_buttons_phys_val()),
         }
     }
-    /// Returns the physical value of `CruiseButtons`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn cruise_buttons_phys_val(&self) -> u8 {
+    fn cruise_buttons_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[4..7].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -2417,13 +2263,8 @@ impl CruiseButtons2 {
             _ => CruiseButtons2LkaGapButton::_Other(self.lka_gap_button_phys_val()),
         }
     }
-    /// Returns the physical value of `LKAGapButton`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn lka_gap_button_phys_val(&self) -> u8 {
+    fn lka_gap_button_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Msb0>()[6..8].load_be::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)

@@ -89,17 +89,10 @@ impl Message1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Node2
-    #[inline(always)]
-    pub fn signal1(&self) -> i8 {
-        self.signal1_phys_val()
-    }
-    /// Returns the physical value of `Signal1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal1_phys_val(&self) -> i8 {
+    pub fn signal1(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -220,17 +213,10 @@ impl Message2 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Node1
-    #[inline(always)]
-    pub fn signal2(&self) -> i8 {
-        self.signal2_phys_val()
-    }
-    /// Returns the physical value of `Signal2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn signal2_phys_val(&self) -> i8 {
+    pub fn signal2(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;

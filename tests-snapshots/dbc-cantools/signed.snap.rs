@@ -159,17 +159,10 @@ impl Message378910 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s3big(&self) -> i8 {
-        self.s3big_phys_val()
-    }
-    /// Returns the physical value of `s3big`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s3big_phys_val(&self) -> i8 {
+    pub fn s3big(&self) -> i8 {
         let signal = self.raw.view_bits::<Msb0>()[32..35].load_be::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -216,17 +209,10 @@ impl Message378910 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s3(&self) -> i8 {
-        self.s3_phys_val()
-    }
-    /// Returns the physical value of `s3`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s3_phys_val(&self) -> i8 {
+    pub fn s3(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[34..37].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -273,17 +259,10 @@ impl Message378910 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s10big(&self) -> i16 {
-        self.s10big_phys_val()
-    }
-    /// Returns the physical value of `s10big`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s10big_phys_val(&self) -> i16 {
+    pub fn s10big(&self) -> i16 {
         let signal = self.raw.view_bits::<Msb0>()[47..57].load_be::<i16>();
         let factor = 1;
         let signal = signal as i16;
@@ -330,17 +309,10 @@ impl Message378910 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s8big(&self) -> i8 {
-        self.s8big_phys_val()
-    }
-    /// Returns the physical value of `s8big`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s8big_phys_val(&self) -> i8 {
+    pub fn s8big(&self) -> i8 {
         let signal = self.raw.view_bits::<Msb0>()[7..15].load_be::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -387,17 +359,10 @@ impl Message378910 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s7big(&self) -> i8 {
-        self.s7big_phys_val()
-    }
-    /// Returns the physical value of `s7big`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s7big_phys_val(&self) -> i8 {
+    pub fn s7big(&self) -> i8 {
         let signal = self.raw.view_bits::<Msb0>()[57..64].load_be::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -444,17 +409,10 @@ impl Message378910 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s9(&self) -> i16 {
-        self.s9_phys_val()
-    }
-    /// Returns the physical value of `s9`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s9_phys_val(&self) -> i16 {
+    pub fn s9(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[17..26].load_le::<i16>();
         let factor = 1;
         let signal = signal as i16;
@@ -501,17 +459,10 @@ impl Message378910 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s8(&self) -> i8 {
-        self.s8_phys_val()
-    }
-    /// Returns the physical value of `s8`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s8_phys_val(&self) -> i8 {
+    pub fn s8(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[26..34].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -558,17 +509,10 @@ impl Message378910 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s7(&self) -> i8 {
-        self.s7_phys_val()
-    }
-    /// Returns the physical value of `s7`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s7_phys_val(&self) -> i8 {
+    pub fn s7(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[1..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -688,17 +632,10 @@ impl Message63big1 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s63big(&self) -> i64 {
-        self.s63big_phys_val()
-    }
-    /// Returns the physical value of `s63big`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s63big_phys_val(&self) -> i64 {
+    pub fn s63big(&self) -> i64 {
         let signal = self.raw.view_bits::<Msb0>()[1..64].load_be::<i64>();
         let factor = 1;
         let signal = signal as i64;
@@ -818,17 +755,10 @@ impl Message631 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s63(&self) -> i64 {
-        self.s63_phys_val()
-    }
-    /// Returns the physical value of `s63`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s63_phys_val(&self) -> i64 {
+    pub fn s63(&self) -> i64 {
         let signal = self.raw.view_bits::<Lsb0>()[1..64].load_le::<i64>();
         let factor = 1;
         let signal = signal as i64;
@@ -948,17 +878,10 @@ impl Message63big {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s63big(&self) -> i64 {
-        self.s63big_phys_val()
-    }
-    /// Returns the physical value of `s63big`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s63big_phys_val(&self) -> i64 {
+    pub fn s63big(&self) -> i64 {
         let signal = self.raw.view_bits::<Msb0>()[0..63].load_be::<i64>();
         let factor = 1;
         let signal = signal as i64;
@@ -1078,17 +1001,10 @@ impl Message63 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s63(&self) -> i64 {
-        self.s63_phys_val()
-    }
-    /// Returns the physical value of `s63`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s63_phys_val(&self) -> i64 {
+    pub fn s63(&self) -> i64 {
         let signal = self.raw.view_bits::<Lsb0>()[0..63].load_le::<i64>();
         let factor = 1;
         let signal = signal as i64;
@@ -1208,17 +1124,10 @@ impl Message32big {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s32big(&self) -> i32 {
-        self.s32big_phys_val()
-    }
-    /// Returns the physical value of `s32big`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s32big_phys_val(&self) -> i32 {
+    pub fn s32big(&self) -> i32 {
         let signal = self.raw.view_bits::<Msb0>()[0..32].load_be::<i32>();
         let factor = 1;
         let signal = signal as i32;
@@ -1338,17 +1247,10 @@ impl Message33big {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s33big(&self) -> i64 {
-        self.s33big_phys_val()
-    }
-    /// Returns the physical value of `s33big`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s33big_phys_val(&self) -> i64 {
+    pub fn s33big(&self) -> i64 {
         let signal = self.raw.view_bits::<Msb0>()[0..33].load_be::<i64>();
         let factor = 1;
         let signal = signal as i64;
@@ -1468,17 +1370,10 @@ impl Message64big {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s64big(&self) -> i64 {
-        self.s64big_phys_val()
-    }
-    /// Returns the physical value of `s64big`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s64big_phys_val(&self) -> i64 {
+    pub fn s64big(&self) -> i64 {
         let signal = self.raw.view_bits::<Msb0>()[0..64].load_be::<i64>();
         let factor = 1;
         let signal = signal as i64;
@@ -1598,17 +1493,10 @@ impl Message64 {
     /// - Max: 9223372036854780000
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s64(&self) -> i64 {
-        self.s64_phys_val()
-    }
-    /// Returns the physical value of `s64`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s64_phys_val(&self) -> i64 {
+    pub fn s64(&self) -> i64 {
         let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<i64>();
         let factor = 1;
         let signal = signal as i64;
@@ -1728,17 +1616,10 @@ impl Message33 {
     /// - Max: 4294967295
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s33(&self) -> i64 {
-        self.s33_phys_val()
-    }
-    /// Returns the physical value of `s33`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s33_phys_val(&self) -> i64 {
+    pub fn s33(&self) -> i64 {
         let signal = self.raw.view_bits::<Lsb0>()[0..33].load_le::<i64>();
         let factor = 1;
         let signal = signal as i64;
@@ -1858,17 +1739,10 @@ impl Message32 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn s32(&self) -> i32 {
-        self.s32_phys_val()
-    }
-    /// Returns the physical value of `s32`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn s32_phys_val(&self) -> i32 {
+    pub fn s32(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 1;
         let signal = signal as i32;

@@ -92,17 +92,10 @@ impl MuxedFrame {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn unmultiplexed_sig(&self) -> i8 {
-        self.unmultiplexed_sig_phys_val()
-    }
-    /// Returns the physical value of `UnmultiplexedSig`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn unmultiplexed_sig_phys_val(&self) -> i8 {
+    pub fn unmultiplexed_sig(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -143,17 +136,6 @@ impl MuxedFrame {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
-    /// Returns the physical value of `MultiplexorSig`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
-    #[inline(always)]
-    pub fn multiplexor_sig_phys_val(&self) -> u8 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<u8>();
-        let factor = 1;
-        u8::from(signal).saturating_mul(factor).saturating_add(0)
-    }
     /// Returns the raw value of `MultiplexorSig`.
     ///
     /// - Start bit: 0
@@ -170,10 +152,11 @@ impl MuxedFrame {
     fn set_multiplexor_sig_raw_val(&mut self, value: u8) {
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
     }
-    pub fn multiplexor_sig(
+    /// Selects the active multiplexed sub-message for `MultiplexorSig`.
+    pub fn multiplexor_sig_multiplexed(
         &mut self,
     ) -> Result<MuxedFrameMultiplexorSigIndex, CanError> {
-        match self.multiplexor_sig_phys_val() {
+        match self.multiplexor_sig_raw_val() {
             42 => {
                 Ok(
                     MuxedFrameMultiplexorSigIndex::M42(MuxedFrameMultiplexorSigM42 {
@@ -303,17 +286,10 @@ impl MuxedFrameMultiplexorSigM42 {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn multiplexed_sig(&self) -> i8 {
-        self.multiplexed_sig_phys_val()
-    }
-    /// Returns the physical value of `MultiplexedSig`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn multiplexed_sig_phys_val(&self) -> i8 {
+    pub fn multiplexed_sig(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;

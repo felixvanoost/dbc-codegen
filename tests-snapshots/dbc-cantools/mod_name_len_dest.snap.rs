@@ -88,17 +88,10 @@ impl MsgNowShort {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sig_now_short(&self) -> u8 {
-        self.sig_now_short_phys_val()
-    }
-    /// Returns the physical value of `sig_now_short`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sig_now_short_phys_val(&self) -> u8 {
+    pub fn sig_now_short(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[1..9].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)

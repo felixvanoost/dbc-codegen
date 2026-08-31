@@ -103,13 +103,8 @@ impl Message0 {
             _ => Message0FooSignal::_Other(self.foo_signal_phys_val()),
         }
     }
-    /// Returns the physical value of `FooSignal`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn foo_signal_phys_val(&self) -> u8 {
+    fn foo_signal_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..2].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
@@ -169,13 +164,8 @@ impl Message0 {
             _ => Message0BarSignal::_Other(self.bar_signal_phys_val()),
         }
     }
-    /// Returns the physical value of `BarSignal`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn bar_signal_phys_val(&self) -> u8 {
+    fn bar_signal_phys_val(&self) -> u8 {
         let signal = self.raw.view_bits::<Lsb0>()[2..5].load_le::<u8>();
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)

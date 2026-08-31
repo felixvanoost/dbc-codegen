@@ -103,17 +103,10 @@ impl Foo {
     /// - Max: 270.47
     /// - Unit: "degK"
     /// - Receivers: BAR
-    #[inline(always)]
-    pub fn foo(&self) -> f32 {
-        self.foo_phys_val()
-    }
-    /// Returns the physical value of `Foo`.
-    ///
     /// - Factor: 0.01
     /// - Offset: 250
-    /// - Unit: "degK"
     #[inline(always)]
-    pub fn foo_phys_val(&self) -> f32 {
+    pub fn foo(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[7..19].load_be::<i16>();
         let factor = 0.01_f32;
         let offset = 250_f32;
@@ -158,17 +151,10 @@ impl Foo {
     /// - Max: 5
     /// - Unit: "m"
     /// - Receivers: FOO
-    #[inline(always)]
-    pub fn bar(&self) -> f32 {
-        self.bar_phys_val()
-    }
-    /// Returns the physical value of `Bar`.
-    ///
     /// - Factor: 0.1
     /// - Offset: 0
-    /// - Unit: "m"
     #[inline(always)]
-    pub fn bar_phys_val(&self) -> f32 {
+    pub fn bar(&self) -> f32 {
         let signal = self.raw.view_bits::<Msb0>()[31..63].load_be::<i32>();
         let factor = 0.1_f32;
         let offset = 0_f32;
@@ -289,17 +275,10 @@ impl Fum {
     /// - Max: 10
     /// - Unit: Not specified
     /// - Receivers: BAR
-    #[inline(always)]
-    pub fn fum(&self) -> i16 {
-        self.fum_phys_val()
-    }
-    /// Returns the physical value of `Fum`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn fum_phys_val(&self) -> i16 {
+    pub fn fum(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..12].load_le::<i16>();
         let factor = 1;
         let signal = signal as i16;
@@ -355,13 +334,8 @@ impl Fum {
             _ => FumFam::_Other(self.fam_phys_val()),
         }
     }
-    /// Returns the physical value of `Fam`.
-    ///
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn fam_phys_val(&self) -> i16 {
+    fn fam_phys_val(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[12..24].load_le::<i16>();
         let factor = 1;
         let signal = signal as i16;
@@ -508,17 +482,10 @@ impl Bar {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: FUM
-    #[inline(always)]
-    pub fn binary32(&self) -> i32 {
-        self.binary32_phys_val()
-    }
-    /// Returns the physical value of `Binary32`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn binary32_phys_val(&self) -> i32 {
+    pub fn binary32(&self) -> i32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
         let factor = 1;
         let signal = signal as i32;
@@ -642,17 +609,10 @@ impl CanFd {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: FUM
-    #[inline(always)]
-    pub fn fie(&self) -> u64 {
-        self.fie_phys_val()
-    }
-    /// Returns the physical value of `Fie`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn fie_phys_val(&self) -> u64 {
+    pub fn fie(&self) -> u64 {
         let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>();
         let factor = 1;
         u64::from(signal).saturating_mul(factor).saturating_add(0)
@@ -696,17 +656,10 @@ impl CanFd {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn fas(&self) -> u64 {
-        self.fas_phys_val()
-    }
-    /// Returns the physical value of `Fas`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn fas_phys_val(&self) -> u64 {
+    pub fn fas(&self) -> u64 {
         let signal = self.raw.view_bits::<Lsb0>()[64..128].load_le::<u64>();
         let factor = 1;
         u64::from(signal).saturating_mul(factor).saturating_add(0)
@@ -824,17 +777,10 @@ impl Foobar {
     /// - Max: 1
     /// - Unit: Not specified
     /// - Receivers: BAR
-    #[inline(always)]
-    pub fn acc_02_crc(&self) -> i16 {
-        self.acc_02_crc_phys_val()
-    }
-    /// Returns the physical value of `ACC_02_CRC`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn acc_02_crc_phys_val(&self) -> i16 {
+    pub fn acc_02_crc(&self) -> i16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..12].load_le::<i16>();
         let factor = 1;
         let signal = signal as i16;

@@ -95,17 +95,10 @@ impl Test {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Tester
-    #[inline(always)]
-    pub fn test_sig(&self) -> i8 {
-        self.test_sig_phys_val()
-    }
-    /// Returns the physical value of `TestSig`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn test_sig_phys_val(&self) -> i8 {
+    pub fn test_sig(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -239,17 +232,10 @@ impl SgMsgM {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn dupsig(&self) -> i8 {
-        self.dupsig_phys_val()
-    }
-    /// Returns the physical value of `dupsig`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn dupsig_phys_val(&self) -> i8 {
+    pub fn dupsig(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[24..32].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -296,17 +282,10 @@ impl SgMsgM {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sub_sig2_1(&self) -> i8 {
-        self.sub_sig2_1_phys_val()
-    }
-    /// Returns the physical value of `subSig2_1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sub_sig2_1_phys_val(&self) -> i8 {
+    pub fn sub_sig2_1(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -353,17 +332,10 @@ impl SgMsgM {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sub_sig1_2(&self) -> i8 {
-        self.sub_sig1_2_phys_val()
-    }
-    /// Returns the physical value of `subSig1_2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sub_sig1_2_phys_val(&self) -> i8 {
+    pub fn sub_sig1_2(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -410,17 +382,10 @@ impl SgMsgM {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sub_sig1_1(&self) -> i8 {
-        self.sub_sig1_1_phys_val()
-    }
-    /// Returns the physical value of `subSig1_1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sub_sig1_1_phys_val(&self) -> i8 {
+    pub fn sub_sig1_1(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -546,17 +511,10 @@ impl SgMsg {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn dupsig(&self) -> i8 {
-        self.dupsig_phys_val()
-    }
-    /// Returns the physical value of `dupsig`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn dupsig_phys_val(&self) -> i8 {
+    pub fn dupsig(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[16..24].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -603,17 +561,10 @@ impl SgMsg {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sg2(&self) -> i8 {
-        self.sg2_phys_val()
-    }
-    /// Returns the physical value of `SG2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sg2_phys_val(&self) -> i8 {
+    pub fn sg2(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -660,17 +611,10 @@ impl SgMsg {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sg1(&self) -> i8 {
-        self.sg1_phys_val()
-    }
-    /// Returns the physical value of `SG1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sg1_phys_val(&self) -> i8 {
+    pub fn sg1(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -793,17 +737,10 @@ impl NormalMsg {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sig_2(&self) -> i8 {
-        self.sig_2_phys_val()
-    }
-    /// Returns the physical value of `Sig_2`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sig_2_phys_val(&self) -> i8 {
+    pub fn sig_2(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[8..16].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
@@ -850,17 +787,10 @@ impl NormalMsg {
     /// - Max: 0
     /// - Unit: Not specified
     /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn sig_1(&self) -> i8 {
-        self.sig_1_phys_val()
-    }
-    /// Returns the physical value of `Sig_1`.
-    ///
     /// - Factor: 1
     /// - Offset: 0
-    /// - Unit: Not specified
     #[inline(always)]
-    pub fn sig_1_phys_val(&self) -> i8 {
+    pub fn sig_1(&self) -> i8 {
         let signal = self.raw.view_bits::<Lsb0>()[0..8].load_le::<i8>();
         let factor = 1;
         let signal = signal as i8;
