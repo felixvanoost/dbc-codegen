@@ -1244,7 +1244,9 @@ fn signal_pub_type(dbc: &Dbc, msg: &Message, signal: &Signal) -> String {
     }
 }
 
-/// Whether the signal has no scaling applied (its raw and physical value are identical).
+/// Whether the signal has no scaling applied, i.e. its raw and physical values are identical.
+/// The float comparison to exact values is intentional.
+#[allow(clippy::float_cmp)]
 fn is_unscaled(signal: &Signal) -> bool {
     signal.factor == 1.0 && signal.offset == 0.0
 }
